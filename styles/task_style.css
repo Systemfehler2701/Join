@@ -1,0 +1,136 @@
+.taskbody {
+  background-color: #f6f7f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: inter; /* to be continued */
+}
+
+h1 {
+  font-size: 61px;
+  font-weight: bold;
+  width: 976px;
+}
+
+.task_input {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 976px;
+  font-size: 20px;
+}
+
+.input1 {
+  height: 100%;
+  width: 45%;
+}
+
+.input1 h2 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.input1 div {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.title {
+  width: 100%;
+}
+
+.title input {
+  width: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 12px 21px 12px 21px;
+  font-size: 20px;
+}
+
+.description span {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 120px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.assignment select {
+  width: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 49px;
+  padding: 12px 16px 12px 16px;
+  font-size: 20px;
+}
+
+.input2 {
+  height: 100%;
+  width: 45%;
+}
+
+.input2 {
+  height: 100%;
+  width: 45%;
+}
+
+.input2 h2 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.input2 div {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input2 input {
+  width: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 12px 21px 12px 21px;
+  font-size: 20px;
+}
+
+.input2 select {
+  width: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 49px;
+  padding: 12px 16px 12px 16px;
+  font-size: 20px;
+}
+
+.input2 button {
+  border-radius: 10px;
+  padding: 16px 10px 16px 10px;
+  background-color: white;
+  height: 56px;
+  width: 30%;
+}
+
+.input2 button img {
+  max-height: 14.5px;
+}
+
+.prio div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divider {
+  height: 424px;
+  background-color: #d1d1d1;
+  width: 1px;
+}
+
+.buttons {
+  width: 976px;
+}

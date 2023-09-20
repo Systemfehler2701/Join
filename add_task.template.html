@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/task_script.js"></script>
+    <link rel="stylesheet" href="styles/task_style.css">
+
+</head>
+
+<body>
+    <div class="taskbody">
+        <h1>Add Task</h1>
+        <div class="task_input">
+            <div class="input1">
+                <div class="title">
+                    <h2>Title</h2>
+                    <input type="textbox" placeholder="Enter a title">
+                </div>
+                <div class="description">
+                    <h2>Description</h2>
+                    <span placeholder="Enter a description" id="inputDescription" role="textbox" contenteditable></span>
+                </div>
+                <div class="assignment">
+                    <h2>Assigned to</h2>
+                    <select id="assign_select">
+                        <option value="null">Select contacts to assign</option>
+                    </select>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="input2">
+                <div class="date">
+                    <h2>Due Date</h2>
+                    <input type="date" name="" id="">
+                </div>
+                <div class="prio">
+                    <h2>Prio</h2>
+                    <div>
+                        <button>
+                            Urgent
+                            <img src="assets/templates/img/Prio alta.png" alt="">
+                        </button>
+                        <button>
+                            Medium
+                            <img src="assets/templates/img/Prio media.png" alt="">
+                        </button>
+                        <button>
+                            Low
+                            <img src="assets/templates/img/Prio baja.png" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="category">
+                    <h2>Category</h2>
+                    <select id="category_selector">
+                        <option value="null">Select Category</option>
+                    </select>
+                </div>
+                <div class="subtask">
+                    <h2>Subtasks</h2>
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="clear"></button>
+            <button class="create"></button>
+        </div>
+
+    </div>
+</body>
+
+</html>
