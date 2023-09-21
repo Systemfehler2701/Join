@@ -1,0 +1,256 @@
+.taskbody {
+  background-color: #f6f7f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: inter; /* to be continued */
+}
+
+h1 {
+  font-size: 61px;
+  font-weight: bold;
+  width: 976px;
+}
+
+.task_input {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 976px;
+  font-size: 20px;
+}
+
+.input1 {
+  height: 100%;
+  width: 45%;
+}
+
+.input1 h2 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.input1 div {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.title {
+  width: 100%;
+}
+
+.title input {
+  width: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 12px 21px 12px 21px;
+  font-size: 20px;
+}
+
+.title input::placeholder {
+  color: #D1D1D1;
+}
+
+.description textarea {
+  font-size: 20px;
+  appearance: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  resize: none;
+  min-height: 100px;
+  max-height: 120px;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 100%;
+  background-image: url(../assets/templates/img/Recurso\ 1\ 1.svg);
+  background-repeat: no-repeat;
+  background-position-x: 98%;
+  background-position-y: 92%;
+  padding: 18px 16px 18px 16px;
+}
+
+.description textarea::placeholder {
+  color: #D1D1D1;
+  font-size: 20px;
+}
+
+.assignment select {
+  width: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 49px;
+  padding: 12px 16px 12px 16px;
+  font-size: 20px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url(../assets/templates/img/arrow_drop_downaa.svg);
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 18px);
+  background-position-y: calc(50% + 2px);
+  cursor: pointer;
+}
+
+.assignment select:focus {
+  border-radius: 10px 10px 0 0;
+}
+
+.assignment select::placeholder {
+  color: #D1D1D1;
+  font-size: 20px;
+}
+
+
+.input2 {
+  height: 100%;
+  width: 45%;
+}
+
+.input2 {
+  height: 100%;
+  width: 45%;
+}
+
+.input2 h2 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+}
+
+.input2 div {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input2 input {
+  width: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 12px 21px 12px 21px;
+  font-size: 20px;
+}
+
+.date input {
+  cursor: text;
+
+}
+
+.input2 input::placeholder{
+  color: #D1D1D1;
+  font-size: 20px;
+}
+
+.input2 select {
+  cursor: pointer;
+  width: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  height: 49px;
+  padding: 12px 16px 12px 16px;
+  font-size: 20px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url(../assets/templates/img/arrow_drop_downaa.svg);
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 18px);
+  background-position-y: calc(50% + 2px);
+}
+
+.input2 select:focus {
+  border-radius: 10px 10px 0 0;
+}
+
+.input2 button {
+  border-radius: 10px;
+  padding: 16px 10px 16px 10px;
+  background-color: white;
+  height: 56px;
+  width: 30%;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.input2 button img {
+  max-height: 14.5px;
+}
+
+.prio div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtask div {
+  position: relative;
+}
+
+.subtask img {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.subtask input::placeholder {
+  color: #D1D1D1;
+  font-size: 20px;
+}
+  
+
+.divider {
+  height: 424px;
+  background-color: #d1d1d1;
+  width: 1px;
+}
+
+.buttons {
+  width: 976px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.clear {
+  cursor: pointer;
+  text-align: left;
+  border: solid 1px #2A3647;
+  color: #2A3647;
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 20px;
+  height: 56px;
+  width: 110px;
+  font-weight: 400;
+  background-image: url(../assets/templates/img/Vector.svg);
+  background-repeat: no-repeat;
+  background-position-x: 85%;
+  background-position-y: 50%;
+}
+
+.create {
+  cursor: pointer;
+  text-align: left;
+  border: solid 1px #2A3647;
+  background-color: #2A3647;
+  color: white;
+  padding: 16px;
+  height: 56px;
+  width: 183px;
+  font-size: 21px;
+  border-radius: 10px;
+  font-weight: 700;
+  background-image: url(../assets/templates/img/check.svg);
+  background-repeat: no-repeat;
+  background-position-x: 85%;
+  background-position-y: 50%;
+}
