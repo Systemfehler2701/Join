@@ -1,0 +1,22 @@
+.sidebar {
+    position: fixed;
+    width: 232px;
+    height: 100%;
+    background-color: #2A3647;
+    /*    padding: 64px, 0px, 64px, 0px; 
+    display: flex;
+    justify-content: space-between;*/
+}
+
+.sidebar-img {
+    height: 121.97px;
+    width: 100.03px;
+}
+
+.sidebar-menu p {
+    color: #cdcdcd;
+}
+
+.menu-button {
+    display: flex;
+}
