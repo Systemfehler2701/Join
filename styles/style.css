@@ -1,3 +1,11 @@
+:root {
+
+    --white: #FFFFFF;
+    --black: #000000;
+    --lightgrey: #F2F2F2;
+}
+
+
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -7,10 +15,31 @@ body {
 
 /* Login */
 
-form {
+#container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    text-align: center;
+    Width: 100%;
+    Height: 100vh;
+    background: var(--white);
+}
+
+#login_form {
+    Width: 652px;
+    Height: 493px;
+    Top: 265.5px;
+    Left: 394px;
+    border-radius: 30px;
+    Padding: 48px 115px 48px 115px;
+    Gap: 32px;
+    background: var(--lightgrey);
+}
+
+#logo {
+    width: 100.03px;
+    height: 121.97px;
+    top: 80px;
+    left: 77px;
 }
