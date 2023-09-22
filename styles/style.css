@@ -2,7 +2,7 @@
 
     --white: #FFFFFF;
     --black: #000000;
-    --lightgrey: #F2F2F2;
+    --background: #F6F7F8;
 }
 
 
@@ -34,7 +34,7 @@ body {
     border-radius: 30px;
     Padding: 48px 115px 48px 115px;
     Gap: 32px;
-    background: var(--lightgrey);
+    background: var(--background);
 }
 
 #logo {
@@ -42,4 +42,16 @@ body {
     height: 121.97px;
     top: 80px;
     left: 77px;
+}
+
+.email_icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    /* Adjust the right distance as needed */
+    transform: translateY(-50%);
+    width: 20px;
+    /* Adjust the width as needed */
+    height: auto;
+    /* Maintain aspect ratio */
 }
