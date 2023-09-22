@@ -8,19 +8,68 @@
     <script src="../../js/board.js"></script>
     <link rel="stylesheet" href="../../styles/boardstyle.css">
     <link rel="stylesheet" href="../../styles/fonts.css">
+
 </head>
 
 <body>
 
+    <section class="overlay">
+        <div class="blocker"></div>
+        <div class="taskcardFull">
+            <div class="cardheadFull">
+                <div class="categorycardFull" style="background-color: blue;">User Story</div>
+                <img onclick="" src="../img/close.svg" alt="">
+            </div>
+            <h2>Байрактар & Байрактар </h2>
+            <p class="descriptionFull">
+                Російска поліція справи заводить
+            </p>
+            <div class="duedateFull">
+                <p>Due Date:</p>
+                <p>12/03/2023</p>
+            </div>
+            <div class="prioFull">
+                <p>Priority:</p>
+                <div>
+                    Medium
+                    <img src="../img/Prio media.png" alt="">
+                </div>
+            </div>
+            <div class="assigneesFull">
+                <p>Assigned to:</p>
+            </div>
+            <div class="subtasksFull">
+                <p>Subtasks:</p>
+                <div class="subtaskFull">
+                    <div class="checkboxticked">
+                        <img src="../img/Vector 9.svg" alt="">
+                        <img class="check" src="../img/Vector 17.svg" alt="">
+                    </div>
+                    Байрактар…
+                </div>
+                <div class="subtaskFull">
+                    <div class="checkbox">
+                        <img src="../img/Rectangle 5.svg" alt="">
+                    </div>
+                    Байрактар…
+                </div>
+            </div>
+            <div class="editorbarFull">
+                <button onclick="" class="del">Delete</button>
+                <img src="../img/Vector 3.svg" alt="">
+                <button onclick="" class="edit">Edit</button>
+            </div>
 
+        </div>
+    </section>
     <section class="boardbody">
         <div class="head">
             <h1 class="h1">Board</h1>
             <div class="headleft">
                 <div class="searchbar">
-                    <input type="text">
+                    <input type="text" placeholder="Find task">
                     <div class="divider"></div>
-                    <img onclick="" src="" alt="">
+                    <img onclick="" src="../img/search.svg" alt="">
                 </div>
                 <button>Add task</button>
             </div>
@@ -31,28 +80,64 @@
                     <h2>To do</h2>
                     <button class="add"></button>
                 </div>
-                <div id="ToDo" class="panelbody"></div>
+                <div id="ToDo" class="panelbody">
+                    <div class="placeholder">
+                        <p>No tasks to do</p>
+                    </div>
+
+                    <div class="taskcard">
+                        <div class="categorycard" style="background-color: blue;">User Story</div>
+                        <h2>Go home you're Drunk</h2>
+                        <p class="descriptioncard">
+                            Російскі танкісти сховались в кущі,
+                            Щоб лаптем посьорбати довбані щі
+                            Та трохи у щах перегрівся навар
+                            Байрактар… Байрактар…
+                        </p>
+                        <div class="subtaskscard">
+                            <label>0/2 Subtasks</label>
+                            <progress id="progressbar" max="100" value="0"></progress>
+                        </div>
+                        <div class="cardBottom">
+                            <div class="assignees">yoo</div>
+                            <img src="../img/Prio alta.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>In progress</h2>
                     <button class="add"></button>
                 </div>
-                <div id="inProgress" class="panelbody"></div>
+                <div id="inProgress" class="panelbody">
+                    <div class="placeholder">
+                        <p>No tasks to in Progress</p>
+                    </div>
+                </div>
             </div>
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>Await feedback</h2>
                     <button class="add"></button>
                 </div>
-                <div id="awaitFeedback" class="panelbody"></div>
+                <div id="awaitFeedback" class="panelbody">
+                    <div class="placeholder">
+                        <p>No tasks awaiting feedback</p>
+                    </div>
+                </div>
             </div>
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>Done</h2>
                     <button class="add"></button>
                 </div>
-                <div id="done" class="panelbody"></div>
+                <div id="done" class="panelbody">
+                    <div class="placeholder">
+                        <p>No tasks done yet</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
