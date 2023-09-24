@@ -10,6 +10,12 @@
 
 .header-content {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 640px;
+    height: 136px;
+    margin: 100px 0 0 50px;
+    gap: 3px;
 }
 
 .header-content img {
