@@ -70,7 +70,7 @@ h1 {
   box-sizing: border-box;
   max-width: 100%;
   min-width: 100%;
-  background-image: url(../assets/templates/img/Recurso\ 1\ 1.svg);
+  background-image: url(../assets/img/Recurso1.svg);
   background-repeat: no-repeat;
   background-position-x: 98%;
   background-position-y: 92%;
@@ -92,7 +92,7 @@ h1 {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url(../assets/templates/img/arrow_drop_downaa.svg);
+  background-image: url(../assets/img/arrow_drop_downaa.svg);
   background-repeat: no-repeat;
   background-position-x: calc(100% - 18px);
   background-position-y: calc(50% + 2px);
@@ -160,7 +160,7 @@ h1 {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background-image: url(../assets/templates/img/arrow_drop_downaa.svg);
+  background-image: url(../assets/img/arrow_drop_downaa.svg);
   background-repeat: no-repeat;
   background-position-x: calc(100% - 18px);
   background-position-y: calc(50% + 2px);
@@ -170,15 +170,36 @@ h1 {
   border-radius: 10px 10px 0 0;
 }
 
-.input2 button {
+.prio label  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
   padding: 16px 10px 16px 10px;
   background-color: white;
-  height: 56px;
+  height: fit-content;
+  box-sizing: border-box;
   width: 30%;
   font-weight: 400;
   cursor: pointer;
+  border: solid 1px #2A3647;
+  color: #2A3647;
 }
+
+.prio input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: none;
+}
+
+.prio input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
 
 .input2 button img {
   max-height: 14.5px;
@@ -231,7 +252,7 @@ h1 {
   height: 56px;
   width: 110px;
   font-weight: 400;
-  background-image: url(../assets/templates/img/Vector.svg);
+  background-image: url(../assets/img/Vector.svg);
   background-repeat: no-repeat;
   background-position-x: 85%;
   background-position-y: 50%;
@@ -249,7 +270,7 @@ h1 {
   font-size: 21px;
   border-radius: 10px;
   font-weight: 700;
-  background-image: url(../assets/templates/img/check.svg);
+  background-image: url(../assets/img/check.svg);
   background-repeat: no-repeat;
   background-position-x: 85%;
   background-position-y: 50%;
