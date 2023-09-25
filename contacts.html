@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/contacts.css">
+    <link rel="stylesheet" href="styles/fonts.css">
+    <script src="js/storage.js"></script>
+    <script src="js/contacts.js"></script>
+    <title>Join</title>
+</head>
+
+<button class="addButton" onclick="addNewContact()">Add new Contact</button>
+
+<body onload="render()">
+
+    <div class="all">
+        <div id="contactlist"></div>
+        <div class="rightside">
+            <h1>Contacts</h1> |
+            <h2>Better with a team</h2>
+        </div>
+
+
+    </div>
+
+
+    <!-- Overlay für Kontaktformular -->
+    <div class="overlay" id="overlay">
+        <div class="form-container">
+            <button id="closeForm">X</button>
+            <h2>Kontakt hinzufügen</h2>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" required>
+
+                <button type="submit">Hinzufügen</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

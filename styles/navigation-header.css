@@ -1,0 +1,170 @@
+app {
+    display: flex;
+}
+
+#right-layout {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    width: 232px;
+    height: 100vh;
+    background-color: #2A3647;
+    justify-content: space-between;
+}
+
+#content {
+    display: flex;
+    flex: 1;
+    background-color: #F6F7F8;
+    margin-top: 5px;
+}
+
+#header {
+    display: flex;
+    height: 96px;
+    background-color: #ffffff;
+    font-size: 20px;
+    box-shadow: 0px 4px 4px 0px #00000010;
+    justify-content: space-between;
+    padding: 5px 40px 5px 100px;
+}
+
+.headline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+    margin: 0 100px 0 50px;
+}
+
+.headline-profile {
+    display: flex;
+    align-items: center;
+}
+
+.help-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.help-link:hover {
+    transform: scale(1.2);
+}
+
+.user-profile-initials {
+    height: 56px;
+    width: 56px;
+    border: #2A3647 solid 3px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.navigation-img {
+    display: flex;
+    width: 232px;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 64px;
+}
+
+.navigation-logo {
+    width: 100.03px;
+    height: 121.97px;
+}
+
+.navigation-menu {
+    display: flex;
+    flex-direction: column;
+    width: 232px;
+    height: 250px;
+    gap: 8px;
+}
+
+nav span {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.menu-button {
+    display: flex;
+    padding: 8px 56px 8px 56px;
+    gap: 8px;
+    background-color: #2A3647;
+    color: #cdcdcd;
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background-color: #2A3D59;
+}
+
+.menu-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.menu-icon.summary {
+    background-image: url(/assets/img/summary-grey.svg);
+}
+
+.menu-button.active .menu-icon.summary {
+    background-image: url(/assets/img/summary-white.svg);
+}
+
+.menu-icon.add-task {
+    background-image: url(/assets/img/addTask-grey.svg);
+}
+
+.menu-button.active .menu-icon.add-task {
+    background-image: url(/assets/img/addTask-white.svg);
+}
+
+.menu-icon.board {
+    background-image: url(/assets/img/board-grey.svg);
+}
+
+.menu-button.active .menu-icon.board {
+    background-image: url(/assets/img/board-white.svg);
+}
+
+.menu-icon.contacts {
+    background-image: url(/assets/img/contacts-grey.svg);
+}
+
+.menu-button.active .menu-icon.contacts {
+    background-image: url(/assets/img/contacts-white.svg);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    gap: 4px;
+    padding-left: 52px;
+}
+
+.footer a {
+    width: 121px;
+    height: 35px;
+    color: #cdcdcd;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #29ABE2;
+}
+
+.menu-button.active {
+    color: white !important;
+    background-color: #091931 !important;
+}
