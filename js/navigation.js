@@ -5,3 +5,9 @@ function navigationMenuClicked(element) {
     }
     element.classList.add('active');
 }
+
+function renderAddTask(element) {
+    navigationMenuClicked(element);
+    let content = document.getElementById('content');
+    content.innerHTML = createNewTask('ToDo');
+}
