@@ -1,5 +1,4 @@
 .taskbody {
-  background-color: #f6f7f8;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,13 +6,13 @@
   font-family: 'Inter';
 }
 
-h1 {
+.taskbody h1 {
   font-size: 61px;
   font-weight: bold;
   width: 976px;
 }
 
-.task_input {
+.taskbody .task_input {
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
@@ -21,26 +20,28 @@ h1 {
   font-size: 20px;
 }
 
-.input1 {
+.taskbody .input1 {
   height: 100%;
   width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.input1 h2 {
+.taskbody .input1 h2 {
   margin: 0 0 8px 0;
   font-size: 20px;
 }
 
-.input1 div {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.title {
+.taskbody .input1 div {
   width: 100%;
 }
 
-.title input {
+.taskbody .title {
+  width: 100%;
+}
+
+.taskbody .title input {
   width: 100%;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
@@ -50,11 +51,11 @@ h1 {
   font-size: 20px;
 }
 
-.title input::placeholder {
+.taskbody .title input::placeholder {
   color: #D1D1D1;
 }
 
-.description textarea {
+.taskbody .description textarea {
   font-size: 20px;
   appearance: none;
   appearance: none;
@@ -77,12 +78,12 @@ h1 {
   padding: 18px 16px 18px 16px;
 }
 
-.description textarea::placeholder {
+.taskbody .description textarea::placeholder {
   color: #D1D1D1;
   font-size: 20px;
 }
 
-.assignment select {
+.taskbody .assignment select {
   width: 100%;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
@@ -99,37 +100,34 @@ h1 {
   cursor: pointer;
 }
 
-.assignment select:focus {
+.taskbody .assignment select:focus {
   border-radius: 10px 10px 0 0;
 }
 
-.assignment select::placeholder {
+.taskbody .assignment select::placeholder {
   color: #D1D1D1;
   font-size: 20px;
 }
 
 
-.input2 {
+.taskbody .input2 {
   height: 100%;
   width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.input2 {
-  height: 100%;
-  width: 45%;
-}
-
-.input2 h2 {
+.taskbody .input2 h2 {
   margin: 0 0 8px 0;
   font-size: 20px;
 }
 
-.input2 div {
+.taskbody .input2 div {
   width: 100%;
-  margin-bottom: 20px;
 }
 
-.input2 input {
+.taskbody .input2 input {
   width: 100%;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
@@ -139,17 +137,17 @@ h1 {
   font-size: 20px;
 }
 
-.date input {
+.taskbody .date input {
   cursor: text;
 
 }
 
-.input2 input::placeholder{
+.taskbody .input2 input::placeholder{
   color: #D1D1D1;
   font-size: 20px;
 }
 
-.input2 select {
+.taskbody .input2 select {
   cursor: pointer;
   width: 100%;
   border-radius: 10px;
@@ -166,11 +164,11 @@ h1 {
   background-position-y: calc(50% + 2px);
 }
 
-.input2 select:focus {
+.taskbody .input2 select:focus {
   border-radius: 10px 10px 0 0;
 }
 
-.prio label  {
+.taskbody .priocontainer div  {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,37 +182,24 @@ h1 {
   cursor: pointer;
   border: solid 1px #2A3647;
   color: #2A3647;
-}
-
-.prio input {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 0;
-  height: 0;
-  padding: 0;
-  border: none;
-}
-
-.prio input:checked ~ .checkmark {
-  background-color: #2196F3;
+  gap: 8px;
 }
 
 
-.input2 button img {
+.taskbody .input2 button img {
   max-height: 14.5px;
 }
 
-.prio div {
+.taskbody .priocontainer {
   display: flex;
   justify-content: space-between;
 }
 
-.subtask div {
+.taskbody .subtask div {
   position: relative;
 }
 
-.subtask img {
+.taskbody .subtask img {
   position: absolute;
   right: 12px;
   top: 50%;
@@ -226,22 +211,29 @@ h1 {
   color: #D1D1D1;
   font-size: 20px;
 }
+
+.taskbody .Taskerror {
+  margin-top: 8px;
+  color: red;
+  font-size: 16px;
+}
   
 
-.divider {
+.taskbody .divider {
   height: 424px;
   background-color: #d1d1d1;
   width: 1px;
 }
 
-.buttons {
+.taskbody .buttons {
+  margin-top: 20px;
   width: 976px;
   display: flex;
   justify-content: flex-end;
   gap: 4px;
 }
 
-.clear {
+.taskbody .clear {
   cursor: pointer;
   text-align: left;
   border: solid 1px #2A3647;
@@ -258,7 +250,7 @@ h1 {
   background-position-y: 50%;
 }
 
-.create {
+.taskbody .create {
   cursor: pointer;
   text-align: left;
   border: solid 1px #2A3647;

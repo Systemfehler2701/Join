@@ -182,7 +182,7 @@ progress {
 /* Here begins the styling of the Taskcard Overlay the following elements have "Full" at the end of their name to avoid confusion */
 /* Here begins the styling of the Taskcard Overlay the following elements have "Full" at the end of their name to avoid confusion */
 
-.overlay {
+.Boardoverlay {
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -199,16 +199,16 @@ progress {
   z-index: 1;
 }
 
-.taskcardFull {
+.overlayBlank {
   display: flex;
   flex-direction: column;
   gap: 32px;
   font-family: "Inter";
   z-index: 2;
-  max-width: 525px;
+  /* max-width: 525px; */
   background-color: white;
   border-radius: 30px;
-  box-shadow: 0 0 4 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
   padding: 40px 48px 40px 48px;
 }
 

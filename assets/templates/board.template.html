@@ -5,62 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="../../js/board.js"></script>
+
     <link rel="stylesheet" href="../../styles/boardstyle.css">
     <link rel="stylesheet" href="../../styles/fonts.css">
+    <link rel="stylesheet" href="../../styles/task_style.css">
 
 </head>
 
-<body>
+<body onload="Board_loadTasks()">
 
-    <section class="overlay">
-        <div class="blocker"></div>
-        <div class="taskcardFull">
-            <div class="cardheadFull">
-                <div class="categorycardFull" style="background-color: blue;">User Story</div>
-                <img onclick="" src="../img/close.svg" alt="">
-            </div>
-            <h2>Байрактар & Байрактар </h2>
-            <p class="descriptionFull">
-                Російска поліція справи заводить
-            </p>
-            <div class="duedateFull">
-                <p>Due Date:</p>
-                <p>12/03/2023</p>
-            </div>
-            <div class="prioFull">
-                <p>Priority:</p>
-                <div>
-                    Medium
-                    <img src="../img/Prio media.png" alt="">
-                </div>
-            </div>
-            <div class="assigneesFull">
-                <p>Assigned to:</p>
-            </div>
-            <div class="subtasksFull">
-                <p>Subtasks:</p>
-                <div class="subtaskFull">
-                    <div class="checkboxticked">
-                        <img src="../img/Vector 9.svg" alt="">
-                        <img class="check" src="../img/Vector 17.svg" alt="">
-                    </div>
-                    Байрактар…
-                </div>
-                <div class="subtaskFull">
-                    <div class="checkbox">
-                        <img src="../img/Rectangle 5.svg" alt="">
-                    </div>
-                    Байрактар…
-                </div>
-            </div>
-            <div class="editorbarFull">
-                <button onclick="" class="del">Delete</button>
-                <img src="../img/Vector 3.svg" alt="">
-                <button onclick="" class="edit">Edit</button>
-            </div>
-
-        </div>
+    <section id="BoardOverlay" class="Boardoverlay" style="display: none;">
+        <div onclick="closeOverlay()" class="blocker"></div>
+        <div id="boardOverlaybody" class="overlayBlank"></div>
     </section>
     <section class="boardbody">
         <div class="head">
@@ -71,21 +27,17 @@
                     <div class="divider"></div>
                     <img onclick="" src="../img/search.svg" alt="">
                 </div>
-                <button>Add task</button>
+                <button onclick="Board_addTask('ToDo')">Add task</button>
             </div>
         </div>
         <div class="panels">
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>To do</h2>
-                    <button class="add"></button>
+                    <button onclick="Board_addTask('ToDo')" class="add"></button>
                 </div>
                 <div id="ToDo" class="panelbody">
-                    <div class="placeholder">
-                        <p>No tasks to do</p>
-                    </div>
-
-                    <div class="taskcard">
+                    <div onclick="Board_renderFullTaskCard()" class="taskcard">
                         <div class="categorycard" style="background-color: blue;">User Story</div>
                         <h2>Go home you're Drunk</h2>
                         <p class="descriptioncard">
@@ -109,40 +61,32 @@
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>In progress</h2>
-                    <button class="add"></button>
+                    <button onclick="Board_addTask('InProgress')" class="add"></button>
                 </div>
                 <div id="inProgress" class="panelbody">
-                    <div class="placeholder">
-                        <p>No tasks to in Progress</p>
-                    </div>
                 </div>
             </div>
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>Await feedback</h2>
-                    <button class="add"></button>
+                    <button onclick="Board_addTask('Awaiting')" class="add"></button>
                 </div>
                 <div id="awaitFeedback" class="panelbody">
-                    <div class="placeholder">
-                        <p>No tasks awaiting feedback</p>
-                    </div>
                 </div>
             </div>
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>Done</h2>
-                    <button class="add"></button>
+                    <button onclick="Board_addTask('Done')" class="add"></button>
                 </div>
                 <div id="done" class="panelbody">
-                    <div class="placeholder">
-                        <p>No tasks done yet</p>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-
+    <script src="../../js/board.js"></script>
+    <script src="../../js/task_script.js"></script>
 </body>
 
 </html>
