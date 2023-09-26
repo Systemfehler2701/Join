@@ -196,12 +196,16 @@
   position: relative;
 }
 
-.taskbody .subtask img {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
+.taskbody .subtaskimages {
+  position: absolute !important;
+  top: 25%;
+  right: 5%;
+  width: fit-content !important;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
 .subtask input::placeholder {

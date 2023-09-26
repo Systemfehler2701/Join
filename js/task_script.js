@@ -47,7 +47,6 @@ async function addTask(array) {
   const validity = CheckInputValidity(
     title.value,
     description.value,
-    assignee.value,
     dueDate.value,
     category.value
   );
@@ -67,6 +66,7 @@ async function addTask(array) {
     resetForm();
     // await setItem("tasks", JSON.stringify(array));
     console.log(array);
+    closeOverlay()
     Board_loadTasks();
   } else {
     setTimeout(() => {
@@ -86,34 +86,49 @@ function resetForm() {
 }
 
 function addSubtask() {
-  subtask = document.getElementById("subtask").value;
-  subtasks.push(subtask);
-  subtask = "";
+  subtask = document.getElementById("subtasks");
+  subtasks.push(subtask.value);
+  subtask.value = '';
 }
 
 function setPrio(x) {
   Prio = [];
   Prio.push(priorities[x]);
-  colorPriorityButtons(x)
+  colorPriorityButtons(x);
+}
+
+function changeSubtaskAppearance() {
+  if (document.getElementById("subtasks").value != '') {
+    document.getElementById("subtaskField").innerHTML = `
+    <img onclick="clearSubtask()" src="../img/close.svg" alt="">
+    <img src="../img/Vector 3.svg" alt="">
+    <img onclick="addSubtask()" src="../img/Vector 17.svg" alt="">
+    `;
+  } else {
+    document.getElementById("subtaskField").innerHTML =
+      '<img src="../img/Subtasks icons11.svg" alt="">';
+  }
 }
 
 function colorPriorityButtons(x) {
   //changes the backgroundcolor based on the selected Priority
-  document.getElementById(`Prio0`).style.backgroundColor = 'white'
-  document.getElementById(`Prio1`).style.backgroundColor = 'white'
-  document.getElementById(`Prio2`).style.backgroundColor = 'white'
-  document.getElementById(`Prio${x}`).style.backgroundColor =`${priorities[x]['color']}`
+  document.getElementById(`Prio0`).style.backgroundColor = "white";
+  document.getElementById(`Prio1`).style.backgroundColor = "white";
+  document.getElementById(`Prio2`).style.backgroundColor = "white";
+  document.getElementById(
+    `Prio${x}`
+  ).style.backgroundColor = `${priorities[x]["color"]}`;
 
   //Adds classes that make the image and text white
-  document.getElementById(`Prio0`).classList.remove('whiteFilterText')
-  document.getElementById(`Prio1`).classList.remove('whiteFilterText')
-  document.getElementById(`Prio2`).classList.remove('whiteFilterText')
-  document.getElementById(`Prio${x}`).classList.add('whiteFilterText')
+  document.getElementById(`Prio0`).classList.remove("whiteFilterText");
+  document.getElementById(`Prio1`).classList.remove("whiteFilterText");
+  document.getElementById(`Prio2`).classList.remove("whiteFilterText");
+  document.getElementById(`Prio${x}`).classList.add("whiteFilterText");
 
-  document.getElementById(`Prio0_img`).classList.remove('whiteFilterImg')
-  document.getElementById(`Prio1_img`).classList.remove('whiteFilterImg')
-  document.getElementById(`Prio2_img`).classList.remove('whiteFilterImg')
-  document.getElementById(`Prio${x}_img`).classList.add('whiteFilterImg')
+  document.getElementById(`Prio0_img`).classList.remove("whiteFilterImg");
+  document.getElementById(`Prio1_img`).classList.remove("whiteFilterImg");
+  document.getElementById(`Prio2_img`).classList.remove("whiteFilterImg");
+  document.getElementById(`Prio${x}_img`).classList.add("whiteFilterImg");
 }
 
 function CheckInputValidity(title, description, dueDate, category) {

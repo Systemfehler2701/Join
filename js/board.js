@@ -81,27 +81,7 @@ function Board_renderCard(list, array) {
   }
 }
 
-function Board_createTaskCard(array, i) {
-  let task = array[i];
-  let category = task['category']
-  return(`
-    <div onclick="Board_renderFullTaskCard(array, i)" class="taskcard">
-      <div class="categorycard" style="background-color: ${categories[category]['color']};">${categories[category]['name']}</div>
-      <h2>${task['title']}</h2>
-      <p class="descriptioncard">
-          ${task['description']}
-      </p>
-      <div class="subtaskscard">
-          <label>0/2 Subtasks</label>
-          <progress id="progressbar" max="100" value="0"></progress>
-      </div>
-      <div class="cardBottom">
-          <div class="assignees">yoo</div>
-          <img src="${task['priority']['symbol']}" alt="">
-      </div>
-    </div>
-  `)
-}
+
 
 function Board_renderCategoryOptions() {
   let selector = document.getElementById("category_selector");
@@ -224,8 +204,10 @@ function createNewTask(array) {
                     <div class="subtask">
                         <h2>Subtasks</h2>
                         <div>
-                            <input id="subtask" type="text" placeholder="Add new Subtask">
-                            <img onclick="addSubtask" src="../img/Subtasks icons11.svg" alt="">
+                            <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
+                            <div class="subtaskimages" id="subtaskField">
+                                <img src="../img/Subtasks icons11.svg" alt="">
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -239,3 +221,25 @@ function createNewTask(array) {
     </div>
     `;
 }
+
+function Board_createTaskCard(array, i) {
+    let task = array[i];
+    let category = task['category']
+    return(`
+      <div onclick="Board_renderFullTaskCard(array, i)" class="taskcard">
+        <div class="categorycard" style="background-color: ${categories[category]['color']};">${categories[category]['name']}</div>
+        <h2>${task['title']}</h2>
+        <p class="descriptioncard">
+            ${task['description']}
+        </p>
+        <div class="subtaskscard">
+            <label>0/2 Subtasks</label>
+            <progress id="progressbar" max="100" value="0"></progress>
+        </div>
+        <div class="cardBottom">
+            <div class="assignees">yoo</div>
+            <img src="${task['priority']['symbol']}" alt="">
+        </div>
+      </div>
+    `)
+  }
