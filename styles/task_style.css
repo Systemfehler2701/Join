@@ -20,6 +20,11 @@
   font-size: 20px;
 }
 
+.taskbody .uselessAstriks {
+  display: flex;
+  color: red;
+}
+
 .taskbody .input1 {
   height: 100%;
   width: 45%;
@@ -29,6 +34,7 @@
 }
 
 .taskbody .input1 h2 {
+  color: black !important;
   margin: 0 0 8px 0;
   font-size: 20px;
 }
@@ -118,6 +124,7 @@
 }
 
 .taskbody .input2 h2 {
+  color: black !important;
   margin: 0 0 8px 0;
   font-size: 20px;
 }
@@ -225,8 +232,30 @@
   width: 1px;
 }
 
-.taskbody .buttons {
+.taskbody .addTaskBottom {
   margin-top: 20px;
+  width: 976px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.taskbody .addTaskBottom .uselessAstriks {
+  height: 27px;
+  font-size: 28px;
+}
+
+.taskbody .addTaskBottom h2 {
+  display: flex;
+  align-items: center;
+  color: black !important;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  width: 170px;
+  height: 27px;
+}
+
+.taskbody .buttons {
   width: 976px;
   display: flex;
   justify-content: flex-end;
