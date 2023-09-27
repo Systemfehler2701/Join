@@ -8,10 +8,11 @@ function Board_addTask(array) {
   Board_renderCategoryOptions();
 }
 
-function Board_renderFullTaskCard() {
+function Board_renderFullTaskCard(array, i) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
-  overlayBody.innerHTML = createFullTaskCard();
+  overlayBody.innerHTML = createFullTaskCard(array, i);
+  console.log(array[i]);
 }
 
 function closeOverlay() {
@@ -26,7 +27,12 @@ function Board_showProgress() {
   document.getElementById("progressBar").value = `${progress}% `;
 }
 
-function Board_loadTasks() {
+async function Board_loadTasks() {
+  await Board_loadFromStorage("ToDo");
+  await Board_loadFromStorage("InProgress");
+  await Board_loadFromStorage("Awaiting");
+  await Board_loadFromStorage("Done");
+
   Board_renderToDo();
   Board_renderInProgress();
   Board_renderAwaiting();
@@ -35,34 +41,34 @@ function Board_loadTasks() {
 
 function Board_renderToDo() {
   let todoList = document.getElementById("ToDo");
-  if (ToDo.length === 0) {
+  if (TaskLists["ToDo"].length == 0) {
     Board_renderPlaceholder(todoList, "No tasks to do");
   } else {
-    Board_renderCard(todoList, ToDo);
+    Board_renderCard(todoList, TaskLists["ToDo"]);
   }
 }
 function Board_renderInProgress() {
   let progressList = document.getElementById("inProgress");
-  if (InProgress.length === 0) {
+  if (TaskLists["InProgress"].length == 0) {
     Board_renderPlaceholder(progressList, "No tasks in progress");
   } else {
-    Board_renderCard(progressList, InProgress);
+    Board_renderCard(progressList, TaskLists["InProgress"]);
   }
 }
 function Board_renderAwaiting() {
   let waitingList = document.getElementById("awaitFeedback");
-  if (Awaiting.length === 0) {
+  if (TaskLists["Awaiting"].length == 0) {
     Board_renderPlaceholder(waitingList, "no tasks awaiting feedback");
   } else {
-    Board_renderCard(waitingList, Awaiting);
+    Board_renderCard(waitingList, TaskLists["Awaiting"]);
   }
 }
 function Board_renderDone() {
   let doneList = document.getElementById("done");
-  if (Done.length === 0) {
+  if (TaskLists["Done"].length == 0) {
     Board_renderPlaceholder(doneList, "No tasks done yet");
   } else {
-    Board_renderCard(doneList, Done);
+    Board_renderCard(doneList, TaskLists["done"]);
   }
 }
 
@@ -81,8 +87,6 @@ function Board_renderCard(list, array) {
   }
 }
 
-
-
 function Board_renderCategoryOptions() {
   let selector = document.getElementById("category_selector");
   for (let index = 0; index < categories.length; index++) {
@@ -93,10 +97,20 @@ function Board_renderCategoryOptions() {
   }
 }
 
+async function Board_loadFromStorage(list) {
+  try {
+    TaskLists[list] = JSON.parse(await getItem(list));
+  } catch {
+    console.error("Loading error:");
+  }
+}
+
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-function createFullTaskCard() {
+function createFullTaskCard(array, i) {
+  let task = array[i];
+  let category = task["category"];
   return `
     <div class="cardheadFull">
         <div class="categorycardFull" style="background-color: blue;">User Story</div>
@@ -152,7 +166,7 @@ function createNewTask(array) {
         <div class="task_input">
             <div class="input1">
                 <div class="title">
-                    <h2>Title</h2>
+                <div class="uselessAstriks"><h2>Title</h2>*</div>
                     <input id="title" type="textbox" placeholder="Enter a title" required>
                     <div class="Taskerror" style="display: none;" id="errorTitle"> This field needs to be filled out</div>
                 </div>
@@ -171,12 +185,12 @@ function createNewTask(array) {
             <div class="divider"></div>
             <div class="input2">
                 <div class="date">
-                    <h2>Due Date</h2>
-                    <input type="date" name="" id="due">
-                    <div class="Taskerror" style="display: none;" id="errorDate"> This field needs to be filled out</div>
+                    <div class="uselessAstriks"><h2>Due Date</h2>*</div>
+                    <input type="date" id="due" placeholder="dd/mm/yyyy">
+                    <div class="Taskerror" style="display: none;" id="errorDate">You can not select a date that is in the Past</div>
                 </div>
                 <div class="prio">
-                    <h2>Prio</h2>
+                  <div class="uselessAstriks"><h2>Prio</h2>*</div>
                     <div class="priocontainer">
                         <div onclick="setPrio(0)" id="Prio0">
                             Urgent
@@ -191,16 +205,13 @@ function createNewTask(array) {
                             <img id="Prio2_img" src="../img/Prio baja.png" class="">
                         </div>
                     </div>
-                    <div class="Taskerror" style="display: none;" id="errorPrio"> This field needs to be filled out</div>
                 </div>
                 <div class="category">
-                    <h2>Category</h2>
+                    <div class="uselessAstriks"><h2>Category</h2>*</div>
                     <select id="category_selector" required>
                         <option value="null">Select Category</option>
                     </select>
-                    <div class="Taskerror" style="display: none;" id="errorCategory"> This field needs to be filled out</div>
                 </div>
-                <form action="">
                     <div class="subtask">
                         <h2>Subtasks</h2>
                         <div>
@@ -209,13 +220,16 @@ function createNewTask(array) {
                                 <img src="../img/Subtasks icons11.svg" alt="">
                             </div>
                         </div>
+                        <div class="addedSubtasks" id="addedSubtasks"></div>
                     </div>
-                </form>
             </div>
         </div>
-        <div class="buttons">
-            <button onclick="resetForm()" class="clear">Clear</button>
-            <button onclick="addTask(${array})" class="create">Create Task</button>
+        <div class="addTaskBottom">
+          <div class="uselessAstriks">*<h2>This field is required</h2></div>
+          <div class="buttons">
+              <button onclick="resetForm()" class="clear">Clear</button>
+              <button onclick="addTask('${array}')" class="create">Create Task</button>
+          </div>
         </div>
     </div>
     </div>
@@ -223,14 +237,14 @@ function createNewTask(array) {
 }
 
 function Board_createTaskCard(array, i) {
-    let task = array[i];
-    let category = task['category']
-    return(`
-      <div onclick="Board_renderFullTaskCard(array, i)" class="taskcard">
-        <div class="categorycard" style="background-color: ${categories[category]['color']};">${categories[category]['name']}</div>
-        <h2>${task['title']}</h2>
+  let task = array[i];
+  let category = task["category"];
+  return `
+      <div onclick="Board_renderFullTaskCard('${array}', ${i})" class="taskcard">
+        <div class="categorycard" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
+        <h2>${task["title"]}</h2>
         <p class="descriptioncard">
-            ${task['description']}
+            ${task["description"]}
         </p>
         <div class="subtaskscard">
             <label>0/2 Subtasks</label>
@@ -238,8 +252,8 @@ function Board_createTaskCard(array, i) {
         </div>
         <div class="cardBottom">
             <div class="assignees">yoo</div>
-            <img src="${task['priority']['symbol']}" alt="">
+            <img src="${task["priority"]["symbol"]}" alt="">
         </div>
       </div>
-    `)
-  }
+    `;
+}

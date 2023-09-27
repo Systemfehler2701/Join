@@ -12,7 +12,8 @@
 
 </head>
 
-<body onload="Board_loadTasks()">
+<body onload="Board_loadTasks()"> 
+    <!--  -->
 
     <section id="BoardOverlay" class="Boardoverlay" style="display: none;">
         <div onclick="closeOverlay()" class="blocker"></div>
@@ -57,7 +58,6 @@
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>Done</h2>
-                    <button onclick="Board_addTask('Done')" class="add"></button>
                 </div>
                 <div id="done" class="panelbody">
                 </div>
@@ -67,6 +67,7 @@
 
     <script src="../../js/board.js"></script>
     <script src="../../js/task_script.js"></script>
+    <script src="../../js/storage.js"></script>
 </body>
 
 </html>

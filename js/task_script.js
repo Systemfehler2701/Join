@@ -1,7 +1,9 @@
-const ToDo = [];
-const InProgress = [];
-const Awaiting = [];
-const Done = [];
+const TaskLists = {
+  ToDo: [],
+  InProgress: [],
+  Awaiting: [],
+  Done: [],
+};
 let subtasks = [];
 let Prio = [];
 let priorities = [
@@ -37,7 +39,7 @@ const categories = [
   },
 ];
 
-async function addTask(array) {
+async function addTask(list) {
   title = document.getElementById("title");
   description = document.getElementById("description");
   assignee = document.getElementById("assign_select");
@@ -46,14 +48,13 @@ async function addTask(array) {
 
   const validity = CheckInputValidity(
     title.value,
-    description.value,
     dueDate.value,
     category.value
   );
 
   if (validity == true) {
     let date = new Date(dueDate.value);
-    array.push({
+    let data = {
       title: title.value,
       description: description.value,
       assignee: assignee.value,
@@ -61,17 +62,13 @@ async function addTask(array) {
       category: category.value,
       priority: Prio[0],
       subtasks: subtasks,
-    });
+    };
+    TaskLists[list].push(data);
 
     resetForm();
-    // await setItem("tasks", JSON.stringify(array));
-    console.log(array);
-    closeOverlay()
+    await setItem(list, JSON.stringify(TaskLists[list]));
+    closeOverlay();
     Board_loadTasks();
-  } else {
-    setTimeout(() => {
-      alert("Ебаный рот блять");
-    }, 30);
   }
 }
 
@@ -85,20 +82,74 @@ function resetForm() {
   subtasks = [];
 }
 
-function addSubtask() {
-  subtask = document.getElementById("subtasks");
-  subtasks.push(subtask.value);
-  subtask.value = '';
-}
-
 function setPrio(x) {
   Prio = [];
   Prio.push(priorities[x]);
   colorPriorityButtons(x);
 }
 
+function addSubtask() {
+  subtask = document.getElementById("subtasks");
+  subtasks.push(subtask.value);
+  subtask.value = "";
+  renderSubtasks();
+}
+
+function renderSubtasks() {
+  let subTaskDisplay = document.getElementById("addedSubtasks");
+  subTaskDisplay.innerHTML = "";
+  for (let i = 0; i < subtasks.length; i++) {
+    const subtaskelement = subtasks[i];
+    subTaskDisplay.innerHTML += `
+    <div onmouseover="displaySubtaskButtons('${subtaskelement}',${i})" class="subtaskElement">${subtaskelement}</div>
+    `;
+  }
+}
+
+function displaySubtaskButtons(subtaskelement, i) {
+  let subTaskDisplay = document.getElementById("addedSubtasks");
+  subTaskDisplay.innerHTML = "";
+  subTaskDisplay.innerHTML = `
+    <div class="subtaskElement" onmouseout="renderSubtasks()" id="subtask${i}">
+      ${subtaskelement}
+      <div>
+        <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
+        <img onclick="editSubtask(${i})" src="../img/edit.svg" alt="">
+      </div>
+    </div>
+    `;
+  
+
+}
+
+function cutSubtask(i) {
+  subtasks.splice(i, 1);
+  renderSubtasks();
+}
+
+function editSubtask(i) {
+  let currentValue = subtasks[i]
+  let subTaskDisplay = document.getElementById("addedSubtasks");
+  subTaskDisplay.innerHTML = "";
+  subTaskDisplay.innerHTML = `
+    <div id="subtask${i}" class="subtaskElement">
+      <input type="text" id="editedInput" value="${currentValue}" "saveEdit(${i})" />
+      <div>
+        <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
+        <img onclick="saveEdit(${i})" src="../img/Vector 17.svg" alt="">
+      </div>
+    </div>
+    `;
+}
+
+function saveEdit(i) {
+  let editedValue = document.getElementById("editedInput").value;
+  subtasks[i] = editedValue
+  renderSubtasks();
+}
+
 function changeSubtaskAppearance() {
-  if (document.getElementById("subtasks").value != '') {
+  if (document.getElementById("subtasks").value != "") {
     document.getElementById("subtaskField").innerHTML = `
     <img onclick="clearSubtask()" src="../img/close.svg" alt="">
     <img src="../img/Vector 3.svg" alt="">
@@ -108,6 +159,11 @@ function changeSubtaskAppearance() {
     document.getElementById("subtaskField").innerHTML =
       '<img src="../img/Subtasks icons11.svg" alt="">';
   }
+}
+
+
+function clearSubtask() {
+  document.getElementById("subtasks").value = "";
 }
 
 function colorPriorityButtons(x) {
@@ -131,19 +187,27 @@ function colorPriorityButtons(x) {
   document.getElementById(`Prio${x}_img`).classList.add("whiteFilterImg");
 }
 
-function CheckInputValidity(title, description, dueDate, category) {
+function CheckInputValidity(title, dueDate, category) {
   let validitiy = true;
   if (title == "") {
     document.getElementById("errorTitle").style.display = "block";
     validitiy = false;
   }
-  if (description == "") {
-    document.getElementById("errorDescription").style.display = "block";
-    validitiy = false;
-  }
   if (dueDate == "") {
+    document.getElementById("errorDate").innerText =
+      "This field needs to be filled out";
     document.getElementById("errorDate").style.display = "block";
     validitiy = false;
+  } else {
+    let selectedDate = new Date(dueDate).setHours(0, 0, 0, 0);
+    let currentDate = new Date().setHours(0, 0, 0, 0);
+
+    if (selectedDate < currentDate) {
+      document.getElementById("errorDate").innerText =
+        "Due date cannot be in the past";
+      document.getElementById("errorDate").style.display = "block";
+      validitiy = false;
+    }
   }
   if (category == null) {
     document.getElementById("errorCategory").style.display = "block";
@@ -152,7 +216,7 @@ function CheckInputValidity(title, description, dueDate, category) {
   if (Prio == null) {
     document.getElementById("errorPrio").style.display = "block";
     validitiy = false;
-  } else {
-    return validitiy;
   }
+
+  return validitiy;
 }
