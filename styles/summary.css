@@ -38,7 +38,7 @@
     .summary-task {
         display: flex;
         flex-direction: column;
-        width: 56%;
+        width: 670px;
         margin: 0 0 0 80px;
     }
     
@@ -209,9 +209,25 @@
         height: 60px;
     }
     
-    .today {
+    .next-date {
         font-size: 21px !important;
         font-weight: 700 !important;
     }
     
-    .summary-welcome {}
+    .summary-welcome {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 600px;
+    }
+    
+    #summary-greeting {
+        font-size: 47px;
+        font-weight: 500;
+    }
+    
+    .summary-user {
+        font-size: 64px;
+        font-weight: 700;
+        color: #29ABE2;
+    }
