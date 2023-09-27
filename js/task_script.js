@@ -45,7 +45,6 @@ async function addTask(list) {
   assignee = document.getElementById("assign_select");
   dueDate = document.getElementById("due");
   category = document.getElementById("category_selector");
-  
 
   const validity = CheckInputValidity(
     title.value,
@@ -64,7 +63,7 @@ async function addTask(list) {
       priority: Prio[0],
       subtasks: subtasks,
     };
-    TaskLists[list].push(data)
+    TaskLists[list].push(data);
 
     resetForm();
     await setItem(list, JSON.stringify(TaskLists[list]));
@@ -83,16 +82,70 @@ function resetForm() {
   subtasks = [];
 }
 
-function addSubtask() {
-  subtask = document.getElementById("subtasks");
-  subtasks.push(subtask.value);
-  subtask.value = "";
-}
-
 function setPrio(x) {
   Prio = [];
   Prio.push(priorities[x]);
   colorPriorityButtons(x);
+}
+
+function addSubtask() {
+  subtask = document.getElementById("subtasks");
+  subtasks.push(subtask.value);
+  subtask.value = "";
+  renderSubtasks();
+}
+
+function renderSubtasks() {
+  let subTaskDisplay = document.getElementById("addedSubtasks");
+  subTaskDisplay.innerHTML = "";
+  for (let i = 0; i < subtasks.length; i++) {
+    const subtaskelement = subtasks[i];
+    subTaskDisplay.innerHTML += `
+    <div onmouseover="displaySubtaskButtons('${subtaskelement}',${i})" class="subtaskElement">${subtaskelement}</div>
+    `;
+  }
+}
+
+function displaySubtaskButtons(subtaskelement, i) {
+  let subTaskDisplay = document.getElementById("addedSubtasks");
+  subTaskDisplay.innerHTML = "";
+  subTaskDisplay.innerHTML = `
+    <div class="subtaskElement" onmouseout="renderSubtasks()" id="subtask${i}">
+      ${subtaskelement}
+      <div>
+        <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
+        <img onclick="editSubtask(${i})" src="../img/edit.svg" alt="">
+      </div>
+    </div>
+    `;
+  
+
+}
+
+function cutSubtask(i) {
+  subtasks.splice(i, 1);
+  renderSubtasks();
+}
+
+function editSubtask(i) {
+  let currentValue = subtasks[i]
+  let subTaskDisplay = document.getElementById("addedSubtasks");
+  subTaskDisplay.innerHTML = "";
+  subTaskDisplay.innerHTML = `
+    <div id="subtask${i}" class="subtaskElement">
+      <input type="text" id="editedInput" value="${currentValue}" "saveEdit(${i})" />
+      <div>
+        <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
+        <img onclick="saveEdit(${i})" src="../img/Vector 17.svg" alt="">
+      </div>
+    </div>
+    `;
+}
+
+function saveEdit(i) {
+  let editedValue = document.getElementById("editedInput").value;
+  subtasks[i] = editedValue
+  renderSubtasks();
 }
 
 function changeSubtaskAppearance() {
@@ -106,6 +159,11 @@ function changeSubtaskAppearance() {
     document.getElementById("subtaskField").innerHTML =
       '<img src="../img/Subtasks icons11.svg" alt="">';
   }
+}
+
+
+function clearSubtask() {
+  document.getElementById("subtasks").value = "";
 }
 
 function colorPriorityButtons(x) {
@@ -136,15 +194,17 @@ function CheckInputValidity(title, dueDate, category) {
     validitiy = false;
   }
   if (dueDate == "") {
-    document.getElementById("errorDate").innerText = "This field needs to be filled out";
+    document.getElementById("errorDate").innerText =
+      "This field needs to be filled out";
     document.getElementById("errorDate").style.display = "block";
     validitiy = false;
   } else {
-    let selectedDate = new Date(dueDate).setHours(0,0,0,0)
-    let currentDate = new Date().setHours(0,0,0,0)
+    let selectedDate = new Date(dueDate).setHours(0, 0, 0, 0);
+    let currentDate = new Date().setHours(0, 0, 0, 0);
 
-    if(selectedDate < currentDate) {
-      document.getElementById("errorDate").innerText = "Due date cannot be in the past";
+    if (selectedDate < currentDate) {
+      document.getElementById("errorDate").innerText =
+        "Due date cannot be in the past";
       document.getElementById("errorDate").style.display = "block";
       validitiy = false;
     }
@@ -156,7 +216,7 @@ function CheckInputValidity(title, dueDate, category) {
   if (Prio == null) {
     document.getElementById("errorPrio").style.display = "block";
     validitiy = false;
-  } 
-  
+  }
+
   return validitiy;
 }

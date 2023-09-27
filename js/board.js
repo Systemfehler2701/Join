@@ -8,10 +8,11 @@ function Board_addTask(array) {
   Board_renderCategoryOptions();
 }
 
-function Board_renderFullTaskCard() {
+function Board_renderFullTaskCard(array, i) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
-  overlayBody.innerHTML = createFullTaskCard();
+  overlayBody.innerHTML = createFullTaskCard(array, i);
+  console.log(array[i]);
 }
 
 function closeOverlay() {
@@ -31,8 +32,8 @@ async function Board_loadTasks() {
   await Board_loadFromStorage("InProgress");
   await Board_loadFromStorage("Awaiting");
   await Board_loadFromStorage("Done");
-  
-  Board_renderToDo();  
+
+  Board_renderToDo();
   Board_renderInProgress();
   Board_renderAwaiting();
   Board_renderDone();
@@ -107,7 +108,9 @@ async function Board_loadFromStorage(list) {
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-function createFullTaskCard() {
+function createFullTaskCard(array, i) {
+  let task = array[i];
+  let category = task["category"];
   return `
     <div class="cardheadFull">
         <div class="categorycardFull" style="background-color: blue;">User Story</div>
@@ -183,7 +186,7 @@ function createNewTask(array) {
             <div class="input2">
                 <div class="date">
                     <div class="uselessAstriks"><h2>Due Date</h2>*</div>
-                    <input type="date" name="" id="due">
+                    <input type="date" id="due" placeholder="dd/mm/yyyy">
                     <div class="Taskerror" style="display: none;" id="errorDate">You can not select a date that is in the Past</div>
                 </div>
                 <div class="prio">
@@ -209,7 +212,6 @@ function createNewTask(array) {
                         <option value="null">Select Category</option>
                     </select>
                 </div>
-                <form action="">
                     <div class="subtask">
                         <h2>Subtasks</h2>
                         <div>
@@ -218,8 +220,8 @@ function createNewTask(array) {
                                 <img src="../img/Subtasks icons11.svg" alt="">
                             </div>
                         </div>
+                        <div class="addedSubtasks" id="addedSubtasks"></div>
                     </div>
-                </form>
             </div>
         </div>
         <div class="addTaskBottom">
@@ -238,7 +240,7 @@ function Board_createTaskCard(array, i) {
   let task = array[i];
   let category = task["category"];
   return `
-      <div onclick="Board_renderFullTaskCard(array, i)" class="taskcard">
+      <div onclick="Board_renderFullTaskCard('${array}', ${i})" class="taskcard">
         <div class="categorycard" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
         <h2>${task["title"]}</h2>
         <p class="descriptioncard">
