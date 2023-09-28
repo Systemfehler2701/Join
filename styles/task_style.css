@@ -229,7 +229,7 @@
   transition: 0.5s ease;
 }
 
-.taskbody .addedSubtasks:hover {
+.taskbody .subtaskElement:hover {
   background-color: #d1d1d1;
   border-radius: 8px;
   width: 99%;

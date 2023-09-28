@@ -5,6 +5,7 @@ const TaskLists = {
   Done: [],
 };
 let subtasks = [];
+let subtasksDone = []
 let Prio = [];
 let priorities = [
   {
@@ -62,6 +63,7 @@ async function addTask(list) {
       category: category.value,
       priority: Prio[0],
       subtasks: subtasks,
+      subtasksDone: subtasksDone
     };
     TaskLists[list].push(data);
 
@@ -90,7 +92,11 @@ function setPrio(x) {
 
 function addSubtask() {
   subtask = document.getElementById("subtasks");
-  subtasks.push(subtask.value);
+  let newSubtask = {
+    task: subtask.value,
+    done: 0,
+  }
+  subtasks.push(newSubtask);
   subtask.value = "";
   renderSubtasks();
 }
@@ -99,19 +105,22 @@ function renderSubtasks() {
   let subTaskDisplay = document.getElementById("addedSubtasks");
   subTaskDisplay.innerHTML = "";
   for (let i = 0; i < subtasks.length; i++) {
-    const subtaskelement = subtasks[i];
+    let subtaskelement = subtasks[i];
     subTaskDisplay.innerHTML += `
-    <div onmouseover="displaySubtaskButtons('${subtaskelement}',${i})" class="subtaskElement">${subtaskelement}</div>
+    <div id="subtaskContainer${i}">
+      <div onmouseover="displaySubtaskButtons(${i})" class="subtaskElement">${subtaskelement['task']}</div>
+    </div>
     `;
   }
 }
 
-function displaySubtaskButtons(subtaskelement, i) {
-  let subTaskDisplay = document.getElementById("addedSubtasks");
+function displaySubtaskButtons(i) {
+  let subtaskelement = subtasks[i];
+  let subTaskDisplay = document.getElementById(`subtaskContainer${i}`);
   subTaskDisplay.innerHTML = "";
   subTaskDisplay.innerHTML = `
     <div class="subtaskElement" onmouseout="renderSubtasks()" id="subtask${i}">
-      ${subtaskelement}
+    ${subtaskelement['task']}
       <div>
         <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
         <img onclick="editSubtask(${i})" src="../img/edit.svg" alt="">
@@ -119,7 +128,6 @@ function displaySubtaskButtons(subtaskelement, i) {
     </div>
     `;
   
-
 }
 
 function cutSubtask(i) {
@@ -128,8 +136,8 @@ function cutSubtask(i) {
 }
 
 function editSubtask(i) {
-  let currentValue = subtasks[i]
-  let subTaskDisplay = document.getElementById("addedSubtasks");
+  let currentValue = subtasks[i]['task']
+  let subTaskDisplay = document.getElementById("subtaskContainer");
   subTaskDisplay.innerHTML = "";
   subTaskDisplay.innerHTML = `
     <div id="subtask${i}" class="subtaskElement">
@@ -144,7 +152,7 @@ function editSubtask(i) {
 
 function saveEdit(i) {
   let editedValue = document.getElementById("editedInput").value;
-  subtasks[i] = editedValue
+  subtasks[i]['task'] = editedValue
   renderSubtasks();
 }
 

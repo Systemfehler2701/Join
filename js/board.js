@@ -1,22 +1,29 @@
 const overlay = document.getElementById("BoardOverlay");
 const overlayBody = document.getElementById("boardOverlaybody");
+const blocker = document.getElementById("blocker")
 
 function Board_addTask(array) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
   overlayBody.innerHTML = createNewTask(array);
   Board_renderCategoryOptions();
+  blocker.onclick = function () {
+    resetForm();
+    closeOverlay();
+  };
 }
 
 function Board_renderFullTaskCard(array, i) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
   overlayBody.innerHTML = createFullTaskCard(array, i);
-  console.log(array[i]);
+  renderSubtasksFull(array, i);
+  blocker.onclick = function () {
+    closeOverlay();
+  };
 }
 
 function closeOverlay() {
-  resetForm();
   overlay.style.display = "none";
   overlayBody.innerHTML = "";
 }
@@ -44,7 +51,7 @@ function Board_renderToDo() {
   if (TaskLists["ToDo"].length == 0) {
     Board_renderPlaceholder(todoList, "No tasks to do");
   } else {
-    Board_renderCard(todoList, TaskLists["ToDo"]);
+    Board_renderCard(todoList, TaskLists["ToDo"], "ToDo");
   }
 }
 function Board_renderInProgress() {
@@ -52,7 +59,7 @@ function Board_renderInProgress() {
   if (TaskLists["InProgress"].length == 0) {
     Board_renderPlaceholder(progressList, "No tasks in progress");
   } else {
-    Board_renderCard(progressList, TaskLists["InProgress"]);
+    Board_renderCard(progressList, TaskLists["InProgress"], "InProgress");
   }
 }
 function Board_renderAwaiting() {
@@ -60,7 +67,7 @@ function Board_renderAwaiting() {
   if (TaskLists["Awaiting"].length == 0) {
     Board_renderPlaceholder(waitingList, "no tasks awaiting feedback");
   } else {
-    Board_renderCard(waitingList, TaskLists["Awaiting"]);
+    Board_renderCard(waitingList, TaskLists["Awaiting"], "Awaiting");
   }
 }
 function Board_renderDone() {
@@ -68,7 +75,7 @@ function Board_renderDone() {
   if (TaskLists["Done"].length == 0) {
     Board_renderPlaceholder(doneList, "No tasks done yet");
   } else {
-    Board_renderCard(doneList, TaskLists["done"]);
+    Board_renderCard(doneList, TaskLists["Done"], "Done");
   }
 }
 
@@ -80,10 +87,10 @@ function Board_renderPlaceholder(List, placeholder) {
     `;
 }
 
-function Board_renderCard(list, array) {
+function Board_renderCard(list, array, arrayName) {
   list.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
-    list.innerHTML += Board_createTaskCard(array, i);
+    list.innerHTML += Board_createTaskCard(array, i, arrayName);
   }
 }
 
@@ -105,30 +112,86 @@ async function Board_loadFromStorage(list) {
   }
 }
 
+function renderSubtasksFull(array, i) {
+  let subtaskList = TaskLists[array][i]["subtasks"];
+  let allSubtasks = document.getElementById("SubtaskListFull");
+  allSubtasks.innerHTML = "";
+  for (let j = 0; j < subtaskList.length; j++) {
+    let subtask = subtaskList[j];
+    if (subtask["done"] == 0) {
+      allSubtasks.innerHTML += `
+      <div class="singleSubtaskFull">
+        <img id="checkbox${j}" class="checkbox" onclick="finishSubtask('${array}', ${i}, ${j})" src="../img/Rectangle 5.svg" alt="">
+        ${subtask["task"]}
+      </div>
+      `;
+    } else {
+      allSubtasks.innerHTML += `
+      <div class="singleSubtaskFull">
+        <img id="checkbox${j}" class="checkbox" onclick="revertSubtask('${array}', ${i}, ${j})" src="../img/Check button.svg" alt="">
+        ${subtask["task"]}
+      </div>
+      `;
+    }
+  }
+}
+
+function finishSubtask(array, i, j) {
+  let subtaskList = TaskLists[array][i]["subtasks"];
+  subtaskList[j]['done'] = 1;
+  TaskLists[array][i]['subtasksDone'].push(subtaskList[j])
+  
+  renderSubtasksFull(array, i)
+  console.log(TaskLists[array][i])
+}
+
+function revertSubtask(array, i, j) {
+  let subtaskList = TaskLists[array][i]["subtasks"]
+  subtaskList[j]['done'] = 0;
+  TaskLists[array][i]['subtasksDone'].splice(0, 1)
+
+  renderSubtasksFull(array, i)
+  console.log(TaskLists[array][i])
+}
+
+function getCurrentDate() {
+  let currentDay = ('0' + new Date().getDate()).slice(-2)
+  let currentMonth = ('0' + (new Date().getMonth() + 1)).slice(-2)
+  let currentYear = new Date().getFullYear()
+
+  return{currentYear, currentMonth, currentDay}
+  
+}
+
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 function createFullTaskCard(array, i) {
-  let task = array[i];
+  let task = TaskLists[array][i];
   let category = task["category"];
+  let date = new Date(task["dueDate"]).toLocaleString("en", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
   return `
     <div class="cardheadFull">
         <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
             <img onclick="closeOverlay()" src="../../assets/img/close.svg" alt="">
         </div>
-        <h2>${task}</h2>
+        <h2>${task["title"]}</h2>
         <p class="descriptionFull">
-           ${task}
+           ${task["description"]}
         </p>
         <div class="duedateFull">
             <p>Due Date:</p>
-        <p>12/03/2023</p>
+        <p>${date}</p>
         </div>
     <div class="prioFull">
         <p>Priority:</p>
         <div>
-            Medium
-            <img src="../img/Prio media.png" alt="">
+            ${task["priority"]["priority"]}
+            <img class="prioPictureFull" src="${task["priority"]["symbol"]}" alt="">
         </div>
     </div>
     <div class="assigneesFull">
@@ -136,29 +199,20 @@ function createFullTaskCard(array, i) {
     </div>
     <div class="subtasksFull">
         <p>Subtasks:</p>
-        <div class="subtaskFull">
-        <div class="checkboxticked">
-            <img src="../img/Vector 9.svg" alt="">
-            <img class="check" src="../img/Vector 17.svg" alt="">
-        </div>
-        Байрактар…
-    </div>
-      <div class="subtaskFull">
-          <div class="checkbox">
-            <img src="../img/Rectangle 5.svg" alt="">
-          </div>
-          Байрактар…
+        <div id="SubtaskListFull" class="subtaskListFull"></div>
       </div>
     </div>
     <div class="editorbarFull">
-        <button onclick="" class="del">Delete</button>
+        <button onclick="cutTask(${array}, ${i})" class="del">Delete</button>
         <img src="../img/Vector 3.svg" alt="">
-        <button onclick="" class="edit">Edit</button>
+        <button onclick="editTask(${array}, ${i})" class="edit">Edit</button>
     </div>
     `;
 }
 
 function createNewTask(array) {
+  let currentDate = getCurrentDate()
+  console.log(currentDate)
   return `
     <div class="taskbody">
     <h1>Add Task</h1>
@@ -186,7 +240,7 @@ function createNewTask(array) {
             <div class="input2">
                 <div class="date">
                     <div class="uselessAstriks"><h2>Due Date</h2>*</div>
-                    <input type="date" id="due" placeholder="dd/mm/yyyy">
+                    <input id="due" type="date" data-date="" data-date-format="DD MMMM YYYY" value="${currentDate.currentYear}-${currentDate.currentMonth}-${currentDate.currentDay}">
                     <div class="Taskerror" style="display: none;" id="errorDate">You can not select a date that is in the Past</div>
                 </div>
                 <div class="prio">
@@ -236,11 +290,11 @@ function createNewTask(array) {
     `;
 }
 
-function Board_createTaskCard(array, i) {
+function Board_createTaskCard(array, i, arrayName) {
   let task = array[i];
   let category = task["category"];
   return `
-      <div onclick="Board_renderFullTaskCard('${array}', ${i})" class="taskcard">
+      <div onclick="Board_renderFullTaskCard('${arrayName}', ${i})" class="taskcard">
         <div class="categorycard" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
         <h2>${task["title"]}</h2>
         <p class="descriptioncard">
