@@ -1,42 +1,50 @@
 .help-content {
     display: flex;
     flex-direction: column;
-    padding: 80px;
 }
 
-.other-headline {
-    display: flex;
-    justify-content: space-between;
-}
-
-.other-headline h1 {
+.help-content h1 {
     font-size: 61px;
+    margin: 20px 0;
 }
 
-.other-headline h2 {
+.help-content h2 {
     font-size: 27px;
 }
 
-.other-headline h3 {
+.help-content h3 {
+    margin-bottom: 0;
     font-size: 20;
 }
 
+.help-content p {
+    margin-top: 0;
+}
+
 .arrow-left {
-    position: sticky;
-    top: 200px;
-    z-index: 2;
     display: flex;
-    justify-content: center;
+    position: sticky;
+    top: 250px;
+    justify-content: flex-end;
+}
+
+.arrow-left img {
     height: 32px;
     width: 32px;
     border-radius: 100%;
 }
 
-.arrow-left:hover {
+.arrow-left img:hover {
     background-color: rgb(224, 222, 222);
     transform: scale(1.2);
 }
 
-.join {
+.colored-word {
     color: #29ABE2;
+}
+
+ul {
+    margin: 0;
+    list-style-type: disc;
+    list-style-position: outside;
 }

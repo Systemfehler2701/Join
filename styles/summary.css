@@ -21,7 +21,7 @@
         align-items: center;
         width: 660px;
         height: 136px;
-        margin: 90px 0 20px 80px;
+        margin-bottom: 20px;
     }
     
     .summary-header img {
