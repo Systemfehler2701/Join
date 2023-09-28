@@ -16,16 +16,10 @@ function navigationMenuClicked(element) {
     element.classList.add('active');
 }
 
-function renderAddTask(element) {
-    navigationMenuClicked(element);
-    let content = document.getElementById('content');
-    content.innerHTML = createNewTask('ToDo');
-}
 
 function openSubmenu() {
-    document.getElementById('summarysubmenu').classList.toggle("d-none");
+    document.getElementById('headersubmenu').classList.toggle("d-none");
 }
-
 
 
 ///HEADER & NAVIGATION TEMPLATES///
@@ -54,26 +48,34 @@ function renderNavMenu() {
 
 function renderNavFooter() {
     return /* html */ `<div class = "footer">
-    <div class = "menu-button" onclick = "navigationMenuClicked(this);"><a href ="">Privacy Policy</a></div>
-    <div class = "menu-button" onclick = "navigationMenuClicked(this);"><a href ="">Legal Notice</a></div>
+    <div class = "menu-button" onclick = "navigationMenuClicked(this); "><p>Privacy Policy</p></div>
+    <div class = "menu-button" onclick = "navigationMenuClicked(this); renderNotice();"><p>Legal Notice</p></div>
 </div >`;
 }
 
 function renderHeader() {
     let content = document.getElementById('header');
     content.innerHTML = /* html */ `
-        <div class="headline">
+        ${renderHeaderHeadline()}
+        ${renderHeaderHeadlineProfile()}
+        <div id="headersubmenu" class="header-submenu d-none">
+            <div><p>Legal Notice</p></div>
+            <div class = "menu-button" onclick = "navigationMenuClicked(this);"><p>Privacy Policy</p></div>
+            <div><p>Log out</p></div>            
+        </div>`;
+}
+
+function renderHeaderHeadline() {
+    return /* html */ `<div class="headline">
             <span>Kanban Project Management Tool</span>
-        </div>
-        <div class="headline-profile">
-            <div class="help-link">
+        </div>`;
+}
+
+function renderHeaderHeadlineProfile() {
+    return /* html */ `<div class="headline-profile">
+            <div id="help-link">
                 <div onclick="renderHelp()"><img src="/assets/img/help.svg" ></div>
             </div>
             <div onclick="openSubmenu()" class="user-profile-initials"></div>
-        </div>
-        <div id="summarysubmenu" class="summary-submenu d-none">
-            <div><a href ="">Legal Notice</a></div>
-            <div class = "menu-button" onclick = "navigationMenuClicked(this);"><a href ="">Privacy Policy</a></div>
-            <div><p>Log out</p></div>            
         </div>`;
 }

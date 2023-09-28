@@ -2,26 +2,23 @@ function greet() {
     let date = new Date();
     let hour = date.getHours();;
 
-    if (hour >= 15) {
+    if (hour >= 17) {
+        document.getElementById('summary-greeting').innerHTML = `Good evening`;
+    } else if (hour >= 14) {
         document.getElementById('summary-greeting').innerHTML = `Good afternoon`;
+    } else if (hour >= 11) {
+        document.getElementById('summary-greeting').innerHTML = `Welcome`;
+    } else if (hour >= 6) {
+        document.getElementById('summary-greeting').innerHTML = `Good morning`;
+    } else if (hour >= 0) {
+        document.getElementById('summary-greeting').innerHTML = `Don't feed the Gremlins`;
     }
 }
 
 
 
 ///SUMMARY TEMPLATES///
-function renderSummary() {
-    let content = document.getElementById('content');
-    content.innerHTML = /* html */ `
-    <div class="summary-content">
-        ${renderSummaryHeader()}
-        <div class="summary-info">
-            ${renderSummaryTask()}
-            ${renderSummaryWelcome()}
-        </div>
-    </div>`;
-    greet();
-}
+
 
 function renderSummaryTask() {
     return `<div class="summary-task">
