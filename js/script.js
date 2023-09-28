@@ -16,48 +16,23 @@ function renderLayout() {
     </div>`;
 }
 
-function renderNavigation() {
-    let content = document.getElementById('left-layout');
+function renderSummary() {
+    document.getElementById('help-link').classList.remove("d-none");
+    let content = document.getElementById('content');
     content.innerHTML = /* html */ `
-    <nav>
-        <div class = "navigation-img" >
-            <img class = "navigation-logo"src = "/assets/img/logo-white.svg">
+    <div class="summary-content">
+        ${renderSummaryHeader()}
+        <div class="summary-info">
+            ${renderSummaryTask()}
+            ${renderSummaryWelcome()}
         </div>
-        <div class = "navigation-menu">
-            <div class = "menu-button" onclick = "navigationMenuClicked(this)">
-                <div class = "menu-icon summary"></div><span> Summary </span>
-            </div>
-            <div class = "menu-button" onclick = "navigationMenuClicked(this)">
-                <div class = "menu-icon add-task" ></div><span>Add Task</span>
-            </div>
-            <div class = "menu-button" onclick = "navigationMenuClicked(this)">
-                <div class = "menu-icon board" ></div><span>Board</span>
-            </div>
-            <div class = "menu-button" onclick = "navigationMenuClicked(this)">
-                <div class = "menu-icon contacts"></div><span>Contacts</span>
-            </div>
-        </div>
-        <div class = "footer">
-            <a href ="">Privacy Policiy </a>
-            <a href ="">Legal notice</a>
-        </div >
-    </nav>`;
+    </div>`;
+    greet();
 }
 
-function renderHeader() {
-    let content = document.getElementById('header');
-    content.innerHTML = /* html */ `
-        <div class="headline">
-            <span>Kanban Project Management Tool</span>
-        </div>
-        <div class="headline-profile">
-            <div class="help-link">
-                <div onclick="renderHelp()"><img src="/assets/img/help.svg" ></div>
-            </div>
-            <div onclick="openSubmenu()" class="user-profile-initials"></div>
-        </div>`;
-}
-
-function renderHelp() {
-
+function renderAddTask(element) {
+    document.getElementById('help-link').classList.remove("d-none");
+    navigationMenuClicked(element);
+    let content = document.getElementById('content');
+    content.innerHTML = createNewTask('ToDo');
 }

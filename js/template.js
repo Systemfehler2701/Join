@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+function Template_renderBoard() {
+    // @Marnie bitte die Funktion einbinden und die dazugehörigen Dateien einbinden. Bitte src="" korrigieren falls nötig
+    // <script src="../../js/board.js"></script>
+    // <script src="../../js/task_script.js"></script>
+    // <script src="../../js/storage.js"></script>
+    // <link rel="stylesheet" href="../../styles/boardstyle.css">
+    // <link rel="stylesheet" href="../../styles/fonts.css">
+    // <link rel="stylesheet" href="../../styles/task_style.css"></link>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="../../styles/boardstyle.css">
-    <link rel="stylesheet" href="../../styles/fonts.css">
-    <link rel="stylesheet" href="../../styles/task_style.css">
-
-</head>
-
-<body onload="Board_loadTasks()">
-    <!--  -->
-
+    document.getElementById('').innerHTML = 
+    `
     <section id="BoardOverlay" class="Boardoverlay" style="display: none;">
-        <div id="blocker" class="blocker"></div>
+        <div id ="blocker" class="blocker"></div>
         <div id="boardOverlaybody" class="overlayBlank"></div>
     </section>
     <section class="boardbody">
@@ -64,13 +58,6 @@
             </div>
         </div>
     </section>
-
-    <script src="../../js/board.js"></script>
-    <script src="../../js/task_script.js"></script>
-    <script src="../../js/storage.js"></script>
-</body>
-
-</html>
-
-
-
+    
+    `
+}
