@@ -197,11 +197,11 @@
     justify-content: space-between;
 }
 
-.taskbody .subtask div {
+.subtask div {
     position: relative;
 }
 
-.taskbody .subtaskimages {
+.subtaskimages {
     position: absolute !important;
     top: 25%;
     right: 5%;
@@ -218,7 +218,7 @@
     font-size: 20px;
 }
 
-.taskbody .addedSubtasks {
+.addedSubtasks {
     margin-top: 8px;
     display: flex;
     align-items: center;
@@ -226,13 +226,13 @@
     transition: 0.5s ease;
 }
 
-.taskbody .subtaskElement:hover {
+.subtaskElement:hover {
   background-color: #e7e7e7;
   border-radius: 8px;
   width: 99%;
 }
 
-.taskbody .subtaskElement {
+.subtaskElement {
     padding: 0 21px 0 21px;
     width: 99%;
     display: flex;
@@ -241,7 +241,7 @@
     border-radius: 8px;
 }
 
-.taskbody .subtaskElement div {
+.subtaskElement div {
     max-width: 14%;
     display: flex;
     justify-content: space-between;
@@ -249,28 +249,28 @@
     gap: 12px;
 }
 
-.taskbody .addedSubtasks img {
+.addedSubtasks img {
     width: 16px;
     height: 16px;
 }
 
-.taskbody .addedSubtasks input {
+.addedSubtasks input {
     height: 24px;
 }
 
-.taskbody .Taskerror {
+.Taskerror {
     margin-top: 8px;
     color: red;
     font-size: 16px;
 }
 
-.taskbody .divider {
+ .taskbody.divider {
     height: 424px;
     background-color: #d1d1d1;
     width: 1px;
 }
 
-.taskbody .addTaskBottom {
+.addTaskBottom {
     margin-top: 40px;
     width: 976px;
     display: flex;
@@ -278,12 +278,12 @@
     align-items: flex-start;
 }
 
-.taskbody .addTaskBottom .uselessAstriks {
+.addTaskBottom .uselessAstriks {
     height: 27px;
     font-size: 28px;
 }
 
-.taskbody .addTaskBottom h2 {
+.addTaskBottom h2 {
     display: flex;
     align-items: center;
     color: black !important;

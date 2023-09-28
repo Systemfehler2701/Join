@@ -9,7 +9,7 @@ function Board_addTask(array) {
   Board_renderCategoryOptions();
   blocker.onclick = function () {
     resetForm();
-    closeOverlay();
+    Board_closeOverlay();
   };
 }
 
@@ -19,13 +19,31 @@ function Board_renderFullTaskCard(array, i) {
   overlayBody.innerHTML = createFullTaskCard(array, i);
   renderSubtasksFull(array, i);
   blocker.onclick = function () {
-    closeOverlay();
+    Board_closeOverlay();
   };
 }
 
-function closeOverlay() {
+async function Board_cutTask(array, i) {
+  TaskLists[array].splice(i, 1)
+  await setItem(array, JSON.stringify(TaskLists[array]))
+  Board_closeOverlay();
+  Board_loadTasks();
+}
+
+function Board_editTask(array, i) {
+  let x = getPrioforEditor(array, i)
+  overlayBody.innerHTML = Board_createTaskEditor(array, i)
+  renderSubtasksFromTask(array, i)
+  if(x != null) {
+   setPrio(x) 
+  }
+}
+
+
+function Board_closeOverlay() {
   overlay.style.display = "none";
   overlayBody.innerHTML = "";
+  Board_loadTasks()
 }
 
 function Board_showProgress() {
@@ -38,7 +56,7 @@ async function Board_loadTasks() {
   await Board_loadFromStorage("ToDo");
   await Board_loadFromStorage("InProgress");
   await Board_loadFromStorage("Awaiting");
-  await Board_loadFromStorage("Done");
+  //await Board_loadFromStorage("Done");
 
   Board_renderToDo();
   Board_renderInProgress();
@@ -138,34 +156,35 @@ function renderSubtasksFull(array, i) {
 }
 
 
-function finishSubtask(array, i, j) {
+async function finishSubtask(array, i, j) {
   let subtaskList = TaskLists[array][i]["subtasks"];
   subtaskList[j]['done'] = 1;
   TaskLists[array][i]['subtasksDone'].push(subtaskList[j])
   
   renderSubtasksFull(array, i)
+  await setItem(array, JSON.stringify(TaskLists[array]))
   console.log(TaskLists[array][i])
 }
 
 
-function revertSubtask(array, i, j) {
+async function revertSubtask(array, i, j) {
   let subtaskList = TaskLists[array][i]["subtasks"]
   subtaskList[j]['done'] = 0;
   TaskLists[array][i]['subtasksDone'].splice(0, 1)
 
   renderSubtasksFull(array, i)
+  await setItem(array, JSON.stringify(TaskLists[array]))
   console.log(TaskLists[array][i])
 }
 
 
 
 function Board_subTaskProgress(array, i) {
-  
   let task = array[i];
   console.log(task)
   let progress = task['subtasksDone'].length / task['subtasks'].length;
   progress = Math.round(progress * 100);
-  document.getElementById(`progressbar${i}`).value = `${progress}% `;
+  document.getElementById(`progressbar${i}`).value = progress;
 }
 
 
@@ -218,9 +237,9 @@ function createFullTaskCard(array, i) {
       </div>
     </div>
     <div class="editorbarFull">
-        <button onclick="cutTask(${array}, ${i})" class="del">Delete</button>
+        <button onclick="Board_cutTask('${array}', ${i})" class="del">Delete</button>
         <img src="../img/Vector 3.svg" alt="">
-        <button onclick="editTask(${array}, ${i})" class="edit">Edit</button>
+        <button onclick="Board_editTask('${array}', ${i})" class="edit">Edit</button>
     </div>
     `;
 }
@@ -316,7 +335,7 @@ function Board_createTaskCard(array, i, arrayName) {
             ${task["description"]}
         </p>
         <div class="subtaskscard">
-            <label>0/2 Subtasks</label>
+            <label>${task['subtasksDone'].length}/${task['subtasks'].length} Subtasks</label>
             <progress id="progressbar${i}" max="100" value="0"></progress>
         </div>
         <div class="cardBottom">
@@ -325,4 +344,72 @@ function Board_createTaskCard(array, i, arrayName) {
         </div>
       </div>
     `;
+}
+
+function Board_createTaskEditor(array, i) {
+  let task = TaskLists[array][i];
+  let date = new Date(task["dueDate"]);
+  
+  let day = ("0" + date.getDate()).slice(-2); 
+  let month = ("0" + (date.getMonth() + 1)).slice(-2); 
+  let year = date.getFullYear();
+  return /*html*/`
+
+<div class="cardheadEdit">
+  <img onclick="Board_closeOverlay()" src="../../assets/img/close.svg" alt="">
+</div>
+<div class="TaskEditorBody">
+<div class="titleEdit">
+  <div class="uselessAstriks"><h2>Title</h2>*</div>
+  <input id="title" type="textbox" placeholder="Enter a title" value="${task['title']}">
+  <div class="Taskerror" style="display: none;" id="errorTitle"> This field needs to be filled out</div>
+</div>
+<div class="descriptionEdit">
+  <h2>Description</h2>
+  <textarea name="" id="description" cols="56" rows="10" placeholder="Enter a Description">${task['description']}</textarea>
+</div>
+<div class="duedateEdit">
+    <p>Due Date:</p>
+    <input id="due" type="date" data-date="" data-date-format="DD MMMM YYYY" value="${year}-${month}-${day}">
+</div>
+<div class="prioEdit">
+    <p>Priority:</p>
+      <div class="priocontainerEdit">
+        <div onclick="setPrio(0)" id="Prio0">
+          Urgent
+          <img id="Prio0_img" src="../img/Prio alta.png" class="">
+        </div>
+        <div onclick="setPrio(1)" id="Prio1">
+          Medium
+          <img id="Prio1_img" src="../img/Prio media.png" class="">
+        </div>
+        <div onclick="setPrio(2)" id="Prio2">
+          Low
+          <img id="Prio2_img" src="../img/Prio baja.png" class="">
+        </div>
+      </div>
+</div>
+<div class="assigneesEdit">
+  <p>Assigned to:</p>
+  <select id="assign_select">
+    <option value="null">Select contacts to assign</option>
+  </select>
+</div>
+<div class="subtasksEdit">
+    <p>Subtasks:</p>
+    <div>
+        <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
+        <div class="subtaskimages" id="subtaskField">
+            <img src="../img/Subtasks icons11.svg" alt="">
+        </div>
+    </div>
+    <div class="addedSubtasks" id="addedSubtasks"></div>
+</div>
+</div>
+<div class="editorBottom">
+  <button onclick="addTask('${array}')" class="create">Ok</button>
+</div>
+</div>
+`;
+  
 }

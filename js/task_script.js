@@ -19,7 +19,7 @@ let priorities = [
     color: "rgb(255, 168, 0)",
   },
   {
-    priority: "Medium",
+    priority: "Low",
     symbol: "../img/Prio baja.png",
     color: "rgb(122,226,41)",
   },
@@ -69,7 +69,7 @@ async function addTask(list) {
 
     resetForm();
     await setItem(list, JSON.stringify(TaskLists[list]));
-    closeOverlay();
+    Board_closeOverlay();
     Board_loadTasks();
   }
 }
@@ -84,11 +84,29 @@ function resetForm() {
   subtasks = [];
 }
 
+function getPrioforEditor(array, i) {
+  let x = null
+  let task = TaskLists[array][i];
+  if(task['priority']['priority'] == 'Urgent') {
+    x = 0
+  }
+  if(task['priority']['priority'] == 'Medium') {
+    x = 1
+  }
+  if(task['priority']['priority'] == 'Low') {
+    x = 2
+  }
+
+  return(x)
+
+}
+
 function setPrio(x) {
   Prio = [];
   Prio.push(priorities[x]);
   colorPriorityButtons(x);
 }
+
 
 function addSubtask() {
   subtask = document.getElementById("subtasks");
@@ -113,6 +131,7 @@ function renderSubtasks() {
     `;
   }
 }
+
 
 function displaySubtaskButtons(i) {
   let subtaskelement = subtasks[i];
@@ -172,6 +191,49 @@ function clearSubtask() {
   document.getElementById("subtasks").value = "";
 }
 
+//////////////////////////////////////////////////////////////////////////////// Subtask Functions for the Editor\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+//////////////////////////////////////////////////////////////////////////////// Subtask Functions for the Editor\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+function renderSubtasksFromTask(array, i) {
+  let subtasks = TaskLists[array][i]['subtasks']
+  let subTaskDisplay = document.getElementById("addedSubtasks");
+  subTaskDisplay.innerHTML = "";
+  for (let j = 0; j < subtasks.length; j++) {
+    let subtaskelement = subtasks[j];
+    subTaskDisplay.innerHTML += `
+    <div id="subtaskContainer${j}">
+      <div onmouseover="displaySubtaskButtonsInEditor('${array}', ${i}, ${j})" class="subtaskElement">${subtaskelement['task']}</div>
+    </div>
+    `;
+  }
+}
+
+function displaySubtaskButtonsInEditor(array, i, j) {
+  let subtasks = TaskLists[array][i]['subtasks']
+  let subtaskelement = subtasks[j];
+  let subTaskDisplay = document.getElementById(`subtaskContainer${j}`);
+  subTaskDisplay.innerHTML = "";
+  subTaskDisplay.innerHTML = `
+    <div class="subtaskElement" onmouseout="renderSubtasksFromTask('${array}', ${i})" id="subtask${j}">
+      <p>${subtaskelement['task']}</p>
+      <div>
+        <img onclick="cutSubtask(${j})" src="../img/delete.svg" alt="">
+        <img onclick="editSubtask(${j})" src="../img/edit.svg" alt="">
+      </div>
+    </div>
+    `;
+}
+
+
+
+
+
+
+
+
+
+
+
 function colorPriorityButtons(x) {
   //changes the backgroundcolor based on the selected Priority
   document.getElementById(`Prio0`).style.backgroundColor = "white";
@@ -217,10 +279,6 @@ function CheckInputValidity(title, dueDate, category) {
   }
   if (category == null) {
     document.getElementById("errorCategory").style.display = "block";
-    validitiy = false;
-  }
-  if (Prio == null) {
-    document.getElementById("errorPrio").style.display = "block";
     validitiy = false;
   }
 
