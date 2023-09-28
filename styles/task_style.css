@@ -6,7 +6,8 @@
 
 .taskbody h1 {
     font-size: 61px;
-    font-weight: bold;
+    font-weight: 700;
+    margin-top: 0;
     width: 976px;
 }
 
@@ -227,9 +228,9 @@
 }
 
 .taskbody .subtaskElement:hover {
-  background-color: #e7e7e7;
-  border-radius: 8px;
-  width: 99%;
+    background-color: #e7e7e7;
+    border-radius: 8px;
+    width: 99%;
 }
 
 .taskbody .subtaskElement {

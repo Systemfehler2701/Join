@@ -1,275 +1,276 @@
 .boardbody {
-  font-family: "Inter";
-  background-color: #f6f7f8;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "Inter";
-  width: 100%;
-  max-width: 1208px;
-  min-height: 688px;
+    font-family: "Inter";
+    background-color: #f6f7f8;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1208px;
+    min-height: 688px;
 }
 
 .head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 87.41%;
-  gap: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 87.41%;
+    gap: 32px;
 }
 
 .h1 {
-  font-size: 61px;
-  font-weight: 700;
-  margin: 0;
+    font-size: 61px;
+    font-weight: 700;
+    margin: 0;
 }
 
 .headleft {
-  display: flex;
-  justify-content: space-between;
-  gap: 32px;
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
 }
 
 .searchbar {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  width: 312px;
-  height: 48px;
-  border-radius: 10px;
-  border: solid 1px #a8a8a8;
-  background-color: white;
-  padding: 8px 16px 8px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 312px;
+    height: 48px;
+    border-radius: 10px;
+    border: solid 1px #a8a8a8;
+    background-color: white;
+    padding: 8px 16px 8px 16px;
 }
 
 .searchbar input {
-  border: none;
-  height: 100%;
-  width: 232px;
-  outline: none;
+    border: none;
+    height: 100%;
+    width: 232px;
+    outline: none;
 }
 
 .searchbar input::placeholder {
-  font-size: 20px;
-  font-weight: 400;
-  color: #a8a8a8;
+    font-size: 20px;
+    font-weight: 400;
+    color: #a8a8a8;
 }
 
 .divider {
-  background-color: #a8a8a8;
-  height: 90%;
-  width: 1px;
-  margin-right: 16px;
+    background-color: #a8a8a8;
+    height: 90%;
+    width: 1px;
+    margin-right: 16px;
 }
 
 .head button {
-  box-sizing: border-box;
-  width: 160px;
-  height: 48px;
-  padding: 8px 16px 8px 16px;
-  cursor: pointer;
-  text-align: left;
-  border: solid 1px #2a3647;
-  background-color: #2a3647;
-  color: white;
-  font-size: 21px;
-  border-radius: 10px;
-  font-weight: 700;
-  background-image: url(../assets/img/add.svg);
-  background-repeat: no-repeat;
-  background-position-x: 85%;
-  background-position-y: 50%;
+    box-sizing: border-box;
+    width: 160px;
+    height: 48px;
+    padding: 8px 16px 8px 16px;
+    cursor: pointer;
+    text-align: left;
+    border: solid 1px #2a3647;
+    background-color: #2a3647;
+    color: white;
+    font-size: 21px;
+    border-radius: 10px;
+    font-weight: 700;
+    background-image: url(../assets/img/add.svg);
+    background-repeat: no-repeat;
+    background-position-x: 85%;
+    background-position-y: 50%;
 }
 
 .panels {
-  display: flex;
-  justify-content: space-between;
-  width: 87.41%;
+    display: flex;
+    justify-content: space-between;
+    width: 87.41%;
+    margin-top: 40px;
 }
 
 .taskpanel {
-  display: flex;
-  flex-direction: column;
-  width: 244px;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 244px;
+    gap: 16px;
 }
 
 .panelhead {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #2a3647;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2a3647;
 }
 
 .panelbody {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .panelhead button {
-  cursor: pointer;
-  padding: 3px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  background-color: #f6f7f8;
-  border: solid 2px #2a3647;
-  width: 24px;
-  height: 24px;
-  background-image: url(../assets/img/Capa1.svg);
-  background-repeat: no-repeat;
-  background-position-x: 55%;
-  background-position-y: 55%;
+    cursor: pointer;
+    padding: 3px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #f6f7f8;
+    border: solid 2px #2a3647;
+    width: 24px;
+    height: 24px;
+    background-image: url(../assets/img/Capa1.svg);
+    background-repeat: no-repeat;
+    background-position-x: 55%;
+    background-position-y: 55%;
 }
 
 .placeholder {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 48px;
-  border-radius: 10px;
-  border: dotted 2px #a8a8a8;
-  color: #a8a8a8;
-  background-color: #e7e7e7;
-  margin-bottom: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    border: dotted 2px #a8a8a8;
+    color: #a8a8a8;
+    background-color: #e7e7e7;
+    margin-bottom: 16px;
 }
 
 .taskcard {
-  cursor: pointer;
-  box-sizing: border-box;
-  padding: 16px;
-  width: 100%;
-  font-size: 16px;
-  background-color: white;
-  border-radius: 24px;
-  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 16px;
+    width: 100%;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.08);
 }
 
 .taskcard h2 {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .categorycard {
-  border-radius: 8px;
-  padding: 4px 16px 4px 16px;
-  width: fit-content;
-  color: white;
-  font-size: 16px;
-  font-weight: 400;
+    border-radius: 8px;
+    padding: 4px 16px 4px 16px;
+    width: fit-content;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .descriptioncard {
-  color: #a8a8a8;
+    color: #a8a8a8;
 }
 
 .subtaskscard {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: space-between;
-  margin: 16px 0;
-  font-size: 12px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16px 0;
+    font-size: 12px;
 }
 
 progress {
-  height: 20px;
-  width: 128px;
+    height: 20px;
+    width: 128px;
 }
 
 .cardBottom {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
+
 /* Here begins the styling of the Taskcard Overlay the following elements have "Full" at the end of their name to avoid confusion */
+
+
 /* Here begins the styling of the Taskcard Overlay the following elements have "Full" at the end of their name to avoid confusion */
 
 .Boardoverlay {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .blocker {
-  background-color: rgba(0, 0, 0, 0.36);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 1;
+    background-color: rgba(0, 0, 0, 0.36);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
 }
 
 .overlayBlank {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  font-family: "Inter";
-  z-index: 2;
-  background-color: white;
-  border-radius: 30px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
-  padding: 40px 48px 40px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    font-family: "Inter";
+    z-index: 2;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
+    padding: 40px 48px 40px 48px;
 }
 
 .cardheadFull {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .cardheadFull img {
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
 }
 
 .categorycardFull {
-  display: flex;
-  align-items: center;
-  height: 36px;
-  border-radius: 8px;
-  padding: 4px 16px 4px 16px;
-  width: fit-content;
-  color: white;
-  font-size: 23px;
-  font-weight: 400;
+    display: flex;
+    align-items: center;
+    height: 36px;
+    border-radius: 8px;
+    padding: 4px 16px 4px 16px;
+    width: fit-content;
+    color: white;
+    font-size: 23px;
+    font-weight: 400;
 }
 
 .taskcardFull h2 {
-  font-size: 61px;
-  font-weight: 700;
-  margin: 0;
+    font-size: 61px;
+    font-weight: 700;
+    margin: 0;
 }
 
 .descriptionFull {
-  color: black;
-  font-size: 20px;
+    color: black;
+    font-size: 20px;
 }
 
 .duedateFull {
-  display: flex;
-  font-size: 20px;
-  gap: 16px;
+    display: flex;
+    font-size: 20px;
+    gap: 16px;
 }
 
 .duedateFull :first-child {
-  color: #2a3647;
+    color: #2a3647;
 }
 
 .duedateFull p {
-  margin: 0;
+    margin: 0;
 }
 
 .prioFull {
-  display: flex;
-  font-size: 20px;
-  gap: 16px;
+    display: flex;
+    font-size: 20px;
+    gap: 16px;
 }
 
 .prioFull div {
@@ -279,76 +280,76 @@ progress {
 }
 
 .prioFull :first-child {
-  color: #2a3647;
-  margin: 0;
+    color: #2a3647;
+    margin: 0;
 }
 
 .assigneesFull p {
-  color: #2a3647;
-  font-size: 20px;
-  margin: 0;
+    color: #2a3647;
+    font-size: 20px;
+    margin: 0;
 }
 
 .subtasksFull p {
-  font-size: 20px;
-  color: #2a3647;
-  margin-bottom: 12px;
+    font-size: 20px;
+    color: #2a3647;
+    margin-bottom: 12px;
 }
 
 .subtaskFull {
-  display: flex;
-  font-size: 20px;
+    display: flex;
+    font-size: 20px;
 }
 
 .subtaskListFull {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .singleSubtaskFull {
-  display: flex;
-  gap: 8px;
-  padding: 6px 16px 6px 16px;
-  width: fit-content;
-  border-radius: 10px;
-  transition: 0.5s ease;
-  cursor: default;
-} 
+    display: flex;
+    gap: 8px;
+    padding: 6px 16px 6px 16px;
+    width: fit-content;
+    border-radius: 10px;
+    transition: 0.5s ease;
+    cursor: default;
+}
 
 .singleSubtaskFull:hover {
-  background-color: #e7e7e7;
+    background-color: #e7e7e7;
 }
 
 .checkbox {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .subtaskFull div {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .editorbarFull {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 }
 
 .editorbarFull button {
-  background-color: white;
-  border: none;
-  font-size: 16px;
-  height: 24px;
-  cursor: pointer;
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    height: 24px;
+    cursor: pointer;
 }
 
 .del {
-  background-image: url(../assets/img/delete.svg);
-  background-repeat: no-repeat;
-  background-position-x: 5%;
-  background-position-y: 50%;
-  width: 81px;
-  padding: 0;
-  text-align: right;
+    background-image: url(../assets/img/delete.svg);
+    background-repeat: no-repeat;
+    background-position-x: 5%;
+    background-position-y: 50%;
+    width: 81px;
+    padding: 0;
+    text-align: right;
 }
 
 .edit {
@@ -357,6 +358,6 @@ progress {
     background-position-x: 5%;
     background-position-y: 50%;
     width: 62px;
-    padding: 0; 
+    padding: 0;
     text-align: right;
 }
