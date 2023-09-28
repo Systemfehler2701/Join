@@ -127,7 +127,6 @@ function displaySubtaskButtons(i) {
       </div>
     </div>
     `;
-  
 }
 
 function cutSubtask(i) {
@@ -137,7 +136,7 @@ function cutSubtask(i) {
 
 function editSubtask(i) {
   let currentValue = subtasks[i]['task']
-  let subTaskDisplay = document.getElementById("subtaskContainer");
+  let subTaskDisplay = document.getElementById(`subtaskContainer${i}`);
   subTaskDisplay.innerHTML = "";
   subTaskDisplay.innerHTML = `
     <div id="subtask${i}" class="subtaskElement">
@@ -168,7 +167,6 @@ function changeSubtaskAppearance() {
       '<img src="../img/Subtasks icons11.svg" alt="">';
   }
 }
-
 
 function clearSubtask() {
   document.getElementById("subtasks").value = "";

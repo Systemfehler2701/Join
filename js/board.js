@@ -91,6 +91,7 @@ function Board_renderCard(list, array, arrayName) {
   list.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
     list.innerHTML += Board_createTaskCard(array, i, arrayName);
+    Board_subTaskProgress(array, i)
   }
 }
 
@@ -136,6 +137,7 @@ function renderSubtasksFull(array, i) {
   }
 }
 
+
 function finishSubtask(array, i, j) {
   let subtaskList = TaskLists[array][i]["subtasks"];
   subtaskList[j]['done'] = 1;
@@ -145,6 +147,7 @@ function finishSubtask(array, i, j) {
   console.log(TaskLists[array][i])
 }
 
+
 function revertSubtask(array, i, j) {
   let subtaskList = TaskLists[array][i]["subtasks"]
   subtaskList[j]['done'] = 0;
@@ -153,6 +156,18 @@ function revertSubtask(array, i, j) {
   renderSubtasksFull(array, i)
   console.log(TaskLists[array][i])
 }
+
+
+
+function Board_subTaskProgress(array, i) {
+  
+  let task = array[i];
+  console.log(task)
+  let progress = task['subtasksDone'].length / task['subtasks'].length;
+  progress = Math.round(progress * 100);
+  document.getElementById(`progressbar${i}`).value = `${progress}% `;
+}
+
 
 function getCurrentDate() {
   let currentDay = ('0' + new Date().getDate()).slice(-2)
@@ -302,7 +317,7 @@ function Board_createTaskCard(array, i, arrayName) {
         </p>
         <div class="subtaskscard">
             <label>0/2 Subtasks</label>
-            <progress id="progressbar" max="100" value="0"></progress>
+            <progress id="progressbar${i}" max="100" value="0"></progress>
         </div>
         <div class="cardBottom">
             <div class="assignees">yoo</div>

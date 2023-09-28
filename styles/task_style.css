@@ -227,7 +227,7 @@
 }
 
 .taskbody .subtaskElement:hover {
-  background-color: #d1d1d1;
+  background-color: #e7e7e7;
   border-radius: 8px;
   width: 99%;
 }
