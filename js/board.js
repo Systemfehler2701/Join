@@ -113,12 +113,12 @@ function createFullTaskCard(array, i) {
   let category = task["category"];
   return `
     <div class="cardheadFull">
-        <div class="categorycardFull" style="background-color: blue;">User Story</div>
+        <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
             <img onclick="closeOverlay()" src="../../assets/img/close.svg" alt="">
         </div>
-        <h2>Байрактар & Байрактар </h2>
+        <h2>${task}</h2>
         <p class="descriptionFull">
-            Російска поліція справи заводить
+           ${task}
         </p>
         <div class="duedateFull">
             <p>Due Date:</p>

@@ -103,6 +103,12 @@
   color: #2a3647;
 }
 
+.panelbody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .panelhead button {
   cursor: pointer;
   padding: 3px;
