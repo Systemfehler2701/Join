@@ -62,14 +62,16 @@ function createNewTask(array) {
                                 <img id="Prio2_img" src="/assets/img/Prio_baja.png" class="">
                             </div>
                         </div>
+                        <div class="Taskerror" style="display: none;" id="errorPriority"> You need to Select a Priority</div>
                     </div>
                     <div class="category">
                         <div class="uselessAstriks">
                             <h2>Category</h2>*
                         </div>
-                        <select id="category_selector" required>
+                        <select id="category_selector">
                             <option value="null">Select Category</option>
                         </select>
+                        <div class="Taskerror" style="display: none;" id="errorCategory">You need to Select a Category</div>
                     </div>
                         <div class="subtask">
                             <h2>Subtasks</h2>

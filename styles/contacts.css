@@ -40,6 +40,23 @@
     margin-right: 10px;
 }
 
+.initials-logo-edit {
+    width: 50px;
+    /* oder die gewünschte Größe */
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    /* oder die gewünschte Größe */
+    font-weight: bold;
+    color: white;
+    /* oder die gewünschte Farbe */
+    margin-bottom: 15px;
+    /* oder der gewünschte Abstand */
+}
+
 .mail {
     color: #007CEE;
     font-size: 16px;
@@ -157,6 +174,12 @@ form button {
     align-items: center;
 }
 
+.darkside img {
+    height: 66.48px;
+    width: 55.6px;
+    padding-left: 46.9;
+}
+
 .overlay {
     position: fixed;
     /* Damit es immer sichtbar ist, auch beim Scrollen */
@@ -198,7 +221,17 @@ form button {
 }
 
 .form-container {
+    left: unset;
+    padding: 0;
+    transition: right 0.4s ease-in-out;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    height: 570px;
+    width: 90%;
+    max-width: 1212px;
 }
 
 #contactlist .selected .contactfield {
@@ -250,6 +283,7 @@ form button {
     gap: 10px;
     background: url(/assets/img/person.svg);
     background-repeat: no-repeat;
+    background-position: 95%;
 }
 
 .inputMail {
@@ -261,6 +295,7 @@ form button {
     background-color: #FFFFFF;
     background: url(/assets/img/mail.svg);
     background-repeat: no-repeat;
+    background-position: 95%;
 }
 
 .inputPhone {
@@ -271,6 +306,7 @@ form button {
     Padding: 13px, 21px, 13px, 21px;
     background: url(/assets/img/);
     background-repeat: no-repeat;
+    background-position: 95%;
 }
 
 .editArea {
@@ -281,7 +317,6 @@ form button {
 
 .createBtn {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
     height: 50px;
@@ -315,5 +350,13 @@ form button {
 
 .alphabet-section {
     border-bottom: 1px solid;
-    margin: 4px;
+    padding: 17px;
+    gap: 8px;
+}
+
+.overlayPerson img {
+    height: 120px;
+    width: 120px;
+    border: 3px;
+    border-radius: 70px;
 }

@@ -24,9 +24,9 @@
             <h1 class="h1">Board</h1>
             <div class="headleft">
                 <div class="searchbar">
-                    <input type="text" placeholder="Find task">
+                    <input onkeyup="Board_resetSearch()" id="taskSearch" type="text" placeholder="Find task">
                     <div class="divider"></div>
-                    <img onclick="" src="../img/search.svg" alt="">
+                    <img onclick="Board_search()" src="../img/search.svg" alt="">
                 </div>
                 <button onclick="Board_addTask('ToDo')">Add task</button>
             </div>
@@ -68,6 +68,7 @@
     <script src="../../js/board.js"></script>
     <script src="../../js/task_script.js"></script>
     <script src="../../js/storage.js"></script>
+    <script src="../../js/templates/add_task_template.js"></script>
 </body>
 
 </html>

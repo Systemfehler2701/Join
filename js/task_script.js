@@ -4,23 +4,24 @@ const TaskLists = {
   Awaiting: [],
   Done: [],
 };
+
 let subtasks = [];
-let subtasksDone = []
+let subtasksDone = [];
 let Prio = [];
 let priorities = [
   {
     priority: "Urgent",
-    symbol: "../img/Prio alta.png",
+    symbol: "../img/Prio_alta.png",
     color: "rgb(255, 61, 0)",
   },
   {
     priority: "Medium",
-    symbol: "../img/Prio media.png",
+    symbol: "../img/Prio_media.png",
     color: "rgb(255, 168, 0)",
   },
   {
     priority: "Low",
-    symbol: "../img/Prio baja.png",
+    symbol: "../img/Prio_baja.png",
     color: "rgb(122,226,41)",
   },
 ];
@@ -41,6 +42,132 @@ const categories = [
 ];
 
 async function addTask(list) {
+  let data = compileTaskData();
+  if (data != "error") {
+    TaskLists[list].push(data);
+    resetForm();
+    await setItem(list, JSON.stringify(TaskLists[list]));
+    Board_closeOverlay();
+    Board_loadTasks();
+  }
+}
+
+async function addEditedTask(list, i) {
+  let data = compileTaskData();
+  if (data != "error") {
+    TaskLists[list][i] = data;
+    CheckFinishedSubtasks(list, i)
+    resetForm();
+    await setItem(list, JSON.stringify(TaskLists[list]));
+
+    Board_closeOverlay();
+    Board_loadTasks();
+  }
+}
+
+function resetForm() {
+  document.getElementById("title").value = "";
+  document.getElementById("description").value = "";
+  document.getElementById("assign_select").value = null;
+  document.getElementById("due").value = "";
+  document.getElementById("category_selector").value = null;
+  Prio = [];
+  subtasks = [];
+  subtasksDone = [];
+}
+
+function getPrioforEditor(array, i) {
+  let x = null;
+  let task = TaskLists[array][i];
+  if (task["priority"]["priority"] == "Urgent") {
+    x = 0;
+  }
+  if (task["priority"]["priority"] == "Medium") {
+    x = 1;
+  }
+  if (task["priority"]["priority"] == "Low") {
+    x = 2;
+  }
+
+  return x;
+}
+
+function setPrio(x) {
+  Prio = [];
+  Prio.push(priorities[x]);
+  colorPriorityButtons(x);
+}
+
+function addSubtask() {
+  subtask = document.getElementById("subtasks");
+  let newSubtask = {
+    task: subtask.value,
+    done: 0,
+  };
+  subtasks.push(newSubtask);
+  subtask.value = "";
+  renderSubtasks();
+}
+
+function renderSubtasks() {
+  let subTaskDisplay = document.getElementById("addedSubtasks");
+  subTaskDisplay.innerHTML = "";
+  for (let i = 0; i < subtasks.length; i++) {
+    let subtaskelement = subtasks[i];
+    subTaskDisplay.innerHTML += `
+    <div class="subtaskElement" id="subtask${i}">
+      <p>${subtaskelement["task"]}</p>
+      <div class="subtaskTools">
+        <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
+        <img onclick="editSubtask(${i})" src="../img/edit.svg" alt="">
+      </div>
+    </div>
+    `;
+  }
+}
+
+function cutSubtask(i) {
+  subtasks.splice(i, 1);
+  renderSubtasks(i);
+}
+
+function editSubtask(i) {
+  let currentValue = subtasks[i]["task"];
+  let subTaskDisplay = document.getElementById(`subtask${i}`);
+  subTaskDisplay.innerHTML = "";
+  subTaskDisplay.innerHTML = `
+      <input type="text" id="editedInput${i}" value="${currentValue}"  />
+      <div>
+        <img onclick="cutSubtask( ${i})" src="../img/delete.svg" alt="">
+        <img onclick="saveEdit(${i})" src="../img/Vector 17.svg" alt="">
+      </div>
+    `;
+}
+
+function saveEdit(i) {
+  let editedValue = document.getElementById(`editedInput${i}`).value;
+  subtasks[i]["task"] = editedValue;
+  renderSubtasks();
+}
+
+function clearSubtask() {
+  document.getElementById("subtasks").value = "";
+}
+
+function changeSubtaskAppearance() {
+  if (document.getElementById("subtasks").value != "") {
+    document.getElementById("subtaskField").innerHTML = `
+    <img onclick="clearSubtask()" src="../img/close.svg" alt="">
+    <img src="../img/Vector 3.svg" alt="">
+    <img onclick="addSubtask()" src="../img/Vector 17.svg" alt="">
+    `;
+  } else {
+    document.getElementById("subtaskField").innerHTML =
+      '<img src="../img/Subtasks icons11.svg" alt="">';
+  }
+}
+
+function compileTaskData() {
   title = document.getElementById("title");
   description = document.getElementById("description");
   assignee = document.getElementById("assign_select");
@@ -63,176 +190,13 @@ async function addTask(list) {
       category: category.value,
       priority: Prio[0],
       subtasks: subtasks,
-      subtasksDone: subtasksDone
+      subtasksDone: subtasksDone,
     };
-    TaskLists[list].push(data);
-
-    resetForm();
-    await setItem(list, JSON.stringify(TaskLists[list]));
-    Board_closeOverlay();
-    Board_loadTasks();
-  }
-}
-
-function resetForm() {
-  document.getElementById("title").value = "";
-  document.getElementById("description").value = "";
-  document.getElementById("assign_select").value = null;
-  document.getElementById("due").value = "";
-  document.getElementById("category_selector").value = null;
-  Prio = [];
-  subtasks = [];
-}
-
-function getPrioforEditor(array, i) {
-  let x = null
-  let task = TaskLists[array][i];
-  if(task['priority']['priority'] == 'Urgent') {
-    x = 0
-  }
-  if(task['priority']['priority'] == 'Medium') {
-    x = 1
-  }
-  if(task['priority']['priority'] == 'Low') {
-    x = 2
-  }
-
-  return(x)
-
-}
-
-function setPrio(x) {
-  Prio = [];
-  Prio.push(priorities[x]);
-  colorPriorityButtons(x);
-}
-
-
-function addSubtask() {
-  subtask = document.getElementById("subtasks");
-  let newSubtask = {
-    task: subtask.value,
-    done: 0,
-  }
-  subtasks.push(newSubtask);
-  subtask.value = "";
-  renderSubtasks();
-}
-
-function renderSubtasks() {
-  let subTaskDisplay = document.getElementById("addedSubtasks");
-  subTaskDisplay.innerHTML = "";
-  for (let i = 0; i < subtasks.length; i++) {
-    let subtaskelement = subtasks[i];
-    subTaskDisplay.innerHTML += `
-    <div id="subtaskContainer${i}">
-      <div onmouseover="displaySubtaskButtons(${i})" class="subtaskElement">${subtaskelement['task']}</div>
-    </div>
-    `;
-  }
-}
-
-
-function displaySubtaskButtons(i) {
-  let subtaskelement = subtasks[i];
-  let subTaskDisplay = document.getElementById(`subtaskContainer${i}`);
-  subTaskDisplay.innerHTML = "";
-  subTaskDisplay.innerHTML = `
-    <div class="subtaskElement" onmouseout="renderSubtasks()" id="subtask${i}">
-    ${subtaskelement['task']}
-      <div>
-        <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
-        <img onclick="editSubtask(${i})" src="../img/edit.svg" alt="">
-      </div>
-    </div>
-    `;
-}
-
-function cutSubtask(i) {
-  subtasks.splice(i, 1);
-  renderSubtasks();
-}
-
-function editSubtask(i) {
-  let currentValue = subtasks[i]['task']
-  let subTaskDisplay = document.getElementById(`subtaskContainer${i}`);
-  subTaskDisplay.innerHTML = "";
-  subTaskDisplay.innerHTML = `
-    <div id="subtask${i}" class="subtaskElement">
-      <input type="text" id="editedInput" value="${currentValue}" "saveEdit(${i})" />
-      <div>
-        <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
-        <img onclick="saveEdit(${i})" src="../img/Vector 17.svg" alt="">
-      </div>
-    </div>
-    `;
-}
-
-function saveEdit(i) {
-  let editedValue = document.getElementById("editedInput").value;
-  subtasks[i]['task'] = editedValue
-  renderSubtasks();
-}
-
-function changeSubtaskAppearance() {
-  if (document.getElementById("subtasks").value != "") {
-    document.getElementById("subtaskField").innerHTML = `
-    <img onclick="clearSubtask()" src="../img/close.svg" alt="">
-    <img src="../img/Vector 3.svg" alt="">
-    <img onclick="addSubtask()" src="../img/Vector 17.svg" alt="">
-    `;
+    return data;
   } else {
-    document.getElementById("subtaskField").innerHTML =
-      '<img src="../img/Subtasks icons11.svg" alt="">';
+    return('error');
   }
 }
-
-function clearSubtask() {
-  document.getElementById("subtasks").value = "";
-}
-
-//////////////////////////////////////////////////////////////////////////////// Subtask Functions for the Editor\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//////////////////////////////////////////////////////////////////////////////// Subtask Functions for the Editor\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-function renderSubtasksFromTask(array, i) {
-  let subtasks = TaskLists[array][i]['subtasks']
-  let subTaskDisplay = document.getElementById("addedSubtasks");
-  subTaskDisplay.innerHTML = "";
-  for (let j = 0; j < subtasks.length; j++) {
-    let subtaskelement = subtasks[j];
-    subTaskDisplay.innerHTML += `
-    <div id="subtaskContainer${j}">
-      <div onmouseover="displaySubtaskButtonsInEditor('${array}', ${i}, ${j})" class="subtaskElement">${subtaskelement['task']}</div>
-    </div>
-    `;
-  }
-}
-
-function displaySubtaskButtonsInEditor(array, i, j) {
-  let subtasks = TaskLists[array][i]['subtasks']
-  let subtaskelement = subtasks[j];
-  let subTaskDisplay = document.getElementById(`subtaskContainer${j}`);
-  subTaskDisplay.innerHTML = "";
-  subTaskDisplay.innerHTML = `
-    <div class="subtaskElement" onmouseout="renderSubtasksFromTask('${array}', ${i})" id="subtask${j}">
-      <p>${subtaskelement['task']}</p>
-      <div>
-        <img onclick="cutSubtask(${j})" src="../img/delete.svg" alt="">
-        <img onclick="editSubtask(${j})" src="../img/edit.svg" alt="">
-      </div>
-    </div>
-    `;
-}
-
-
-
-
-
-
-
-
-
-
 
 function colorPriorityButtons(x) {
   //changes the backgroundcolor based on the selected Priority
@@ -253,6 +217,18 @@ function colorPriorityButtons(x) {
   document.getElementById(`Prio1_img`).classList.remove("whiteFilterImg");
   document.getElementById(`Prio2_img`).classList.remove("whiteFilterImg");
   document.getElementById(`Prio${x}_img`).classList.add("whiteFilterImg");
+}
+
+function CheckFinishedSubtasks(list, i) {
+  let subtasks = TaskLists[list][i]['subtasks']
+  let finishedSubtasks = TaskLists[list][i]['subtasksDone']
+  for (let j = 0; j < subtasks.length; j++) {
+    let subtask = subtasks[j];
+    if(subtask['done'] > 0) {
+      finishedSubtasks.push(subtask)
+    }
+    
+  }
 }
 
 function CheckInputValidity(title, dueDate, category) {
@@ -277,10 +253,28 @@ function CheckInputValidity(title, dueDate, category) {
       validitiy = false;
     }
   }
-  if (category == null) {
+  if (Prio.length == 0) {
+    document.getElementById("errorPriority").style.display = "block";
+    validitiy = false;
+  }
+  if (category == 'null') {
     document.getElementById("errorCategory").style.display = "block";
     validitiy = false;
   }
 
   return validitiy;
+}
+
+
+async function FULLSTOP() {
+  TaskLists['ToDo'] = []
+  TaskLists['InProgress'] = []
+  TaskLists['Awaiting'] = []
+
+  await setItem('ToDo', JSON.stringify(TaskLists['ToDo']));
+  await setItem('InProgress', JSON.stringify(TaskLists['InProgress']));
+  await setItem('Awaiting', JSON.stringify(TaskLists['Awaiting']));
+  Board_closeOverlay();
+  Board_loadTasks();
+
 }
