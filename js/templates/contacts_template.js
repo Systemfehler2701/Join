@@ -82,4 +82,5 @@ function renderContacts() {
             </div>
         </div>
     </div>`;
+    loadContacts();
 }
