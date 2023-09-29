@@ -3,6 +3,7 @@
         flex-direction: column;
         background-color: #F6F7F8;
         width: 100%;
+        user-select: none;
     }
     
     .summary-header h1 {
@@ -21,7 +22,7 @@
         align-items: center;
         width: 660px;
         height: 136px;
-        margin: 90px 0 20px 80px;
+        margin-bottom: 20px;
     }
     
     .summary-header img {
@@ -38,8 +39,7 @@
     .summary-task {
         display: flex;
         flex-direction: column;
-        width: 56%;
-        margin: 0 0 0 80px;
+        margin-right: 100px;
     }
     
     .summary-line1,
@@ -57,24 +57,25 @@
         margin-top: 15px;
         margin-bottom: 15px;
         border-radius: 30px;
-        padding: 38px 58px 38px 58px;
+        padding: 38px 58px;
         background-color: white;
         box-shadow: 0px 0px 4px 0px #00000010;
         transition: .1s ease-in;
         cursor: pointer;
     }
     
-    .summary-todo {
+    .summary-todo,
+    .summary-done {
         width: 264px;
         height: 92px;
         margin-right: 15px;
+    }
+    
+    .summary-todo {
         transform-origin: bottom left;
     }
     
     .summary-done {
-        width: 264px;
-        height: 92px;
-        margin-left: 15px;
         transform-origin: bottom right;
     }
     
@@ -209,9 +210,25 @@
         height: 60px;
     }
     
-    .today {
+    .next-date {
         font-size: 21px !important;
         font-weight: 700 !important;
     }
     
-    .summary-welcome {}
+    .summary-welcome {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 600px;
+    }
+    
+    #summary-greeting {
+        font-size: 47px;
+        font-weight: 500;
+    }
+    
+    .summary-user {
+        font-size: 64px;
+        font-weight: 700;
+        color: #29ABE2;
+    }

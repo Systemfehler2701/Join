@@ -5,6 +5,7 @@ function app() {
     renderSummary();
 }
 
+
 function renderLayout() {
     let content = document.getElementById('content-app');
     content.innerHTML = '';

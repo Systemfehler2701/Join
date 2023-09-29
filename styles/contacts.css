@@ -8,10 +8,12 @@
     min-width: 450px;
     height: 100px;
     border: solid transparent;
-    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.1);
-    z-index: 2;
     display: flex;
     align-items: center;
+    border-radius: 10px;
+    border-color: white;
+    padding: 15px, 24px, 15px, 24px;
+    gap: 35px;
 }
 
 .name {
@@ -22,7 +24,6 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: 220px;
     flex-direction: column;
 }
 
@@ -37,6 +38,23 @@
     text-align: center;
     line-height: 40px;
     margin-right: 10px;
+}
+
+.initials-logo-edit {
+    width: 50px;
+    /* oder die gewünschte Größe */
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    /* oder die gewünschte Größe */
+    font-weight: bold;
+    color: white;
+    /* oder die gewünschte Farbe */
+    margin-bottom: 15px;
+    /* oder der gewünschte Abstand */
 }
 
 .mail {
@@ -73,44 +91,30 @@
 }
 
 .addButton {
-    box-sizing: border-box;
-    width: 160px;
-    height: 48px;
-    padding: 8px 16px 8px 16px;
-    cursor: pointer;
-    text-align: left;
-    border: solid 1px #2a3647;
     background-color: #2a3647;
-    color: white;
-    font-size: 21px;
+    width: 352px;
+    height: 56px;
+    left: 52px;
     border-radius: 10px;
-    font-weight: 700;
-    background-repeat: no-repeat;
-    background-position-x: 85%;
-    background-position-y: 50%;
+    padding: 12px;
+    gap: 16px;
+    color: white;
 }
 
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-}
-
-.form-container {
+.containerAll {
+    transform: translate(-50%, -50%);
+    animation: slideInContacts 0.8s ease-in-out;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    width: 80%;
+    max-width: 1000px;
+    height: 550px;
+    border-radius: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 300px;
 }
 
 #closeForm {
@@ -135,12 +139,11 @@ form label {
     font-size: 14px;
 }
 
-form input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
+.input-Area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 form button {
@@ -156,4 +159,204 @@ form button {
 
 .rightside {
     display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.darkside {
+    background-color: #2A3647;
+    width: 38%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.darkside img {
+    height: 66.48px;
+    width: 55.6px;
+    padding-left: 46.9;
+}
+
+.overlay {
+    position: fixed;
+    /* Damit es immer sichtbar ist, auch beim Scrollen */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* 100% der Bildschirmbreite */
+    height: 100vh;
+    /* 100% der Bildschirmhöhe */
+    background: rgba(0, 0, 0, 0.7);
+    /* Ein leicht durchsichtiger schwarzer Hintergrund für das Overlay */
+    z-index: 1000;
+    /* Ein hoher z-index, um sicherzustellen, dass es über anderen Elementen angezeigt wird */
+    display: none;
+    /* Versteckt es standardmäßig */
+}
+
+.whiteside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding-left: 40px;
+    padding-right: 60px;
+    width: 100%;
+}
+
+.viewall {
+    display: flex;
+}
+
+.headline {
+    display: flex;
+    gap: 16px;
+}
+
+.rightside {
+    flex-direction: column;
+}
+
+.form-container {
+    left: unset;
+    padding: 0;
+    transition: right 0.4s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    height: 570px;
+    width: 90%;
+    max-width: 1212px;
+}
+
+#contactlist .selected .contactfield {
+    background-color: #2a3647;
+    /* Dies ist die gewünschte Farbe */
+    color: white;
+    border-color: white;
+}
+
+.detailsLogo {
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 10px;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactView {
+    display: flex;
+    gap: 54px;
+}
+
+.contactInformation {
+    align-items: center;
+    flex-direction: column;
+}
+
+.name {
+    flex-direction: column;
+}
+
+.email-blue {
+    color: blue;
+}
+
+.inputName {
+    border-radius: 10px;
+    height: 50px;
+    width: 422px;
+    gap: 10px;
+    background: url(/assets/img/person.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+.inputMail {
+    border-radius: 10px;
+    height: 50px;
+    width: 422px;
+    gap: 10px;
+    Padding: 13px, 21px, 13px, 21px;
+    background-color: #FFFFFF;
+    background: url(/assets/img/mail.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+.inputPhone {
+    border-radius: 10px;
+    height: 50px;
+    width: 422px;
+    gap: 10px;
+    Padding: 13px, 21px, 13px, 21px;
+    background: url(/assets/img/);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+.editArea {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.createBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50px;
+    width: 200px;
+    background: #2A3647;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.closeBtn {
+    width: 126px;
+    height: 56px;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    padding: 16px;
+    gap: 4px;
+    background-color: #ffffff;
+    display: none;
+    color: #2A3647;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.buttonOverview {
+    display: flex;
+    justify-content: space-between;
+}
+
+.alphabet-section {
+    border-bottom: 1px solid;
+    padding: 17px;
+    gap: 8px;
+}
+
+.overlayPerson img {
+    height: 120px;
+    width: 120px;
+    border: 3px;
+    border-radius: 70px;
 }

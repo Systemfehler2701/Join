@@ -1,23 +1,107 @@
-const overlay = document.getElementById("BoardOverlay");
-const overlayBody = document.getElementById("boardOverlaybody");
+let overlay;
+let overlayBody;
+let blocker;
+let todoList = document.getElementById("ToDo");
+let progressList = document.getElementById("inProgress");
+let waitingList = document.getElementById("awaitFeedback");
+let doneList = document.getElementById("done");
+
+async function Board_loadTasks() {
+  assignDocuments();
+
+  await Board_loadFromStorage("ToDo");
+  await Board_loadFromStorage("InProgress");
+  await Board_loadFromStorage("Awaiting");
+  await Board_loadFromStorage("Done");
+
+  Board_renderToDo();
+  Board_renderInProgress();
+  Board_renderAwaiting();
+  Board_renderDone();
+}
+
+function assignDocuments() {
+  overlay = document.getElementById("BoardOverlay");
+  overlayBody = document.getElementById("boardOverlaybody");
+  blocker = document.getElementById("blocker");
+  todoList = document.getElementById("ToDo");
+  progressList = document.getElementById("inProgress");
+  waitingList = document.getElementById("awaitFeedback");
+  doneList = document.getElementById("done");
+}
+
+function Board_search() {
+  Board_searchByList(todoList, "ToDo");
+  Board_searchByList(progressList, "InProgress");
+  Board_searchByList(waitingList, "Awaiting");
+  Board_searchByList(doneList, "Done");
+}
+
+function Board_searchByList(list, array) {
+  let search = document.getElementById("taskSearch").value;
+  search = search.toLowerCase();
+  list.innerHTML = "";
+  tasks = TaskLists[array];
+  for (let j = 0; j < tasks.length; j++) {
+    let task = tasks[j];
+    if (task["title"].toLowerCase().includes(search)) {
+      list.innerHTML += Board_createTaskCard(tasks, j, array);
+      Board_subTaskProgress(tasks, j);
+    }
+  }
+}
+
+function Board_resetSearch() {
+  let search = document.getElementById("taskSearch").value;
+  if (search == "") {
+    Board_renderToDo();
+    Board_renderInProgress();
+    Board_renderAwaiting();
+    Board_renderDone();
+  }
+}
 
 function Board_addTask(array) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
   overlayBody.innerHTML = createNewTask(array);
   Board_renderCategoryOptions();
+  blocker.onclick = function () {
+    resetForm();
+    Board_closeOverlay();
+  };
 }
 
-function Board_renderFullTaskCard() {
+function Board_renderFullTaskCard(array, i) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
-  overlayBody.innerHTML = createFullTaskCard();
+  overlayBody.innerHTML = createFullTaskCard(array, i);
+  Board_renderSubtasksFull(array, i);
+  blocker.onclick = function () {
+    Board_closeOverlay();
+  };
 }
 
-function closeOverlay() {
-  resetForm();
+async function Board_cutTask(array, i) {
+  TaskLists[array].splice(i, 1);
+  await setItem(array, JSON.stringify(TaskLists[array]));
+  Board_closeOverlay();
+  Board_loadTasks();
+}
+
+function Board_editTask(array, i) {
+  let x = getPrioforEditor(array, i);
+  overlayBody.innerHTML = Board_createTaskEditor(array, i);
+  renderSubtasks();
+  if (x != null) {
+    setPrio(x);
+  }
+}
+
+function Board_closeOverlay() {
   overlay.style.display = "none";
   overlayBody.innerHTML = "";
+  Board_loadTasks();
 }
 
 function Board_showProgress() {
@@ -26,43 +110,39 @@ function Board_showProgress() {
   document.getElementById("progressBar").value = `${progress}% `;
 }
 
-function Board_loadTasks() {
-  Board_renderToDo();
-  Board_renderInProgress();
-  Board_renderAwaiting();
-  Board_renderDone();
-}
-
 function Board_renderToDo() {
   let todoList = document.getElementById("ToDo");
-  if (ToDo.length === 0) {
+  if (TaskLists["ToDo"].length == 0) {
     Board_renderPlaceholder(todoList, "No tasks to do");
   } else {
-    Board_renderCard(todoList, ToDo);
+    Board_renderCard(todoList, TaskLists["ToDo"], "ToDo");
   }
 }
+
 function Board_renderInProgress() {
   let progressList = document.getElementById("inProgress");
-  if (InProgress.length === 0) {
+  if (TaskLists["InProgress"].length == 0) {
     Board_renderPlaceholder(progressList, "No tasks in progress");
   } else {
-    Board_renderCard(progressList, InProgress);
+    Board_renderCard(progressList, TaskLists["InProgress"], "InProgress");
   }
 }
+
 function Board_renderAwaiting() {
   let waitingList = document.getElementById("awaitFeedback");
-  if (Awaiting.length === 0) {
-    Board_renderPlaceholder(waitingList, "no tasks awaiting feedback");
+  if (TaskLists["Awaiting"].length == 0) {
+    Board_renderPlaceholder(waitingList, "No tasks awaiting feedback");
   } else {
-    Board_renderCard(waitingList, Awaiting);
+    Board_renderCard(waitingList, TaskLists["Awaiting"], "Awaiting");
   }
 }
+
 function Board_renderDone() {
   let doneList = document.getElementById("done");
-  if (Done.length === 0) {
+  if (TaskLists["Done"].length == 0) {
     Board_renderPlaceholder(doneList, "No tasks done yet");
   } else {
-    Board_renderCard(doneList, Done);
+    Board_renderCard(doneList, TaskLists["Done"], "Done");
   }
 }
 
@@ -74,14 +154,13 @@ function Board_renderPlaceholder(List, placeholder) {
     `;
 }
 
-function Board_renderCard(list, array) {
+function Board_renderCard(list, array, arrayName) {
   list.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
-    list.innerHTML += Board_createTaskCard(array, i);
+    list.innerHTML += Board_createTaskCard(array, i, arrayName);
+    Board_subTaskProgress(array, i);
   }
 }
-
-
 
 function Board_renderCategoryOptions() {
   let selector = document.getElementById("category_selector");
@@ -93,28 +172,107 @@ function Board_renderCategoryOptions() {
   }
 }
 
+async function Board_loadFromStorage(list) {
+  try {
+    TaskLists[list] = JSON.parse(await getItem(list));
+  } catch {
+    console.error("Loading error:");
+  }
+}
+
+function Board_renderSubtasksFull(array, i) {
+  let subtaskList = TaskLists[array][i]["subtasks"];
+  let allSubtasks = document.getElementById("SubtaskListFull");
+  allSubtasks.innerHTML = "";
+  for (let j = 0; j < subtaskList.length; j++) {
+    let subtask = subtaskList[j];
+    if (subtask["done"] == 0) {
+      allSubtasks.innerHTML += `
+      <div class="singleSubtaskFull">
+        <img id="checkbox${j}" class="checkbox" onclick="finishSubtask('${array}', ${i}, ${j})" src="../img/Rectangle 5.svg" alt="">
+        ${subtask["task"]}
+      </div>
+      `;
+    } else {
+      allSubtasks.innerHTML += `
+      <div class="singleSubtaskFull">
+        <img id="checkbox${j}" class="checkbox" onclick="revertSubtask('${array}', ${i}, ${j})" src="../img/Check button.svg" alt="">
+        ${subtask["task"]}
+      </div>
+      `;
+    }
+  }
+}
+
+async function finishSubtask(array, i, j) {
+  let subtaskList = TaskLists[array][i]["subtasks"];
+  subtaskList[j]["done"] = 1;
+  TaskLists[array][i]["subtasksDone"].push(subtaskList[j]);
+
+  Board_renderSubtasksFull(array, i);
+  await setItem(array, JSON.stringify(TaskLists[array]));
+  console.log(TaskLists[array][i]);
+}
+
+async function revertSubtask(array, i, j) {
+  let subtaskList = TaskLists[array][i]["subtasks"];
+  subtaskList[j]["done"] = 0;
+  TaskLists[array][i]["subtasksDone"].splice(0, 1);
+
+  Board_renderSubtasksFull(array, i);
+  await setItem(array, JSON.stringify(TaskLists[array]));
+  console.log(TaskLists[array][i]);
+}
+
+function Board_subTaskProgress(array, i) {
+  let task = array[i];
+  console.log(task);
+  if (task["subtasks"].length == 0) {
+    document.getElementById(`subtaskscard${i}`).style.display = "none";
+  } else {
+    let progress = task["subtasksDone"].length / task["subtasks"].length;
+    progress = Math.round(progress * 100);
+    document.getElementById(`progressbar${i}`).value = progress;
+  }
+}
+
+function getCurrentDate() {
+  let currentDay = ("0" + new Date().getDate()).slice(-2);
+  let currentMonth = ("0" + (new Date().getMonth() + 1)).slice(-2);
+  let currentYear = new Date().getFullYear();
+
+  return { currentYear, currentMonth, currentDay };
+}
+
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-function createFullTaskCard() {
-  return `
+function createFullTaskCard(array, i) {
+  let task = TaskLists[array][i];
+  let category = task["category"];
+  let date = new Date(task["dueDate"]).toLocaleString("en", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+  return /*html*/ `
     <div class="cardheadFull">
-        <div class="categorycardFull" style="background-color: blue;">User Story</div>
-            <img onclick="closeOverlay()" src="../../assets/img/close.svg" alt="">
+        <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
+            <img onclick="Board_closeOverlay()" src="../../assets/img/close.svg" alt="">
         </div>
-        <h2>Байрактар & Байрактар </h2>
+        <h2>${task["title"]}</h2>
         <p class="descriptionFull">
-            Російска поліція справи заводить
+           ${task["description"]}
         </p>
         <div class="duedateFull">
             <p>Due Date:</p>
-        <p>12/03/2023</p>
+        <p>${date}</p>
         </div>
     <div class="prioFull">
         <p>Priority:</p>
         <div>
-            Medium
-            <img src="../img/Prio media.png" alt="">
+            ${task["priority"]["priority"]}
+            <img class="prioPictureFull" src="${task["priority"]["symbol"]}" alt="">
         </div>
     </div>
     <div class="assigneesFull">
@@ -122,124 +280,105 @@ function createFullTaskCard() {
     </div>
     <div class="subtasksFull">
         <p>Subtasks:</p>
-        <div class="subtaskFull">
-        <div class="checkboxticked">
-            <img src="../img/Vector 9.svg" alt="">
-            <img class="check" src="../img/Vector 17.svg" alt="">
-        </div>
-        Байрактар…
-    </div>
-      <div class="subtaskFull">
-          <div class="checkbox">
-            <img src="../img/Rectangle 5.svg" alt="">
-          </div>
-          Байрактар…
+        <div id="SubtaskListFull" class="subtaskListFull"></div>
       </div>
     </div>
     <div class="editorbarFull">
-        <button onclick="" class="del">Delete</button>
+        <button onclick="Board_cutTask('${array}', ${i})" class="del">Delete</button>
         <img src="../img/Vector 3.svg" alt="">
-        <button onclick="" class="edit">Edit</button>
+        <button onclick="Board_editTask('${array}', ${i})" class="edit">Edit</button>
     </div>
     `;
 }
 
-function createNewTask(array) {
-  return `
-    <div class="taskbody">
-    <h1>Add Task</h1>
-    <div>
-        <div class="task_input">
-            <div class="input1">
-                <div class="title">
-                    <h2>Title</h2>
-                    <input id="title" type="textbox" placeholder="Enter a title" required>
-                    <div class="Taskerror" style="display: none;" id="errorTitle"> This field needs to be filled out</div>
-                </div>
-                <div class="description">
-                    <h2>Description</h2>
-                    <textarea name="" id="description" cols="56" rows="10" placeholder="Enter a Description"></textarea>
-                    <div class="Taskerror" style="display: none;" id="errorDescription"> This field needs to be filled out</div>
-                </div>
-                <div class="assignment">
-                    <h2>Assigned to</h2>
-                    <select id="assign_select">
-                        <option value="null">Select contacts to assign</option>
-                    </select>
-                </div>
-            </div>
-            <div class="divider"></div>
-            <div class="input2">
-                <div class="date">
-                    <h2>Due Date</h2>
-                    <input type="date" name="" id="due">
-                    <div class="Taskerror" style="display: none;" id="errorDate"> This field needs to be filled out</div>
-                </div>
-                <div class="prio">
-                    <h2>Prio</h2>
-                    <div class="priocontainer">
-                        <div onclick="setPrio(0)" id="Prio0">
-                            Urgent
-                            <img id="Prio0_img" src="../img/Prio alta.png" class="">
-                        </div>
-                        <div onclick="setPrio(1)" id="Prio1">
-                            Medium
-                            <img id="Prio1_img" src="../img/Prio media.png" class="">
-                        </div>
-                        <div onclick="setPrio(2)" id="Prio2">
-                            Low
-                            <img id="Prio2_img" src="../img/Prio baja.png" class="">
-                        </div>
-                    </div>
-                    <div class="Taskerror" style="display: none;" id="errorPrio"> This field needs to be filled out</div>
-                </div>
-                <div class="category">
-                    <h2>Category</h2>
-                    <select id="category_selector" required>
-                        <option value="null">Select Category</option>
-                    </select>
-                    <div class="Taskerror" style="display: none;" id="errorCategory"> This field needs to be filled out</div>
-                </div>
-                <form action="">
-                    <div class="subtask">
-                        <h2>Subtasks</h2>
-                        <div>
-                            <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
-                            <div class="subtaskimages" id="subtaskField">
-                                <img src="../img/Subtasks icons11.svg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="buttons">
-            <button onclick="resetForm()" class="clear">Clear</button>
-            <button onclick="addTask(${array})" class="create">Create Task</button>
-        </div>
-    </div>
-    </div>
-    `;
-}
-
-function Board_createTaskCard(array, i) {
-    let task = array[i];
-    let category = task['category']
-    return(`
-      <div onclick="Board_renderFullTaskCard(array, i)" class="taskcard">
-        <div class="categorycard" style="background-color: ${categories[category]['color']};">${categories[category]['name']}</div>
-        <h2>${task['title']}</h2>
+function Board_createTaskCard(array, i, arrayName) {
+  let task = array[i];
+  console.log(task);
+  let category = task["category"];
+  return /*html*/ `
+      <div onclick="Board_renderFullTaskCard('${arrayName}', ${i})" class="taskcard">
+        <div class="categorycard" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
+        <h2>${task["title"]}</h2>
         <p class="descriptioncard">
-            ${task['description']}
+            ${task["description"]}
         </p>
-        <div class="subtaskscard">
-            <label>0/2 Subtasks</label>
-            <progress id="progressbar" max="100" value="0"></progress>
+        <div id="subtaskscard${i}" class="subtaskscard">
+            <label>${task["subtasksDone"].length}/${task["subtasks"].length} Subtasks</label>
+            <progress id="progressbar${i}" max="100" value="0"></progress>
         </div>
         <div class="cardBottom">
             <div class="assignees">yoo</div>
-            <img src="${task['priority']['symbol']}" alt="">
+            <img src="${task["priority"]["symbol"]}" alt=""> 
         </div>
       </div>
-    `)
-  }
+    `;
+}
+
+function Board_createTaskEditor(array, i) {
+  let task = TaskLists[array][i];
+  subtasks = task["subtasks"];
+  let date = new Date(task["dueDate"]);
+
+  let day = ("0" + date.getDate()).slice(-2);
+  let month = ("0" + (date.getMonth() + 1)).slice(-2);
+  let year = date.getFullYear();
+  return /*html*/ `
+
+<div class="cardheadEdit">
+  <img onclick="Board_closeOverlay()" src="../../assets/img/close.svg" alt="">
+</div>
+<div class="TaskEditorBody">
+    <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
+<div class="titleEdit">
+  <div class="uselessAstriks"><h2>Title</h2>*</div>
+  <input id="title" type="textbox" placeholder="Enter a title" value="${task["title"]}">
+  <div class="Taskerror" style="display: none;" id="errorTitle"> This field needs to be filled out</div>
+</div>
+<div class="descriptionEdit">
+  <h2>Description</h2>
+  <textarea name="" id="description" cols="56" rows="10" placeholder="Enter a Description">${task["description"]}</textarea>
+</div>
+<div class="duedateEdit">
+    <p>Due Date:</p>
+    <input id="due" type="date" data-date="" data-date-format="DD MMMM YYYY" value="${year}-${month}-${day}">
+</div>
+<div class="prioEdit">
+    <p>Priority:</p>
+      <div class="priocontainerEdit">
+        <div onclick="setPrio(0)" id="Prio0">
+          Urgent
+          <img id="Prio0_img" src="../../assets/img/Prio_alta.png" class="">
+        </div>
+        <div onclick="setPrio(1)" id="Prio1">
+          Medium
+          <img id="Prio1_img" src="../assets/img/Prio_media.png" class="">
+        </div>
+        <div onclick="setPrio(2)" id="Prio2">
+          Low
+          <img id="Prio2_img" src="../assets/img/Prio_baja.png" class="">
+        </div>
+      </div>
+</div>
+<div class="assigneesEdit">
+  <p>Assigned to:</p>
+  <select id="assign_select">
+    <option value="null">Select contacts to assign</option>
+  </select>
+</div>
+<div class="subtasksEdit">
+    <p>Subtasks:</p>
+    <div>
+        <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
+        <div class="subtaskimages" id="subtaskField">
+            <img src="../img/Subtasks icons11.svg" alt="">
+        </div>
+    </div>
+    <div class="addedSubtasks" id="addedSubtasks"></div>
+</div>
+</div>
+<div class="editorBottom">
+  <button onclick="addEditedTask('${array}', ${i})" class="create">Ok</button>
+</div>
+</div>
+`;
+}
