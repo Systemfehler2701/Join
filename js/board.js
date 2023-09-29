@@ -1,15 +1,13 @@
 let overlay;
 let overlayBody;
 let blocker;
-const todoList = document.getElementById("ToDo");
-const progressList = document.getElementById("inProgress");
-const waitingList = document.getElementById("awaitFeedback");
-const doneList = document.getElementById("done");
+let todoList = document.getElementById("ToDo");
+let progressList = document.getElementById("inProgress");
+let waitingList = document.getElementById("awaitFeedback");
+let doneList = document.getElementById("done");
 
 async function Board_loadTasks() {
-  overlay = document.getElementById("BoardOverlay");
-  overlayBody = document.getElementById("boardOverlaybody");
-  blocker = document.getElementById("blocker");
+  assignDocuments();
 
   await Board_loadFromStorage("ToDo");
   await Board_loadFromStorage("InProgress");
@@ -20,6 +18,16 @@ async function Board_loadTasks() {
   Board_renderInProgress();
   Board_renderAwaiting();
   Board_renderDone();
+}
+
+function assignDocuments() {
+  overlay = document.getElementById("BoardOverlay");
+  overlayBody = document.getElementById("boardOverlaybody");
+  blocker = document.getElementById("blocker");
+  todoList = document.getElementById("ToDo");
+  progressList = document.getElementById("inProgress");
+  waitingList = document.getElementById("awaitFeedback");
+  doneList = document.getElementById("done");
 }
 
 function Board_search() {
