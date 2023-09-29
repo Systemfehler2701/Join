@@ -302,15 +302,15 @@ function Board_createTaskEditor(array, i) {
       <div class="priocontainerEdit">
         <div onclick="setPrio(0)" id="Prio0">
           Urgent
-          <img id="Prio0_img" src="../img/Prio alta.png" class="">
+          <img id="Prio0_img" src="../img/Prio_alta.png" class="">
         </div>
         <div onclick="setPrio(1)" id="Prio1">
           Medium
-          <img id="Prio1_img" src="../img/Prio media.png" class="">
+          <img id="Prio1_img" src="../img/Prio_media.png" class="">
         </div>
         <div onclick="setPrio(2)" id="Prio2">
           Low
-          <img id="Prio2_img" src="../img/Prio baja.png" class="">
+          <img id="Prio2_img" src="../img/Prio_baja.png" class="">
         </div>
       </div>
 </div>
