@@ -64,17 +64,18 @@
         cursor: pointer;
     }
     
-    .summary-todo {
+    .summary-todo,
+    .summary-done {
         width: 264px;
         height: 92px;
         margin-right: 15px;
+    }
+    
+    .summary-todo {
         transform-origin: bottom left;
     }
     
     .summary-done {
-        width: 264px;
-        height: 92px;
-        margin-left: 15px;
         transform-origin: bottom right;
     }
     
