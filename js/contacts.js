@@ -227,7 +227,11 @@ function editContact(index) {
     document.getElementById('editEmail').value = user.mail;
     document.getElementById('editPhone').value = user.phone;
     document.getElementById('editIndex').value = index; // Speichern des Benutzerindex für das spätere Update
-    document.getElementById('editForm').addEventListener('submit', updateContact);
+
+    // Setzen Sie die Initialen und Farbe des Kontakts im Edit-Overlay
+    const editInitialsLogo = document.getElementById('editInitialsLogo');
+    editInitialsLogo.textContent = getInitials(user.name);
+    editInitialsLogo.style.backgroundColor = user.color;
 
     // Das Overlay anzeigen
     document.getElementById('editOverlay').style.display = 'block';
