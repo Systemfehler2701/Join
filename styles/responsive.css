@@ -1,0 +1,32 @@
+@media(max-width: 1445px) {
+    .summary-task {
+        margin-right: 40px;
+    }
+    #content {
+        padding: 40px;
+    }
+    nav {
+        width: 150px;
+    }
+    #left-layout {
+        min-width: 150px;
+        width: 150px;
+    }
+    .navigation-img {
+        width: 150px;
+    }
+    .navigation-menu {
+        width: 150px;
+    }
+    .menu-button {
+        padding: 8px 20px;
+    }
+}
+
+@media(max-width: 1190px) {
+    .summary-todo,
+    .summary-done,
+    .summary-upcoming {
+        padding: 15px 20px;
+    }
+}

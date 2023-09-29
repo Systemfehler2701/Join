@@ -1,6 +1,7 @@
 ///BOARD TEMPLATES///
-function renderBoard() {
+function renderBoard(element) {
     document.getElementById('help-link').classList.remove("d-none");
+    navigationMenuClicked(element);
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
     ${renderBoardOverlay()}

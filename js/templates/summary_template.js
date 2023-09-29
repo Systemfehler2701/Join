@@ -1,6 +1,9 @@
 ///SUMMARY TEMPLATES///
-function renderSummary() {
+function renderSummary(element) {
     document.getElementById('help-link').classList.remove("d-none");
+    if (element != undefined) {
+        navigationMenuClicked(element);
+    }
     renderSummaryContent();
     greet();
 }

@@ -19,16 +19,16 @@ function renderNavHeader() {
 
 function renderNavMenu() {
     return /* html */ `<div class = "navigation-menu">
-    <div class = "menu-button" onclick = "navigationMenuClicked(this); renderSummary();">
+    <div class = "menu-button active" onclick = "renderSummary(this);">
         <div class = "menu-icon summary"></div><span> Summary </span>
     </div>
     <div class = "menu-button" onclick = "renderAddTask(this);">
         <div class = "menu-icon add-task" ></div><span>Add Task</span>
     </div>
-    <div class = "menu-button" onclick = "navigationMenuClicked(this); renderBoard()">
+    <div class = "menu-button" onclick = "renderBoard(this)">
         <div class = "menu-icon board" ></div><span>Board</span>
     </div>
-    <div class = "menu-button" onclick = "navigationMenuClicked(this); renderContacts()">
+    <div class = "menu-button" onclick = "renderContacts(this)">
         <div class = "menu-icon contacts"></div><span>Contacts</span>
     </div>
 </div>`;
@@ -37,7 +37,7 @@ function renderNavMenu() {
 
 function renderNavFooter() {
     return /* html */ `<div class = "footer">
-    <div class = "menu-button" onclick = "navigationMenuClicked(this); "><p>Privacy Policy</p></div>
+    <div class = "menu-button" onclick = "navigationMenuClicked(this); renderPolicy()"><p>Privacy Policy</p></div>
     <div class = "menu-button" onclick = "navigationMenuClicked(this); renderNotice();"><p>Legal Notice</p></div>
 </div >`;
 }
@@ -74,10 +74,10 @@ function renderHeaderProfile() {
 function renderHeaderSubMenu() {
     return /* html */ `
     <div id="headersubmenu" class="header-submenu d-none">
-        <div>
+        <div onclick ="renderNotice()">
             <p>Legal Notice</p>
         </div>
-        <div class = "menu-button" onclick = "navigationMenuClicked(this);">
+        <div onclick = "renderPolicy()">
             <p>Privacy Policy</p>
         </div>
         <div>

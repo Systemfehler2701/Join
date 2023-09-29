@@ -1,5 +1,6 @@
-function renderContacts() {
+function renderContacts(element) {
     document.getElementById('help-link').classList.remove("d-none");
+    navigationMenuClicked(element);
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
      <button class="addButton" onclick="addNewContact()">
