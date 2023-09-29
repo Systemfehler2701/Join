@@ -131,7 +131,7 @@ function Board_renderInProgress() {
 function Board_renderAwaiting() {
   let waitingList = document.getElementById("awaitFeedback");
   if (TaskLists["Awaiting"].length == 0) {
-    Board_renderPlaceholder(waitingList, "no tasks awaiting feedback");
+    Board_renderPlaceholder(waitingList, "No tasks awaiting feedback");
   } else {
     Board_renderCard(waitingList, TaskLists["Awaiting"], "Awaiting");
   }

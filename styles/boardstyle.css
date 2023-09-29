@@ -55,6 +55,21 @@
     color: #a8a8a8;
 }
 
+.searchbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 26px;
+    width: 34px;
+    border-radius: 50%;
+}
+
+.searchbutton:hover {
+    background-color:#e7e7e7;
+    transition: 0.3s ease;
+}
+
+
 .divider {
     background-color: #a8a8a8;
     height: 90%;
@@ -79,6 +94,12 @@
     background-repeat: no-repeat;
     background-position-x: 85%;
     background-position-y: 50%;
+}
+
+.head button:hover {
+    background-color: rgb(54,176,228);
+    border: solid 1px rgb(54,176,228);
+    transition: 0.3s ease;
 }
 
 .panels {

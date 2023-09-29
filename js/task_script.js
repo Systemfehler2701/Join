@@ -42,6 +42,7 @@ const categories = [
 ];
 
 async function addTask(list) {
+  resetError()
   let data = compileTaskData();
   if (data != "error") {
     TaskLists[list].push(data);
@@ -53,6 +54,7 @@ async function addTask(list) {
 }
 
 async function addEditedTask(list, i) {
+  resetError()
   let data = compileTaskData();
   if (data != "error") {
     TaskLists[list][i] = data;
@@ -229,6 +231,14 @@ function CheckFinishedSubtasks(list, i) {
     }
     
   }
+}
+
+function resetError() {
+  document.getElementById("errorTitle").style.display = "none";
+  document.getElementById("errorDate").style.display = "none";
+  document.getElementById("errorDate").style.display = "none";
+  document.getElementById("errorPriority").style.display = "none";
+  document.getElementById("errorCategory").style.display = "none";
 }
 
 function CheckInputValidity(title, dueDate, category) {
