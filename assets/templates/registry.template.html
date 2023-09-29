@@ -16,22 +16,28 @@
   </head>
   <!-- Image and text -->
 
-  <img
-    id="logo"
-    src="./assets/img/logo_main.svg"
-    class="d-inline-block align-top"
-  />
+  <img id="logo" src="../img/logo_main.svg" class="d-inline-block align-top" />
 
   <div id="container">
     <form id="login_form">
       <div id="h1Login"><h1>Sign up</h1></div>
       <!-- Name -->
       <div class="form-outline mb-4">
-        <input type="name" id="" class="form-control" placeholder="name" />
+        <input
+          type="name"
+          id="regName"
+          class="form-control"
+          placeholder="name"
+        />
       </div>
       <!-- Email input -->
       <div class="form-outline mb-4" id="login">
-        <input type="email" id="" class="form-control" placeholder="Email" />
+        <input
+          type="email"
+          id="regEmail"
+          class="form-control"
+          placeholder="Email"
+        />
         <img src="./assets/img/mail.svg" class="email_icon" alt="Icon" />
       </div>
 
@@ -39,7 +45,7 @@
       <div class="form-outline mb-4">
         <input
           type="password"
-          id=""
+          id="regPw"
           class="form-control"
           placeholder="Password"
         />
@@ -49,7 +55,7 @@
       <div class="form-outline mb-4">
         <input
           type="password"
-          id=""
+          id="regPwcomfirm"
           class="form-control"
           placeholder="Confirm Password"
         />
@@ -77,10 +83,12 @@
 
       <!-- Submit button -->
       <div class="btn">
-        <button type="button" class="btn btn-primary btn-block mb-4">
+        <button type="button" class="btn btn-primary btn-block mb-4" id="Submit">
           Sign Up
         </button>
       </div>
     </form>
   </div>
+  <script src="../../js/registry.js"></script>
+  <script src="../../js/storage.js"></script>
 </html>
