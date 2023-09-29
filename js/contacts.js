@@ -28,15 +28,7 @@ let users = [{
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const colors = ['#FF7A00', '#FF5EB3', '#6E52FF', '#9327FF', '#00BEE8', '#1FD7C1', '#FF745E', '#FFA35E', '#FC71FF', '#FFC701', '#0038FF', '#C3FF2B', '#FFE62B', '#FF4646', '#FFBB2B'];
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('.addButton').addEventListener('click', openOverlay);
-    document.getElementById('closeForm').addEventListener('click', closeOverlay);
-    document.getElementById('contactForm').addEventListener('submit', addContact);
-
-    document.getElementById('closeEditForm').addEventListener('click', closeEditOverlay); // Dies wurde hinzugefügt
-});
-
-function render() {
+function loadContacts() {
     let content = '';
     let currentInitial = '';
 
@@ -72,6 +64,7 @@ function render() {
     }
 
     document.getElementById('contactlist').innerHTML = content;
+    addEventListenerContactForm();
 }
 
 
@@ -93,32 +86,55 @@ function addContact(e) {
     users.push(newUser);
     users.sort((a, b) => a.name.localeCompare(b.name));
 
-    render();
+    loadContacts();
     closeOverlay();
 }
 
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+function addEventListenerContactForm() {
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const mail = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    document.getElementById('editForm').addEventListener('submit', updateContact);
+        const name = document.getElementById('name').value;
+        const mail = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.getElementById('editForm').addEventListener('submit', updateContact);
 
-    const newUser = {
-        name: name,
-        mail: mail,
-        phone: phone,
-        color: randomColor
-    };
+        const newUser = {
+            name: name,
+            mail: mail,
+            phone: phone,
+            color: randomColor
+        };
 
-    users.push(newUser);
-    users.sort((a, b) => a.name.localeCompare(b.name));
+        users.push(newUser);
+        users.sort((a, b) => a.name.localeCompare(b.name));
 
-    render();
-    closeOverlay();
-});
+        loadContacts();
+        closeOverlay();
+
+    });
+    document.querySelector('.addButton').addEventListener('click', openOverlay);
+    document.getElementById('closeForm').addEventListener('click', closeOverlay);
+    document.getElementById('contactForm').addEventListener('submit', addContact);
+    document.getElementById('closeEditForm').addEventListener('click', closeEditOverlay);
+    document.querySelector('.addButton').addEventListener('click', openOverlay);
+    document.getElementById('closeForm').addEventListener('click', closeOverlay);
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const mail = document.getElementById('email').value;
+
+        users.push({
+            name: name,
+            mail: mail,
+        });
+
+        loadContacts();
+        closeOverlay();
+    });
+}
 
 
 function getInitials(name) {
@@ -144,23 +160,6 @@ function openOverlay() {
 function closeOverlay() {
     document.getElementById('overlay').style.display = 'none';
 }
-
-document.querySelector('.addButton').addEventListener('click', openOverlay);
-document.getElementById('closeForm').addEventListener('click', closeOverlay);
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const mail = document.getElementById('email').value;
-
-    users.push({
-        name: name,
-        mail: mail,
-    });
-
-    render();
-    closeOverlay();
-});
 
 function jumpToLetter(letter) {
     const element = document.getElementById(`alphabet-${letter}`);
@@ -214,7 +213,7 @@ function deleteContact(index) {
     users.splice(index, 1);
 
     // Aktualisieren Sie die Anzeige
-    render();
+    loadContacts();
     document.getElementById('detailsContainer').innerHTML = '';
     closeOverlay();
 }
@@ -247,7 +246,7 @@ function updateContact(e) {
     user.mail = document.getElementById('editEmail').value;
     user.phone = document.getElementById('editPhone').value;
 
-    render();
+    loadContacts();
     closeEditOverlay();
     clearDetails();
 }
