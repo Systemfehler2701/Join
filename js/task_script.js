@@ -11,17 +11,17 @@ let Prio = [];
 let priorities = [
   {
     priority: "Urgent",
-    symbol: "../img/Prio_alta.png",
+    symbol: "/assets/img/Prio_alta.png",
     color: "rgb(255, 61, 0)",
   },
   {
     priority: "Medium",
-    symbol: "../img/Prio_media.png",
+    symbol: "/assets/img/Prio_media.png",
     color: "rgb(255, 168, 0)",
   },
   {
     priority: "Low",
-    symbol: "../img/Prio_baja.png",
+    symbol: "/assets/img/Prio_baja.png",
     color: "rgb(122,226,41)",
   },
 ];
@@ -116,12 +116,16 @@ function renderSubtasks() {
   subTaskDisplay.innerHTML = "";
   for (let i = 0; i < subtasks.length; i++) {
     let subtaskelement = subtasks[i];
-    subTaskDisplay.innerHTML += `
+    subTaskDisplay.innerHTML += /*html*/`
+
     <div class="subtaskElement" id="subtask${i}">
-      <p>${subtaskelement["task"]}</p>
+      <div class="subtaskElementBody">
+        <img class="dot" src="/assets/img/dot.svg" alt="">
+        <p>${subtaskelement["task"]}</p>
+      </div>
       <div class="subtaskTools">
-        <img onclick="cutSubtask(${i})" src="../img/delete.svg" alt="">
-        <img onclick="editSubtask(${i})" src="../img/edit.svg" alt="">
+        <img onclick="cutSubtask(${i})" src="/assets/img/delete.svg" alt="">
+        <img onclick="editSubtask(${i})" src="/assets/img/edit.svg" alt="">
       </div>
     </div>
     `;
@@ -140,8 +144,8 @@ function editSubtask(i) {
   subTaskDisplay.innerHTML = `
       <input type="text" id="editedInput${i}" value="${currentValue}"  />
       <div>
-        <img onclick="cutSubtask( ${i})" src="../img/delete.svg" alt="">
-        <img onclick="saveEdit(${i})" src="../img/Vector 17.svg" alt="">
+        <img onclick="cutSubtask( ${i})" src="/assets/img/delete.svg" alt="">
+        <img onclick="saveEdit(${i})" src="/assets/img/Vector 17.svg" alt="">
       </div>
     `;
 }
@@ -159,13 +163,13 @@ function clearSubtask() {
 function changeSubtaskAppearance() {
   if (document.getElementById("subtasks").value != "") {
     document.getElementById("subtaskField").innerHTML = `
-    <img onclick="clearSubtask()" src="../img/close.svg" alt="">
-    <img src="../img/Vector 3.svg" alt="">
-    <img onclick="addSubtask()" src="../img/Vector 17.svg" alt="">
+    <img onclick="clearSubtask()" src="/assets/img/close.svg" alt="">
+    <img src="/assets/img/Vector 3.svg" alt="">
+    <img onclick="addSubtask()" src="/assets/img/Vector 17.svg" alt="">
     `;
   } else {
     document.getElementById("subtaskField").innerHTML =
-      '<img src="../img/Subtasks icons11.svg" alt="">';
+      '<img src="/assets/img/Subtasks icons11.svg" alt="">';
   }
 }
 
@@ -232,6 +236,17 @@ function CheckFinishedSubtasks(list, i) {
     
   }
 }
+
+function renderCategoryOptions() {
+  let selector = document.getElementById("category_selector");
+  for (let index = 0; index < categories.length; index++) {
+    const category = categories[index];
+    selector.innerHTML += `
+        <option value="${index}">${category["name"]}</option>
+        `;
+  }
+}
+
 
 function resetError() {
   document.getElementById("errorTitle").style.display = "none";

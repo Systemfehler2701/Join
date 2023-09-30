@@ -65,7 +65,7 @@ function Board_addTask(array) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
   overlayBody.innerHTML = createNewTask(array);
-  Board_renderCategoryOptions();
+  renderCategoryOptions();
   blocker.onclick = function () {
     resetForm();
     Board_closeOverlay();
@@ -162,15 +162,6 @@ function Board_renderCard(list, array, arrayName) {
   }
 }
 
-function Board_renderCategoryOptions() {
-  let selector = document.getElementById("category_selector");
-  for (let index = 0; index < categories.length; index++) {
-    const category = categories[index];
-    selector.innerHTML += `
-        <option value="${index}">${category["name"]}</option>
-        `;
-  }
-}
 
 async function Board_loadFromStorage(list) {
   try {
