@@ -135,14 +135,22 @@
     box-sizing: border-box;
     border-radius: 8px;
     background-color: #f6f7f8;
-    border: solid 2px #2a3647;
+    border: solid 2.5px #2a3647;
     width: 24px;
     height: 24px;
     background-image: url(../assets/img/Capa1.svg);
     background-repeat: no-repeat;
-    background-position-x: 55%;
-    background-position-y: 55%;
+    background-position-x: 56%;
+    background-position-y: 43%;
+
 }
+
+.panelhead button:hover {
+    border: solid 2.5px #36b0e4;
+    background-image: url(../assets/img/Capa1hov.svg);
+    transition: 0.3s ease;
+}
+
 
 .placeholder {
     cursor: pointer;
@@ -387,8 +395,6 @@ progress {
 
 
 /* Here begins the styling of the Task-Editor Overlay the following elements have "Edit" at the end of their name to avoid confusion */
-
-
 /* Here begins the styling of the Task-Editor Overlay the following elements have "Edit" at the end of their name to avoid confusion */
 
 .TaskEditorBody {
@@ -543,6 +549,7 @@ progress {
     padding: 12px 21px 12px 21px;
     font-size: 20px;
 }
+
 
 .subtasksEdit .subtaskimages {
     position: absolute !important;

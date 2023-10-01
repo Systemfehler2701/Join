@@ -114,6 +114,14 @@
     font-size: 20px;
 }
 
+.taskbody select:hover {
+    border: solid 2.5px #5a5a5a;
+}
+
+.taskbody .input2 select:hover {
+    border: solid 2.5px #5a5a5a;
+}
+
 .taskbody .input2 {
     height: 100%;
     width: 45%;
@@ -189,8 +197,8 @@
     gap: 8px;
 }
 
-.taskbody .input2 button img {
-    max-height: 14.5px;
+.taskbody .priocontainer div:hover {
+    box-shadow: 0 10px 4px  rgb(150, 150, 150);
 }
 
 .taskbody .priocontainer {
@@ -212,6 +220,11 @@
     justify-content: space-between;
     align-items: center;
     gap: 12px;
+}
+
+.dot {
+    width: 8px !important;
+    height: 8px !important;
 }
 
 .subtask input::placeholder {
@@ -247,9 +260,14 @@
     gap: 16px;
 }
 
+
 .subtaskTools {
     width: 32px;
     display: none !important;
+}
+
+.subtaskElementBody {
+    justify-content: center !important;
 }
 
 .subtaskElement div {
