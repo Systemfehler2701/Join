@@ -13,6 +13,7 @@ function handleLoginClick() {
   console.log("Aktuelle User: " + currentuser());
 }
 
+// Diese Funktion wird aufgerufen, wenn der Button mit der ID "Guest" geklickt wird
 function handleGuestClick() {
   // Die Werte aus den Input-Feldern abrufen
   guestuser = "Guest";
