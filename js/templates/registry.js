@@ -11,6 +11,9 @@ function submitForm() {
   const password = form.querySelector("regPw").value;
   const confirmPassword = form.querySelector("#regPwcomfirm").value;
 
+  console.log(name, email, password, confirmPassword);
+
+
   // Überprüfen, ob die Passwörter übereinstimmen
   if (password !== confirmPassword) {
     alert("Die Passwörter stimmen nicht überein.");
