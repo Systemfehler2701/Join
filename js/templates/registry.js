@@ -1,20 +1,3 @@
-// Login
-
-// Diese Funktion wird aufgerufen, wenn der Button mit der ID "LogIn" geklickt wird
-function handleLoginClick() {
-  // Die Werte aus den Input-Feldern abrufen
-  const emailValue = document.getElementById("loginEmail").value;
-  const passwordValue = document.getElementById("loginPw").value;
-
-  // Die Werte in der Konsole ausgeben
-  console.log("Eingegebene Email: " + emailValue);
-  console.log("Eingegebenes Passwort: " + passwordValue);
-}
-
-// Den Button mit der ID "LogIn" finden und einen Klick-Event-Listener hinzufügen
-const loginButton = document.getElementById("LogIn");
-loginButton.addEventListener("click", handleLoginClick);
-
 // Registry
 
 // Diese Funktion wird aufgerufen, wenn das Formular abgeschickt wird
@@ -23,9 +6,9 @@ function submitForm() {
   const form = document.getElementById("login_form");
 
   // Werte aus den Eingabefeldern abrufen
-  const name = form.querySelector("#regName").value;
-  const email = form.querySelector("#regEmail").value;
-  const password = form.querySelector("#regPw").value;
+  const name = form.querySelector("regName").value;
+  const email = form.querySelector("regEmail").value;
+  const password = form.querySelector("regPw").value;
   const confirmPassword = form.querySelector("#regPwcomfirm").value;
 
   // Überprüfen, ob die Passwörter übereinstimmen
