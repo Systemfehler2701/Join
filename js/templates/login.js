@@ -13,11 +13,26 @@ function handleLoginClick() {
   console.log("Aktuelle User: " + currentuser());
 }
 
+function handleGuestClick() {
+  // Die Werte aus den Input-Feldern abrufen
+  guestuser = "Guest";
+  console.log("Aktuelle User: " + guestuser);
+}
+
 // Den Button mit der ID "LogIn" finden und einen Klick-Event-Listener hinzufügen
 const loginButton = document.getElementById("LogIn");
 loginButton.addEventListener("click", handleLoginClick);
 
+// Den Button mit der ID "Guest" finden und einen Klick-Event-Listener hinzufügen
+const GuestButton = document.getElementById("Guest");
+GuestButton.addEventListener("click", handleGuestClick);
+
 function currentuser() {
   currentuser = document.getElementById("loginEmail").value;
-  return currentuser;
+  guestuser = "Guest";
+  if ((handleLoginClick = true)) {
+    handleLoginClick();
+  } else {
+    handleGuestClick();
+  }
 }
