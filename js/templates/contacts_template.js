@@ -3,17 +3,19 @@ function renderContacts(element) {
     navigationMenuClicked(element);
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
-     <button class="addButton" onclick="addNewContact()">
-        <span>Add new Contact</span>
-        <img src="assets/img/person.svg">
-    </button>
-
-    <div class="viewall">
-        <div id="contactlist"></div>
-
+    <div class="contact-leftside">
+        <button class="addButton" onclick="addNewContact()">
+            <span>Add new Contact</span>
+            <img src="assets/img/person_add.svg">
+        </button>
+        <div class="viewall">
+            <div id="contactlist"></div>
+        </div>
+    </div>
         <div class="rightside">
-            <div class="headline">
-                <h1>Contacts</h1> |
+            <div class="contacts-headline">
+                <h1>Contacts</h1>
+                <img class="contact-img" src="/assets/img/blue-stroke.svg">
                 <h2>Better with a team</h2>
             </div>
             <div id="detailsContainer"></div>

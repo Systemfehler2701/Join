@@ -24,7 +24,7 @@
         height: 136px;
     }
     
-    .summary-header img {
+    .img-full {
         height: 59px;
         border: 3px;
     }
@@ -45,7 +45,7 @@
     .summary-line3 {
         display: flex;
         width: 560px;
-        gap:20px
+        gap: 20px
     }
     
     .summary-todo,
@@ -55,12 +55,13 @@
         align-items: center;
         justify-content: space-between;
         border-radius: 30px;
-        padding: 38px 58px;
+        padding: 38px 52px;
         background-color: white;
         box-shadow: 0px 0px 4px 0px #00000010;
         transition: .1s ease-in;
         cursor: pointer;
     }
+    
     .summary-upcoming {
         margin-top: 30px;
         margin-bottom: 30px;
@@ -105,18 +106,10 @@
         align-items: center;
     }
     
-    .summary-todo p {
-        padding: 0 !important;
-    }
-    
     .summary-done div {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-    
-    .summary-upcoming p {
-        padding: 0 !important;
     }
     
     .summary-upcoming:hover svg path {

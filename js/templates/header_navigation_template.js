@@ -54,7 +54,8 @@ function renderHeader() {
 
 
 function renderHeaderHeadline() {
-    return /* html */ `
+    return /* html */ `    
+    <img class="grey-logo d-none" src="assets/img/logo_main.svg">
     <div class="headline">
         <span>Kanban Project Management Tool</span>
     </div>`;
