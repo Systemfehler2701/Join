@@ -21,6 +21,20 @@
     .menu-button {
         padding: 8px 20px;
     }
+    .summary-header h1 {
+        margin: 20px 0;
+    }
+    .summary-header {
+        height: 100px;
+    }
+    .summary-todo,
+    .summary-done,
+    .summary-upcoming,
+    .summary-board,
+    .summary-progress,
+    .summary-feedback {
+        height: 85px;
+    }
 }
 
 @media(max-width: 1190px) {
@@ -28,6 +42,7 @@
     .summary-done,
     .summary-upcoming {
         padding: 15px 20px;
+        height: 85px;
     }
     .summary-todo,
     .summary-done {
@@ -40,6 +55,7 @@
     .summary-progress,
     .summary-feedback {
         width: 122px;
+        height: 85px;
     }
     .summary-line1,
     .summary-line3 {

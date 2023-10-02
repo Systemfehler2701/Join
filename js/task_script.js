@@ -145,12 +145,12 @@ function editSubtask(i) {
       <input type="text" id="editedInput${i}" value="${currentValue}"  />
       <div>
         <img onclick="cutSubtask( ${i})" src="/assets/img/delete.svg" alt="">
-        <img onclick="saveEdit(${i})" src="/assets/img/Vector 17.svg" alt="">
+        <img onclick="saveSubtaskEdit(${i})" src="/assets/img/Vector 17.svg" alt="">
       </div>
     `;
 }
 
-function saveEdit(i) {
+function saveSubtaskEdit(i) {
   let editedValue = document.getElementById(`editedInput${i}`).value;
   subtasks[i]["task"] = editedValue;
   renderSubtasks();
@@ -162,10 +162,11 @@ function clearSubtask() {
 
 function changeSubtaskAppearance() {
   if (document.getElementById("subtasks").value != "") {
-    document.getElementById("subtaskField").innerHTML = `
-    <img onclick="clearSubtask()" src="/assets/img/close.svg" alt="">
+    document.getElementById("subtaskField").innerHTML = /*html*/`
+
+    <div class="buttonwrapper"><img onclick="clearSubtask()" src="/assets/img/close.svg" alt=""></div> 
     <img src="/assets/img/Vector 3.svg" alt="">
-    <img onclick="addSubtask()" src="/assets/img/Vector 17.svg" alt="">
+    <div class="buttonwrapper"><img onclick="addSubtask()" src="/assets/img/Vector 17.svg" alt=""></div>  
     `;
   } else {
     document.getElementById("subtaskField").innerHTML =
