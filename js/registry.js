@@ -51,3 +51,5 @@ function submitForm() {
 // Event Listener zum Abfangen des Formularabsendens hinzufügen
 const submitButton = document.querySelector("Submit");
 submitButton.addEventListener("click", submitForm);
+
+
