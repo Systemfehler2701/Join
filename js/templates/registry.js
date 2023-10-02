@@ -6,10 +6,10 @@ function submitForm() {
   const form = document.getElementById("login_form");
 
   // Werte aus den Eingabefeldern abrufen
-  const name = form.querySelector("regName").value;
-  const email = form.querySelector("regEmail").value;
-  const password = form.querySelector("regPw").value;
-  const confirmPassword = form.querySelector("#regPwcomfirm").value;
+  const name = form.querySelector("#regName").value;
+  const email = form.querySelector("#regEmail").value;
+  const password = form.querySelector("#regPw").value;
+  const confirmPassword = form.querySelector("#regPwcConfirm").value;
 
   // Überprüfen, ob die Passwörter übereinstimmen
   if (password !== confirmPassword) {
@@ -17,10 +17,12 @@ function submitForm() {
     return; // Die Funktion abbrechen, wenn die Passwörter nicht übereinstimmen
   }
 
-  // Daten in den Storage schreiben
-  setItem("name", name)
-    .then(() => setItem("email", email))
-    .then(() => setItem("password", password))
+  const userData = {
+    name: getElementById("regName"),
+    password: getElementById("regPwConfirm"),
+  };
+
+  setItem(email, JSON.stringify(userData))
     .then(() => {
       alert("Die Daten wurden erfolgreich gespeichert.");
       // Hier kannst du weitere Aktionen nach dem Speichern durchführen
@@ -32,7 +34,5 @@ function submitForm() {
 }
 
 // Event Listener zum Abfangen des Formularabsendens hinzufügen
-const submitButton = document.querySelector("Submit");
+const submitButton = document.querySelector("#Submit");
 submitButton.addEventListener("click", submitForm);
-
-
