@@ -53,7 +53,7 @@ function renderSummaryTodo() {
     <div class="summary-todo">
         ${renderSummaryTodoSvg()}
         <div>
-            <span id="todo-amount"></span>
+            <span id="todo-amount">${TaskLists.ToDo.length}</span>
             <p>To-do</p>
         </div>
     </div>`;
@@ -79,7 +79,7 @@ function renderSummaryDone() {
     <div class="summary-done">
         ${renderSummaryDoneSvg()}
         <div>
-            <span id="done-amount"></span>
+            <span id="done-amount">${TaskLists.Done.length}</span>
             <p>Done</p>
         </div>
     </div>`;
@@ -97,11 +97,12 @@ function renderSummaryDoneSvg() {
 
 function renderSummaryUpcoming() {
     return /* html */ `
+    <div class="summary-line2">
     <div class="summary-upcoming">
         <div class="upcoming-amount">
             <div class="upcoming-img"></div>
             <div>
-                <span id="upcoming-amount"></span>
+                <span id="upcoming-amount">${TaskLists.InProgress.length}</span>
                 <p>Test</p>
             </div>
         </div>
@@ -112,6 +113,7 @@ function renderSummaryUpcoming() {
             <span class="next-date">${new Date().toLocaleString('en', {month: 'long',day: 'numeric', year: 'numeric'})}</span>
             <p>Upcoming Deadline</p>
         </div>                      
+    </div>
     </div>`;
 }
 
@@ -119,7 +121,7 @@ function renderSummaryUpcoming() {
 function renderSummaryBoard() {
     return /* html */ `
     <div class="summary-board">
-        <span id="board-amount"></span>
+        <span id="board-amount">${TaskLists.InProgress.length + TaskLists.ToDo.length + TaskLists.Awaiting.length}</span>
         <p>Tasks in Board</p>
     </div>`;
 }
@@ -128,7 +130,7 @@ function renderSummaryBoard() {
 function renderSummaryProgress() {
     return /* html */ `
     <div class="summary-progress">
-        <span id="progress-amount"></span>
+        <span id="progress-amount">${TaskLists.InProgress.length}</span>
         <p>Tasks in Progress</p>
     </div>`;
 }
@@ -137,7 +139,7 @@ function renderSummaryProgress() {
 function renderSummaryFeedback() {
     return /* html */ `
     <div class="summary-feedback">
-        <span id="feedback-amount"></span>
+        <span id="feedback-amount">${TaskLists.Awaiting.length}</span>
         <p>Awaiting Feedback</p>
     </div>`;
 }
