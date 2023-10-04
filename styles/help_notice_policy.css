@@ -24,7 +24,7 @@
 .arrow-left {
     display: flex;
     position: sticky;
-    top: 250px;
+    top: 270px;
     justify-content: flex-end;
 }
 

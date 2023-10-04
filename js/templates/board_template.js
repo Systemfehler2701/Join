@@ -1,6 +1,7 @@
 ///BOARD TEMPLATES///
-function renderBoard() {
+function renderBoard(element) {
     document.getElementById('help-link').classList.remove("d-none");
+    navigationMenuClicked(element);
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
     ${renderBoardOverlay()}
@@ -48,7 +49,9 @@ function renderBoardHead() {
             <div class="searchbar">
                 <input onkeyup="Board_resetSearch()" type="text" id="taskSearch" placeholder="Find task">
                 <div class="divider"></div>
-                <img onclick="Board_search()" src="assets/img/search.svg" alt="">
+                <div class="searchbutton">
+                    <img onclick="Board_search()" src="assets/img/search.svg" alt="">
+                </div>
             </div>
             <button onclick="Board_addTask('ToDo')">Add task</button>
         </div>

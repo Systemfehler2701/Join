@@ -1,16 +1,19 @@
 ///ADD TASK TEMPLATES///
 function renderAddTask(element) {
-    document.getElementById('help-link').classList.remove("d-none");
-    navigationMenuClicked(element);
-    let content = document.getElementById('content');
-    content.innerHTML = createNewTask('ToDo');
+  document.getElementById("help-link").classList.remove("d-none");
+  navigationMenuClicked(element);
+  let content = document.getElementById("content");
+  Prio = [];
+  subtasks = [];
+  subtasksDone = [];
+  content.innerHTML = createNewTask("ToDo");
+  renderCategoryOptions();
 }
 
-
 function createNewTask(array) {
-    let currentDate = getCurrentDate()
-    console.log(currentDate)
-    return /* html */ `
+  let currentDate = getCurrentDate();
+  console.log(currentDate);
+  return /* html */ `
     <div class="taskbody">
         <h1>Add Task</h1>
         <div>
@@ -78,7 +81,7 @@ function createNewTask(array) {
                             <div>
                                 <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
                                 <div class="subtaskimages" id="subtaskField">
-                                    <img src="../img/Subtasks icons11.svg" alt="">
+                                    <img src="/assets/img/Subtasks icons11.svg" alt="">
                                 </div>
                             </div>
                             <div class="addedSubtasks" id="addedSubtasks"></div>

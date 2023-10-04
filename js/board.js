@@ -1,15 +1,13 @@
 let overlay;
 let overlayBody;
 let blocker;
-const todoList = document.getElementById("ToDo");
-const progressList = document.getElementById("inProgress");
-const waitingList = document.getElementById("awaitFeedback");
-const doneList = document.getElementById("done");
+let todoList = document.getElementById("ToDo");
+let progressList = document.getElementById("inProgress");
+let waitingList = document.getElementById("awaitFeedback");
+let doneList = document.getElementById("done");
 
 async function Board_loadTasks() {
-  overlay = document.getElementById("BoardOverlay");
-  overlayBody = document.getElementById("boardOverlaybody");
-  blocker = document.getElementById("blocker");
+  assignDocuments();
 
   await Board_loadFromStorage("ToDo");
   await Board_loadFromStorage("InProgress");
@@ -20,6 +18,16 @@ async function Board_loadTasks() {
   Board_renderInProgress();
   Board_renderAwaiting();
   Board_renderDone();
+}
+
+function assignDocuments() {
+  overlay = document.getElementById("BoardOverlay");
+  overlayBody = document.getElementById("boardOverlaybody");
+  blocker = document.getElementById("blocker");
+  todoList = document.getElementById("ToDo");
+  progressList = document.getElementById("inProgress");
+  waitingList = document.getElementById("awaitFeedback");
+  doneList = document.getElementById("done");
 }
 
 function Board_search() {
@@ -57,7 +65,7 @@ function Board_addTask(array) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
   overlayBody.innerHTML = createNewTask(array);
-  Board_renderCategoryOptions();
+  renderCategoryOptions();
   blocker.onclick = function () {
     resetForm();
     Board_closeOverlay();
@@ -79,6 +87,22 @@ async function Board_cutTask(array, i) {
   await setItem(array, JSON.stringify(TaskLists[array]));
   Board_closeOverlay();
   Board_loadTasks();
+}
+
+function Board_renderWarning(array, i) {
+  document.getElementById('DeleteOverlay').style.display ="flex"
+  document.getElementById('DeleteOverlaybody').innerHTML = "";
+  document.getElementById('DeleteOverlaybody').innerHTML = /*html*/`
+    <h2>Are you sure you want to delete this Task?</h2>
+    <div class="DeleteOptions">
+      <button class="create" onclick="Board_cutTask('${array}', ${i})">Delete</button>
+      <button class="clear" onclick="Board_GoBack()">Go Back</button>
+    </div>
+  `
+}
+
+function Board_GoBack() {
+  document.getElementById('DeleteOverlay').style.display ="none"
 }
 
 function Board_editTask(array, i) {
@@ -123,7 +147,7 @@ function Board_renderInProgress() {
 function Board_renderAwaiting() {
   let waitingList = document.getElementById("awaitFeedback");
   if (TaskLists["Awaiting"].length == 0) {
-    Board_renderPlaceholder(waitingList, "no tasks awaiting feedback");
+    Board_renderPlaceholder(waitingList, "No tasks awaiting feedback");
   } else {
     Board_renderCard(waitingList, TaskLists["Awaiting"], "Awaiting");
   }
@@ -154,16 +178,6 @@ function Board_renderCard(list, array, arrayName) {
   }
 }
 
-function Board_renderCategoryOptions() {
-  let selector = document.getElementById("category_selector");
-  for (let index = 0; index < categories.length; index++) {
-    const category = categories[index];
-    selector.innerHTML += `
-        <option value="${index}">${category["name"]}</option>
-        `;
-  }
-}
-
 async function Board_loadFromStorage(list) {
   try {
     TaskLists[list] = JSON.parse(await getItem(list));
@@ -181,14 +195,14 @@ function Board_renderSubtasksFull(array, i) {
     if (subtask["done"] == 0) {
       allSubtasks.innerHTML += `
       <div class="singleSubtaskFull">
-        <img id="checkbox${j}" class="checkbox" onclick="finishSubtask('${array}', ${i}, ${j})" src="../img/Rectangle 5.svg" alt="">
+        <img id="checkbox${j}" class="checkbox" onclick="finishSubtask('${array}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
         ${subtask["task"]}
       </div>
       `;
     } else {
       allSubtasks.innerHTML += `
       <div class="singleSubtaskFull">
-        <img id="checkbox${j}" class="checkbox" onclick="revertSubtask('${array}', ${i}, ${j})" src="../img/Check button.svg" alt="">
+        <img id="checkbox${j}" class="checkbox" onclick="revertSubtask('${array}', ${i}, ${j})" src="/assets/img/Check button.svg" alt="">
         ${subtask["task"]}
       </div>
       `;
@@ -248,11 +262,15 @@ function createFullTaskCard(array, i) {
     year: "numeric",
   });
   return /*html*/ `
+    <section id="DeleteOverlay" class="Boardoverlay" style="display: none;">
+       <div onclick="Board_GoBack()" id ="Deleteblocker" class="blocker"></div>
+       <div id="DeleteOverlaybody" class="overlayBlank"></div>
+    </section>
     <div class="cardheadFull">
         <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
-            <img onclick="Board_closeOverlay()" src="../../assets/img/close.svg" alt="">
+            <img onclick="Board_closeOverlay()" src="/assets/img/close.svg" alt="">
         </div>
-        <h2>${task["title"]}</h2>
+        <h2 class="titleFull">${task["title"]}</h2>
         <p class="descriptionFull">
            ${task["description"]}
         </p>
@@ -276,8 +294,8 @@ function createFullTaskCard(array, i) {
       </div>
     </div>
     <div class="editorbarFull">
-        <button onclick="Board_cutTask('${array}', ${i})" class="del">Delete</button>
-        <img src="../img/Vector 3.svg" alt="">
+        <button onclick="Board_renderWarning('${array}', ${i})" class="del">Delete</button>
+        <img src="/assets/img/Vector 3.svg" alt="">
         <button onclick="Board_editTask('${array}', ${i})" class="edit">Edit</button>
     </div>
     `;
@@ -315,9 +333,8 @@ function Board_createTaskEditor(array, i) {
   let month = ("0" + (date.getMonth() + 1)).slice(-2);
   let year = date.getFullYear();
   return /*html*/ `
-
 <div class="cardheadEdit">
-  <img onclick="Board_closeOverlay()" src="../../assets/img/close.svg" alt="">
+  <img onclick="Board_closeOverlay()" src="/assets/img/close.svg" alt="">
 </div>
 <div class="TaskEditorBody">
     <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
@@ -333,23 +350,26 @@ function Board_createTaskEditor(array, i) {
 <div class="duedateEdit">
     <p>Due Date:</p>
     <input id="due" type="date" data-date="" data-date-format="DD MMMM YYYY" value="${year}-${month}-${day}">
+    <div class="Taskerror" style="display: none;" id="errorDate">You can not select a date that is in the Past</div>
 </div>
 <div class="prioEdit">
     <p>Priority:</p>
       <div class="priocontainerEdit">
         <div onclick="setPrio(0)" id="Prio0">
           Urgent
-          <img id="Prio0_img" src="../../assets/img/Prio_alta.png" class="">
+          <img id="Prio0_img" src="/assets/img/Prio_alta.png" class="">
         </div>
         <div onclick="setPrio(1)" id="Prio1">
           Medium
-          <img id="Prio1_img" src="../assets/img/Prio_media.png" class="">
+          <img id="Prio1_img" src="/assets/img/Prio_media.png" class="">
         </div>
         <div onclick="setPrio(2)" id="Prio2">
           Low
-          <img id="Prio2_img" src="../assets/img/Prio_baja.png" class="">
+          <img id="Prio2_img" src="/assets/img/Prio_baja.png" class="">
         </div>
       </div>
+      <div class="Taskerror" style="display: none;" id="errorPriority"> You need to Select a Priority</div>
+      <div class="Taskerror" style="display: none;" id="errorCategory">You need to Select a Category</div>
 </div>
 <div class="assigneesEdit">
   <p>Assigned to:</p>
@@ -362,7 +382,7 @@ function Board_createTaskEditor(array, i) {
     <div>
         <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
         <div class="subtaskimages" id="subtaskField">
-            <img src="../img/Subtasks icons11.svg" alt="">
+            <img src="/assets/img/Subtasks icons11.svg" alt="">
         </div>
     </div>
     <div class="addedSubtasks" id="addedSubtasks"></div>
