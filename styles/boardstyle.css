@@ -12,7 +12,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 87.41%;
   gap: 32px;
 }
 
@@ -105,7 +104,6 @@
   display: flex;
   justify-content: center;
   gap: 2%;
-  width: 87.41%;
   margin-top: 40px;
 }
 
@@ -113,6 +111,7 @@
   display: flex;
   flex-direction: column;
   width: 244px;
+  min-width: 244px;;
   gap: 16px;
 }
 
@@ -140,8 +139,8 @@
   height: 24px;
   background-image: url(../assets/img/Capa1.svg);
   background-repeat: no-repeat;
-  background-position-x: 56%;
-  background-position-y: 43%;
+  background-position-x: 53%;
+  background-position-y: 50%;
 }
 
 .panelhead button:hover {
@@ -243,7 +242,9 @@ progress {
 }
 
 .overlayBlank {
+  margin-left: 140px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 32px;
   font-family: "Inter";
@@ -252,10 +253,18 @@ progress {
   border-radius: 30px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
   padding: 40px 48px 40px 48px;
-  max-width: 525px;
+}
+
+.FullTaskCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 32px;
 }
 
 .cardheadFull {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -290,6 +299,7 @@ progress {
 }
 
 .descriptionFull {
+  max-width: 500px;
   color: black;
   font-size: 20px;
   margin: 0;
@@ -377,6 +387,7 @@ progress {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
+  width: 100%;
 }
 
 .editorbarFull button {
@@ -496,6 +507,7 @@ progress {
   max-height: 120px;
   box-sizing: border-box;
   max-width: 100%;
+  width: 100%;
   min-width: 100%;
   background-image: url(../assets/img/Recurso1.svg);
   background-repeat: no-repeat;
@@ -542,7 +554,7 @@ progress {
   background-color: white;
   height: fit-content;
   box-sizing: border-box;
-  width: 30%;
+  width: 31%;
   font-weight: 400;
   cursor: pointer;
   border: solid 1px #2a3647;
