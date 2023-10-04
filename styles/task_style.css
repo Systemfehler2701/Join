@@ -62,6 +62,7 @@
 }
 
 .taskbody .description textarea {
+  font-family: Inter;
   font-size: 20px;
   appearance: none;
   appearance: none;

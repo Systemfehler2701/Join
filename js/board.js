@@ -217,7 +217,6 @@ async function finishSubtask(array, i, j) {
 
   Board_renderSubtasksFull(array, i);
   await setItem(array, JSON.stringify(TaskLists[array]));
-  console.log(TaskLists[array][i]);
 }
 
 async function revertSubtask(array, i, j) {
@@ -227,12 +226,10 @@ async function revertSubtask(array, i, j) {
 
   Board_renderSubtasksFull(array, i);
   await setItem(array, JSON.stringify(TaskLists[array]));
-  console.log(TaskLists[array][i]);
 }
 
 function Board_subTaskProgress(array, i, arrayName) {
   let task = array[i];
-  console.log(task);
   if (task["subtasks"].length == 0) {
     document.getElementById(`subtaskscard${i}`).style.display = "none";
   } else {
@@ -303,7 +300,6 @@ function createFullTaskCard(array, i) {
 
 function Board_createTaskCard(array, i, arrayName) {
   let task = array[i];
-  console.log(task);
   let category = task["category"];
   return /*html*/ `
       <div onclick="Board_renderFullTaskCard('${arrayName}', ${i})" class="taskcard">

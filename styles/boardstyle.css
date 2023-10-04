@@ -252,6 +252,7 @@ progress {
   border-radius: 30px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
   padding: 40px 48px 40px 48px;
+  max-width: 525px;
 }
 
 .cardheadFull {
@@ -401,7 +402,6 @@ progress {
 }
 
 
-
 .edit {
   background-image: url(../assets/img/edit.svg);
   background-repeat: no-repeat;
@@ -411,10 +411,6 @@ progress {
   padding: 0;
   text-align: right;
 }
-
-/* Here begins the styling of the Task-Editor Overlay the following elements have "Edit" at the end of their name to avoid confusion */
-/* Here begins the styling of the Task-Editor Overlay the following elements have "Edit" at the end of their name to avoid confusion */
-
 
 #Deleteblocker {
     z-index: 3;
@@ -434,6 +430,11 @@ progress {
 .DeleteOptions button {
     width: 35%;
 }
+
+
+/* Here begins the styling of the Task-Editor Overlay the following elements have "Edit" at the end of their name to avoid confusion */
+/* Here begins the styling of the Task-Editor Overlay the following elements have "Edit" at the end of their name to avoid confusion */
+
 
 .TaskEditorBody {
   max-width: 525px;
