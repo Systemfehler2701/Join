@@ -86,5 +86,5 @@ function renderContacts(element) {
                 </div>
             </div>
         </div>`;
-    loadContacts();
+    addContactsEventlistener();
 }
