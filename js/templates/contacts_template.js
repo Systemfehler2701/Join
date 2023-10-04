@@ -3,15 +3,14 @@ function renderContacts(element) {
     navigationMenuClicked(element);
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
-    <div class="contact-leftside">
-        <button class="addButton" onclick="addNewContact()">
-            <span>Add new Contact</span>
-            <img src="assets/img/person_add.svg">
-        </button>
-        <div class="viewall">
-            <div id="contactlist"></div>
-        </div>
-    </div>
+     <button class="addButton">
+        <span>Add new Contact</span>
+        <img src="assets/img/person.svg">
+    </button>
+
+    <div class="viewall">
+        <div id="contactlist"></div>
+
         <div class="rightside">
             <div class="contacts-headline">
                 <h1>Contacts</h1>
@@ -86,5 +85,5 @@ function renderContacts(element) {
                 </div>
             </div>
         </div>`;
-    loadContacts();
+    addContactsEventlistener();
 }
