@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+
+    <link rel="stylesheet" href="../../styles/boardstyle.css" />
+    <link rel="stylesheet" href="../../styles/fonts.css" />
+    <link rel="stylesheet" href="../../styles/task_style.css" />
+    <link rel="stylesheet" href="../../styles/login_reg.css" />
+  </head>
+
+  <body onload="signUpInit()">
+    <form onsubmit="register(); return false;">
+      <input required type="name" id="signUpName" placeholder="Name" />
+      <input required type="email"  id="signUpEmail" placeholder="Email" />
+      <input required type="password" id="signUpPw" placeholder="Password" />
+      <input required type="password" id="signUpPw2" placeholder="Confirm Password" />
+      <button id="registerBtn">Registrieren</button>
+
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="signUpCheck"
+        checked
+      />
+      <label class="form-check-label" for="form2Example31">
+        I accept the
+        <a href="#">Privacy Policy</a>
+      </label>
+    </form>
+    <script src="../../js/templates/signUp.js"></script>
+    <script src="../../js/storage.js"></script>
+  </body>
+</html>

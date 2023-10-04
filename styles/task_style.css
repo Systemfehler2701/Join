@@ -1,21 +1,22 @@
 .taskbody {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1208px;
 }
 
 .taskbody h1 {
   font-size: 61px;
   font-weight: 700;
   margin-top: 0;
-  width: 976px;
 }
 
 .taskbody .task_input {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  width: 976px;
   font-size: 20px;
 }
 
@@ -38,10 +39,6 @@
   font-size: 20px;
 }
 
-.taskbody .input1 div {
-  width: 100%;
-}
-
 .taskbody .title {
   width: 100%;
 }
@@ -62,6 +59,7 @@
 }
 
 .taskbody .description textarea {
+  font-family: Inter;
   font-size: 20px;
   appearance: none;
   appearance: none;
@@ -76,6 +74,7 @@
   max-height: 120px;
   box-sizing: border-box;
   max-width: 100%;
+  width: 100%;
   min-width: 100%;
   background-image: url(../assets/img/Recurso1.svg);
   background-repeat: no-repeat;
@@ -90,16 +89,13 @@
   font-family: Inter;
 }
 
-.taskbody .assignment select {
-  width: 100%;
+.assignmentSelect {
+  background-color: white;
+  padding: 12px 16px;
+  width: calc(100% - 35px);
   border-radius: 10px;
   border: solid 1px #d1d1d1;
-  height: 51px;
-  padding: 12px 16px 12px 16px;
   font-size: 20px;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   background-image: url(../assets/img/arrow_drop_downaa.svg);
   background-repeat: no-repeat;
   background-position-x: calc(100% - 18px);
@@ -108,13 +104,32 @@
   font-family: Inter;
 }
 
-.taskbody .assignment select:focus {
-  border-radius: 10px 10px 0 0;
+.assignmentContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  border-radius: 10px;
+  background-color: white;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  gap: 16px;
 }
 
-.taskbody select:hover {
-  border: solid 2.5px #5a5a5a;
+.assigneeOption {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
 }
+
+.assigneeOption .assigneeName {
+  display: flex;
+  align-items: center;
+  width: 82%;
+}
+
 
 .taskbody .input2 select:hover {
   border: solid 2.5px #5a5a5a;
@@ -319,10 +334,10 @@
 
 .addTaskBottom {
   margin-top: 40px;
-  width: 976px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .addTaskBottom .uselessAstriks {
@@ -341,7 +356,6 @@
 }
 
 .taskbody .buttons {
-  width: 976px;
   display: flex;
   justify-content: flex-end;
   gap: 4px;
