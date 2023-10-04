@@ -63,6 +63,8 @@
     .summary-line1,
     .summary-line3 {
         width: unset;
+        display: flex;
+        justify-content: space-between;
     }
     .summary-welcome {
         height: 390px;

@@ -7,7 +7,7 @@
 .contact-leftside {
     background-color: white;
     box-shadow: 4px 0px 6px 0px #00000010;
-    position: absolute;
+    position: fixed;
     top: 106px;
     left: 233px;
     height: 100%;
@@ -16,6 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
 }
 
 .contactfield {
@@ -28,6 +29,11 @@
     border-color: white;
     padding: 15px, 24px, 15px, 24px;
     gap: 35px;
+    cursor: pointer;
+}
+
+.contactfield:hover {
+    background-color: lightgrey;
 }
 
 .addButton span {
