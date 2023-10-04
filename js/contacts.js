@@ -182,11 +182,12 @@ function clearDetails() {
 }
 
 // Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
+function addContactsEventlistener() {
     loadContacts();
     document.getElementById('contactForm').addEventListener('submit', addContact);
     document.querySelector('.addButton').addEventListener('click', openOverlay);
     document.getElementById('closeForm').addEventListener('click', closeOverlay);
     document.getElementById('editForm').addEventListener('submit', updateContact);
     document.getElementById('closeEditForm').addEventListener('click', closeEditOverlay);
-});
+
+}
