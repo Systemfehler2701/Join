@@ -120,7 +120,6 @@ function Board_closeOverlay() {
   overlay.style.display = "none";
   overlayBody.innerHTML = "";
   resetArrays()
-  resetForm()
   Board_loadTasks();
 }
 

@@ -255,24 +255,22 @@ function renderAssigneeOptions() {
   let selector = document.getElementById("assign_select");
   for (let index = 0; index < users.length; index++) {
     let user = users[index];
-    selector.innerHTML += /*html*/ `
+    if (assignees.includes(index)) {
+      selector.innerHTML += /*html*/ `
     <div id="assignee${index}" class="assigneeOption" value="${index}">
       <div class="initials-logo" style="">${getInitials(user.name)}</div>
       <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${index}" class="checkbox" src="" alt="">
+      <img id="assigneeCheckbox${index}" onclick="unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
   </div>
   `;
-    let checkbox = document.getElementById(`assigneeCheckbox${index}`);
-    if (assignees.includes(index)) {
-      checkbox.src = "/assets/img/Check button.svg";
-      checkbox.onclick = function () {
-        unassign(index);
-      };
     } else {
-      checkbox.src = "/assets/img/Rectangle 5.svg";
-      checkbox.onclick = function () {
-        assign(index);
-      };
+      selector.innerHTML += /*html*/ `
+    <div id="assignee${index}" class="assigneeOption" value="${index}">
+      <div class="initials-logo" style="">${getInitials(user.name)}</div>
+      <div class="assigneeName">${user.name}</div>
+      <img id="assigneeCheckbox${index}" onclick="assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
+  </div>
+  `;
     }
   }
 }
