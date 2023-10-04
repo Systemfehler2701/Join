@@ -4,7 +4,7 @@ function renderContacts(element) {
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
     <div class="contact-leftside">
-        <button class="addButton" onclick="addNewContact()">
+        <button class="addButton">
             <span>Add new Contact</span>
             <img src="assets/img/person_add.svg">
         </button>
