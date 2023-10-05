@@ -37,9 +37,8 @@
 }
 
 .contactView {
-    width: 461px;
-    height: 364px;
     gap: 21px;
+    height: 200px;
 }
 
 .addButton span {
@@ -312,6 +311,7 @@ form button {
 
 .email-blue {
     color: blue;
+    cursor: pointer;
 }
 
 .inputName {
@@ -478,4 +478,9 @@ form button {
     justify-content: center;
     align-items: center;
     margin: 0 80px 0 32px;
+}
+
+.contactName {
+    font: inter 500;
+    font-size: 47px;
 }

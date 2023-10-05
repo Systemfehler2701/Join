@@ -112,10 +112,11 @@ function showDetails(index) {
             <div class="detailsLogo" style="background-color: ${user.color}; margin: 0 auto;">${initials}</div>
             <div class="name">
                 <h3>${user.name}</h3>
-                <div class="contactsIcons">
+             <div class="contactsIcons">
                     <div class="editIcon">
                         <img class="editSymbol" src="/assets/img/edit.svg" onclick= editContact(${index})> <span>Edit</span></div>
                     <div class="deleteIcon"img src="/assets/img/delete.svg" onclick= deleteContact(${index})> <span>Delete </span></div>
+            </div>
             </div>
         </div>
         <div class="contactInformation">
