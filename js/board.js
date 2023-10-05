@@ -86,9 +86,10 @@ function Board_searchByList(list, array) {
   tasks = TaskLists[array];
   for (let j = 0; j < tasks.length; j++) {
     let task = tasks[j];
-    if (task["title"].toLowerCase().includes(search)) {
+    if (task["title"].toLowerCase().includes(search) || task["description"].toLowerCase().includes(search)) {
       list.innerHTML += Board_createTaskCard(tasks, j, array);
-      Board_subTaskProgress(tasks, j);
+      Board_subTaskProgress(tasks, j, array);
+      Board_displayAssignees(tasks, j, array);
     }
   }
 }
