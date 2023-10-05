@@ -36,6 +36,8 @@ function loadContacts() {
         const user = users[i];
         const userInitial = user.name[0].toUpperCase();
 
+        user.color = getColor(user.name);
+
         if (!user.color) {
             user.color = colors[Math.floor(Math.random() * colors.length)];
         }
@@ -110,8 +112,10 @@ function showDetails(index) {
             <div class="detailsLogo" style="background-color: ${user.color}; margin: 0 auto;">${initials}</div>
             <div class="name">
                 <h3>${user.name}</h3>
-                <img src="/assets/img/edit.svg" onclick= editContact(${index})> Edit
-                <img src="/assets/img/delete.svg" onclick= deleteContact(${index})> Delete 
+                <div class="contactsIcons">
+                    <div class="editIcon">
+                        <img class="editSymbol" src="/assets/img/edit.svg" onclick= editContact(${index})> <span>Edit</span></div>
+                    <div class="deleteIcon"img src="/assets/img/delete.svg" onclick= deleteContact(${index})> <span>Delete </span></div>
             </div>
         </div>
         <div class="contactInformation">
@@ -131,6 +135,14 @@ function changeBackgroundColor(i) {
         document.getElementById(`painted${j}`).classList.remove('selected');
     }
     document.getElementById(`painted${i}`).classList.add('selected');
+
+
+}
+
+function getColor(name) {
+    const sum = name.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+    const colorIndex = sum % colors.length;
+    return colors[colorIndex];
 }
 
 function deleteContact(index) {
