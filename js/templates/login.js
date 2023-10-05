@@ -23,13 +23,4 @@ async function logIn() {
 
 // Delete Users from Storage
 
-async function removeItem(key) {
-  try {
-    const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-    await fetch(url, {
-      method: "DELETE",
-    });
-  } catch (e) {
-    console.error("Remove error:", e);
-  }
-}
+
