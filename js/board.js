@@ -72,14 +72,14 @@ function assignDocuments() {
     doneList = document.getElementById("done");
 }
 
-function board_search() {
-    board_searchByList(todoList, "toDo");
-    board_searchByList(progressList, "inProgress");
-    board_searchByList(waitingList, "feedback");
-    board_searchByList(doneList, "done");
+function Board_search() {
+    Board_searchByList(todoList, "toDo");
+    Board_searchByList(progressList, "inProgress");
+    Board_searchByList(waitingList, "feedback");
+    Board_searchByList(doneList, "done");
 }
 
-function board_searchByList(list, array) {
+function Board_searchByList(list, array) {
     let search = document.getElementById("taskSearch").value;
     search = search.toLowerCase();
     list.innerHTML = "";
@@ -88,34 +88,34 @@ function board_searchByList(list, array) {
         let task = tasks[j];
         if (task["title"].toLowerCase().includes(search) || task["description"].toLowerCase().includes(search)) {
             list.innerHTML += Board_createTaskCard(tasks, j, array);
-            board_subTaskProgress(tasks, j, array);
-            board_displayAssignees(tasks, j, array);
+            Board_subTaskProgress(tasks, j, array);
+            Board_displayAssignees(tasks, j, array);
         }
     }
 }
 
-function board_resetSearch() {
+function Board_resetSearch() {
     let search = document.getElementById("taskSearch").value;
     if (search == "") {
-        board_renderToDo();
-        board_renderInProgress();
-        board_renderFeedback();
-        board_renderDone();
+        Board_renderToDo();
+        Board_renderInProgress();
+        Board_renderFeedback();
+        Board_renderDone();
     }
 }
 
-function board_addTask(array) {
+function Board_addTask(array) {
     overlay.style.display = "flex";
     overlayBody.innerHTML = "";
     overlayBody.innerHTML = createNewTask(array);
     renderCategoryOptions();
     renderAssigneeOptions();
     blocker.onclick = function() {
-        board_closeOverlay();
+        Board_closeOverlay();
     };
 }
 
-function board_renderFullTaskCard(array, i) {
+function Board_renderFullTaskCard(array, i) {
     overlay.style.display = "flex";
     overlayBody.innerHTML = "";
     overlayBody.innerHTML = createFullTaskCard(array, i);
@@ -139,8 +139,8 @@ function Board_renderWarning(array, i) {
     document.getElementById("DeleteOverlaybody").innerHTML = /*html*/ `
     <h2>Are you sure you want to delete this Task?</h2>
     <div class="DeleteOptions">
-      <button class="create" onclick="board_cutTask('${array}', ${i})">Delete</button>
-      <button class="backbutton" onclick="board_GoBack()">Back</button>
+      <button class="create" onclick="Board_cutTask('${array}', ${i})">Delete</button>
+      <button class="clear" onclick="Board_GoBack()">Go Back</button>
     </div>
   `;
 }
@@ -243,7 +243,7 @@ function Board_renderSubtasksFull(array, i) {
         if (subtask["done"] == 0) {
             allSubtasks.innerHTML += `
       <div class="singleSubtaskFull">
-        <img id="checkbox${j}" class="checkbox" onclick="board_finishSubtask('${array}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
+        <img id="checkbox${j}" class="checkbox" onclick="finishSubtask('${array}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
         ${subtask["task"]}
       </div>
       `;
@@ -335,13 +335,13 @@ function createFullTaskCard(array, i) {
     });
     return /*html*/ `
   <section id="DeleteOverlay" class="Boardoverlay" style="display: none;">
-     <div onclick="board_GoBack()" id ="Deleteblocker" class="blocker"></div>
+     <div onclick="Board_GoBack()" id ="Deleteblocker" class="blocker"></div>
      <div id="DeleteOverlaybody" class="overlayBlank"></div>
   </section>
   <div class="FullTaskCard">
     <div class="cardheadFull">
         <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
-            <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
+            <img onclick="Board_closeOverlay()" src="/assets/img/close.svg" alt="">
         </div>
         <h2 class="titleFull">${task["title"]}</h2>
         <p class="descriptionFull">
@@ -368,9 +368,9 @@ function createFullTaskCard(array, i) {
       </div>
     
     <div class="editorbarFull">
-        <button onclick="board_renderWarning('${array}', ${i})" class="del">Delete</button>
+        <button onclick="Board_renderWarning('${array}', ${i})" class="del">Delete</button>
         <img src="/assets/img/Vector 3.svg" alt="">
-        <button onclick="board_editTask('${array}', ${i})" class="edit">Edit</button>
+        <button onclick="Board_editTask('${array}', ${i})" class="edit">Edit</button>
     </div>
   </div>
     `;
@@ -409,7 +409,7 @@ function Board_createTaskEditor(array, i) {
     let year = date.getFullYear();
     return /*html*/ `
 <div class="cardheadEdit">
-  <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
+  <img onclick="Board_closeOverlay()" src="/assets/img/close.svg" alt="">
 </div>
 <div class="TaskEditorBody">
     <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
@@ -448,12 +448,7 @@ function Board_createTaskEditor(array, i) {
 </div>
 <div class="assignmentEdit">
     <h2>Assigned to</h2>
-    <div  class="assignmentInput" id="assignmentInput">
-      <input onclick="toggleAssigneeOptions(this)" onkeyup="searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
-      <div id="assignmentSelectButton" onclick="toggleAssigneeOptions(this)">
-        <img src="/assets/img/arrow_drop_downaa.svg" alt="">
-      </div>
-    </div>
+    <div onclick="openAssigneeOptions()" id="assigner" class="assignmentSelect">Select contacts to assign</div>
     <div style="display: none" id="assign_select" class="assignmentContainer"></div>
     <div class="assigneeList" id="assigneeList"></div>
 </div>
