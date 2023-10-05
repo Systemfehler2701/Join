@@ -1,7 +1,7 @@
 async function logIn() {
   try {
-    let email = document.getElementById("LoginEmail");
-    let passwort = document.getElementById("loginPasswort");
+    let email = document.getElementById("loginEmail");
+    let passwort = document.getElementById("loginPassword");
     
     const usersData = await getItem("users");
     const users = JSON.parse(usersData || "{}");
