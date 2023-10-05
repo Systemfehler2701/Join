@@ -6,13 +6,13 @@ async function logIn() {
     const usersData = await getItem("users");
     const users = JSON.parse(usersData || "{}");
 
-    const user = Object.values(users).find(
+    const currentUser = Object.values(users).find(
       (user) => user.email === email.value && user.password === passwort.value
     );
 
-    if (user) {
+    if (currentUser) {
       localStorage.setItem("user", JSON.stringify(user));
-      window.location.href = "index.html";
+      window.location.href = "../index.html";
     } else {
       alert("Benutzer nicht gefunden. Überprüfen Sie Ihre E-Mail-Adresse und Ihr Passwort.");
     }
@@ -21,6 +21,11 @@ async function logIn() {
   }
 }
 
-// Delete Users from Storage
-
-
+function logInGuest() {
+  currentUser = {
+    name: "Guest",
+    email: "guest",
+    password: "guest"
+  }
+  window.location.href = "../../index.html";
+}
