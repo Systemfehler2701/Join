@@ -20,7 +20,7 @@ nav {
     display: flex;
     flex-direction: column;
     width: 232px;
-    height: 100vh;
+    height: 100%;
     background-color: #2A3647;
     justify-content: space-between;
     user-select: none;

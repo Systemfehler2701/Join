@@ -8,15 +8,15 @@ function renderAddTask(element) {
   subtasksDone = [];
   content.innerHTML = createNewTask("ToDo");
   renderCategoryOptions();
+  renderAssigneeOptions();
 }
 
 function createNewTask(array) {
   let currentDate = getCurrentDate();
-  console.log(currentDate);
   return /* html */ `
     <div class="taskbody">
         <h1>Add Task</h1>
-        <div>
+        <div style="width: 100%">
             <div class="task_input">
                 <div class="input1">
                     <div class="title">
@@ -33,9 +33,8 @@ function createNewTask(array) {
                     </div>
                     <div class="assignment">
                         <h2>Assigned to</h2>
-                        <select id="assign_select">
-                            <option value="null">Select contacts to assign</option>
-                        </select>
+                        <div onclick="openAssigneeOptions()" id="assigner" class="assignmentSelect">Select contacts to assign</div>
+                        <div style="display: none" id="assign_select" class="assignmentContainer"></div>
                     </div>
                 </div>
                 <div class="divider"></div>

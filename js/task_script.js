@@ -5,6 +5,7 @@ const TaskLists = {
   Done: [],
 };
 
+let assignees = [];
 let subtasks = [];
 let subtasksDone = [];
 let Prio = [];
@@ -42,7 +43,7 @@ const categories = [
 ];
 
 async function addTask(list) {
-  resetError()
+  resetError();
   let data = compileTaskData();
   if (data != "error") {
     TaskLists[list].push(data);
@@ -54,11 +55,11 @@ async function addTask(list) {
 }
 
 async function addEditedTask(list, i) {
-  resetError()
+  resetError();
   let data = compileTaskData();
   if (data != "error") {
     TaskLists[list][i] = data;
-    CheckFinishedSubtasks(list, i)
+    CheckFinishedSubtasks(list, i);
     resetForm();
     await setItem(list, JSON.stringify(TaskLists[list]));
 
@@ -73,9 +74,13 @@ function resetForm() {
   document.getElementById("assign_select").value = null;
   document.getElementById("due").value = "";
   document.getElementById("category_selector").value = null;
+}
+
+function resetArrays() {
   Prio = [];
   subtasks = [];
   subtasksDone = [];
+  assignees = [];
 }
 
 function getPrioforEditor(array, i) {
@@ -116,7 +121,7 @@ function renderSubtasks() {
   subTaskDisplay.innerHTML = "";
   for (let i = 0; i < subtasks.length; i++) {
     let subtaskelement = subtasks[i];
-    subTaskDisplay.innerHTML += /*html*/`
+    subTaskDisplay.innerHTML += /*html*/ `
 
     <div class="subtaskElement" id="subtask${i}">
       <div class="subtaskElementBody">
@@ -162,7 +167,7 @@ function clearSubtask() {
 
 function changeSubtaskAppearance() {
   if (document.getElementById("subtasks").value != "") {
-    document.getElementById("subtaskField").innerHTML = /*html*/`
+    document.getElementById("subtaskField").innerHTML = /*html*/ `
 
     <div class="buttonwrapper"><img onclick="clearSubtask()" src="/assets/img/close.svg" alt=""></div> 
     <img src="/assets/img/Vector 3.svg" alt="">
@@ -177,7 +182,6 @@ function changeSubtaskAppearance() {
 function compileTaskData() {
   title = document.getElementById("title");
   description = document.getElementById("description");
-  assignee = document.getElementById("assign_select");
   dueDate = document.getElementById("due");
   category = document.getElementById("category_selector");
 
@@ -192,7 +196,7 @@ function compileTaskData() {
     let data = {
       title: title.value,
       description: description.value,
-      assignee: assignee.value,
+      assignees: assignees,
       dueDate: date.getTime(),
       category: category.value,
       priority: Prio[0],
@@ -201,7 +205,7 @@ function compileTaskData() {
     };
     return data;
   } else {
-    return('error');
+    return "error";
   }
 }
 
@@ -227,14 +231,13 @@ function colorPriorityButtons(x) {
 }
 
 function CheckFinishedSubtasks(list, i) {
-  let subtasks = TaskLists[list][i]['subtasks']
-  let finishedSubtasks = TaskLists[list][i]['subtasksDone']
+  let subtasks = TaskLists[list][i]["subtasks"];
+  let finishedSubtasks = TaskLists[list][i]["subtasksDone"];
   for (let j = 0; j < subtasks.length; j++) {
     let subtask = subtasks[j];
-    if(subtask['done'] > 0) {
-      finishedSubtasks.push(subtask)
+    if (subtask["done"] > 0) {
+      finishedSubtasks.push(subtask);
     }
-    
   }
 }
 
@@ -248,6 +251,71 @@ function renderCategoryOptions() {
   }
 }
 
+function renderAssigneeOptions() {
+  let selector = document.getElementById("assign_select");
+  for (let index = 0; index < users.length; index++) {
+    let user = users[index];
+    if (assignees.includes(index)) {
+      selector.innerHTML += /*html*/ `
+    <div id="assignee${index}" class="assigneeOption" value="${index}">
+      <div class="initials-logo" style="">${getInitials(user.name)}</div>
+      <div class="assigneeName">${user.name}</div>
+      <img id="assigneeCheckbox${index}" onclick="unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
+  </div>
+  `;
+    } else {
+      selector.innerHTML += /*html*/ `
+    <div id="assignee${index}" class="assigneeOption" value="${index}">
+      <div class="initials-logo" style="">${getInitials(user.name)}</div>
+      <div class="assigneeName">${user.name}</div>
+      <img id="assigneeCheckbox${index}" onclick="assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
+  </div>
+  `;
+    }
+  }
+}
+
+function openAssigneeOptions() {
+  let selector = document.getElementById("assign_select");
+  let assigner = document.getElementById("assigner");
+  selector.style.display = "flex";
+  assigner.onclick = null;
+  assigner.onclick = function () {
+    hideAssigneeOptions();
+  };
+}
+
+function hideAssigneeOptions() {
+  let selector = document.getElementById("assign_select");
+  let assigner = document.getElementById("assigner");
+  selector.style.display = "none";
+  assigner.onclick = null;
+  assigner.onclick = function () {
+    openAssigneeOptions();
+  };
+}
+
+function assign(index) {
+  assignees.push(index);
+  let checkbox = document.getElementById(`assigneeCheckbox${index}`);
+  checkbox.src = "/assets/img/Check button.svg";
+  checkbox.onclick = null;
+  checkbox.onclick = function () {
+    unassign(index);
+  };
+}
+
+function unassign(index) {
+  let position = assignees.indexOf(index);
+  assignees.splice(position, 1);
+
+  let checkbox = document.getElementById(`assigneeCheckbox${index}`);
+  checkbox.src = "/assets/img/Rectangle 5.svg";
+  checkbox.onclick = null;
+  checkbox.onclick = function () {
+    assign(index);
+  };
+}
 
 function resetError() {
   document.getElementById("errorTitle").style.display = "none";
@@ -283,7 +351,7 @@ function CheckInputValidity(title, dueDate, category) {
     document.getElementById("errorPriority").style.display = "block";
     validitiy = false;
   }
-  if (category == 'null') {
+  if (category == "null") {
     document.getElementById("errorCategory").style.display = "block";
     validitiy = false;
   }
@@ -291,16 +359,14 @@ function CheckInputValidity(title, dueDate, category) {
   return validitiy;
 }
 
-
 async function FULLSTOP() {
-  TaskLists['ToDo'] = []
-  TaskLists['InProgress'] = []
-  TaskLists['Awaiting'] = []
+  TaskLists["ToDo"] = [];
+  TaskLists["InProgress"] = [];
+  TaskLists["Awaiting"] = [];
 
-  await setItem('ToDo', JSON.stringify(TaskLists['ToDo']));
-  await setItem('InProgress', JSON.stringify(TaskLists['InProgress']));
-  await setItem('Awaiting', JSON.stringify(TaskLists['Awaiting']));
+  await setItem("ToDo", JSON.stringify(TaskLists["ToDo"]));
+  await setItem("InProgress", JSON.stringify(TaskLists["InProgress"]));
+  await setItem("Awaiting", JSON.stringify(TaskLists["Awaiting"]));
   Board_closeOverlay();
   Board_loadTasks();
-
 }

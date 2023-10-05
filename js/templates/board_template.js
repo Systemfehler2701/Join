@@ -66,7 +66,7 @@ function renderBoardTaskTodo() {
             <h2>To do</h2>
             <button onclick="Board_addTask('ToDo')" class="add"></button>
         </div>
-        <div id="ToDo" class="panelbody"></div>
+        <div id="ToDo" class="panelbody" data-array="ToDo"></div>
     </div>`;
 }
 
@@ -78,7 +78,7 @@ function renderBoardTaskProgress() {
             <h2>In progress</h2>
             <button onclick="Board_addTask('InProgress')" class="add"></button>
         </div>
-        <div id="inProgress" class="panelbody"></div>
+        <div id="inProgress" class="panelbody" data-array="InProgress"></div>
     </div>`;
 }
 
@@ -90,7 +90,7 @@ function renderBoardTaskFeedback() {
             <h2>Await feedback</h2>
             <button onclick="Board_addTask('Awaiting')" class="add"></button>
         </div>
-        <div id="awaitFeedback" class="panelbody"></div>
+        <div id="awaitFeedback" class="panelbody" data-array="Awaiting"></div>
     </div>`;
 }
 
@@ -101,6 +101,6 @@ function renderBoardTaskDone() {
         <div class="panelhead">
             <h2>Done</h2>
         </div>
-        <div id="done" class="panelbody"></div>
+        <div id="done" class="panelbody" data-array="Done"></div>
     </div>`;
 }

@@ -1,4 +1,4 @@
-@media(max-width: 1445px) {
+@media (max-width: 1445px) {
     .summary-task {
         margin-right: 40px;
     }
@@ -38,9 +38,21 @@
     .summary-task p {
         padding: 0 10px;
     }
+    .taskbody .task_input {
+        flex-direction: column;
+    }
+    .divider {
+        display: none;
+    }
+    .input1 {
+        width: 100% !important;
+    }
+    .input2 {
+        width: 100% !important;
+    }
 }
 
-@media(max-width: 1190px) {
+@media (max-width: 1190px) {
     .summary-todo,
     .summary-done,
     .summary-upcoming {
@@ -63,13 +75,27 @@
     .summary-line1,
     .summary-line3 {
         width: unset;
+        display: flex;
+        justify-content: space-between;
     }
     .summary-welcome {
         height: 390px;
     }
+    .panels {
+        flex-wrap: wrap;
+    }
+    .taskpanel {
+        width: 310px;
+    }
+    .head {
+        gap: 14px;
+    }
+    .headleft {
+        gap: 14px;
+    }
 }
 
-@media(max-width: 865px) {
+@media (max-width: 865px) {
     #left-layout {
         position: absolute;
         bottom: 0px;
@@ -78,6 +104,7 @@
     }
     #content {
         margin-top: 90px;
+        overflow-y: scroll;
     }
     nav {
         flex-direction: row;
@@ -139,5 +166,51 @@
     .summary-header h2 {
         font-size: 20px;
         margin: 0;
+    }
+    .overlayBlank {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 739px) {
+    .head {
+        flex-direction: column;
+    }
+    .headleft {
+        flex-direction: column;
+    }
+    #content {
+        margin-bottom: 74px;
+        /* Must be the height of the bottom-navbar. Please adjst if necessary JK 4.10.23*/
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .taskbody {
+        width: 95%;
+    }
+    .clear {
+        display: none;
+    }
+    .overlayBlank {
+        padding: 30px 24px 30px 24px;
+    }
+    .taskbody h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-top: 0;
+    }
+}
+
+@media(max-width: 432px) {
+    .addTaskBottom {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 0;
+        gap: 40px;
+    }
+    .taskbody .priocontainer div {
+        width: 32%;
+        font-size: 16px;
     }
 }
