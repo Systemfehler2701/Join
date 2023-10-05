@@ -36,6 +36,12 @@
     background-color: lightgrey;
 }
 
+.contactView {
+    width: 461px;
+    height: 364px;
+    gap: 21px;
+}
+
 .addButton span {
     font-size: 21px;
     font-weight: 700;
@@ -391,4 +397,85 @@ form button {
     width: 120px;
     border: 3px;
     border-radius: 70px;
+}
+
+.Edit-Container {
+    display: flex;
+}
+
+.initials-logo-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-Area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.Edit-whiteside {
+    display: flex;
+    align-items: center;
+}
+
+.editIcon:hover {
+    color: #29ABE2;
+    cursor: pointer;
+}
+
+.editSymbol {
+    color: #29ABE2;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.deleteIcon:hover {
+    color: #29ABE2;
+    cursor: pointer;
+}
+
+.contactsIcons {
+    display: flex;
+}
+
+.buttonArea {
+    display: flex;
+    margin-top: 20px;
+}
+
+.cancelBtn {
+    height: 56px;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 24px;
+    margin-right: 32px;
+    padding: 16px;
+    cursor: pointer;
+    color: black;
+}
+
+.input-Area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.overlayPerson {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    border: 1px solid white;
+    background-color: #B8B9BA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 80px 0 32px;
 }
