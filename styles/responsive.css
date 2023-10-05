@@ -118,6 +118,9 @@
     .assignmentContainer {
         width: 96.5%;
     }
+    .addedSubtasks {
+        margin-bottom: 16px;
+      }
 }
 
 @media (max-width: 865px) {

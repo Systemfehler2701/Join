@@ -1,22 +1,21 @@
 ///SUMMARY TEMPLATES///
 async function renderSummary(element) {
-    await Board_loadFromStorage("ToDo");
-    await Board_loadFromStorage("InProgress");
-    await Board_loadFromStorage("Awaiting");
-    await Board_loadFromStorage("Done");
+    await Board_loadFromStorage("toDo");
+    await Board_loadFromStorage("inProgress");
+    await Board_loadFromStorage("feedback");
+    await Board_loadFromStorage("done");
 
-    document.getElementById('help-link').classList.remove("d-none");
-    if (element != undefined) {
-        navigationMenuClicked(element);
-    }
-    renderSummaryContent();
-    greet();
+  document.getElementById("help-link").classList.remove("d-none");
+  if (element != undefined) {
+    navigationMenuClicked(element);
+  }
+  renderSummaryContent();
+  greet();
 }
 
-
 function renderSummaryContent() {
-    let content = document.getElementById('content');
-    content.innerHTML = /* html */ `<div class="summary-content">
+  let content = document.getElementById("content");
+  content.innerHTML = /* html */ `<div class="summary-content">
     ${renderSummaryHeader()}
     <div class="summary-info">
         ${renderSummaryTask()}
@@ -25,9 +24,8 @@ function renderSummaryContent() {
 </div>`;
 }
 
-
 function renderSummaryTask() {
-    return /*html*/ `
+  return /*html*/ `
     <div class="summary-task">
         <div class="summary-line1">
             ${renderSummaryTodo()}
@@ -42,9 +40,8 @@ function renderSummaryTask() {
     </div>`;
 }
 
-
 function renderSummaryHeader() {
-    return /* html */ `
+  return /* html */ `
     <div class="summary-header">
         <h1>Join 360</h1>
         <img class="img-full" src="/assets/img/blue-stroke.svg">
@@ -53,21 +50,19 @@ function renderSummaryHeader() {
     </div>`;
 }
 
-
 function renderSummaryTodo() {
-    return /* html */ `
+  return /* html */ `
     <div class="summary-todo">
         ${renderSummaryTodoSvg()}
         <div>
-            <span id="todo-amount">${TaskLists.ToDo.length}</span>
+            <span id="todo-amount">${taskLists.toDo.length}</span>
             <p>To-do</p>
         </div>
     </div>`;
 }
 
-
 function renderSummaryTodoSvg() {
-    return /* html */ `
+  return /* html */ `
     <svg width="69" height="70" viewBox="0 0 69 70" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="34.5" cy="35" r="34.5" fill="#2A3647"/>
         <mask id="mask0_86609_5986" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="18" y="19" width="33" height="32">
@@ -79,36 +74,33 @@ function renderSummaryTodoSvg() {
     </svg>`;
 }
 
-
 function renderSummaryDone() {
-    return /* html */ `
+  return /* html */ `
     <div class="summary-done">
         ${renderSummaryDoneSvg()}
         <div>
-            <span id="done-amount">${TaskLists.Done.length}</span>
+            <span id="done-amount">${taskLists.done.length}</span>
             <p>Done</p>
         </div>
     </div>`;
 }
 
-
 function renderSummaryDoneSvg() {
-    return /* html */ `
+  return /* html */ `
     <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="35" cy="35" r="34.5" fill="#2A3647"/>
         <path d="M20.0283 35.0001L31.2571 46.0662L49.9717 23.9341" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>`;
 }
 
-
 function renderSummaryUpcoming() {
-    return /* html */ `
+  return /* html */ `
     <div class="summary-line2">
     <div class="summary-upcoming">
         <div class="upcoming-amount">
             <div class="upcoming-img"></div>
             <div>
-                <span id="upcoming-amount">${TaskLists.InProgress.length}</span>
+                <span id="upcoming-amount">${taskLists.inProgress.length}</span>
                 <p>Test</p>
             </div>
         </div>
@@ -116,43 +108,43 @@ function renderSummaryUpcoming() {
             <path d="M1 1.98828V104.011" stroke="#D1D1D1" stroke-width="2" stroke-linecap="round"/>
         </svg>
         <div class="summary-date">
-            <span class="next-date">${new Date().toLocaleString('en', {month: 'long',day: 'numeric', year: 'numeric'})}</span>
+            <span class="next-date">${new Date().toLocaleString("en", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}</span>
             <p>Upcoming Deadline</p>
         </div>                      
     </div>
     </div>`;
 }
 
-
 function renderSummaryBoard() {
-    return /* html */ `
+  return /* html */ `
     <div class="summary-board">
-        <span id="board-amount">${TaskLists.InProgress.length + TaskLists.ToDo.length + TaskLists.Awaiting.length}</span>
+        <span id="board-amount">${taskLists.inProgress.length + taskLists.toDo.length + taskLists.feedback.length}</span>
         <p>Tasks in Board</p>
     </div>`;
 }
 
-
 function renderSummaryProgress() {
-    return /* html */ `
+  return /* html */ `
     <div class="summary-progress">
-        <span id="progress-amount">${TaskLists.InProgress.length}</span>
+        <span id="progress-amount">${taskLists.inProgress.length}</span>
         <p>Tasks in Progress</p>
     </div>`;
 }
 
-
 function renderSummaryFeedback() {
-    return /* html */ `
+  return /* html */ `
     <div class="summary-feedback">
-        <span id="feedback-amount">${TaskLists.Awaiting.length}</span>
+        <span id="feedback-amount">${taskLists.feedback.length}</span>
         <p>Awaiting Feedback</p>
     </div>`;
 }
 
-
 function renderSummaryWelcome() {
-    return /* html */ `
+  return /* html */ `
     <div class="summary-welcome">
         <div id="summary-greeting"></div>
         <div class="summary-user"></div>
