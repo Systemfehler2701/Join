@@ -1,38 +1,31 @@
-// Login
+async function logIn() {
+  try {
+    let email = document.getElementById("loginEmail");
+    let passwort = document.getElementById("loginPassword");
+    
+    const usersData = await getItem("users");
+    const users = JSON.parse(usersData || "{}");
 
-// Diese Funktion wird aufgerufen, wenn der Button mit der ID "LogIn" geklickt wird
-function handleLoginClick() {
-  // Die Werte aus den Input-Feldern abrufen
+    const currentUser = Object.values(users).find(
+      (user) => user.email === email.value && user.password === passwort.value
+    );
 
-  emailValue = document.getElementById("loginEmail").value;
-  passwordValue = document.getElementById("loginPw").value;
-  // Die Werte in der Konsole ausgeben
-
-  console.log("Eingegebene Email: " + emailValue);
-  console.log("Eingegebenes Passwort: " + passwordValue);
-  console.log("Aktuelle User: " + currentuser());
-}
-
-function handleGuestClick() {
-  // Die Werte aus den Input-Feldern abrufen
-  guestuser = "Guest";
-  console.log("Aktuelle User: " + guestuser);
-}
-
-// Den Button mit der ID "LogIn" finden und einen Klick-Event-Listener hinzufügen
-const loginButton = document.getElementById("LogIn");
-loginButton.addEventListener("click", handleLoginClick);
-
-// Den Button mit der ID "Guest" finden und einen Klick-Event-Listener hinzufügen
-const GuestButton = document.getElementById("Guest");
-GuestButton.addEventListener("click", handleGuestClick);
-
-function currentuser() {
-  currentuser = document.getElementById("loginEmail").value;
-  guestuser = "Guest";
-  if ((handleLoginClick = true)) {
-    handleLoginClick();
-  } else {
-    handleGuestClick();
+    if (currentUser) {
+      localStorage.setItem("user", JSON.stringify(user));
+      window.location.href = "../index.html";
+    } else {
+      alert("Benutzer nicht gefunden. Überprüfen Sie Ihre E-Mail-Adresse und Ihr Passwort.");
+    }
+  } catch (error) {
+    console.error("Fehler beim Einloggen:", error);
   }
+}
+
+function logInGuest() {
+  currentUser = {
+    name: "Guest",
+    email: "guest",
+    password: "guest"
+  }
+  window.location.href = "../../index.html";
 }
