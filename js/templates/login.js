@@ -1,4 +1,5 @@
 let currentUser = null;
+let isGuestUser = false;
 
 async function logIn() {
   try {
@@ -8,8 +9,6 @@ async function logIn() {
     const usersData = await getItem("users");
     const users = JSON.parse(usersData);
 
-    let currentUser = null; // Hier wird die Variable für den aktuellen Benutzer deklariert
-
     // Überprüfen, ob die eingegebene E-Mail in den Benutzerdaten vorhanden ist
     if (users.hasOwnProperty(emailInput.value)) {
       const userData = users[emailInput.value];
@@ -17,7 +16,8 @@ async function logIn() {
       // Überprüfen, ob das eingegebene Passwort mit dem gespeicherten Passwort übereinstimmt
       if (userData.password === passwordInput.value) {
         // Kopiere alle Benutzerdaten in den currentUser
-        currentUser = { ...userData };
+        currentUser = { email: emailInput.value, username: userData.name };
+        isGuestUser = false;
         alert("Erfolgreich eingeloggt.");
         window.location.href = "../../index.html";
       } else {
@@ -27,8 +27,8 @@ async function logIn() {
       alert("Benutzer nicht gefunden. Überprüfen Sie Ihre E-Mail-Adresse.");
     }
 
-    // Du kannst currentUser jetzt verwenden, um auf die Benutzerdaten zuzugreifen
     console.log(currentUser);
+    console.log(isGuestUser);
   } catch (error) {
     console.error("Fehler beim Einloggen:", error);
   }
@@ -37,8 +37,8 @@ async function logIn() {
 function logInGuest() {
   currentUser = {
     name: "Guest",
-    email: "guest",
-    password: "guest",
+    email: "guest@join",
   };
+  isGuestUser = true;
   window.location.href = "../../index.html";
 }
