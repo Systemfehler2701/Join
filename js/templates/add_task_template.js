@@ -1,19 +1,19 @@
 ///ADD TASK TEMPLATES///
 function renderAddTask(element) {
-  document.getElementById("help-link").classList.remove("d-none");
-  navigationMenuClicked(element);
-  let content = document.getElementById("content");
-  Prio = [];
-  subtasks = [];
-  subtasksDone = [];
-  content.innerHTML = createNewTask("ToDo");
-  renderCategoryOptions();
-  renderAssigneeOptions();
+    document.getElementById("help-link").classList.remove("d-none");
+    navigationMenuClicked(element);
+    let content = document.getElementById("content");
+    Prio = [];
+    subtasks = [];
+    subtasksDone = [];
+    content.innerHTML = createNewTask("toDo");
+    renderCategoryOptions();
+    renderAssigneeOptions();
 }
 
 function createNewTask(array) {
-  let currentDate = getCurrentDate();
-  return /* html */ `
+    let currentDate = getCurrentDate();
+    return /* html */ `
     <div class="taskbody">
         <h1>Add Task</h1>
         <div style="width: 100%">
