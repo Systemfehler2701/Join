@@ -33,8 +33,14 @@ function createNewTask(array) {
                     </div>
                     <div class="assignment">
                         <h2>Assigned to</h2>
-                        <div onclick="openAssigneeOptions()" id="assigner" class="assignmentSelect">Select contacts to assign</div>
+                        <div  class="assignmentInput" id="assignmentInput">
+                            <input onclick="toggleAssigneeOptions(this)" onkeyup="searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+                            <div id="assignmentSelectButton" onclick="toggleAssigneeOptions(this)">
+                                <img src="/assets/img/arrow_drop_downaa.svg" alt="">
+                            </div>
+                        </div> 
                         <div style="display: none" id="assign_select" class="assignmentContainer"></div>
+                        <div class="assigneeList" id="assigneeList"></div>
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -64,7 +70,7 @@ function createNewTask(array) {
                                 <img id="Prio2_img" src="/assets/img/Prio_baja.png" class="">
                             </div>
                         </div>
-                        <div class="Taskerror" style="display: none;" id="errorPriority"> You need to Select a Priority</div>
+                        <div class="Taskerror" style="display: none;" id="errorPriority">You need to Select a Priority</div>
                     </div>
                     <div class="category">
                         <div class="uselessAstriks">

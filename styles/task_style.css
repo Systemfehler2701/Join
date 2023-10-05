@@ -13,6 +13,7 @@
 }
 
 .taskbody .task_input {
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -90,25 +91,49 @@
 }
 
 .assignmentSelect {
+  min-height: 25.5px;
   background-color: white;
   padding: 12px 16px;
   width: calc(100% - 35px);
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   font-size: 20px;
-  background-image: url(../assets/img/arrow_drop_downaa.svg);
-  background-repeat: no-repeat;
-  background-position-x: calc(100% - 18px);
-  background-position-y: calc(50% + 2px);
   cursor: pointer;
   font-family: Inter;
 }
 
+.assignmentInput {
+  position: relative;
+}
+
+.assignmentInput div {
+  z-index: 4;
+  position: absolute;
+  right: 20px;
+  top: 13px;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 29px;
+  height: 29px;
+}
+
+.assignmentInput img {
+  width: 100%;
+  height: 100%;
+}
+
+.assignmentInput div:hover {
+  background-color: #e7e7e7;
+}
+
 .assignmentContainer {
+  z-index: 2;
+  position: absolute;
+  width: 42.5%;
   display: flex;
   flex-direction: column;
   padding: 0 12px;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   background-color: white;
   max-height: 200px;
   overflow-y: scroll;
@@ -121,15 +146,19 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 48px;
+  padding-top: 8px;
 }
 
 .assigneeOption .assigneeName {
   display: flex;
   align-items: center;
-  width: 82%;
+  width: 85%;
 }
 
+.assigneeList {
+  display: flex;
+  margin: 12px 0
+}
 
 .taskbody .input2 select:hover {
   border: solid 2.5px #5a5a5a;
@@ -358,7 +387,7 @@
 .taskbody .buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 4px;
+  gap: 8px;
 }
 
 .clear {
@@ -409,7 +438,7 @@
   background-color: rgb(54, 176, 228);
 }
 
-/* These classes are purely to change the color of the priority buttons to white when they are clicked */
+/* These classes are purely to change the appearance of clicked items */
 
 .whiteFilterImg {
   filter: brightness(0) invert(1);
@@ -417,4 +446,9 @@
 
 .whiteFilterText {
   color: white !important;
+}
+
+.flip {
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
 }

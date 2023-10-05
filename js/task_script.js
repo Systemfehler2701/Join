@@ -252,47 +252,60 @@ function renderCategoryOptions() {
 }
 
 function renderAssigneeOptions() {
-  let selector = document.getElementById("assign_select");
   for (let index = 0; index < users.length; index++) {
     let user = users[index];
     if (assignees.includes(index)) {
-      selector.innerHTML += /*html*/ `
-    <div id="assignee${index}" class="assigneeOption" value="${index}">
-      <div class="initials-logo" style="">${getInitials(user.name)}</div>
-      <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${index}" onclick="unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
-  </div>
-  `;
+      createAssignedContact(user, index);
     } else {
-      selector.innerHTML += /*html*/ `
-    <div id="assignee${index}" class="assigneeOption" value="${index}">
-      <div class="initials-logo" style="">${getInitials(user.name)}</div>
-      <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${index}" onclick="assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
-  </div>
-  `;
+      createUnassignedContact(user, index);
     }
   }
 }
 
-function openAssigneeOptions() {
-  let selector = document.getElementById("assign_select");
-  let assigner = document.getElementById("assigner");
-  selector.style.display = "flex";
-  assigner.onclick = null;
-  assigner.onclick = function () {
-    hideAssigneeOptions();
-  };
+function renderAssigneeList() {
+  let list = document.getElementById("assigneeList");
+  list.innerHTML = "";
+  for (let i = 0; i < assignees.length; i++) {
+    let assigneeNumber = assignees[i];
+    let user = users[assigneeNumber];
+    list.innerHTML += /*html*/ `
+      <div class="initials-logo">${getInitials(user.name)}</div>
+    `;
+  }
 }
 
-function hideAssigneeOptions() {
+function toggleAssigneeOptions(clickedElement) {
   let selector = document.getElementById("assign_select");
-  let assigner = document.getElementById("assigner");
-  selector.style.display = "none";
-  assigner.onclick = null;
-  assigner.onclick = function () {
-    openAssigneeOptions();
-  };
+  let selectorButton = document.getElementById("assignmentSelectButton");
+  let optionsOpen = selector.style.display == "flex";
+
+  if (optionsOpen == false) {
+    selector.style.display = "flex";
+    selectorButton.classList.add("flip");
+  } else if (clickedElement == selectorButton) {
+    selector.style.display = "none";
+    selectorButton.classList.remove("flip");
+  }
+}
+
+function searchAssignees() {
+  let search = document.getElementById("assigner").value;
+  let selector = document.getElementById("assign_select");
+  if (search == "") {
+    renderAssigneeList();
+  } else {
+    selector.innerHTML = "";
+    for (let i = 0; i < users.length; i++) {
+      let user = users[i];
+      if (user["name"].toLowerCase().includes(search)) {
+        if (assignees.includes(i)) {
+          createAssignedContact(user, i);
+        } else {
+          createUnassignedContact(user, i);
+        }
+      }
+    }
+  }
 }
 
 function assign(index) {
@@ -303,6 +316,7 @@ function assign(index) {
   checkbox.onclick = function () {
     unassign(index);
   };
+  renderAssigneeList();
 }
 
 function unassign(index) {
@@ -315,6 +329,7 @@ function unassign(index) {
   checkbox.onclick = function () {
     assign(index);
   };
+  renderAssigneeList();
 }
 
 function resetError() {
@@ -357,6 +372,28 @@ function CheckInputValidity(title, dueDate, category) {
   }
 
   return validitiy;
+}
+
+function createAssignedContact(user, index) {
+  let selector = document.getElementById("assign_select");
+  selector.innerHTML += /*html*/ `
+  <div id="assignee${index}" class="assigneeOption" value="${index}">
+    <div class="initials-logo" style="">${getInitials(user.name)}</div>
+    <div class="assigneeName">${user.name}</div>
+    <img id="assigneeCheckbox${index}" onclick="unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
+</div>
+`;
+}
+
+function createUnassignedContact(user, index) {
+  let selector = document.getElementById("assign_select");
+  selector.innerHTML += /*html*/ `
+  <div id="assignee${index}" class="assigneeOption" value="${index}">
+    <div class="initials-logo" style="">${getInitials(user.name)}</div>
+    <div class="assigneeName">${user.name}</div>
+    <img id="assigneeCheckbox${index}" onclick="assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
+</div>
+`;
 }
 
 async function FULLSTOP() {
