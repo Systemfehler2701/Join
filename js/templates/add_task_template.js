@@ -3,9 +3,7 @@ function renderAddTask(element) {
   document.getElementById("help-link").classList.remove("d-none");
   navigationMenuClicked(element);
   let content = document.getElementById("content");
-  Prio = [];
-  subtasks = [];
-  subtasksDone = [];
+  resetArrays();
   content.innerHTML = createNewTask("ToDo");
   renderCategoryOptions();
   renderAssigneeOptions();

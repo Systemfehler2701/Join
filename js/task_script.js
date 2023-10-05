@@ -8,7 +8,7 @@ const TaskLists = {
 let assignees = [];
 let subtasks = [];
 let subtasksDone = [];
-let Prio = [];
+let prio = [];
 let priorities = [
   {
     priority: "Urgent",
@@ -49,8 +49,8 @@ async function addTask(list) {
     TaskLists[list].push(data);
     resetForm();
     await setItem(list, JSON.stringify(TaskLists[list]));
-    Board_closeOverlay();
-    Board_loadTasks();
+    board_closeOverlay();
+    board_loadTasks();
   }
 }
 
@@ -63,8 +63,8 @@ async function addEditedTask(list, i) {
     resetForm();
     await setItem(list, JSON.stringify(TaskLists[list]));
 
-    Board_closeOverlay();
-    Board_loadTasks();
+    board_closeOverlay();
+    board_loadTasks();
   }
 }
 
@@ -77,7 +77,7 @@ function resetForm() {
 }
 
 function resetArrays() {
-  Prio = [];
+  prio = [];
   subtasks = [];
   subtasksDone = [];
   assignees = [];
@@ -100,8 +100,8 @@ function getPrioforEditor(array, i) {
 }
 
 function setPrio(x) {
-  Prio = [];
-  Prio.push(priorities[x]);
+  prio = [];
+  prio.push(priorities[x]);
   colorPriorityButtons(x);
 }
 
@@ -199,7 +199,7 @@ function compileTaskData() {
       assignees: assignees,
       dueDate: date.getTime(),
       category: category.value,
-      priority: Prio[0],
+      priority: prio[0],
       subtasks: subtasks,
       subtasksDone: subtasksDone,
     };
@@ -362,7 +362,7 @@ function CheckInputValidity(title, dueDate, category) {
       validitiy = false;
     }
   }
-  if (Prio.length == 0) {
+  if (prio.length == 0) {
     document.getElementById("errorPriority").style.display = "block";
     validitiy = false;
   }
@@ -404,6 +404,6 @@ async function FULLSTOP() {
   await setItem("ToDo", JSON.stringify(TaskLists["ToDo"]));
   await setItem("InProgress", JSON.stringify(TaskLists["InProgress"]));
   await setItem("Awaiting", JSON.stringify(TaskLists["Awaiting"]));
-  Board_closeOverlay();
-  Board_loadTasks();
+  board_closeOverlay();
+  board_loadTasks();
 }
