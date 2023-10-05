@@ -103,6 +103,21 @@
     .headleft {
         gap: 14px;
     }
+    .taskbody .task_input {
+        flex-direction: column;
+    }
+    .divider {
+        display: none;
+    }
+    .input1 {
+        width: 100% !important;
+    }
+    .input2 {
+        width: 100% !important;
+    }
+    .assignmentContainer {
+        width: 96.5%;
+    }
 }
 
 @media (max-width: 865px) {
@@ -209,6 +224,9 @@
         font-size: 48px;
         font-weight: 700;
         margin-top: 0;
+    }
+    .assignmentContainer {
+        width: 94%;
     }
 }
 

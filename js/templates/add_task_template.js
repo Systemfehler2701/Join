@@ -35,6 +35,7 @@ function createNewTask(array) {
                         <h2>Assigned to</h2>
                         <div onclick="openAssigneeOptions()" id="assigner" class="assignmentSelect">Select contacts to assign</div>
                         <div style="display: none" id="assign_select" class="assignmentContainer"></div>
+                        <div class="assigneeList" id="assigneeList"></div>
                     </div>
                 </div>
                 <div class="divider"></div>
