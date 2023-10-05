@@ -50,6 +50,16 @@
     .input2 {
         width: 100% !important;
     }
+    .contact-leftside {
+        left: 150px;
+        height: 100%;
+        padding: 20px;
+        width: 370px;
+    }
+    .rightside {
+        padding: 10px 50px;
+        margin-left: 370px;
+    }
 }
 
 @media (max-width: 1190px) {

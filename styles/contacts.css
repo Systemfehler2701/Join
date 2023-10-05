@@ -117,6 +117,7 @@
 .contacts-headline h1 {
     font-size: 61px;
     font-weight: 700;
+    margin: 0;
 }
 
 .contacts-headline h2 {
@@ -201,7 +202,8 @@ form button {
     align-items: center;
     gap: 16px;
     flex-direction: column;
-    margin-left: 440px;
+    padding: 0 70px;
+    margin-left: 380px;
 }
 
 .darkside {
