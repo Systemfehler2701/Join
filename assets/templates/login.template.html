@@ -11,12 +11,15 @@
     <link rel="stylesheet" href="../../styles/login_signup.css" />
   </head>
 
-  <body>
+  <body id="login_signupBody">
+    <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
+
     <form onsubmit="logIn(); return false;" id="login_form">
+      <h1>Log in</h1>
       <input type="email" id="loginEmail" placeholder="Email" />
       <input type="password" id="loginPassword" placeholder="Password" />
-      <button type="submit">Login</button>
-      <button type="button" onclick="logInGuest()">Guest Login</button>
+      <button type="submit">Log in</button>
+      <button type="button" onclick="logInGuest()">Guest Log in</button>
     </form>
     <script src="../../js/storage.js"></script>
     <script src="../../js/templates/login.js"></script>
