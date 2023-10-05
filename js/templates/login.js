@@ -16,7 +16,7 @@ async function logIn() {
       // Überprüfen, ob das eingegebene Passwort mit dem gespeicherten Passwort übereinstimmt
       if (userData.password === passwordInput.value) {
         // Kopiere alle Benutzerdaten in den currentUser
-        currentUser = { email: emailInput.value, username: userData.name };
+        currentUser = { email: emailInput.value, name: userData.name };
         isGuestUser = false;
         alert("Erfolgreich eingeloggt.");
         window.location.href = "../../index.html";
