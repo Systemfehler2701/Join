@@ -333,6 +333,24 @@ progress {
     margin: 0;
 }
 
+.assigneeListFull {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    gap: 16px;
+
+}
+
+.assigneeFull {
+    display: flex;
+}
+
+.assigneeNameFull {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .prioFull {
     display: flex;
     font-size: 20px;
@@ -473,6 +491,7 @@ progress {
 .cardheadEdit {
     display: flex;
     justify-content: flex-end;
+    width: 90%;
 }
 
 .cardheadEdit img {
@@ -580,25 +599,16 @@ progress {
     box-shadow: 0 10px 4px rgb(150, 150, 150);
 }
 
+.assignmentEdit {
+    position: relative;
+}
+
 .assigneesEdit p {
     margin: 0 0 8px 0;
 }
 
-.assigneesEdit select {
-    width: 100%;
-    border-radius: 10px;
-    border: solid 1px #d1d1d1;
-    height: 50px;
-    padding: 12px 16px 12px 16px;
-    font-size: 20px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url(../assets/img/arrow_drop_downaa.svg);
-    background-repeat: no-repeat;
-    background-position-x: calc(100% - 18px);
-    background-position-y: calc(50% + 2px);
-    cursor: pointer;
+.assignmentEdit .assignmentContainer {
+    width: 92%;
 }
 
 .subtasksEdit {
@@ -663,6 +673,7 @@ progress {
     background-position-x: 85%;
     background-position-y: 46%;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+    width: 100px;
 }
 
 .editorBottom button:hover {
@@ -673,4 +684,5 @@ progress {
 .editorBottom {
     display: flex;
     justify-content: flex-end;
+    width: 90%;
 }

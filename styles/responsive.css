@@ -38,18 +38,7 @@
     .summary-task p {
         padding: 0 10px;
     }
-    .taskbody .task_input {
-        flex-direction: column;
-    }
-    .divider {
-        display: none;
-    }
-    .input1 {
-        width: 100% !important;
-    }
-    .input2 {
-        width: 100% !important;
-    }
+
 }
 
 @media (max-width: 1190px) {
@@ -93,6 +82,21 @@
     .headleft {
         gap: 14px;
     }
+    .taskbody .task_input {
+        flex-direction: column;
+    }
+    .divider {
+        display: none;
+    }
+    .input1 {
+        width: 100% !important;
+    }
+    .input2 {
+        width: 100% !important;
+    }
+    .assignmentContainer {
+        width: 96.5%;
+      }
 }
 
 @media (max-width: 865px) {
@@ -200,6 +204,9 @@
         font-weight: 700;
         margin-top: 0;
     }
+    .assignmentContainer {
+        width: 94%;
+      }
 }
 
 @media(max-width: 432px) {

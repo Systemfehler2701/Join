@@ -13,6 +13,7 @@
 }
 
 .taskbody .task_input {
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -105,10 +106,13 @@
 }
 
 .assignmentContainer {
+  z-index: 2;
+  position: absolute;
+  width: 42.5%;
   display: flex;
   flex-direction: column;
   padding: 0 12px;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   background-color: white;
   max-height: 200px;
   overflow-y: scroll;
@@ -121,7 +125,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 48px;
+  padding-top: 8px;
 }
 
 .assigneeOption .assigneeName {
@@ -130,6 +134,10 @@
   width: 82%;
 }
 
+.assigneeList {
+  display: flex;
+  margin-top: 12px;
+}
 
 .taskbody .input2 select:hover {
   border: solid 2.5px #5a5a5a;

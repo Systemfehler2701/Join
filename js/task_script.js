@@ -275,6 +275,18 @@ function renderAssigneeOptions() {
   }
 }
 
+function renderAssigneeList() {
+  let list = document.getElementById("assigneeList");
+  list.innerHTML = "";
+  for (let i = 0; i < assignees.length; i++) {
+    let assigneeNumber = assignees[i];
+    let user = users[assigneeNumber];
+    list.innerHTML += /*html*/ `
+      <div class="initials-logo">${getInitials(user.name)}</div>
+    `;
+  }
+}
+
 function openAssigneeOptions() {
   let selector = document.getElementById("assign_select");
   let assigner = document.getElementById("assigner");
@@ -303,6 +315,7 @@ function assign(index) {
   checkbox.onclick = function () {
     unassign(index);
   };
+  renderAssigneeList();
 }
 
 function unassign(index) {
@@ -315,6 +328,7 @@ function unassign(index) {
   checkbox.onclick = function () {
     assign(index);
   };
+  renderAssigneeList();
 }
 
 function resetError() {
