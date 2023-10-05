@@ -1,9 +1,9 @@
 ///SUMMARY TEMPLATES///
 async function renderSummary(element) {
-  await board_loadFromStorage("ToDo");
-  await board_loadFromStorage("InProgress");
-  await board_loadFromStorage("Awaiting");
-  await board_loadFromStorage("Done");
+    await Board_loadFromStorage("toDo");
+    await Board_loadFromStorage("inProgress");
+    await Board_loadFromStorage("feedback");
+    await Board_loadFromStorage("done");
 
   document.getElementById("help-link").classList.remove("d-none");
   if (element != undefined) {
@@ -55,7 +55,7 @@ function renderSummaryTodo() {
     <div class="summary-todo">
         ${renderSummaryTodoSvg()}
         <div>
-            <span id="todo-amount">${TaskLists.ToDo.length}</span>
+            <span id="todo-amount">${taskLists.toDo.length}</span>
             <p>To-do</p>
         </div>
     </div>`;
@@ -79,7 +79,7 @@ function renderSummaryDone() {
     <div class="summary-done">
         ${renderSummaryDoneSvg()}
         <div>
-            <span id="done-amount">${TaskLists.Done.length}</span>
+            <span id="done-amount">${taskLists.done.length}</span>
             <p>Done</p>
         </div>
     </div>`;
@@ -100,7 +100,7 @@ function renderSummaryUpcoming() {
         <div class="upcoming-amount">
             <div class="upcoming-img"></div>
             <div>
-                <span id="upcoming-amount">${TaskLists.InProgress.length}</span>
+                <span id="upcoming-amount">${taskLists.inProgress.length}</span>
                 <p>Test</p>
             </div>
         </div>
@@ -122,11 +122,7 @@ function renderSummaryUpcoming() {
 function renderSummaryBoard() {
   return /* html */ `
     <div class="summary-board">
-        <span id="board-amount">${
-          TaskLists.InProgress.length +
-          TaskLists.ToDo.length +
-          TaskLists.Awaiting.length
-        }</span>
+        <span id="board-amount">${taskLists.inProgress.length + taskLists.toDo.length + taskLists.feedback.length}</span>
         <p>Tasks in Board</p>
     </div>`;
 }
@@ -134,7 +130,7 @@ function renderSummaryBoard() {
 function renderSummaryProgress() {
   return /* html */ `
     <div class="summary-progress">
-        <span id="progress-amount">${TaskLists.InProgress.length}</span>
+        <span id="progress-amount">${taskLists.inProgress.length}</span>
         <p>Tasks in Progress</p>
     </div>`;
 }
@@ -142,7 +138,7 @@ function renderSummaryProgress() {
 function renderSummaryFeedback() {
   return /* html */ `
     <div class="summary-feedback">
-        <span id="feedback-amount">${TaskLists.Awaiting.length}</span>
+        <span id="feedback-amount">${taskLists.feedback.length}</span>
         <p>Awaiting Feedback</p>
     </div>`;
 }

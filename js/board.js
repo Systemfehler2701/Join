@@ -6,140 +6,137 @@ let progressList;
 let waitingList;
 let doneList;
 
-async function board_loadTasks() {
-  assignDocuments();
+async function Board_loadTasks() {
+    assignDocuments();
 
-  await board_loadFromStorage("ToDo");
-  await board_loadFromStorage("InProgress");
-  await board_loadFromStorage("Awaiting");
-  await board_loadFromStorage("Done");
+    await Board_loadFromStorage("toDo");
+    await Board_loadFromStorage("inProgress");
+    await Board_loadFromStorage("feedback");
+    await Board_loadFromStorage("done");
 
-  board_renderToDo();
-  board_renderInProgress();
-  board_renderAwaiting();
-  board_renderDone();
-  resetArrays();
-}
-
-function board_assignDocuments() {
-  overlay = document.getElementById("BoardOverlay");
-  overlayBody = document.getElementById("boardOverlaybody");
-  blocker = document.getElementById("blocker");
-  todoList = document.getElementById("ToDo");
-  progressList = document.getElementById("inProgress");
-  waitingList = document.getElementById("awaitFeedback");
-  doneList = document.getElementById("done");
-}
-
-function board_search() {
-  board_searchByList(todoList, "ToDo");
-  board_searchByList(progressList, "InProgress");
-  board_searchByList(waitingList, "Awaiting");
-  board_searchByList(doneList, "Done");
-}
-
-function board_searchByList(list, array) {
-  let search = document.getElementById("taskSearch").value;
-  search = search.toLowerCase();
-  list.innerHTML = "";
-  let tasks = TaskLists[array];
-  for (let j = 0; j < tasks.length; j++) {
-    let task = tasks[j];
-    if (task["title"].toLowerCase().includes(search)) {
-      list.innerHTML += board_createTaskCard(tasks, j, array);
-      board_subTaskProgress(tasks, j);
-    }
-  }
-}
-
-function board_resetSearch() {
-  let search = document.getElementById("taskSearch").value;
-  if (search == "") {
-    board_renderToDo();
-    board_renderInProgress();
-    board_renderAwaiting();
-    board_renderDone();
-  }
+    Board_renderToDo();
+    Board_renderInProgress();
+    Board_renderFeedback();
+    Board_renderDone();
+    resetArrays();
 }
 
 function assignDocuments() {
-  overlay = document.getElementById("BoardOverlay");
-  overlayBody = document.getElementById("boardOverlaybody");
-  blocker = document.getElementById("blocker");
-  todoList = document.getElementById("ToDo");
-  progressList = document.getElementById("inProgress");
-  waitingList = document.getElementById("awaitFeedback");
-  doneList = document.getElementById("done");
+    overlay = document.getElementById("BoardOverlay");
+    overlayBody = document.getElementById("boardOverlaybody");
+    blocker = document.getElementById("blocker");
+    todoList = document.getElementById("toDo");
+    progressList = document.getElementById("inProgress");
+    waitingList = document.getElementById("awaitFeedback");
+    doneList = document.getElementById("done");
+}
+
+function Board_search() {
+    Board_searchByList(todoList, "toDo");
+    Board_searchByList(progressList, "inProgress");
+    Board_searchByList(waitingList, "feedback");
+    Board_searchByList(doneList, "done");
+}
+
+function Board_searchByList(list, array) {
+    let search = document.getElementById("taskSearch").value;
+    search = search.toLowerCase();
+    list.innerHTML = "";
+    tasks = taskLists[array];
+    for (let j = 0; j < tasks.length; j++) {
+        let task = tasks[j];
+        if (task["title"].toLowerCase().includes(search)) {
+            list.innerHTML += Board_createTaskCard(tasks, j, array);
+            Board_subTaskProgress(tasks, j);
+        }
+    }
+}
+
+function Board_resetSearch() {
+    let search = document.getElementById("taskSearch").value;
+    if (search == "") {
+        Board_renderToDo();
+        Board_renderInProgress();
+        Board_renderFeedback();
+        Board_renderDone();
+    }
+}
+
+function assignDocuments() {
+    overlay = document.getElementById("BoardOverlay");
+    overlayBody = document.getElementById("boardOverlaybody");
+    blocker = document.getElementById("blocker");
+    todoList = document.getElementById("toDo");
+    progressList = document.getElementById("inProgress");
+    waitingList = document.getElementById("awaitFeedback");
+    doneList = document.getElementById("done");
 }
 
 function board_search() {
-  board_searchByList(todoList, "ToDo");
-  board_searchByList(progressList, "InProgress");
-  board_searchByList(waitingList, "Awaiting");
-  board_searchByList(doneList, "Done");
+    board_searchByList(todoList, "toDo");
+    board_searchByList(progressList, "inProgress");
+    board_searchByList(waitingList, "feedback");
+    board_searchByList(doneList, "done");
 }
 
 function board_searchByList(list, array) {
-  let search = document.getElementById("taskSearch").value;
-  search = search.toLowerCase();
-  list.innerHTML = "";
-  tasks = TaskLists[array];
-  for (let j = 0; j < tasks.length; j++) {
-    let task = tasks[j];
-    if (
-      task["title"].toLowerCase().includes(search) ||
-      task["description"].toLowerCase().includes(search)
-    ) {
-      list.innerHTML += board_createTaskCard(tasks, j, array);
-      board_subTaskProgress(tasks, j, array);
-      board_displayAssignees(tasks, j, array);
+    let search = document.getElementById("taskSearch").value;
+    search = search.toLowerCase();
+    list.innerHTML = "";
+    let tasks = taskLists[array];
+    for (let j = 0; j < tasks.length; j++) {
+        let task = tasks[j];
+        if (task["title"].toLowerCase().includes(search) || task["description"].toLowerCase().includes(search)) {
+            list.innerHTML += Board_createTaskCard(tasks, j, array);
+            board_subTaskProgress(tasks, j, array);
+            board_displayAssignees(tasks, j, array);
+        }
     }
-  }
 }
 
 function board_resetSearch() {
-  let search = document.getElementById("taskSearch").value;
-  if (search == "") {
-    board_renderToDo();
-    board_renderInProgress();
-    board_renderAwaiting();
-    board_renderDone();
-  }
+    let search = document.getElementById("taskSearch").value;
+    if (search == "") {
+        board_renderToDo();
+        board_renderInProgress();
+        board_renderFeedback();
+        board_renderDone();
+    }
 }
 
 function board_addTask(array) {
-  overlay.style.display = "flex";
-  overlayBody.innerHTML = "";
-  overlayBody.innerHTML = createNewTask(array);
-  renderCategoryOptions();
-  renderAssigneeOptions();
-  blocker.onclick = function () {
-    board_closeOverlay();
-  };
+    overlay.style.display = "flex";
+    overlayBody.innerHTML = "";
+    overlayBody.innerHTML = createNewTask(array);
+    renderCategoryOptions();
+    renderAssigneeOptions();
+    blocker.onclick = function() {
+        board_closeOverlay();
+    };
 }
 
 function board_renderFullTaskCard(array, i) {
-  overlay.style.display = "flex";
-  overlayBody.innerHTML = "";
-  overlayBody.innerHTML = createFullTaskCard(array, i);
-  board_renderSubtasksFull(array, i);
-  board_displayAssigneesFull(array, i);
-  blocker.onclick = function () {
-    board_closeOverlay();
-  };
+    overlay.style.display = "flex";
+    overlayBody.innerHTML = "";
+    overlayBody.innerHTML = createFullTaskCard(array, i);
+    Board_renderSubtasksFull(array, i);
+    Board_displayAssigneesFull(array, i)
+    blocker.onclick = function() {
+        Board_closeOverlay();
+    };
 }
 
-async function board_cutTask(array, i) {
-  TaskLists[array].splice(i, 1);
-  await setItem(array, JSON.stringify(TaskLists[array]));
-  board_closeOverlay();
-  board_loadTasks();
+async function Board_cutTask(array, i) {
+    taskLists[array].splice(i, 1);
+    await setItem(array, JSON.stringify(taskLists[array]));
+    Board_closeOverlay();
+    Board_loadTasks();
 }
 
-function board_renderWarning(array, i) {
-  document.getElementById("DeleteOverlay").style.display = "flex";
-  document.getElementById("DeleteOverlaybody").innerHTML = "";
-  document.getElementById("DeleteOverlaybody").innerHTML = /*html*/ `
+function Board_renderWarning(array, i) {
+    document.getElementById("DeleteOverlay").style.display = "flex";
+    document.getElementById("DeleteOverlaybody").innerHTML = "";
+    document.getElementById("DeleteOverlaybody").innerHTML = /*html*/ `
     <h2>Are you sure you want to delete this Task?</h2>
     <div class="DeleteOptions">
       <button class="create" onclick="board_cutTask('${array}', ${i})">Delete</button>
@@ -148,195 +145,195 @@ function board_renderWarning(array, i) {
   `;
 }
 
-function board_GoBack() {
-  document.getElementById("DeleteOverlay").style.display = "none";
+function Board_GoBack() {
+    document.getElementById("DeleteOverlay").style.display = "none";
 }
 
-function board_editTask(array, i) {
-  let x = getPrioforEditor(array, i);
-  overlayBody.innerHTML = board_createTaskEditor(array, i);
-  renderSubtasks();
-  renderAssigneeOptions();
-  renderAssigneeList();
-  if (x != null) {
-    setPrio(x);
-  }
+function Board_editTask(array, i) {
+    let x = getPrioforEditor(array, i);
+    overlayBody.innerHTML = Board_createTaskEditor(array, i);
+    renderSubtasks();
+    renderAssigneeOptions();
+    renderAssigneeList();
+    if (x != null) {
+        setPrio(x);
+    }
 }
 
-function board_closeOverlay() {
-  overlay.style.display = "none";
-  overlayBody.innerHTML = "";
-  resetArrays();
-  board_loadTasks();
+function Board_closeOverlay() {
+    overlay.style.display = "none";
+    overlayBody.innerHTML = "";
+    resetArrays();
+    Board_loadTasks();
 }
 
-function board_showProgress() {
-  let progress = answeredQuestions / subtasks.length;
-  progress = Math.round(progress * 100);
-  document.getElementById("progressBar").value = `${progress}% `;
+function Board_showProgress() {
+    let progress = answeredQuestions / subtasks.length;
+    progress = Math.round(progress * 100);
+    document.getElementById("progressBar").value = `${progress}% `;
 }
 
-function board_renderToDo() {
-  let todoList = document.getElementById("ToDo");
-  if (TaskLists["ToDo"].length == 0) {
-    board_renderPlaceholder(todoList, "No tasks to do");
-  } else {
-    board_renderCard(todoList, TaskLists["ToDo"], "ToDo");
-  }
+function Board_renderToDo() {
+    let todoList = document.getElementById("toDo");
+    if (taskLists["toDo"].length == 0) {
+        Board_renderPlaceholder(todoList, "No tasks to do");
+    } else {
+        Board_renderCard(todoList, taskLists["toDo"], "toDo");
+    }
 }
 
-function board_renderInProgress() {
-  let progressList = document.getElementById("inProgress");
-  if (TaskLists["InProgress"].length == 0) {
-    board_renderPlaceholder(progressList, "No tasks in progress");
-  } else {
-    board_renderCard(progressList, TaskLists["InProgress"], "InProgress");
-  }
+function Board_renderInProgress() {
+    let progressList = document.getElementById("inProgress");
+    if (taskLists["inProgress"].length == 0) {
+        Board_renderPlaceholder(progressList, "No tasks in progress");
+    } else {
+        Board_renderCard(progressList, taskLists["inProgress"], "inProgress");
+    }
 }
 
-function board_renderAwaiting() {
-  let waitingList = document.getElementById("awaitFeedback");
-  if (TaskLists["Awaiting"].length == 0) {
-    board_renderPlaceholder(waitingList, "No tasks awaiting feedback");
-  } else {
-    board_renderCard(waitingList, TaskLists["Awaiting"], "Awaiting");
-  }
+function Board_renderFeedback() {
+    let waitingList = document.getElementById("awaitFeedback");
+    if (taskLists["feedback"].length == 0) {
+        Board_renderPlaceholder(waitingList, "No tasks awaiting feedback");
+    } else {
+        Board_renderCard(waitingList, taskLists["feedback"], "feedback");
+    }
 }
 
-function board_renderDone() {
-  let doneList = document.getElementById("done");
-  if (TaskLists["Done"].length == 0) {
-    board_renderPlaceholder(doneList, "No tasks done yet");
-  } else {
-    board_renderCard(doneList, TaskLists["Done"], "Done");
-  }
+function Board_renderDone() {
+    let doneList = document.getElementById("done");
+    if (taskLists["done"].length == 0) {
+        Board_renderPlaceholder(doneList, "No tasks done yet");
+    } else {
+        Board_renderCard(doneList, taskLists["done"], "done");
+    }
 }
 
-function board_renderPlaceholder(List, placeholder) {
-  List.innerHTML = `
+function Board_renderPlaceholder(List, placeholder) {
+    List.innerHTML = `
     <div class="placeholder">
         <p>${placeholder}</p>
     </div>
     `;
 }
 
-function board_renderCard(list, array, arrayName) {
-  list.innerHTML = "";
-  for (let i = 0; i < array.length; i++) {
-    list.innerHTML += board_createTaskCard(array, i, arrayName);
-    board_subTaskProgress(array, i, arrayName);
-    board_displayAssignees(array, i, arrayName);
-  }
+function Board_renderCard(list, array, arrayName) {
+    list.innerHTML = "";
+    for (let i = 0; i < array.length; i++) {
+        list.innerHTML += Board_createTaskCard(array, i, arrayName);
+        Board_subTaskProgress(array, i, arrayName);
+        Board_displayAssignees(array, i, arrayName);
+    }
 }
 
-async function board_loadFromStorage(list) {
-  try {
-    TaskLists[list] = JSON.parse(await getItem(list));
-  } catch {
-    console.error("Loading error:");
-  }
+async function Board_loadFromStorage(list) {
+    try {
+        taskLists[list] = JSON.parse(await getItem(list));
+    } catch {
+        console.error("Loading error:");
+    }
 }
 
-function board_renderSubtasksFull(array, i) {
-  let subtaskList = TaskLists[array][i]["subtasks"];
-  let allSubtasks = document.getElementById("SubtaskListFull");
-  allSubtasks.innerHTML = "";
-  for (let j = 0; j < subtaskList.length; j++) {
-    let subtask = subtaskList[j];
-    if (subtask["done"] == 0) {
-      allSubtasks.innerHTML += `
+function Board_renderSubtasksFull(array, i) {
+    let subtaskList = taskLists[array][i]["subtasks"];
+    let allSubtasks = document.getElementById("SubtaskListFull");
+    allSubtasks.innerHTML = "";
+    for (let j = 0; j < subtaskList.length; j++) {
+        let subtask = subtaskList[j];
+        if (subtask["done"] == 0) {
+            allSubtasks.innerHTML += `
       <div class="singleSubtaskFull">
         <img id="checkbox${j}" class="checkbox" onclick="board_finishSubtask('${array}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
         ${subtask["task"]}
       </div>
       `;
-    } else {
-      allSubtasks.innerHTML += `
+        } else {
+            allSubtasks.innerHTML += `
       <div class="singleSubtaskFull">
         <img id="checkbox${j}" class="checkbox" onclick="revertSubtask('${array}', ${i}, ${j})" src="/assets/img/Check button.svg" alt="">
         ${subtask["task"]}
       </div>
       `;
+        }
     }
-  }
 }
 
-async function board_finishSubtask(array, i, j) {
-  let subtaskList = TaskLists[array][i]["subtasks"];
-  subtaskList[j]["done"] = 1;
-  TaskLists[array][i]["subtasksDone"].push(subtaskList[j]);
+async function finishSubtask(array, i, j) {
+    let subtaskList = taskLists[array][i]["subtasks"];
+    subtaskList[j]["done"] = 1;
+    taskLists[array][i]["subtasksDone"].push(subtaskList[j]);
 
-  board_renderSubtasksFull(array, i);
-  await setItem(array, JSON.stringify(TaskLists[array]));
+    Board_renderSubtasksFull(array, i);
+    await setItem(array, JSON.stringify(taskLists[array]));
 }
 
 async function revertSubtask(array, i, j) {
-  let subtaskList = TaskLists[array][i]["subtasks"];
-  subtaskList[j]["done"] = 0;
-  TaskLists[array][i]["subtasksDone"].splice(0, 1);
+    let subtaskList = taskLists[array][i]["subtasks"];
+    subtaskList[j]["done"] = 0;
+    taskLists[array][i]["subtasksDone"].splice(0, 1);
 
-  board_renderSubtasksFull(array, i);
-  await setItem(array, JSON.stringify(TaskLists[array]));
+    Board_renderSubtasksFull(array, i);
+    await setItem(array, JSON.stringify(taskLists[array]));
 }
 
-function board_subTaskProgress(array, i, arrayName) {
-  let task = array[i];
-  if (task["subtasks"].length == 0) {
-    document.getElementById(`subtaskscard${i}`).style.display = "none";
-  } else {
-    let progress = task["subtasksDone"].length / task["subtasks"].length;
-    progress = Math.round(progress * 100);
-    document.getElementById(`progressbar${arrayName}${i}`).value = progress;
-  }
+function Board_subTaskProgress(array, i, arrayName) {
+    let task = array[i];
+    if (task["subtasks"].length == 0) {
+        document.getElementById(`subtaskscard${i}`).style.display = "none";
+    } else {
+        let progress = task["subtasksDone"].length / task["subtasks"].length;
+        progress = Math.round(progress * 100);
+        document.getElementById(`progressbar${arrayName}${i}`).value = progress;
+    }
 }
 
-function board_displayAssignees(array, i) {
-  let task = array[i];
-  let assigned = task["assignees"];
-  for (let j = 0; j < assigned.length; j++) {
-    const assigneeNumber = assigned[j];
-    let user = users[assigneeNumber];
-    document.getElementById(`assignees${i}`).innerHTML += /*html*/ `
+function Board_displayAssignees(array, i) {
+    let task = array[i];
+    let assigned = task["assignees"];
+    for (let j = 0; j < assigned.length; j++) {
+        const assigneeNumber = assigned[j];
+        let user = users[assigneeNumber];
+        document.getElementById(`assignees${i}`).innerHTML += /*html*/ `
     <div class="initials-logo">${getInitials(user.name)}</div>
   `;
-  }
+    }
 }
 
-function board_displayAssigneesFull(array, i) {
-  let task = TaskLists[array][i];
-  let assigned = task["assignees"];
-  for (let j = 0; j < assigned.length; j++) {
-    const assigneeNumber = assigned[j];
-    let user = users[assigneeNumber];
-    document.getElementById(`assigneeListFull`).innerHTML += /*html*/ `
+function Board_displayAssigneesFull(array, i) {
+    let task = taskLists[array][i];
+    let assigned = task["assignees"];
+    for (let j = 0; j < assigned.length; j++) {
+        const assigneeNumber = assigned[j];
+        let user = users[assigneeNumber];
+        document.getElementById(`assigneeListFull`).innerHTML += /*html*/ `
     <div class="assigneeFull">
       <div class="initials-logo">${getInitials(user.name)}</div>
       <div class="assigneeNameFull">${user.name}</div>
     </div>
     `;
-  }
+    };
 }
 
 function getCurrentDate() {
-  let currentDay = ("0" + new Date().getDate()).slice(-2);
-  let currentMonth = ("0" + (new Date().getMonth() + 1)).slice(-2);
-  let currentYear = new Date().getFullYear();
+    let currentDay = ("0" + new Date().getDate()).slice(-2);
+    let currentMonth = ("0" + (new Date().getMonth() + 1)).slice(-2);
+    let currentYear = new Date().getFullYear();
 
-  return { currentYear, currentMonth, currentDay };
+    return { currentYear, currentMonth, currentDay };
 }
 
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //////////////////////////////////////////////////////// HTML DUMP \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 function createFullTaskCard(array, i) {
-  let task = TaskLists[array][i];
-  let category = task["category"];
-  let date = new Date(task["dueDate"]).toLocaleString("en", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-  return /*html*/ `
+    let task = taskLists[array][i];
+    let category = task["category"];
+    let date = new Date(task["dueDate"]).toLocaleString("en", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    });
+    return /*html*/ `
   <section id="DeleteOverlay" class="Boardoverlay" style="display: none;">
      <div onclick="board_GoBack()" id ="Deleteblocker" class="blocker"></div>
      <div id="DeleteOverlaybody" class="overlayBlank"></div>
@@ -362,7 +359,7 @@ function createFullTaskCard(array, i) {
         </div>
     </div>
     <div class="assigneesFull">
-        <p>Assigned to:</p>
+            <p>Assigned to:</p>
         <div class="assigneeListFull" id="assigneeListFull"></div>
     </div>
     <div class="subtasksFull">
@@ -379,11 +376,11 @@ function createFullTaskCard(array, i) {
     `;
 }
 
-function board_createTaskCard(array, i, arrayName) {
-  let task = array[i];
-  let category = task["category"];
-  return /*html*/ `
-      <div draggable="true" ondragstart="startDragging('${arrayName}',${i})" onclick="board_renderFullTaskCard('${arrayName}', ${i})" class="taskcard">
+function Board_createTaskCard(array, i, arrayName) {
+    let task = array[i];
+    let category = task["category"];
+    return /*html*/ `
+      <div draggable="true" ondragstart="startDragging('${arrayName}',${i})" onclick="Board_renderFullTaskCard('${arrayName}', ${i})" class="taskcard">
         <div class="categorycard" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
         <h2>${task["title"]}</h2>
         <p class="descriptioncard">
@@ -401,16 +398,16 @@ function board_createTaskCard(array, i, arrayName) {
     `;
 }
 
-function board_createTaskEditor(array, i) {
-  let task = TaskLists[array][i];
-  subtasks = task["subtasks"];
-  assignees = task["assignees"];
-  let date = new Date(task["dueDate"]);
+function Board_createTaskEditor(array, i) {
+    let task = taskLists[array][i];
+    subtasks = task["subtasks"];
+    assignees = task["assignees"];
+    let date = new Date(task["dueDate"]);
 
-  let day = ("0" + date.getDate()).slice(-2);
-  let month = ("0" + (date.getMonth() + 1)).slice(-2);
-  let year = date.getFullYear();
-  return /*html*/ `
+    let day = ("0" + date.getDate()).slice(-2);
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    let year = date.getFullYear();
+    return /*html*/ `
 <div class="cardheadEdit">
   <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
 </div>

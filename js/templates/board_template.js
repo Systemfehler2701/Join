@@ -50,7 +50,7 @@ function renderBoardHead() {
                     <img onclick="board_search()" src="assets/img/search.svg" alt="">
                 </div>
             </div>
-            <button onclick="board_addTask('ToDo')">Add task</button>
+            <button onclick="Board_addTask('toDo')">Add task</button>
         </div>
     </div>`;
 }
@@ -60,9 +60,9 @@ function renderBoardTaskTodo() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>To do</h2>
-            <button onclick="board_addTask('ToDo')" class="add"></button>
+            <button onclick="Board_addTask('toDo')" class="add"></button>
         </div>
-        <div id="ToDo" class="panelbody" data-array="ToDo"></div>
+        <div id="toDo" class="panelbody" ondrop="drop('toDo')" ondragover="allowDrop(event)"></div>
     </div>`;
 }
 
@@ -71,9 +71,9 @@ function renderBoardTaskProgress() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>In progress</h2>
-            <button onclick="board_addTask('InProgress')" class="add"></button>
+            <button onclick="Board_addTask('inProgress')" class="add"></button>
         </div>
-        <div id="inProgress" class="panelbody" data-array="InProgress"></div>
+        <div id="inProgress" class="panelbody" ondrop="drop('inProgress')" ondragover="allowDrop(event)"></div>
     </div>`;
 }
 
@@ -82,9 +82,9 @@ function renderBoardTaskFeedback() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>Await feedback</h2>
-            <button onclick="board_addTask('Awaiting')" class="add"></button>
+            <button onclick="Board_addTask('feedback')" class="add"></button>
         </div>
-        <div id="awaitFeedback" class="panelbody" data-array="Awaiting"></div>
+        <div id="awaitFeedback" class="panelbody" ondrop="drop('feedback')" ondragover="allowDrop(event)"></div>
     </div>`;
 }
 
@@ -94,6 +94,6 @@ function renderBoardTaskDone() {
         <div class="panelhead">
             <h2>Done</h2>
         </div>
-        <div id="done" class="panelbody" data-array="Done"></div>
+        <div id="done" class="panelbody" ondrop="drop('done')" ondragover="allowDrop(event)"></div>
     </div>`;
 }
