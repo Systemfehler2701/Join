@@ -1,25 +1,31 @@
 async function logIn() {
   try {
-    let email = document.getElementById("loginEmail");
-    let passwort = document.getElementById("loginPassword");
+    const emailInput = document.getElementById("loginEmail");
+    const passwordInput = document.getElementById("loginPassword");
     
     const usersData = await getItem("users");
-    const users = JSON.parse(usersData || "{}");
+    const users = JSON.parse(usersData);
 
-    const currentUser = Object.values(users).find(
-      (user) => user.email === email.value && user.password === passwort.value
-    );
-
-    if (currentUser) {
-      localStorage.setItem("user", JSON.stringify(user));
-      window.location.href = "../index.html";
+    // Überprüfen, ob die eingegebene E-Mail in den Benutzerdaten vorhanden ist
+    if (users.hasOwnProperty(emailInput.value)) {
+      const currentUser = users[emailInput.value];
+      
+      // Überprüfen, ob das eingegebene Passwort mit dem gespeicherten Passwort übereinstimmt
+      if (currentUser.password === passwordInput.value) {
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        alert("Erfolgreich eingeloggt.");
+        window.location.href = "../../index.html";
+      } else {
+        alert("Falsches Passwort. Bitte überprüfen Sie Ihr Passwort.");
+      }
     } else {
-      alert("Benutzer nicht gefunden. Überprüfen Sie Ihre E-Mail-Adresse und Ihr Passwort.");
+      alert("Benutzer nicht gefunden. Überprüfen Sie Ihre E-Mail-Adresse.");
     }
   } catch (error) {
     console.error("Fehler beim Einloggen:", error);
   }
 }
+
 
 function logInGuest() {
   currentUser = {
