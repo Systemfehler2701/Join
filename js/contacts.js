@@ -207,5 +207,9 @@ function addContactsEventlistener() {
     document.getElementById('closeForm').addEventListener('click', closeOverlay);
     document.getElementById('editForm').addEventListener('submit', updateContact);
     document.getElementById('closeEditForm').addEventListener('click', closeEditOverlay);
-
+    document.getElementById('deleteContactBtn').addEventListener('click', function() {
+        const indexToDelete = document.getElementById('editIndex').value;
+        deleteContact(indexToDelete);
+        document.getElementById('editOverlay').style.display = 'none';
+    });
 }
