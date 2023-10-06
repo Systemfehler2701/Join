@@ -1,19 +1,19 @@
 ///BOARD TEMPLATES///
 function renderBoard(element) {
-  document.getElementById("help-link").classList.remove("d-none");
-  navigationMenuClicked(element);
-  let content = document.getElementById("content");
-  content.innerHTML = /* html */ `
+    document.getElementById("help-link").classList.remove("d-none");
+    navigationMenuClicked(element);
+    let content = document.getElementById("content");
+    content.innerHTML = /* html */ `
     ${renderBoardOverlay()}
     ${renderBoardBody()}`;
-  overlay = document.getElementById("BoardOverlay");
-  overlayBody = document.getElementById("boardOverlaybody");
-  blocker = document.getElementById("blocker");
-  board_loadTasks();
+    overlay = document.getElementById("BoardOverlay");
+    overlayBody = document.getElementById("boardOverlaybody");
+    blocker = document.getElementById("blocker");
+    Board_loadTasks();
 }
 
 function renderBoardOverlay() {
-  return /* html */ `
+    return /* html */ `
     <section id="BoardOverlay" class="Boardoverlay" style="display: none;">
         <div id ="blocker" class="blocker"></div>
         <div id="boardOverlaybody" class="overlayBlank"></div>
@@ -21,7 +21,7 @@ function renderBoardOverlay() {
 }
 
 function renderBoardBody() {
-  return /* html */ `
+    return /* html */ `
     <section class="boardbody">
         ${renderBoardHead()}
         ${renderBoardPanels()}
@@ -29,7 +29,7 @@ function renderBoardBody() {
 }
 
 function renderBoardPanels() {
-  return /* html */ `
+    return /* html */ `
     <div class="panels">
         ${renderBoardTaskTodo()}
         ${renderBoardTaskProgress()}
@@ -39,7 +39,7 @@ function renderBoardPanels() {
 }
 
 function renderBoardHead() {
-  return /* html */ `
+    return /* html */ `
     <div class="head">
         <h1 class="h1">Board</h1>
         <div class="headleft">
@@ -56,7 +56,7 @@ function renderBoardHead() {
 }
 
 function renderBoardTaskTodo() {
-  return /* html */ `
+    return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>To do</h2>
@@ -67,7 +67,7 @@ function renderBoardTaskTodo() {
 }
 
 function renderBoardTaskProgress() {
-  return /* html */ `
+    return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>In progress</h2>
@@ -78,7 +78,7 @@ function renderBoardTaskProgress() {
 }
 
 function renderBoardTaskFeedback() {
-  return /* html */ `
+    return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>Await feedback</h2>
@@ -89,7 +89,7 @@ function renderBoardTaskFeedback() {
 }
 
 function renderBoardTaskDone() {
-  return /* html */ `
+    return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>Done</h2>
