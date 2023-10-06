@@ -113,9 +113,14 @@ function showDetails(index) {
             <div class="name">
                 <h3>${user.name}</h3>
              <div class="contactsIcons">
-                    <div class="editIcon" onclick= editContact(${index})>
-                        <img class="editSymbol" src="/assets/img/edit.svg"> <span>Edit</span></div>
-                    <div class="deleteIcon"img src="/assets/img/delete.svg" onclick= deleteContact(${index})> <span>Delete </span></div>
+                    <div class="editIcon">
+                        <img class="editSymbol" src="/assets/img/edit.svg" onclick= editContact(${index})>
+                        <span>Edit</span>
+                    </div>
+                    <div class="deleteIcon" onclick= deleteContact(${index})>
+                        <img src="/assets/img/delete.svg">
+                        <span>Delete </span>
+                    </div>
             </div>
             </div>
         </div>

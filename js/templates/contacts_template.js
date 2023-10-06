@@ -44,8 +44,8 @@ function renderContacts(element) {
 
                         <input class="inputPhone" type="text" placeholder="Phone" id="phone" required>
 <div class="buttonArea">
-                        <button class="cancelBtn"> <span>Cancel</span><img src="/assets/close.svg"></button>
-                        <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/check.svg"></button>
+                        <button class="cancelBtn"> <span>Cancel</span><img src="/assets/img/close.svg"></button>
+                        <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/img/check.svg"></button>
 </div>
                     </form>
                 </div>
