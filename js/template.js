@@ -14,21 +14,21 @@ function Template_renderBoard() {
                     <div class="divider"></div>
                     <img onclick="" src="../img/search.svg" alt="">
                 </div>
-                <button onclick="Board_addTask('toDo')">Add task</button>
+                <button onclick="board_addTask('toDo')">Add task</button>
             </div>
         </div>
         <div class="panels">
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>To do</h2>
-                    <button onclick="Board_addTask('toDo')" class="add"></button>
+                    <button onclick="board_addTask('toDo')" class="add"></button>
                 </div>
                 <div id="toDo" class="panelbody"></div>
             </div>
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>In progress</h2>
-                    <button onclick="Board_addTask('inProgress')" class="add"></button>
+                    <button onclick="board_addTask('inProgress')" class="add"></button>
                 </div>
                 <div id="inProgress" class="panelbody">
                 </div>
@@ -36,7 +36,7 @@ function Template_renderBoard() {
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>Await feedback</h2>
-                    <button onclick="Board_addTask('feedback')" class="add"></button>
+                    <button onclick="board_addTask('feedback')" class="add"></button>
                 </div>
                 <div id="awaitFeedback" class="panelbody">
                 </div>

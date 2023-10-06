@@ -1,0 +1,45 @@
+:root {
+    --white: #FFFFFF;
+    --black: #000000;
+    --background: #F6F7F8;
+}
+
+
+
+/* Login */
+#login_signupBody {
+    font-family: "Inter";
+    background-color: #f6f7f8;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1208px;
+    min-height: 688px;
+}
+
+#login_form {
+    Width: 652px;
+    Height: 493px;
+    Top: 265.5px;
+    Left: 394px;
+    border-radius: 30px;
+    Padding: 48px 115px 48px 115px;
+    Gap: 32px;
+    background: var(--white);
+}
+
+#login h1 {
+    font-family: "Inter";
+    background-color: #f6f7f8;
+    font-weight: 700;
+    Size: 61px;
+    Line-height: 73.2px; 
+    Align: Center;
+}
+
+#logo {
+    width: 100.03px;
+    height: 121.97px;
+    top: 80px;
+    left: 77px;
+}

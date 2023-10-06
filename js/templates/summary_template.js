@@ -1,9 +1,9 @@
 ///SUMMARY TEMPLATES///
 async function renderSummary(element) {
-    await Board_loadFromStorage("toDo");
-    await Board_loadFromStorage("inProgress");
-    await Board_loadFromStorage("feedback");
-    await Board_loadFromStorage("done");
+    await board_loadFromStorage("toDo");
+    await board_loadFromStorage("inProgress");
+    await board_loadFromStorage("feedback");
+    await board_loadFromStorage("done");
 
   document.getElementById("help-link").classList.remove("d-none");
   if (element != undefined) {
