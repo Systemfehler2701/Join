@@ -143,7 +143,7 @@ function board_renderWarning(array, i) {
     <h2>Are you sure you want to delete this Task?</h2>
     <div class="DeleteOptions">
       <button class="create" onclick="board_cutTask('${array}', ${i})">Delete</button>
-      <button class="clear" onclick="board_GoBack()">Go Back</button>
+      <button class="backbutton" onclick="board_GoBack()">Back</button>
     </div>
   `;
 }
@@ -449,9 +449,14 @@ function board_createTaskEditor(array, i) {
       <div class="Taskerror" style="display: none;" id="errorPriority"> You need to Select a Priority</div>
       <div class="Taskerror" style="display: none;" id="errorCategory">You need to Select a Category</div>
 </div>
-<div class="assignmentEdit">
+<div class="assignment">
     <h2>Assigned to</h2>
-    <div onclick="openAssigneeOptions()" id="assigner" class="assignmentSelect">Select contacts to assign</div>
+    <div  class="assignmentInput" id="assignmentInput">
+      <input onclick="toggleAssigneeOptions(this)" onkeyup="searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+      <div id="assignmentSelectButton" onclick="toggleAssigneeOptions(this)">
+        <img src="/assets/img/arrow_drop_downaa.svg" alt="">
+      </div>
+    </div> 
     <div style="display: none" id="assign_select" class="assignmentContainer"></div>
     <div class="assigneeList" id="assigneeList"></div>
 </div>

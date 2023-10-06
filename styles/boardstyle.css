@@ -14,10 +14,6 @@
   align-items: center;
   width: 87.41%;
   gap: 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 32px;
 }
 
 .h1 {
@@ -489,10 +485,10 @@ progress {
 }
 
 /* Here begins the styling of the Task-Editor Overlay the following elements have "Edit" at the end of their name to avoid confusion */
-
 /* Here begins the styling of the Task-Editor Overlay the following elements have "Edit" at the end of their name to avoid confusion */
 
 .TaskEditorBody {
+  position:relative;
   max-width: 525px;
   display: flex;
   flex-direction: column;
@@ -613,16 +609,9 @@ progress {
   box-shadow: 0 10px 4px rgb(150, 150, 150);
 }
 
-.assignmentEdit {
-  position: relative;
-}
 
-.assigneesEdit p {
-  margin: 0 0 8px 0;
-}
-
-.assignmentEdit .assignmentContainer {
-  width: 92%;
+.TaskEditorBody .assignmentContainer {
+  width: 93.5% !important;
 }
 
 .subtasksEdit {
