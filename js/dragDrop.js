@@ -6,11 +6,15 @@ function startDragging(arrayName, i) {
 }
 
 
-function drop(targetArrayName) {
+async function drop(targetArrayName) {
     let targetArray = taskLists[targetArrayName];
-    currentDraggedElement
-    targetArray.push()
-
+    let srcArray = taskLists[currentDraggedElement.srcArray];
+    let srcIndex = currentDraggedElement.srcIndex;
+    let taskToMove = srcArray.splice(srcIndex, 1);
+    targetArray.push(taskToMove[0]);
+    await setItem(targetArrayName, JSON.stringify(targetArray));
+    await setItem(currentDraggedElement.srcArray, JSON.stringify(srcArray));
+    board_loadTasks();
 }
 
 
