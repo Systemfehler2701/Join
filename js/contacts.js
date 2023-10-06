@@ -113,8 +113,8 @@ function showDetails(index) {
             <div class="name">
                 <h3>${user.name}</h3>
              <div class="contactsIcons">
-                    <div class="editIcon">
-                        <img class="editSymbol" src="/assets/img/edit.svg" onclick= editContact(${index})> <span>Edit</span></div>
+                    <div class="editIcon" onclick= editContact(${index})>
+                        <img class="editSymbol" src="/assets/img/edit.svg"> <span>Edit</span></div>
                     <div class="deleteIcon"img src="/assets/img/delete.svg" onclick= deleteContact(${index})> <span>Delete </span></div>
             </div>
             </div>
@@ -202,5 +202,9 @@ function addContactsEventlistener() {
     document.getElementById('closeForm').addEventListener('click', closeOverlay);
     document.getElementById('editForm').addEventListener('submit', updateContact);
     document.getElementById('closeEditForm').addEventListener('click', closeEditOverlay);
-
+    document.getElementById('deleteContactBtn').addEventListener('click', function() {
+        const indexToDelete = document.getElementById('editIndex').value;
+        deleteContact(indexToDelete);
+        document.getElementById('editOverlay').style.display = 'none';
+    });
 }

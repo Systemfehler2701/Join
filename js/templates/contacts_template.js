@@ -78,10 +78,10 @@ function renderContacts(element) {
                             <input class="inputPhone" type="tel" id="editPhone" required>
 
                             <div class="buttonOverview">
-
-                                <button class="createBtn" type="submit">Save</button>
-                                <button class="closeBtn" id="closeEditForm">Delete</button>
-                            </div>
+    <button class="createBtn" type="submit">Save</button>
+    <button class="closeBtn" id="closeEditForm">Close</button>
+    <button class="deleteBtn" type="button" id="deleteContactBtn">Delete</button>
+</div>
 </div>
                     </div>
                 </div>
