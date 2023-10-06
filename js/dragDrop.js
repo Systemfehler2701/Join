@@ -7,8 +7,10 @@ function startDragging(arrayName, i) {
 
 
 function drop(targetArrayName) {
-    let targetArray =
-        currentDraggedElement = targetArray;
+    let targetArray = taskLists[targetArrayName];
+    currentDraggedElement
+    targetArray.push()
+
 }
 
 
