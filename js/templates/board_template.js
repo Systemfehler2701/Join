@@ -64,7 +64,7 @@ function renderBoardTaskTodo() {
             <h2>To do</h2>
             <button onclick="board_addTask('toDo')" class="add"></button>
         </div>
-        <div id="toDo" class="panelbody" ondrop="drop('toDo')" ondragover="allowDrop(event)"></div>
+        <div id="toDo" class="panelbody" ondrop="drop('toDo')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
 }
 
@@ -75,7 +75,7 @@ function renderBoardTaskProgress() {
             <h2>In progress</h2>
             <button onclick="board_addTask('inProgress')" class="add"></button>
         </div>
-        <div id="inProgress" class="panelbody" ondrop="drop('inProgress')" ondragover="allowDrop(event)"></div>
+        <div id="inProgress" class="panelbody" ondrop="drop('inProgress')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
 }
 
@@ -86,7 +86,7 @@ function renderBoardTaskFeedback() {
             <h2>Await feedback</h2>
             <button onclick="board_addTask('feedback')" class="add"></button>
         </div>
-        <div id="awaitFeedback" class="panelbody" ondrop="drop('feedback')" ondragover="allowDrop(event)"></div>
+        <div id="awaitFeedback" class="panelbody" ondrop="drop('feedback')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
 }
 
@@ -96,6 +96,6 @@ function renderBoardTaskDone() {
         <div class="panelhead">
             <h2>Done</h2>
         </div>
-        <div id="done" class="panelbody" ondrop="drop('done')" ondragover="allowDrop(event)"></div>
+        <div id="done" class="panelbody" ondrop="drop('done')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
 }
