@@ -47,8 +47,8 @@ async function addTask(list) {
         taskLists[list].push(data);
         resetForm();
         await setItem(list, JSON.stringify(taskLists[list]));
-        Board_closeOverlay();
-        Board_loadTasks();
+        board_closeOverlay();
+        board_loadTasks();
     }
 }
 
@@ -61,8 +61,8 @@ async function addEditedTask(list, i) {
         resetForm();
         await setItem(list, JSON.stringify(taskLists[list]));
 
-        Board_closeOverlay();
-        Board_loadTasks();
+        board_closeOverlay();
+        board_loadTasks();
     }
 }
 
@@ -404,6 +404,6 @@ async function FULLSTOP() {
     await setItem("inProgress", JSON.stringify(taskLists["inProgress"]));
     await setItem("feedback", JSON.stringify(taskLists["feedback"]));
     await setItem("done", JSON.stringify(taskLists["done"]));
-    Board_closeOverlay();
-    Board_loadTasks();
+    board_closeOverlay();
+    board_loadTasks();
 }

@@ -50,7 +50,7 @@ function renderBoardHead() {
                     <img onclick="board_search()" src="assets/img/search.svg" alt="">
                 </div>
             </div>
-            <button onclick="Board_addTask('toDo')">Add task</button>
+            <button onclick="board_addTask('toDo')">Add task</button>
         </div>
     </div>`;
 }
@@ -60,7 +60,7 @@ function renderBoardTaskTodo() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>To do</h2>
-            <button onclick="Board_addTask('toDo')" class="add"></button>
+            <button onclick="board_addTask('toDo')" class="add"></button>
         </div>
         <div id="toDo" class="panelbody" ondrop="drop('toDo')" ondragover="allowDrop(event)"></div>
     </div>`;
@@ -71,7 +71,7 @@ function renderBoardTaskProgress() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>In progress</h2>
-            <button onclick="Board_addTask('inProgress')" class="add"></button>
+            <button onclick="board_addTask('inProgress')" class="add"></button>
         </div>
         <div id="inProgress" class="panelbody" ondrop="drop('inProgress')" ondragover="allowDrop(event)"></div>
     </div>`;
@@ -82,7 +82,7 @@ function renderBoardTaskFeedback() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>Await feedback</h2>
-            <button onclick="Board_addTask('feedback')" class="add"></button>
+            <button onclick="board_addTask('feedback')" class="add"></button>
         </div>
         <div id="awaitFeedback" class="panelbody" ondrop="drop('feedback')" ondragover="allowDrop(event)"></div>
     </div>`;
