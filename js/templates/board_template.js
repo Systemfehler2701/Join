@@ -9,7 +9,7 @@ function renderBoard(element) {
     overlay = document.getElementById("BoardOverlay");
     overlayBody = document.getElementById("boardOverlaybody");
     blocker = document.getElementById("blocker");
-    Board_loadTasks();
+    board_loadTasks();
 }
 
 function renderBoardOverlay() {
