@@ -227,6 +227,9 @@
   .assignmentContainer {
     width: 94%;
   }
+  .searchbar input {
+    width: -webkit-fill-available;
+  }
 }
 
 @media (max-width: 432px) {

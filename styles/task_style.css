@@ -157,21 +157,20 @@
 }
 
 .newContactButton {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96%;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
   border: solid 1px #2a3647;
   background-color: #2a3647;
   color: white;
-  padding: 16px;
-  height: 56px;
+  gap: 18px;
+  height: 42px;
   font-size: 21px;
   border-radius: 10px;
   font-weight: 700;
-  background-image: url(../assets/img/person_add.svg);
-  background-repeat: no-repeat;
-  background-position-x: 76%;
-  background-position-y: 50%;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -188,17 +187,22 @@
 }
 
 .assigneeOption {
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   width: 100%;
-  padding-top: 8px;
+  padding: 8px 4px;
+}
+
+.assigneeOption:hover {
+  background-color: #e7e7e7;
 }
 
 .assigneeOption .assigneeName {
   display: flex;
   align-items: center;
-  width: 85%;
+  width: 82%;
 }
 
 .assigneeList {

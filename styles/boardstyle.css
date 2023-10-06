@@ -304,6 +304,10 @@ progress {
     height: 24px;
 }
 
+.cardheadFull img:hover {
+  filter: drop-shadow(0 0 4px black);
+}
+
 .titleFull {
     margin: 0;
 }
@@ -424,6 +428,10 @@ progress {
     cursor: pointer;
 }
 
+.checkbox:hover {
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.37));
+}
+
 .subtaskFull div {
     font-size: 20px;
 }
@@ -534,6 +542,11 @@ progress {
     width: 24px;
     height: 24px;
 }
+
+.cardheadEdit img:hover {
+  filter: drop-shadow(0 0 4px black);
+}
+
 
 .titleEdit .uselessAstriks {
     display: flex;

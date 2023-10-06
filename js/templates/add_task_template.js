@@ -42,7 +42,9 @@ function createNewTask(array) {
                         <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
                             <div  id="assign_select" class="assignmentContainer scroll"></div>
                             <div class="ContactButtonContainer">
-                              <button class="newContactButton" id="assignmentNewContact">Add New contact</button>
+                              <div class="newContactButton" id="assignmentNewContact">Add New contact
+                                <img src="/assets/img/person_add.svg" alt="">
+                              </div> 
                             </div>
                         </div>
                         <div class="assigneeList" id="assigneeList"></div>
