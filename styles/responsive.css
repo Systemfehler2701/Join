@@ -94,7 +94,7 @@
   .taskbody .task_input {
     flex-direction: column;
   }
-  .divider {
+  .task_input.divider {
     display: none;
   }
   .input1 {

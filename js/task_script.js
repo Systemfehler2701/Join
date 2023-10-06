@@ -259,7 +259,6 @@ function renderAssigneeOptions() {
         }
     }
 }
-
 function renderAssigneeList() {
     let list = document.getElementById("assigneeList");
     list.innerHTML = "";
@@ -273,7 +272,7 @@ function renderAssigneeList() {
 }
 
 function toggleAssigneeOptions(clickedElement) {
-    let selector = document.getElementById("assign_select");
+    let selector = document.getElementById("assigneeOptionContainer");
     let selectorButton = document.getElementById("assignmentSelectButton");
     let optionsOpen = selector.style.display == "flex";
 
