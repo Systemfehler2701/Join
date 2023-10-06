@@ -202,6 +202,7 @@ function clearDetails() {
 // Event Listeners
 function addContactsEventlistener() {
     loadContacts();
+    document.getElementById('assignmentNewContact').addEventListener('click', addContact);
     document.getElementById('contactForm').addEventListener('submit', addContact);
     document.querySelector('.addButton').addEventListener('click', openOverlay);
     document.getElementById('closeForm').addEventListener('click', closeOverlay);

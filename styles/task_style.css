@@ -114,8 +114,6 @@
   width: calc(100% - 35px);
   border-radius: 10px;
   border: solid 1px #d1d1d1;
-
-
 }
 
 .assignmentInput div {
@@ -148,7 +146,7 @@
   background-color: white;
   max-height: 210px;
   gap: 16px;
-  box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 14px 14px 3px rgba(0, 0, 0, 0.18);
 }
 
 .ContactButtonContainer {

@@ -94,7 +94,7 @@
   .taskbody .task_input {
     flex-direction: column;
   }
-  .task_input.divider {
+  .task_input .divider {
     display: none;
   }
   .input1 {
@@ -103,7 +103,7 @@
   .input2 {
     width: 100% !important;
   }
-  .assignmentContainer {
+  .assigneeOptionContainer {
     width: 96.5%;
   }
   .addedSubtasks {
@@ -240,7 +240,7 @@
     width: 32%;
     font-size: 16px;
   }
-  .TaskEditorBody .assignmentContainer {
+  .TaskEditorBody .assigneeOptionContainer {
     width: 90% !important;
   }
 }

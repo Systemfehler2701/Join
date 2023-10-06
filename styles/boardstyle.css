@@ -260,12 +260,14 @@ progress {
   border-radius: 30px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
   padding: 40px 48px 40px 48px;
-  animation: fade-in 0.5s forwards;
+
+  transform: translateX(200%);
+  animation: slideIn 1s forwards;
 }
 
-@keyframes fade-in {
-  100% {
-    opacity: 1;
+@keyframes slideIn {
+  to {
+      transform: translateX(0);
   }
 }
 
@@ -617,7 +619,7 @@ progress {
   box-shadow: 0 10px 4px rgb(150, 150, 150);
 }
 
-.TaskEditorBody .assignmentContainer {
+.TaskEditorBody .assigneeOptionContainer {
   width: 93.5% !important;
 }
 

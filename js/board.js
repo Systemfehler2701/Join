@@ -457,7 +457,12 @@ function board_createTaskEditor(array, i) {
         <img src="/assets/img/arrow_drop_downaa.svg" alt="">
       </div>
     </div> 
-    <div style="display: none" id="assign_select" class="assignmentContainer scroll"></div>
+    <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
+        <div  id="assign_select" class="assignmentContainer scroll"></div>
+        <div class="ContactButtonContainer">
+            <button class="newContactButton" id="assignmentNewContact">Add New contact</button>
+        </div>
+    </div>
     <div class="assigneeList" id="assigneeList"></div>
 </div>
 <div class="subtasksEdit">
