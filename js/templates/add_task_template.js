@@ -17,7 +17,7 @@ function createNewTask(array) {
     <div class="taskbody">
         <h1>Add Task</h1>
         <div style="width: 100%">
-            <div class="task_input">
+            <div class="task_input scroll">
                 <div class="input1">
                     <div class="title">
                         <div class="uselessAstriks">
@@ -39,7 +39,12 @@ function createNewTask(array) {
                                 <img src="/assets/img/arrow_drop_downaa.svg" alt="">
                             </div>
                         </div> 
-                        <div style="display: none" id="assign_select" class="assignmentContainer"></div>
+                        <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
+                            <div  id="assign_select" class="assignmentContainer scroll"></div>
+                            <div class="ContactButtonContainer">
+                              <button class="newContactButton" onclick="">Add New contact</button>
+                            </div>
+                        </div>
                         <div class="assigneeList" id="assigneeList"></div>
                     </div>
                 </div>

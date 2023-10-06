@@ -138,7 +138,7 @@
   background-color: #e7e7e7;
 }
 
-.assignmentContainer {
+.assigneeOptionContainer {
   z-index: 2;
   position: absolute;
   width: 42.5%;
@@ -146,10 +146,47 @@
   padding: 0 12px;
   border-radius: 0 0 10px 10px;
   background-color: white;
-  max-height: 200px;
+  max-height: 210px;
+  gap: 16px;
+  box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.18);
+}
+
+.ContactButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 8px;
+}
+
+.newContactButton {
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  border: solid 1px #2a3647;
+  background-color: #2a3647;
+  color: white;
+  padding: 16px;
+  height: 56px;
+  font-size: 21px;
+  border-radius: 10px;
+  font-weight: 700;
+  background-image: url(../assets/img/person_add.svg);
+  background-repeat: no-repeat;
+  background-position-x: 76%;
+  background-position-y: 50%;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+}
+
+.newContactButton:hover {
+  border: solid 1px rgb(54, 176, 228);
+  background-color: rgb(54, 176, 228);
+}
+
+.assignmentContainer {
   overflow-y: scroll;
   overflow-x: hidden;
   gap: 16px;
+  flex-direction: column;
 }
 
 .assigneeOption {
