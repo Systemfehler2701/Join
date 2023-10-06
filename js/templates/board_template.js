@@ -50,7 +50,9 @@ function renderBoardHead() {
                     <img onclick="board_search()" src="assets/img/search.svg" alt="">
                 </div>
             </div>
-            <button onclick="board_addTask('toDo')">Add task</button>
+            <div class="headAddButton">
+              <button onclick="board_addTask('toDo')">Add task</button>
+            </div>
         </div>
     </div>`;
 }

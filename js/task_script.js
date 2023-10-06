@@ -280,9 +280,11 @@ function toggleAssigneeOptions(clickedElement) {
     if (optionsOpen == false) {
         selector.style.display = "flex";
         selectorButton.classList.add("flip");
+        renderAssigneeOptions()
     } else if (clickedElement == selectorButton) {
         selector.style.display = "none";
         selectorButton.classList.remove("flip");
+        renderAssigneeOptions()
     }
 }
 
@@ -290,7 +292,7 @@ function searchAssignees() {
     let search = document.getElementById("assigner").value;
     let selector = document.getElementById("assign_select");
     if (search == "") {
-        renderAssigneeList();
+        renderAssigneeOptions();
     } else {
         selector.innerHTML = "";
         for (let i = 0; i < users.length; i++) {
