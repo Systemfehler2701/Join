@@ -55,8 +55,13 @@
     height: 48px;
 }
 
-#loginHead {}
-
+#loginCheckbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 32px;
+    margin-bottom: 40px;}
 
 
 #loginButtons {
@@ -100,7 +105,7 @@
     background: linear-gradient(#29ABE2, #29ABE2) bottom
         /* left or right or else */
         no-repeat;
-    background-size: 50% 3px;
+    background-size: 40% 3px;
 }
 
 

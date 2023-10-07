@@ -4,8 +4,17 @@ async function renderSignUpMask() {
   var container = document.getElementById("content-app");
 
   container.innerHTML = `<div id="login_signupBody">
-
-  <form onsubmit="register(); return false;">
+        <div class="login-headline">
+      <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
+      <div class="headline-right">
+        <span>Not a Join user?</span>
+        <button id="signUpBtn" onclick="renderSignUpMask()">Sign Up</button>
+      </div>
+    </div>
+  <form id="login_form" onsubmit="register(); return false;">
+  <div id="loginHead">
+  <h1 id="loginTitle">Sign Up</h1>
+  <div id="loginInput">
       <input required type="name" id="signUpName" placeholder="Name" />
       <input required type="email" id="signUpEmail" placeholder="Email" />
       <input required type="password" id="signUpPw" placeholder="Password" />
@@ -15,8 +24,8 @@ async function renderSignUpMask() {
         id="signUpPw2"
         placeholder="Confirm Password"
       />
-      <button id="registerBtn">Registrieren</button>
-
+      </div>
+      <div id="loginCheckbox">
       <input
         class=""
         type="checkbox"
@@ -27,7 +36,13 @@ async function renderSignUpMask() {
       <label>
         I accept the
         <a onclick="renderPolicy()">Privacy Policy</a>
-      </label>
+      </label> 
+      </div>
+      <div id="loginButtons">
+      <button id="registerBtn">Registrieren</button>
+</div>
+      
+    </div>
     </form></div>`;
 }
 
