@@ -9,6 +9,7 @@
     .summary-header h1 {
         font-size: 61px;
         font-weight: 700;
+        margin: 0;
     }
     
     .summary-header h2 {
@@ -21,7 +22,7 @@
         justify-content: space-between;
         align-items: center;
         width: 660px;
-        height: 136px;
+        height: 150px;
     }
     
     .img-full {
@@ -38,14 +39,19 @@
     .summary-task {
         display: flex;
         flex-direction: column;
-        margin-right: 100px;
+        margin: 40px 100px 0 0;
     }
     
     .summary-line1,
     .summary-line3 {
         display: flex;
-        width: 560px;
-        gap: 20px
+        width: 550px;
+        gap: 20px;
+        justify-content: space-around;
+    }
+    
+    .summary-line2 {
+        width: 550px;
     }
     
     .summary-todo,
