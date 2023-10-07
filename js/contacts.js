@@ -64,7 +64,7 @@ async function renderContactList() {
     document.getElementById('contactlist').innerHTML = content;
 }
 
-function addContact(e) {
+async function addContact(e) {
     e.preventDefault();
 
     const name = document.getElementById('name').value;
@@ -81,9 +81,10 @@ function addContact(e) {
 
     users.push(newUser);
     users.sort((a, b) => a.name.localeCompare(b.name));
+    await setItem('contacts', users);
     renderContactList();
     closeOverlay();
-    setItem('contacts', users);
+
 }
 
 function getInitials(name) {
@@ -158,6 +159,7 @@ function deleteContact(index) {
     renderContactList();
     document.getElementById('detailsContainer').innerHTML = '';
     closeOverlay();
+    setItem('contacts', users);
 }
 
 function editContact(index) {
@@ -166,12 +168,11 @@ function editContact(index) {
     document.getElementById('editEmail').value = user.mail;
     document.getElementById('editPhone').value = user.phone;
     document.getElementById('editIndex').value = index;
-
     const editInitialsLogo = document.getElementById('editInitialsLogo');
     editInitialsLogo.textContent = getInitials(user.name);
     editInitialsLogo.style.backgroundColor = user.color;
-
     document.getElementById('editOverlay').style.display = 'block';
+    setItem('contacts', users);
 }
 
 function updateContact(e) {
