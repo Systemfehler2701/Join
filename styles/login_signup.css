@@ -2,6 +2,7 @@
     --white: #FFFFFF;
     --black: #000000;
     --background: #F6F7F8;
+    --border: #D1D1D1;
 }
 
 
@@ -19,6 +20,10 @@
 }
 
 #login_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     Width: 652px;
     Height: 493px;
     Top: 265.5px;
@@ -29,6 +34,35 @@
     background: var(--white);
 }
 
+#loginInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 32px;
+}
+
+#loginInput input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    gap: 32px;
+    width: 422px;
+    height: 48px;
+    ;
+}
+
+#loginButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 32px;
+}
+
 .login-headline {
     display: flex;
     width: 100%;
@@ -36,7 +70,15 @@
 }
 
 .headline-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-right: 80px;
+    width: 279px; 
+    height: 49px; 
+    top: 67px; 
+    left: 1039px; 
+    gap: 35px;
 }
 
 #login h1 {
@@ -45,7 +87,7 @@
     font-weight: 700;
     Size: 61px;
     Line-height: 73.2px;
-    Align: Center;
+    align-items: Center;
 }
 
 #logo {
@@ -54,4 +96,15 @@
     top: 80px;
     left: 77px;
     margin-left: 80px;
+}
+
+#signUpBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #2a3647;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 5px;
 }
