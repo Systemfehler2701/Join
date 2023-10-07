@@ -1,15 +1,34 @@
 let regUsers = {};
 
-async function signUpInit() {
-  loadUsers();
-}
+async function renderSignUpMask() {
+  var container = document.getElementById("content-app");
 
-async function loadUsers() {
-  try {
-    regUsers = JSON.parse(await getItem("users"));
-  } catch (e) {
-    console.error("Loading error:", e);
-  }
+  container.innerHTML = `<div id="login_signupBody">
+
+  <form onsubmit="register(); return false;">
+      <input required type="name" id="signUpName" placeholder="Name" />
+      <input required type="email" id="signUpEmail" placeholder="Email" />
+      <input required type="password" id="signUpPw" placeholder="Password" />
+      <input
+        required
+        type="password"
+        id="signUpPw2"
+        placeholder="Confirm Password"
+      />
+      <button id="registerBtn">Registrieren</button>
+
+      <input
+        class=""
+        type="checkbox"
+        value=""
+        id="signUpCheck"
+        checked
+      />
+      <label>
+        I accept the
+        <a onclick="renderPolicy()">Privacy Policy</a>
+      </label>
+    </form></div>`;
 }
 
 async function register() {

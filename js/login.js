@@ -15,10 +15,8 @@ function renderLoginMask() {
         <button type="submit">Log in</button>
         <button type="button" onclick="logInGuest()">Guest Log in</button>
       </form>
+      <a onclick=renderHelp()></a>
       </div>`;
-
-    // Füge den Container zum DOM hinzu
-    // document.getElementById("login_signupBody").appendChild(container);
 }
 
 async function logIn() {
