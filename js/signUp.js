@@ -9,7 +9,7 @@ async function renderSignUpMask() {
       <div class="headline-right">
       </div>
     </div>
-  <form id="login_form" onsubmit="register(); return false;">
+  <form id="signUp_form" onsubmit="register(); return false;">
   <div id="loginHead">
   <h1 id="loginTitle">Sign Up</h1>
   <div id="loginInput">

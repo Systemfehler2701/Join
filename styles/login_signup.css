@@ -29,6 +29,20 @@
     Top: 265.5px;
     Left: 394px;
     border-radius: 30px;
+    Gap: 20px;
+    background: var(--white);
+}
+
+#signUp_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    Width: 652px;
+    Height: 493px;
+    Top: 265.5px;
+    Left: 394px;
+    border-radius: 30px;
     Padding: 80px 20px;
     Gap: 20px;
     background: var(--white);
@@ -92,7 +106,6 @@
 #loginTitle {
     display: flex;
     justify-content: center;
-    padding: 1vh;
     font-family: "Inter";
     font-weight: 700;
     font-size: 61px;
