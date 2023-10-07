@@ -4,24 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log In</title>
-    <link rel="icon" type="image/x-icon" href="../../assets/img/logo-white.svg" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../../assets/img/logo-white.svg"
+    />
     <link rel="stylesheet" href="../../styles/boardstyle.css" />
     <link rel="stylesheet" href="../../styles/fonts.css" />
     <link rel="stylesheet" href="../../styles/task_style.css" />
     <link rel="stylesheet" href="../../styles/login_signup.css" />
+    <script src="../../js/login.js"></script>
   </head>
 
-  <body id="login_signupBody">
-    <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
-
-    <form onsubmit="logIn(); return false;" id="login_form">
-      <h1>Log in</h1>
-      <input type="email" id="loginEmail" placeholder="Email" />
-      <input type="password" id="loginPassword" placeholder="Password" />
-      <button type="submit">Log in</button>
-      <button type="button" onclick="logInGuest()">Guest Log in</button>
-    </form>
+  <body onload="renderLoginMask()" id="login_signupBody">
     <script src="../../js/storage.js"></script>
-    <script src="../../js/templates/login.js"></script>
+    <script src="../../js/login.js"></script>
   </body>
 </html>

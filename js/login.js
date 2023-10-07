@@ -1,6 +1,25 @@
 let currentUser = null;
 let isGuestUser = false;
 
+function renderLoginMask() {
+  var container = document.getElementById("content-app");
+
+  container.innerHTML = `<div id="login_signupBody">
+      <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
+  
+      <form onsubmit="logIn(); return false;" id="login_form">
+        <h1>Log in</h1>
+        <input type="email" id="loginEmail" placeholder="Email" />
+        <input type="password" id="loginPassword" placeholder="Password" />
+        <button type="submit">Log in</button>
+        <button type="button" onclick="logInGuest()">Guest Log in</button>
+      </form>
+      </div>`;
+
+  // Füge den Container zum DOM hinzu
+  // document.getElementById("login_signupBody").appendChild(container);
+}
+
 async function logIn() {
   try {
     const emailInput = document.getElementById("loginEmail");
@@ -18,8 +37,7 @@ async function logIn() {
         // Kopiere alle Benutzerdaten in den currentUser
         currentUser = { email: emailInput.value, name: userData.name };
         isGuestUser = false;
-        alert("Erfolgreich eingeloggt.");
-        window.location.href = "../../index.html";
+        app();
       } else {
         alert("Falsches Passwort. Bitte überprüfen Sie Ihr Passwort.");
       }
@@ -40,5 +58,10 @@ function logInGuest() {
     email: "guest@join",
   };
   isGuestUser = true;
-  window.location.href = "../../index.html";
+  app();
+}
+
+function logOut() {
+  currentUser = null;
+  app();
 }
