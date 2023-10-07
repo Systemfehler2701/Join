@@ -15,7 +15,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 #login_form {
@@ -32,6 +32,11 @@
 .login-headline {
     display: flex;
     width: 100%;
+    justify-content: space-between;
+}
+
+.headline-right {
+    margin-right: 80px;
 }
 
 #login h1 {
@@ -48,4 +53,5 @@
     height: 121.97px;
     top: 80px;
     left: 77px;
+    margin-left: 80px;
 }
