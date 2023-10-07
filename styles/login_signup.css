@@ -29,8 +29,22 @@
     Top: 265.5px;
     Left: 394px;
     border-radius: 30px;
-    Padding: 48px 0;
-    Gap: 32px;
+    Gap: 20px;
+    background: var(--white);
+}
+
+#signUp_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    Width: 652px;
+    Height: 493px;
+    Top: 265.5px;
+    Left: 394px;
+    border-radius: 30px;
+    Padding: 80px 20px;
+    Gap: 20px;
     background: var(--white);
 }
 
@@ -39,8 +53,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 40px;
-    gap: 25px;
+    margin-bottom: 20px;
+    gap: 32px;
 }
 
 #loginInput input {
@@ -60,8 +74,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    gap: 32px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 #loginButtons {
@@ -92,7 +105,6 @@
 #loginTitle {
     display: flex;
     justify-content: center;
-    padding: 1vh;
     font-family: "Inter";
     font-weight: 700;
     font-size: 61px;
