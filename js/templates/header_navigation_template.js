@@ -68,15 +68,10 @@ function renderHeaderProfile() {
         <div id="help-link">
             <div onclick="renderHelp()"><img src="/assets/img/help.svg"></div>
         </div>
-        <div onclick="openSubmenu()" id="user-profile-initials">${currentUser.name[0]}</div>
+        <div onclick="openSubmenu()" id="user-profile-initials">${currentUser.name.split(" ").map((element) => element[0]).join("")}</div>
     </div>`;
 }
 
-function getProfileInitials() {
-    let name = currentUser.name.split(" ");
-    let initials = name[0][0];
-
-}
 
 function renderHeaderSubMenu() {
     return /* html */ `
