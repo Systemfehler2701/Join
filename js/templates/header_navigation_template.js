@@ -68,8 +68,14 @@ function renderHeaderProfile() {
         <div id="help-link">
             <div onclick="renderHelp()"><img src="/assets/img/help.svg"></div>
         </div>
-        <div onclick="openSubmenu()" class="user-profile-initials"></div>
+        <div onclick="openSubmenu()" id="user-profile-initials">${currentUser.name[0]}</div>
     </div>`;
+}
+
+function getProfileInitials() {
+    let name = currentUser.name.split(" ");
+    let initials = name[0][0];
+
 }
 
 function renderHeaderSubMenu() {
@@ -81,7 +87,7 @@ function renderHeaderSubMenu() {
         <div onclick = "renderPolicy()">
             <p>Privacy Policy</p>
         </div>
-        <div>
+        <div onclick="logOut()">
             <p>Log out</p>
         </div>            
     </div>`;
