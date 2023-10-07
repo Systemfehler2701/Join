@@ -39,6 +39,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 40px;
     gap: 32px;
 }
 
@@ -54,13 +55,7 @@
     height: 48px;
 }
 
-#loginHead {
-    border:solid;
-    width:350px;
-    margin:auto;
-    border-bottom:none;
-    background:linear-gradient(black,black) bottom /* left or right or else */ no-repeat;
-    background-size:50% 3px;}
+#loginHead {}
 
 
 
@@ -83,20 +78,31 @@
     flex-direction: row;
     align-items: center;
     margin-right: 80px;
-    width: 279px; 
-    height: 49px; 
-    top: 67px; 
-    left: 1039px; 
+    width: 279px;
+    height: 49px;
+    top: 67px;
+    left: 1039px;
     gap: 35px;
 }
 
-#loginTitle{
+#loginTitle {
+    display: flex;
+    justify-content: center;
+    padding: 1vh;
     font-family: "Inter";
     font-weight: 700;
     font-size: 61px;
     Line-height: 73.2px;
-    align-items: Center;
+    width: 350px;
+    margin: auto;
+    margin-bottom: 40px;
+    border-bottom: none;
+    background: linear-gradient(#29ABE2, #29ABE2) bottom
+        /* left or right or else */
+        no-repeat;
+    background-size: 50% 3px;
 }
+
 
 #logo {
     width: 100.03px;
