@@ -72,16 +72,20 @@ nav {
     transform: scale(1.2);
 }
 
-.user-profile-initials {
+#user-profile-initials {
     height: 56px;
     width: 56px;
     border: #2A3647 solid 3px;
     border-radius: 100%;
     cursor: pointer;
     color: #29ABE2;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.user-profile-initials:hover {
+#user-profile-initials:hover {
     background-color: lightgrey;
 }
 
