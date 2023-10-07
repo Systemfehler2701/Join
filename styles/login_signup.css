@@ -81,11 +81,10 @@
     gap: 35px;
 }
 
-#login h1 {
+#loginTitle{
     font-family: "Inter";
-    background-color: #f6f7f8;
     font-weight: 700;
-    Size: 61px;
+    font-size: 61px;
     Line-height: 73.2px;
     align-items: Center;
 }
