@@ -107,6 +107,7 @@
     gap: 2%;
     margin-top: 40px;
     height: 100%;
+    user-select: none;
 }
 
 .taskpanel {
@@ -261,26 +262,25 @@ progress {
 }
 
 .overlayBlank {
-  margin-left: 140px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 32px;
-  font-family: "Inter";
-  z-index: 2;
-  background-color: white;
-  border-radius: 30px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
-  padding: 40px 48px 40px 48px;
-
-  transform: translateX(200%);
-  animation: slideIn 1s forwards;
+    margin-left: 140px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+    font-family: "Inter";
+    z-index: 2;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
+    padding: 40px 48px 40px 48px;
+    transform: translateX(200%);
+    animation: slideIn 1s forwards;
 }
 
 @keyframes slideIn {
-  to {
-      transform: translateX(0);
-  }
+    to {
+        transform: translateX(0);
+    }
 }
 
 .FullTaskCard {
@@ -305,7 +305,7 @@ progress {
 }
 
 .cardheadFull img:hover {
-  filter: drop-shadow(0 0 4px black);
+    filter: drop-shadow(0 0 4px black);
 }
 
 .titleFull {
@@ -429,7 +429,7 @@ progress {
 }
 
 .checkbox:hover {
-  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.37));
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.37));
 }
 
 .subtaskFull div {
@@ -544,9 +544,8 @@ progress {
 }
 
 .cardheadEdit img:hover {
-  filter: drop-shadow(0 0 4px black);
+    filter: drop-shadow(0 0 4px black);
 }
-
 
 .titleEdit .uselessAstriks {
     display: flex;
@@ -648,7 +647,7 @@ progress {
 }
 
 .TaskEditorBody .assigneeOptionContainer {
-  width: 93.5% !important;
+    width: 93.5% !important;
 }
 
 .subtasksEdit {

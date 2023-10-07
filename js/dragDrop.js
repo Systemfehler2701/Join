@@ -34,5 +34,4 @@ function removeHighlight(element) {
     if (activeElement != undefined) {
         activeElement.classList.remove('panelbody-highlight');
     }
-    element.classList.remove('panelbody-highlight');
 }
