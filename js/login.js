@@ -2,11 +2,12 @@ let currentUser = null;
 let isGuestUser = false;
 
 function renderLoginMask() {
-  var container = document.getElementById("content-app");
+    var container = document.getElementById("content-app");
 
-  container.innerHTML = `<div id="login_signupBody">
+    container.innerHTML = `<div id="login_signupBody">
+    <div class="login-headline">
       <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
-  
+    </div>
       <form onsubmit="logIn(); return false;" id="login_form">
         <h1>Log in</h1>
         <input type="email" id="loginEmail" placeholder="Email" />
@@ -16,52 +17,52 @@ function renderLoginMask() {
       </form>
       </div>`;
 
-  // Füge den Container zum DOM hinzu
-  // document.getElementById("login_signupBody").appendChild(container);
+    // Füge den Container zum DOM hinzu
+    // document.getElementById("login_signupBody").appendChild(container);
 }
 
 async function logIn() {
-  try {
-    const emailInput = document.getElementById("loginEmail");
-    const passwordInput = document.getElementById("loginPassword");
+    try {
+        const emailInput = document.getElementById("loginEmail");
+        const passwordInput = document.getElementById("loginPassword");
 
-    const usersData = await getItem("users");
-    const users = JSON.parse(usersData);
+        const usersData = await getItem("users");
+        const users = JSON.parse(usersData);
 
-    // Überprüfen, ob die eingegebene E-Mail in den Benutzerdaten vorhanden ist
-    if (users.hasOwnProperty(emailInput.value)) {
-      const userData = users[emailInput.value];
+        // Überprüfen, ob die eingegebene E-Mail in den Benutzerdaten vorhanden ist
+        if (users.hasOwnProperty(emailInput.value)) {
+            const userData = users[emailInput.value];
 
-      // Überprüfen, ob das eingegebene Passwort mit dem gespeicherten Passwort übereinstimmt
-      if (userData.password === passwordInput.value) {
-        // Kopiere alle Benutzerdaten in den currentUser
-        currentUser = { email: emailInput.value, name: userData.name };
-        isGuestUser = false;
-        app();
-      } else {
-        alert("Falsches Passwort. Bitte überprüfen Sie Ihr Passwort.");
-      }
-    } else {
-      alert("Benutzer nicht gefunden. Überprüfen Sie Ihre E-Mail-Adresse.");
+            // Überprüfen, ob das eingegebene Passwort mit dem gespeicherten Passwort übereinstimmt
+            if (userData.password === passwordInput.value) {
+                // Kopiere alle Benutzerdaten in den currentUser
+                currentUser = { email: emailInput.value, name: userData.name };
+                isGuestUser = false;
+                app();
+            } else {
+                alert("Falsches Passwort. Bitte überprüfen Sie Ihr Passwort.");
+            }
+        } else {
+            alert("Benutzer nicht gefunden. Überprüfen Sie Ihre E-Mail-Adresse.");
+        }
+
+        console.log(currentUser);
+        console.log(isGuestUser);
+    } catch (error) {
+        console.error("Fehler beim Einloggen:", error);
     }
-
-    console.log(currentUser);
-    console.log(isGuestUser);
-  } catch (error) {
-    console.error("Fehler beim Einloggen:", error);
-  }
 }
 
 function logInGuest() {
-  currentUser = {
-    name: "Guest",
-    email: "guest@join",
-  };
-  isGuestUser = true;
-  app();
+    currentUser = {
+        name: "Guest",
+        email: "guest@join",
+    };
+    isGuestUser = true;
+    app();
 }
 
 function logOut() {
-  currentUser = null;
-  app();
+    currentUser = null;
+    app();
 }
