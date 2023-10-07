@@ -11,7 +11,6 @@ function renderLoginMask() {
     </div>
       <form onsubmit="logIn(); return false;" id="login_form">
         <div id="loginHead"><h1 id="loginTitle">Log in</h1>
-        <img id="loginHeadLogo" src="../../assets/img/blue-stroke.svg" alt="stroke"></div>
         <div id="loginInput">
         <input type="email" id="loginEmail" placeholder="Email" />
         <input type="password" id="loginPassword" placeholder="Password" />

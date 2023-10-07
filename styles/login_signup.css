@@ -52,12 +52,17 @@
     gap: 32px;
     width: 422px;
     height: 48px;
-    ;
 }
 
-#loginHeadLogo {
-    rotate: 90deg;
-}
+#loginHead {
+    border:solid;
+    width:350px;
+    margin:auto;
+    border-bottom:none;
+    background:linear-gradient(black,black) bottom /* left or right or else */ no-repeat;
+    background-size:50% 3px;}
+
+
 
 #loginButtons {
     display: flex;

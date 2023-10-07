@@ -51,7 +51,7 @@ async function register() {
     await setItem("users", JSON.stringify(regUsers));
     resetForm();
     alert("Dein Konto wurde erstellt.");
-    window.location.href = "login.template.html";
+    app();
   } catch (e) {
     console.error("Register error:", e);
   }
