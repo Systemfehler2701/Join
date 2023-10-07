@@ -16,7 +16,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    padding: 50px;
 }
 
 #login_form {
@@ -29,7 +29,7 @@
     Top: 265.5px;
     Left: 394px;
     border-radius: 30px;
-    Padding: 48px 115px 48px 115px;
+    Padding: 48px 0;
     Gap: 32px;
     background: var(--white);
 }
@@ -40,7 +40,7 @@
     justify-content: center;
     flex-direction: column;
     margin-bottom: 40px;
-    gap: 32px;
+    gap: 25px;
 }
 
 #loginInput input {
@@ -61,8 +61,8 @@
     justify-content: center;
     flex-direction: row;
     gap: 32px;
-    margin-bottom: 40px;}
-
+    margin-bottom: 40px;
+}
 
 #loginButtons {
     display: flex;
@@ -82,7 +82,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right: 80px;
     width: 279px;
     height: 49px;
     top: 67px;
@@ -100,21 +99,19 @@
     Line-height: 73.2px;
     width: 350px;
     margin: auto;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
-        /* left or right or else */
-        no-repeat;
+    /* left or right or else */
+    no-repeat;
     background-size: 40% 3px;
 }
-
 
 #logo {
     width: 100.03px;
     height: 121.97px;
     top: 80px;
     left: 77px;
-    margin-left: 80px;
 }
 
 #signUpBtn {
