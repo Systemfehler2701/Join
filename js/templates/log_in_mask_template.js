@@ -21,9 +21,9 @@ function renderLoginMask() {
         <button type="button" onclick="logInGuest()">Guest Log in</button>
       </div>
       </form>
-      <div>
+      </div>
+      <div id="legalNotice">
       <a href="../../privacy_policy.html">Privacy Policy</a>
       <a href="javascript:renderNotice()">Legal Notice</a>
-      </div>
       </div>`;
 }
