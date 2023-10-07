@@ -414,7 +414,7 @@ function board_createTaskEditor(array, i) {
 <div class="cardheadEdit">
   <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
 </div>
-<div class="TaskEditorBody">
+<div class="TaskEditorBody scroll">
     <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
 <div class="titleEdit">
   <h2>Title</h2>
@@ -423,7 +423,7 @@ function board_createTaskEditor(array, i) {
 </div>
 <div class="descriptionEdit">
   <h2>Description</h2>
-  <textarea name="" id="description" cols="56" rows="10" placeholder="Enter a Description">${task["description"]}</textarea>
+  <textarea name="" class="scroll" id="description" cols="56" rows="10" placeholder="Enter a Description">${task["description"]}</textarea>
 </div>
 <div class="duedateEdit">
     <p>Due Date:</p>
@@ -457,7 +457,14 @@ function board_createTaskEditor(array, i) {
         <img src="/assets/img/arrow_drop_downaa.svg" alt="">
       </div>
     </div> 
-    <div style="display: none" id="assign_select" class="assignmentContainer"></div>
+    <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
+        <div  id="assign_select" class="assignmentContainer scroll"></div>
+        <div class="ContactButtonContainer">
+            <div class="newContactButton" id="assignmentNewContact">Add New contact
+                <img src="/assets/img/person_add.svg" alt="">
+            </div> 
+        </div>
+    </div>
     <div class="assigneeList" id="assigneeList"></div>
 </div>
 <div class="subtasksEdit">
