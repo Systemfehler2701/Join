@@ -55,6 +55,10 @@
     ;
 }
 
+#loginHeadLogo {
+    rotate: 90deg;
+}
+
 #loginButtons {
     display: flex;
     align-items: center;
