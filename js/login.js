@@ -5,6 +5,7 @@ function renderLoginMask() {
   var container = document.getElementById("content-app");
 
   container.innerHTML = `<div id="login_signupBody">
+
       <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
   
       <form onsubmit="logIn(); return false;" id="login_form">
@@ -14,10 +15,8 @@ function renderLoginMask() {
         <button type="submit">Log in</button>
         <button type="button" onclick="logInGuest()">Guest Log in</button>
       </form>
+      <a onclick=renderHelp()></a>
       </div>`;
-
-  // Füge den Container zum DOM hinzu
-  // document.getElementById("login_signupBody").appendChild(container);
 }
 
 async function logIn() {
