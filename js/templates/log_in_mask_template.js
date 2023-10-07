@@ -1,10 +1,13 @@
 function renderLoginMask() {
     var container = document.getElementById("content-app");
 
-    container.innerHTML = `<div id="login_signupBody">
+    container.innerHTML = /*html*/ `<div id="login_signupBody">
     <div class="login-headline">
       <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
-      <span>Not a Join user?</span>
+      <div class="headline-right">
+        <span>Not a Join user?</span>
+        <!--sign up button-->
+      </div>
     </div>
       <form onsubmit="logIn(); return false;" id="login_form">
         <h1>Log in</h1>
