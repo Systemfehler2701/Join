@@ -29,6 +29,11 @@
     background: var(--white);
 }
 
+.login-headline {
+    display: flex;
+    width: 100%;
+}
+
 #login h1 {
     font-family: "Inter";
     background-color: #f6f7f8;
