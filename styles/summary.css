@@ -220,7 +220,7 @@
         font-weight: 500;
     }
     
-    .summary-user {
+    #summary-user {
         font-size: 60px;
         font-weight: 700;
         color: #29ABE2;

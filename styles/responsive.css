@@ -78,6 +78,19 @@
     .summary-line2 {
         width: 385px;
     }
+    .summary-task span {
+        font-size: 50px;
+        padding: 0 8px;
+    }
+    .summary-task p {
+        font-size: 18px;
+    }
+    .summary-task svg {
+        height: 50px;
+    }
+    .upcoming-img {
+        height: 50px;
+    }
     .summary-welcome {
         height: 390px;
     }
@@ -85,7 +98,7 @@
         font-size: 35px;
         font-weight: 500;
     }
-    .summary-user {
+    #summary-user {
         font-size: 45px;
         font-weight: 700;
     }
@@ -145,6 +158,10 @@
         width: 100%;
         height: fit-content;
         justify-content: space-around;
+    }
+    .summary-info {
+        display: flex;
+        justify-content: center;
     }
     .footer {
         display: none;
@@ -226,8 +243,6 @@
         margin-bottom: 74px;
         /* Must be the height of the bottom-navbar. Please adjst if necessary JK 4.10.23*/
         justify-content: center;
-        padding-left: 0;
-        padding-right: 0;
     }
     .taskbody {
         width: 95%;

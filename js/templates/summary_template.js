@@ -101,7 +101,7 @@ function renderSummaryUpcoming() {
             <div class="upcoming-img"></div>
             <div>
                 <span id="upcoming-amount">${taskLists.inProgress.length}</span>
-                <p>Test</p>
+                <p>Urgent</p>
             </div>
         </div>
         <svg width="2" height="106" viewBox="0 0 2 106" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,6 +147,14 @@ function renderSummaryWelcome() {
     return /* html */ `
     <div class="summary-welcome">
         <div id="summary-greeting"></div>
-        <div class="summary-user">${currentUser.name}</div>
+        <div id="summary-user">${getUserGreeting()}</div>
     </div>`;
+}
+
+function getUserGreeting() {
+    if (currentUser.name == 'Guest') {
+        return '';
+    }
+    return currentUser.name;
+
 }
