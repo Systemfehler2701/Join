@@ -6,7 +6,7 @@ function renderLoginMask() {
       <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
       <div class="headline-right">
         <span>Not a Join user?</span>
-        <button id="signUpBtn" onclick="renderSignUpMask()">Sign Up</button>
+        <button id="SignUpbtn" type="button" onclick="renderSignUpMask()">Sign Up</button>
       </div>
     </div>
       <form onsubmit="logIn(); return false;" id="login_form">

@@ -212,6 +212,7 @@ form button {
     color: #ffffff;
     cursor: pointer;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .rightside {

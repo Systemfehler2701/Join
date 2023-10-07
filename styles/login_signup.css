@@ -77,6 +77,17 @@
     margin-bottom: 20px;
 }
 
+#SignUpbtn {
+    display: block;
+    padding: 10px;
+    border: none;
+    background-color: #2a3647;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 #loginButtons {
     display: flex;
     align-items: center;
@@ -126,15 +137,4 @@
     top: 80px;
     left: 77px;
     margin-left: 80px;
-}
-
-#signUpBtn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background-color: #2a3647;
-    color: #ffffff;
-    cursor: pointer;
-    border-radius: 5px;
 }

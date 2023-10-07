@@ -29,7 +29,7 @@ async function renderSignUpMask() {
         type="checkbox"
         value=""
         id="signUpCheck"
-        checked
+        unchecked
       />
       <span>
         I accept the
@@ -37,7 +37,7 @@ async function renderSignUpMask() {
       </span> 
       </div>
       <div id="loginButtons">
-      <button id="registerBtn">Sign Up</button>
+      <button>Sign Up</button>
 </div>
       
     </div>
