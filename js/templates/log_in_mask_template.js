@@ -13,6 +13,7 @@ function renderLoginMask() {
         <button type="submit">Log in</button>
         <button type="button" onclick="logInGuest()">Guest Log in</button>
       </form>
-      <a onclick=renderHelp()></a>
+      <a href="../../privacy_policy.html">Privacy Policy</a>
+      <a href="javascript:renderNotice()">Legal Notice</a>
       </div>`;
 }
