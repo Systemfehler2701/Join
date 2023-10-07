@@ -28,7 +28,8 @@ let users = [{
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const colors = ['#FF7A00', '#FF5EB3', '#6E52FF', '#9327FF', '#00BEE8', '#1FD7C1', '#FF745E', '#FFA35E', '#FC71FF', '#FFC701', '#0038FF', '#C3FF2B', '#FFE62B', '#FF4646', '#FFBB2B'];
 
-function loadContacts() {
+function renderContactList() {
+    getItem('contacts');
     let content = '';
     let currentInitial = '';
 
@@ -80,8 +81,9 @@ function addContact(e) {
 
     users.push(newUser);
     users.sort((a, b) => a.name.localeCompare(b.name));
-    loadContacts();
+    renderContactList();
     closeOverlay();
+    setItem('contacts', users);
 }
 
 function getInitials(name) {
@@ -112,16 +114,16 @@ function showDetails(index) {
             <div class="detailsLogo" style="background-color: ${user.color}; margin: 0 auto;">${initials}</div>
             <div class="name">
                 <h3>${user.name}</h3>
-             <div class="contactsIcons">
-                    <div class="editIcon">
-                        <img class="editSymbol" src="/assets/img/edit.svg" onclick= editContact(${index})>
-                        <span>Edit</span>
-                    </div>
-                    <div class="deleteIcon" onclick= deleteContact(${index})>
-                        <img src="/assets/img/delete.svg">
-                        <span>Delete </span>
-                    </div>
-            </div>
+                <div class="contactsIcons">
+    <div class="iconWrapper" onclick="editContact(${index})">
+        <img class="icon" src="/assets/img/edit.svg">
+        <span class="iconText">Edit</span>
+    </div>
+    <div class="iconWrapper" onclick="deleteContact(${index})">
+        <img class="icon" src="/assets/img/delete.svg">
+        <span class="iconText">Delete</span>
+    </div>
+</div>
             </div>
         </div>
         <div class="contactInformation">
@@ -153,7 +155,7 @@ function getColor(name) {
 
 function deleteContact(index) {
     users.splice(index, 1);
-    loadContacts();
+    renderContactList();
     document.getElementById('detailsContainer').innerHTML = '';
     closeOverlay();
 }
@@ -185,7 +187,7 @@ function updateContact(e) {
     // Das Array erneut sortieren, nachdem ein Kontakt bearbeitet wurde
     users.sort((a, b) => a.name.localeCompare(b.name));
 
-    loadContacts();
+    renderContactList();
     closeEditOverlay();
     clearDetails();
 }
@@ -201,8 +203,7 @@ function clearDetails() {
 
 // Event Listeners
 function addContactsEventlistener() {
-    loadContacts();
-    document.getElementById('assignmentNewContact').addEventListener('click', addContact);
+    renderContactList();
     document.getElementById('contactForm').addEventListener('submit', addContact);
     document.querySelector('.addButton').addEventListener('click', openOverlay);
     document.getElementById('closeForm').addEventListener('click', closeOverlay);
@@ -214,3 +215,11 @@ function addContactsEventlistener() {
         document.getElementById('editOverlay').style.display = 'none';
     });
 }
+
+document.getElementById('openOverlay').addEventListener('click', function() {
+    document.getElementById('myOverlay').classList.add('active');
+});
+
+document.getElementById('closeOverlay').addEventListener('click', function() {
+    document.getElementById('myOverlay').classList.remove('active');
+});

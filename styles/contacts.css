@@ -447,6 +447,7 @@ form button {
 
 .contactsIcons {
     display: flex;
+    gap: 32px;
 }
 
 .buttonArea {
@@ -491,4 +492,39 @@ form button {
 .contactName {
     font: inter 500;
     font-size: 47px;
+}
+
+.iconWrapper {
+    cursor: pointer;
+    display: inline-block;
+    /* oder flex, je nach Bedarf */
+}
+
+.iconWrapper:hover .icon,
+.iconWrapper:hover .iconText {
+    color: #29ABE2;
+    filter: brightness(0) saturate(100%) invert(36%) sepia(95%) saturate(3881%) hue-rotate(175deg) brightness(101%) contrast(101%);
+}
+
+.iconText {
+    color: IhreStartFarbe;
+    /* Setzen Sie die gewünschte Anfangsfarbe */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -50%;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-x: hidden;
+    transition: right 0.5s ease-in-out;
+    padding: 60px 0 0 25px;
+    color: white;
+}
+
+.overlay.active {
+    right: 25%;
 }
