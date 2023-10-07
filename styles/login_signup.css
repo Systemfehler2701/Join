@@ -29,8 +29,8 @@
     Top: 265.5px;
     Left: 394px;
     border-radius: 30px;
-    Padding: 48px 115px 48px 115px;
-    Gap: 32px;
+    Padding: 80px 20px;
+    Gap: 20px;
     background: var(--white);
 }
 
@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     gap: 32px;
 }
 
@@ -60,9 +60,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    gap: 32px;
-    margin-bottom: 40px;}
-
+    margin-bottom: 20px;
+}
 
 #loginButtons {
     display: flex;
@@ -107,7 +106,6 @@
         no-repeat;
     background-size: 40% 3px;
 }
-
 
 #logo {
     width: 100.03px;

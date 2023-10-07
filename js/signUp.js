@@ -7,8 +7,6 @@ async function renderSignUpMask() {
         <div class="login-headline">
       <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
       <div class="headline-right">
-        <span>Not a Join user?</span>
-        <button id="signUpBtn" onclick="renderSignUpMask()">Sign Up</button>
       </div>
     </div>
   <form id="login_form" onsubmit="register(); return false;">
@@ -33,13 +31,13 @@ async function renderSignUpMask() {
         id="signUpCheck"
         checked
       />
-      <label>
+      <span>
         I accept the
         <a onclick="renderPolicy()">Privacy Policy</a>
-      </label> 
+      </span> 
       </div>
       <div id="loginButtons">
-      <button id="registerBtn">Registrieren</button>
+      <button id="registerBtn">Sign Up</button>
 </div>
       
     </div>
