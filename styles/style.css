@@ -23,3 +23,14 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+.contact-leftside::-webkit-scrollbar {
+    width: 10px !important;
+    /* Breite des Scrollbalkens */
+    height: 10px !important;
+    /* Höhe des Scrollbalkens (bei horizontalen Scrollbalken) */
+}
+
+.contact-leftside::-webkit-scrollbar-thumb {
+    background-color: lightgrey;
+    border-radius: 5px;
+}

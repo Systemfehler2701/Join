@@ -10,13 +10,25 @@
     position: fixed;
     top: 106px;
     left: 233px;
-    height: 100%;
-    padding: 40px;
+    height: 90%;
+    padding: 0 40px 40px 40px;
     width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
+}
+
+.contact-left-button {
+    background-color: white;
+    position: sticky;
+    top: 0px;
+    left: 0;
+    width: -webkit-fill-available;
+    min-height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contactfield {
