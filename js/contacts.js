@@ -215,11 +215,3 @@ function addContactsEventlistener() {
         document.getElementById('editOverlay').style.display = 'none';
     });
 }
-
-document.getElementById('openOverlay').addEventListener('click', function() {
-    document.getElementById('myOverlay').classList.add('active');
-});
-
-document.getElementById('closeOverlay').addEventListener('click', function() {
-    document.getElementById('myOverlay').classList.remove('active');
-});
