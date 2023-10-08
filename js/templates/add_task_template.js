@@ -28,7 +28,7 @@ function createNewTask(array) {
                     </div>
                     <div class="description">
                         <h2>Description</h2>
-                        <textarea name="" id="description" cols="56" rows="10" placeholder="Enter a Description"></textarea>
+                        <textarea class="scroll" name="" id="description" cols="56" rows="10" placeholder="Enter a Description"></textarea>
                         <div class="Taskerror" style="display: none;" id="errorDescription"> This field needs to be filled out</div>
                     </div>
                     <div class="assignment">
