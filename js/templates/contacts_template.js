@@ -60,12 +60,12 @@ function renderContacts(element) {
                     <h3>Edit contact</h3>
                 </div>
                 <div class="Edit-whiteside">
-                <button id="closeEditForm">X</button>
+                <button class="closeWindow" id="closeEditForm">X</button>
                     <div class="Edit-Container">
                         <div class="initials-logo-edit" id="editInitialsLogo"></div>
                         <div>
                             
-                        <div class="edit-Area" id="editForm">
+                        <div class="input-Area" id="editForm">
                             <input type="hidden" id="editIndex">
 
                             <label for="editName">Name:</label>
