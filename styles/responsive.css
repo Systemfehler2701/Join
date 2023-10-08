@@ -36,12 +36,11 @@
     height: 85px;
   }
   .summary-task p {
-    padding: 0 10px;
+    padding: 0 8px;
   }
   .contact-leftside {
     left: 150px;
-    height: 100%;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     width: 370px;
   }
   .rightside {
@@ -62,7 +61,7 @@
     width: 164px;
   }
   .summary-upcoming {
-    width: 385px;
+    width: 345px;
   }
   .summary-board,
   .summary-progress,
@@ -72,12 +71,36 @@
   }
   .summary-line1,
   .summary-line3 {
-    width: unset;
+    width: 385px;
     display: flex;
     justify-content: space-between;
   }
+  .summary-line2 {
+    width: 385px;
+  }
+  .summary-task span {
+    font-size: 50px;
+    padding: 0 8px;
+  }
+  .summary-task p {
+    font-size: 18px;
+  }
+  .summary-task svg {
+    height: 50px;
+  }
+  .upcoming-img {
+    height: 50px;
+  }
   .summary-welcome {
     height: 390px;
+  }
+  #summary-greeting {
+    font-size: 35px;
+    font-weight: 500;
+  }
+  #summary-user {
+    font-size: 45px;
+    font-weight: 700;
   }
   .panels {
     flex-wrap: wrap;
@@ -136,6 +159,10 @@
     height: fit-content;
     justify-content: space-around;
   }
+  .summary-info {
+    display: flex;
+    justify-content: center;
+  }
   .footer {
     display: none;
   }
@@ -148,6 +175,9 @@
   }
   .headline {
     display: none;
+  }
+  .summary-header h1 {
+    margin: 0px 0;
   }
   .grey-logo {
     display: flex !important;
@@ -165,7 +195,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 400px;
-    height: 200px;
+    height: 185px;
   }
   .img-full {
     display: none;
@@ -186,19 +216,24 @@
   .overlayBlank {
     margin-left: 0;
   }
+  .summary-task {
+    margin-top: 0;
+  }
+  .summary-welcome {
+    display: none;
+  }
 }
 
 @media (max-width: 739px) {
   .head {
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 4%;
+    width: 100%;
   }
   .headleft {
     width: 100%;
     flex-direction: column;
     align-items: flex-end;
-    margin-right: 4%;
   }
   .searchbar {
     width: 100%;
@@ -207,8 +242,6 @@
     margin-bottom: 74px;
     /* Must be the height of the bottom-navbar. Please adjst if necessary JK 4.10.23*/
     justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
   }
   .taskbody {
     width: 95%;
@@ -223,9 +256,6 @@
     font-size: 48px;
     font-weight: 700;
     margin-top: 0;
-  }
-  .assignmentContainer {
-    width: 94%;
   }
   .searchbar input {
     width: -webkit-fill-available;
@@ -243,7 +273,14 @@
     width: 32%;
     font-size: 16px;
   }
-  .TaskEditorBody .assigneeOptionContainer {
-    width: 90% !important;
+  .assignmentSelect {
+    font-size: 18px;
+  }
+  .head {
+    width: 310px;
+  }
+  .searchbar input {
+    width: -webkit-fill-available;
+    max-width: 237px;
   }
 }

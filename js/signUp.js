@@ -4,8 +4,15 @@ async function renderSignUpMask() {
   var container = document.getElementById("content-app");
 
   container.innerHTML = `<div id="login_signupBody">
-
-  <form onsubmit="register(); return false;">
+        <div class="login-headline">
+      <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
+      <div class="headline-right">
+      </div>
+    </div>
+  <form id="signUp_form" onsubmit="register(); return false;">
+  <div id="loginHead">
+  <h1 id="loginTitle">Sign Up</h1>
+  <div id="loginInput">
       <input required type="name" id="signUpName" placeholder="Name" />
       <input required type="email" id="signUpEmail" placeholder="Email" />
       <input required type="password" id="signUpPw" placeholder="Password" />
@@ -15,19 +22,25 @@ async function renderSignUpMask() {
         id="signUpPw2"
         placeholder="Confirm Password"
       />
-      <button id="registerBtn">Registrieren</button>
-
+      </div>
+      <div id="loginCheckbox">
       <input
         class=""
         type="checkbox"
         value=""
         id="signUpCheck"
-        checked
+        unchecked
       />
-      <label>
+      <span>
         I accept the
         <a onclick="renderPolicy()">Privacy Policy</a>
-      </label>
+      </span> 
+      </div>
+      <div id="loginButtons">
+      <button>Sign Up</button>
+</div>
+      
+    </div>
     </form></div>`;
 }
 
@@ -51,7 +64,7 @@ async function register() {
     await setItem("users", JSON.stringify(regUsers));
     resetForm();
     alert("Dein Konto wurde erstellt.");
-    window.location.href = "login.template.html";
+    app();
   } catch (e) {
     console.error("Register error:", e);
   }

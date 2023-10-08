@@ -141,7 +141,7 @@
   position: absolute;
   width: 42.5%;
   flex-direction: column;
-  padding: 0 12px;
+  padding: 0 6px;
   border-radius: 0 0 10px 10px;
   background-color: white;
   max-height: 210px;
@@ -191,8 +191,9 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 8px 4px;
+  justify-content: space-between;
+  width: calc(100% - 16px);
+  padding: 8px 16px 8px 4px;
 }
 
 .assigneeOption:hover {
@@ -202,7 +203,7 @@
 .assigneeOption .assigneeName {
   display: flex;
   align-items: center;
-  width: 82%;
+  justify-content: flex-start;
 }
 
 .assigneeList {

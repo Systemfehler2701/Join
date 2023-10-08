@@ -4,10 +4,12 @@ function renderContacts(element) {
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
     <div class="contact-leftside">
+        <div class="contact-left-button">
         <button class="addButton">
             <span>Add new Contact</span>
             <img src="assets/img/person_add.svg">
         </button>
+        </div>
         <div class="viewall">
             <div id="contactlist"></div>
         </div>

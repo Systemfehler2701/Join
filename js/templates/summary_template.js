@@ -5,17 +5,17 @@ async function renderSummary(element) {
     await board_loadFromStorage("feedback");
     await board_loadFromStorage("done");
 
-  document.getElementById("help-link").classList.remove("d-none");
-  if (element != undefined) {
-    navigationMenuClicked(element);
-  }
-  renderSummaryContent();
-  greet();
+    document.getElementById("help-link").classList.remove("d-none");
+    if (element != undefined) {
+        navigationMenuClicked(element);
+    }
+    renderSummaryContent();
+    greet();
 }
 
 function renderSummaryContent() {
-  let content = document.getElementById("content");
-  content.innerHTML = /* html */ `<div class="summary-content">
+    let content = document.getElementById("content");
+    content.innerHTML = /* html */ `<div class="summary-content">
     ${renderSummaryHeader()}
     <div class="summary-info">
         ${renderSummaryTask()}
@@ -25,7 +25,7 @@ function renderSummaryContent() {
 }
 
 function renderSummaryTask() {
-  return /*html*/ `
+    return /*html*/ `
     <div class="summary-task">
         <div class="summary-line1">
             ${renderSummaryTodo()}
@@ -41,7 +41,7 @@ function renderSummaryTask() {
 }
 
 function renderSummaryHeader() {
-  return /* html */ `
+    return /* html */ `
     <div class="summary-header">
         <h1>Join 360</h1>
         <img class="img-full" src="/assets/img/blue-stroke.svg">
@@ -51,7 +51,7 @@ function renderSummaryHeader() {
 }
 
 function renderSummaryTodo() {
-  return /* html */ `
+    return /* html */ `
     <div class="summary-todo">
         ${renderSummaryTodoSvg()}
         <div>
@@ -62,7 +62,7 @@ function renderSummaryTodo() {
 }
 
 function renderSummaryTodoSvg() {
-  return /* html */ `
+    return /* html */ `
     <svg width="69" height="70" viewBox="0 0 69 70" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="34.5" cy="35" r="34.5" fill="#2A3647"/>
         <mask id="mask0_86609_5986" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="18" y="19" width="33" height="32">
@@ -75,7 +75,7 @@ function renderSummaryTodoSvg() {
 }
 
 function renderSummaryDone() {
-  return /* html */ `
+    return /* html */ `
     <div class="summary-done">
         ${renderSummaryDoneSvg()}
         <div>
@@ -86,7 +86,7 @@ function renderSummaryDone() {
 }
 
 function renderSummaryDoneSvg() {
-  return /* html */ `
+    return /* html */ `
     <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="35" cy="35" r="34.5" fill="#2A3647"/>
         <path d="M20.0283 35.0001L31.2571 46.0662L49.9717 23.9341" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -94,14 +94,14 @@ function renderSummaryDoneSvg() {
 }
 
 function renderSummaryUpcoming() {
-  return /* html */ `
+    return /* html */ `
     <div class="summary-line2">
     <div class="summary-upcoming">
         <div class="upcoming-amount">
             <div class="upcoming-img"></div>
             <div>
                 <span id="upcoming-amount">${taskLists.inProgress.length}</span>
-                <p>Test</p>
+                <p>Urgent</p>
             </div>
         </div>
         <svg width="2" height="106" viewBox="0 0 2 106" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +120,7 @@ function renderSummaryUpcoming() {
 }
 
 function renderSummaryBoard() {
-  return /* html */ `
+    return /* html */ `
     <div class="summary-board">
         <span id="board-amount">${taskLists.inProgress.length + taskLists.toDo.length + taskLists.feedback.length}</span>
         <p>Tasks in Board</p>
@@ -128,7 +128,7 @@ function renderSummaryBoard() {
 }
 
 function renderSummaryProgress() {
-  return /* html */ `
+    return /* html */ `
     <div class="summary-progress">
         <span id="progress-amount">${taskLists.inProgress.length}</span>
         <p>Tasks in Progress</p>
@@ -136,7 +136,7 @@ function renderSummaryProgress() {
 }
 
 function renderSummaryFeedback() {
-  return /* html */ `
+    return /* html */ `
     <div class="summary-feedback">
         <span id="feedback-amount">${taskLists.feedback.length}</span>
         <p>Awaiting Feedback</p>
@@ -144,9 +144,17 @@ function renderSummaryFeedback() {
 }
 
 function renderSummaryWelcome() {
-  return /* html */ `
+    return /* html */ `
     <div class="summary-welcome">
         <div id="summary-greeting"></div>
-        <div class="summary-user"></div>
+        <div id="summary-user">${getUserGreeting()}</div>
     </div>`;
+}
+
+function getUserGreeting() {
+    if (currentUser.name == 'Guest') {
+        return '';
+    }
+    return currentUser.name;
+
 }
