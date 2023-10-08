@@ -1,7 +1,7 @@
 function renderLoginMask() {
-  var container = document.getElementById("content-app");
+    var container = document.getElementById("content-app");
 
-  container.innerHTML = /*html*/ `<div id="login_signupBody">
+    container.innerHTML = /*html*/ `<div id="login_signupBody">
     <div class="login-headline">
       <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
       <div class="headline-right">
@@ -18,12 +18,13 @@ function renderLoginMask() {
         </div>
         <div id="loginButtons">
         <button type="submit">Log in</button>
-        <button type="button" onclick="logInGuest()">Guest Log in</button>
+        <button class="guest-login-btn" type="button" onclick="logInGuest()">Guest Log in</button>
       </div>
       </form>
       </div>
       <div id="legalNotice">
-      <a href="../../privacy_policy.html">Privacy Policy</a>
-      <a href="javascript:renderNotice()">Legal Notice</a>
+      <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
+      
+      <a href="legal_notice.html" target="_blank">Legal Notice</a>
       </div>`;
 }

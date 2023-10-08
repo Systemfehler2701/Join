@@ -18,7 +18,10 @@ function renderNavHeader() {
 
 
 function renderNavMenu() {
-    return /* html */ `<div class = "navigation-menu">
+    if (currentUser === null) {
+        return " ";
+    } else {
+        return /* html */ `<div class = "navigation-menu">
     <div class = "menu-button active" onclick = "renderSummary(this);">
         <div class = "menu-icon summary"></div><span> Summary </span>
     </div>
@@ -31,7 +34,8 @@ function renderNavMenu() {
     <div class = "menu-button" onclick = "renderContacts(this)">
         <div class = "menu-icon contacts"></div><span>Contacts</span>
     </div>
-</div>`;
+    </div>`;
+    }
 }
 
 
@@ -63,13 +67,17 @@ function renderHeaderHeadline() {
 
 
 function renderHeaderProfile() {
-    return /* html */ `
+    if (currentUser === null) {
+        return "";
+    } else {
+        return /* html */ `
     <div class="headline-profile">
         <div id="help-link">
             <div onclick="renderHelp()"><img src="/assets/img/help.svg"></div>
         </div>
         <div onclick="openSubmenu()" id="user-profile-initials">${currentUser.name.split(" ").map((element) => element[0]).join("")}</div>
     </div>`;
+    }
 }
 
 
