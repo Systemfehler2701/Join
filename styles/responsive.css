@@ -218,6 +218,7 @@
             width: 50px;
         }
         #header {
+            z-index: 5;
             height: 80px;
             padding: 5px 40px 5px 40px;
             align-items: center;
@@ -254,7 +255,27 @@
         .summary-welcome.desktop {
             display: none;
         }
-        .summary-welcome.mobile {}
+        .summary-welcome.mobile {
+            display: flex;
+            flex-direction: column;
+            z-index: 3;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 84vh;
+            position: absolute;
+            top: 90px;
+            left: 0;
+            background-color: #F6F7F8;
+            opacity: 1;
+            animation-name: fadeOut;
+            animation-duration: 3s;
+            /* Dauer der Animation (2 Sekunden in diesem Beispiel) */
+            animation-timing-function: ease-in-out;
+            /* Beschleunigungseffekt am Ende */
+            animation-fill-mode: forwards;
+            /* Element beibehalten, wenn die Animation beendet ist */
+        }
         .header-submenu {
             width: 135px;
             height: 150px;

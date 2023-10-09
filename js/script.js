@@ -1,7 +1,9 @@
-function app() {
+async function app() {
     if (currentUser === null) {
         renderLoginMask();
     } else {
+
+        await getAppData();
         renderLayout();
         renderNavigation();
         renderHeader();

@@ -1,15 +1,23 @@
 function greet() {
     let date = new Date();
     let hour = date.getHours();
+    let greeting = "";
+
     if (hour >= 17) {
-        return 'Good evening';
+        greeting = 'Good evening';
     } else if (hour >= 14) {
-        return `Good afternoon`;
+        greeting = `Good afternoon`;
     } else if (hour >= 11) {
-        return `Welcome`;
+        greeting = `Welcome`;
     } else if (hour >= 6) {
-        return `Good morning`;
+        greeting = `Good morning`;
     } else if (hour >= 0) {
-        return `Don't feed the Gremlins`;
+        greeting = `Don't feed the Gremlins`;
     }
+    if (currentUser.name == 'Guest') {
+        greeting += '!';
+    } else {
+        greeting += ',';
+    }
+    return greeting;
 }
