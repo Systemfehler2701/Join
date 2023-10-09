@@ -5,9 +5,6 @@
     #content {
         padding: 40px;
     }
-    .menu-button {
-        padding: 8px 20px;
-    }
     .summary-header h1 {
         margin: 20px 0;
     }
@@ -24,11 +21,6 @@
     }
     .summary-task p {
         padding: 0 8px;
-    }
-    .contact-leftside {
-        left: 150px;
-        padding: 0 20px 20px 20px;
-        width: 370px;
     }
     .rightside {
         padding: 10px 50px;
@@ -118,6 +110,24 @@
     }
     .addedSubtasks {
         margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 970px) {
+    #left-layout,
+    nav,
+    .navigation-menu,
+    .navigation-img {
+        width: 190px;
+        min-width: 190px;
+    }
+    .menu-button {
+        padding: 8px 20px;
+    }
+    .contact-leftside {
+        left: 190px;
+        padding: 0 20px 20px 20px;
+        width: 370px;
     }
 }
 

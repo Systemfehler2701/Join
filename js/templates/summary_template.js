@@ -1,10 +1,6 @@
 ///SUMMARY TEMPLATES///
-async function renderSummary(element) {
-    await board_loadFromStorage("toDo");
-    await board_loadFromStorage("inProgress");
-    await board_loadFromStorage("feedback");
-    await board_loadFromStorage("done");
-
+function renderSummary(element) {
+    getAppData();
     document.getElementById("help-link").classList.remove("d-none");
     if (element != undefined) {
         navigationMenuClicked(element);

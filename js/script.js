@@ -35,3 +35,11 @@ function appPrivacyPolicy() {
     renderHeader();
     renderPolicy();
 }
+
+async function getAppData() {
+    users = JSON.parse(await getItem('contacts'));
+    await board_loadFromStorage("toDo");
+    await board_loadFromStorage("inProgress");
+    await board_loadFromStorage("feedback");
+    await board_loadFromStorage("done");
+}
