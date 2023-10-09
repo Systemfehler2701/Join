@@ -81,9 +81,6 @@
         font-size: 45px;
         font-weight: 700;
     }
-    .panels {
-        flex-wrap: wrap;
-    }
     .taskpanel {
         width: 310px;
     }
@@ -113,6 +110,15 @@
     }
 }
 
+@media (max-width: 999px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+}
+
+
 @media (max-width: 970px) {
     #left-layout,
     nav,
@@ -129,6 +135,17 @@
         padding: 0 20px 20px 20px;
         width: 370px;
     }
+    .head {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+  }
+}
+
+@media(max-width: 900px) {
+  .panels {
+    justify-content: center;
+}
 }
 
 @media (max-width: 865px) {
@@ -238,19 +255,14 @@
         height: 35px;
         padding: 2px 8px;
     }
+    .headleft {
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-end;
+  }
 }
 
 @media (max-width: 739px) {
-    .head {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-    .headleft {
-        width: 100%;
-        flex-direction: column;
-        align-items: flex-end;
-    }
     .searchbar {
         width: 100%;
     }

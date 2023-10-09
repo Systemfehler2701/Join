@@ -7,7 +7,7 @@ let waitingList;
 let doneList;
 
 async function board_loadTasks() {
-  assignDocuments();
+  board_assignDocuments();
 
   await board_loadFromStorage("toDo");
   await board_loadFromStorage("inProgress");
@@ -18,10 +18,10 @@ async function board_loadTasks() {
   board_renderInProgress();
   board_renderFeedback();
   board_renderDone();
-  resetArrays();
+  task_resetArrays();
 }
 
-function assignDocuments() {
+function board_assignDocuments() {
   overlay = document.getElementById("BoardOverlay");
   overlayBody = document.getElementById("boardOverlaybody");
   blocker = document.getElementById("blocker");
@@ -62,15 +62,6 @@ function board_resetSearch() {
   }
 }
 
-function assignDocuments() {
-  overlay = document.getElementById("BoardOverlay");
-  overlayBody = document.getElementById("boardOverlaybody");
-  blocker = document.getElementById("blocker");
-  todoList = document.getElementById("toDo");
-  progressList = document.getElementById("inProgress");
-  waitingList = document.getElementById("awaitFeedback");
-  doneList = document.getElementById("done");
-}
 
 function board_search() {
   board_searchByList(todoList, "toDo");
@@ -111,8 +102,8 @@ function board_addTask(array) {
   overlay.style.display = "flex";
   overlayBody.innerHTML = "";
   overlayBody.innerHTML = createNewTask(array);
-  renderCategoryOptions();
-  renderAssigneeOptions();
+  task_renderCategoryOptions();
+  task_renderAssigneeOptions();
   blocker.onclick = function () {
     board_closeOverlay();
   };
@@ -153,20 +144,20 @@ function board_GoBack() {
 }
 
 function board_editTask(array, i) {
-  let x = getPrioforEditor(array, i);
+  let x = task_getPrioforEditor(array, i);
   overlayBody.innerHTML = board_createTaskEditor(array, i);
-  renderSubtasks();
-  renderAssigneeOptions();
-  renderAssigneeList();
+  task_renderSubtasks();
+  task_renderAssigneeOptions();
+  task_renderAssigneeList();
   if (x != null) {
-    setPrio(x);
+    task_setPrio(x);
   }
 }
 
 function board_closeOverlay() {
   overlay.style.display = "none";
   overlayBody.innerHTML = "";
-  resetArrays();
+  task_resetArrays();
   board_loadTasks();
 }
 
@@ -246,14 +237,14 @@ function board_renderSubtasksFull(array, i) {
     if (subtask["done"] == 0) {
       allSubtasks.innerHTML += `
       <div class="singleSubtaskFull">
-        <img id="checkbox${j}" class="checkbox" onclick="finishSubtask('${array}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
+        <img id="checkbox${j}" class="checkbox" onclick="board_finishSubtask('${array}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
         ${subtask["task"]}
       </div>
       `;
     } else {
       allSubtasks.innerHTML += `
       <div class="singleSubtaskFull">
-        <img id="checkbox${j}" class="checkbox" onclick="revertSubtask('${array}', ${i}, ${j})" src="/assets/img/Check button.svg" alt="">
+        <img id="checkbox${j}" class="checkbox" onclick="board_revertSubtask('${array}', ${i}, ${j})" src="/assets/img/Check button.svg" alt="">
         ${subtask["task"]}
       </div>
       `;
@@ -261,7 +252,7 @@ function board_renderSubtasksFull(array, i) {
   }
 }
 
-async function finishSubtask(array, i, j) {
+async function board_finishSubtask(array, i, j) {
   let subtaskList = taskLists[array][i]["subtasks"];
   subtaskList[j]["done"] = 1;
   taskLists[array][i]["subtasksDone"].push(subtaskList[j]);
@@ -270,7 +261,7 @@ async function finishSubtask(array, i, j) {
   await setItem(array, JSON.stringify(taskLists[array]));
 }
 
-async function revertSubtask(array, i, j) {
+async function board_revertSubtask(array, i, j) {
   let subtaskList = taskLists[array][i]["subtasks"];
   subtaskList[j]["done"] = 0;
   taskLists[array][i]["subtasksDone"].splice(0, 1);
@@ -282,7 +273,7 @@ async function revertSubtask(array, i, j) {
 function board_subTaskProgress(array, i, arrayName) {
   let task = array[i];
   if (task["subtasks"].length == 0) {
-    document.getElementById(`subtaskscard${i}`).style.display = "none";
+    document.getElementById(`subtaskscard${arrayName}${i}`).style.display = "none";
   } else {
     let progress = task["subtasksDone"].length / task["subtasks"].length;
     progress = Math.round(progress * 100);
@@ -290,14 +281,14 @@ function board_subTaskProgress(array, i, arrayName) {
   }
 }
 
-function board_displayAssignees(array, i) {
+function board_displayAssignees(array, i, arrayName) {
   let task = array[i];
   let assigned = task["assignees"];
   for (let j = 0; j < assigned.length; j++) {
     const assigneeNumber = assigned[j];
     let user = users[assigneeNumber];
-    document.getElementById(`assignees${i}`).innerHTML += /*html*/ `
-    <div class="initials-logo">${getInitials(user.name)}</div>
+    document.getElementById(`assignees${arrayName}${i}`).innerHTML += /*html*/ `
+    <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
   `;
   }
 }
@@ -310,7 +301,7 @@ function board_displayAssigneesFull(array, i) {
     let user = users[assigneeNumber];
     document.getElementById(`assigneeListFull`).innerHTML += /*html*/ `
     <div class="assigneeFull">
-      <div class="initials-logo">${getInitials(user.name)}</div>
+      <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
       <div class="assigneeNameFull">${user.name}</div>
     </div>
     `;
@@ -389,12 +380,12 @@ function board_createTaskCard(array, i, arrayName) {
         <p class="descriptioncard">
             ${task["description"]}
         </p>
-        <div id="subtaskscard${i}" class="subtaskscard">
+        <div id="subtaskscard${arrayName}${i}" class="subtaskscard">
             <label>${task["subtasksDone"].length}/${task["subtasks"].length} Subtasks</label>
             <progress id="progressbar${arrayName}${i}" max="100" value="0"></progress>
         </div>
         <div class="cardBottom">
-            <div id="assignees${i}" class="assignees"></div>
+            <div id="assignees${arrayName}${i}" class="assignees"></div>
             <img src="${task["priority"]["symbol"]}" alt=""> 
         </div>
       </div>
@@ -433,15 +424,15 @@ function board_createTaskEditor(array, i) {
 <div class="prioEdit">
     <p>Priority:</p>
       <div class="priocontainerEdit">
-        <div onclick="setPrio(0)" id="Prio0">
+        <div onclick="task_setPrio(0)" id="Prio0">
           Urgent
           <img id="Prio0_img" src="/assets/img/Prio_alta.png" class="">
         </div>
-        <div onclick="setPrio(1)" id="Prio1">
+        <div onclick="task_setPrio(1)" id="Prio1">
           Medium
           <img id="Prio1_img" src="/assets/img/Prio_media.png" class="">
         </div>
-        <div onclick="setPrio(2)" id="Prio2">
+        <div onclick="task_setPrio(2)" id="Prio2">
           Low
           <img id="Prio2_img" src="/assets/img/Prio_baja.png" class="">
         </div>
@@ -452,8 +443,8 @@ function board_createTaskEditor(array, i) {
 <div class="assignment">
     <h2>Assigned to</h2>
     <div  class="assignmentInput" id="assignmentInput">
-      <input onclick="toggleAssigneeOptions(this)" onkeyup="searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
-      <div id="assignmentSelectButton" onclick="toggleAssigneeOptions(this)">
+      <input onclick="task_toggleAssigneeOptions(this)" onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+      <div id="assignmentSelectButton" onclick="task_toggleAssigneeOptions(this)">
         <img src="/assets/img/arrow_drop_downaa.svg" alt="">
       </div>
     </div> 
@@ -470,7 +461,7 @@ function board_createTaskEditor(array, i) {
 <div class="subtasksEdit">
     <p>Subtasks:</p>
     <div>
-        <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
+        <input onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
         <div class="subtaskimages" id="subtaskField">
             <img src="/assets/img/Subtasks icons11.svg" alt="">
         </div>
@@ -479,7 +470,7 @@ function board_createTaskEditor(array, i) {
 </div>
 </div>
 <div class="editorBottom">
-  <button onclick="addEditedTask('${array}', ${i})" class="create">Ok</button>
+  <button onclick="task_addEditedTask('${array}', ${i})" class="create">Ok</button>
 </div>
 </div>
 `;

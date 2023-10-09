@@ -32,3 +32,10 @@ body::-webkit-scrollbar {
     background-color: lightgrey;
     border-radius: 5px;
 }
+
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}

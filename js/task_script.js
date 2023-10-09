@@ -42,25 +42,25 @@ const categories = [
   },
 ];
 
-async function addTask(list) {
-  resetError();
-  let data = compileTaskData();
+async function task_addTask(list) {
+  task_resetError();
+  let data = task_compileTaskData();
   if (data != "error") {
     taskLists[list].push(data);
-    resetForm();
+    task_resetForm();
     await setItem(list, JSON.stringify(taskLists[list]));
     board_closeOverlay();
     board_loadTasks();
   }
 }
 
-async function addEditedTask(list, i) {
-  resetError();
-  let data = compileTaskData();
+async function task_addEditedTask(list, i) {
+  task_resetError();
+  let data = task_compileTaskData();
   if (data != "error") {
     taskLists[list][i] = data;
-    CheckFinishedSubtasks(list, i);
-    resetForm();
+    task_CheckFinishedSubtasks(list, i);
+    task_resetForm();
     await setItem(list, JSON.stringify(taskLists[list]));
 
     board_closeOverlay();
@@ -68,7 +68,7 @@ async function addEditedTask(list, i) {
   }
 }
 
-function resetForm() {
+function task_resetForm() {
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
   document.getElementById("assign_select").value = null;
@@ -76,14 +76,14 @@ function resetForm() {
   document.getElementById("category_selector").value = null;
 }
 
-function resetArrays() {
+function task_resetArrays() {
   Prio = [];
   subtasks = [];
   subtasksDone = [];
   assignees = [];
 }
 
-function getPrioforEditor(array, i) {
+function task_getPrioforEditor(array, i) {
   let x = null;
   let task = taskLists[array][i];
   if (task["priority"]["priority"] == "Urgent") {
@@ -99,13 +99,13 @@ function getPrioforEditor(array, i) {
   return x;
 }
 
-function setPrio(x) {
+function task_setPrio(x) {
   Prio = [];
   Prio.push(priorities[x]);
-  colorPriorityButtons(x);
+  task_colorPriorityButtons(x);
 }
 
-function addSubtask() {
+function task_addSubtask() {
   subtask = document.getElementById("subtasks");
   let newSubtask = {
     task: subtask.value,
@@ -113,10 +113,20 @@ function addSubtask() {
   };
   subtasks.push(newSubtask);
   subtask.value = "";
-  renderSubtasks();
+  task_renderSubtasks();
 }
 
-function renderSubtasks() {
+function task_addSubtasksOnEnter(event) {
+  subtask = document.getElementById("subtasks");
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    if (subtask != "") {
+      task_addSubtask();
+    }
+  }
+}
+
+function task_renderSubtasks() {
   let subTaskDisplay = document.getElementById("addedSubtasks");
   subTaskDisplay.innerHTML = "";
   for (let i = 0; i < subtasks.length; i++) {
@@ -129,49 +139,49 @@ function renderSubtasks() {
         <p>${subtaskelement["task"]}</p>
       </div>
       <div class="subtaskTools">
-        <img onclick="cutSubtask(${i})" src="/assets/img/delete.svg" alt="">
-        <img onclick="editSubtask(${i})" src="/assets/img/edit.svg" alt="">
+        <img onclick="task_cutSubtask(${i})" src="/assets/img/delete.svg" alt="">
+        <img onclick="task_editSubtask(${i})" src="/assets/img/edit.svg" alt="">
       </div>
     </div>
     `;
   }
 }
 
-function cutSubtask(i) {
+function task_cutSubtask(i) {
   subtasks.splice(i, 1);
-  renderSubtasks(i);
+  task_renderSubtasks(i);
 }
 
-function editSubtask(i) {
+function task_editSubtask(i) {
   let currentValue = subtasks[i]["task"];
   let subTaskDisplay = document.getElementById(`subtask${i}`);
   subTaskDisplay.innerHTML = "";
   subTaskDisplay.innerHTML = `
       <input type="text" id="editedInput${i}" value="${currentValue}"  />
       <div>
-        <img onclick="cutSubtask( ${i})" src="/assets/img/delete.svg" alt="">
-        <img onclick="saveSubtaskEdit(${i})" src="/assets/img/Vector 17.svg" alt="">
+        <img onclick="task_cutSubtask( ${i})" src="/assets/img/delete.svg" alt="">
+        <img onclick="task_saveSubtaskEdit(${i})" src="/assets/img/Vector 17.svg" alt="">
       </div>
     `;
 }
 
-function saveSubtaskEdit(i) {
+function task_saveSubtaskEdit(i) {
   let editedValue = document.getElementById(`editedInput${i}`).value;
   subtasks[i]["task"] = editedValue;
-  renderSubtasks();
+  task_renderSubtasks();
 }
 
-function clearSubtask() {
+function task_clearSubtask() {
   document.getElementById("subtasks").value = "";
 }
 
-function changeSubtaskAppearance() {
+function task_changeSubtaskAppearance() {
   if (document.getElementById("subtasks").value != "") {
     document.getElementById("subtaskField").innerHTML = /*html*/ `
 
-    <div class="buttonwrapper"><img onclick="clearSubtask()" src="/assets/img/close.svg" alt=""></div> 
+    <div class="buttonwrapper"><img onclick="task_clearSubtask()" src="/assets/img/close.svg" alt=""></div> 
     <img src="/assets/img/Vector 3.svg" alt="">
-    <div class="buttonwrapper"><img onclick="addSubtask()" src="/assets/img/Vector 17.svg" alt=""></div>  
+    <div class="buttonwrapper"><img onclick="task_addSubtask()" src="/assets/img/Vector 17.svg" alt=""></div>  
     `;
   } else {
     document.getElementById("subtaskField").innerHTML =
@@ -179,13 +189,13 @@ function changeSubtaskAppearance() {
   }
 }
 
-function compileTaskData() {
+function task_compileTaskData() {
   title = document.getElementById("title");
   description = document.getElementById("description");
   dueDate = document.getElementById("due");
   category = document.getElementById("category_selector");
 
-  const validity = CheckInputValidity(
+  const validity = task_CheckInputValidity(
     title.value,
     dueDate.value,
     category.value
@@ -209,7 +219,7 @@ function compileTaskData() {
   }
 }
 
-function colorPriorityButtons(x) {
+function task_colorPriorityButtons(x) {
   //changes the backgroundcolor based on the selected Priority
   document.getElementById(`Prio0`).style.backgroundColor = "white";
   document.getElementById(`Prio1`).style.backgroundColor = "white";
@@ -230,7 +240,7 @@ function colorPriorityButtons(x) {
   document.getElementById(`Prio${x}_img`).classList.add("whiteFilterImg");
 }
 
-function CheckFinishedSubtasks(list, i) {
+function task_CheckFinishedSubtasks(list, i) {
   let subtasks = taskLists[list][i]["subtasks"];
   let finishedSubtasks = taskLists[list][i]["subtasksDone"];
   for (let j = 0; j < subtasks.length; j++) {
@@ -241,7 +251,7 @@ function CheckFinishedSubtasks(list, i) {
   }
 }
 
-function renderCategoryOptions() {
+function task_renderCategoryOptions() {
   let selector = document.getElementById("category_selector");
   for (let index = 0; index < categories.length; index++) {
     const category = categories[index];
@@ -251,32 +261,34 @@ function renderCategoryOptions() {
   }
 }
 
-function renderAssigneeOptions() {
+function task_renderAssigneeOptions() {
   let selector = document.getElementById("assign_select");
   selector.innerHTML = "";
   for (let index = 0; index < users.length; index++) {
     let user = users[index];
     if (assignees.includes(index)) {
-      createAssignedContact(user, index);
+      task_createAssignedContact(user, index);
     } else {
-      createUnassignedContact(user, index);
+      task_createUnassignedContact(user, index);
     }
   }
 }
 
-function renderAssigneeList() {
+function task_renderAssigneeList() {
   let list = document.getElementById("assigneeList");
   list.innerHTML = "";
   for (let i = 0; i < assignees.length; i++) {
     let assigneeNumber = assignees[i];
     let user = users[assigneeNumber];
     list.innerHTML += /*html*/ `
-      <div class="initials-logo">${getInitials(user.name)}</div>
+      <div class="initials-logo" style="background-color: ${
+        user.color
+      }">${getInitials(user.name)}</div>
     `;
   }
 }
 
-function toggleAssigneeOptions(clickedElement) {
+function task_toggleAssigneeOptions(clickedElement) {
   let selector = document.getElementById("assigneeOptionContainer");
   let selectorButton = document.getElementById("assignmentSelectButton");
   let optionsOpen = selector.style.display == "flex";
@@ -284,46 +296,46 @@ function toggleAssigneeOptions(clickedElement) {
   if (optionsOpen == false) {
     selector.style.display = "flex";
     selectorButton.classList.add("flip");
-    renderAssigneeOptions();
+    task_renderAssigneeOptions();
   } else if (clickedElement == selectorButton) {
     selector.style.display = "none";
     selectorButton.classList.remove("flip");
-    renderAssigneeOptions();
+    task_renderAssigneeOptions();
   }
 }
 
-function searchAssignees() {
+function task_searchAssignees() {
   let search = document.getElementById("assigner").value;
   let selector = document.getElementById("assign_select");
   if (search == "") {
-    renderAssigneeOptions();
+    task_renderAssigneeOptions();
   } else {
     selector.innerHTML = "";
     for (let i = 0; i < users.length; i++) {
       let user = users[i];
       if (user["name"].toLowerCase().includes(search)) {
         if (assignees.includes(i)) {
-          createAssignedContact(user, i);
+          task_createAssignedContact(user, i);
         } else {
-          createUnassignedContact(user, i);
+          task_createUnassignedContact(user, i);
         }
       }
     }
   }
 }
 
-function assign(index) {
+function task_assign(index) {
   assignees.push(index);
   let checkbox = document.getElementById(`assigneeCheckbox${index}`);
   checkbox.src = "/assets/img/Check button.svg";
   checkbox.onclick = null;
   checkbox.onclick = function () {
-    unassign(index);
+    task_unassign(index);
   };
-  renderAssigneeList();
+  task_renderAssigneeList();
 }
 
-function unassign(index) {
+function task_unassign(index) {
   let position = assignees.indexOf(index);
   assignees.splice(position, 1);
 
@@ -331,12 +343,12 @@ function unassign(index) {
   checkbox.src = "/assets/img/Rectangle 5.svg";
   checkbox.onclick = null;
   checkbox.onclick = function () {
-    assign(index);
+    task_assign(index);
   };
-  renderAssigneeList();
+  task_renderAssigneeList();
 }
 
-function resetError() {
+function task_resetError() {
   document.getElementById("errorTitle").style.display = "none";
   document.getElementById("errorDate").style.display = "none";
   document.getElementById("errorDate").style.display = "none";
@@ -344,7 +356,7 @@ function resetError() {
   document.getElementById("errorCategory").style.display = "none";
 }
 
-function CheckInputValidity(title, dueDate, category) {
+function task_CheckInputValidity(title, dueDate, category) {
   let validitiy = true;
   if (title == "") {
     document.getElementById("errorTitle").style.display = "block";
@@ -378,24 +390,28 @@ function CheckInputValidity(title, dueDate, category) {
   return validitiy;
 }
 
-function createAssignedContact(user, index) {
+function task_createAssignedContact(user, index) {
   let selector = document.getElementById("assign_select");
   selector.innerHTML += /*html*/ `
   <div id="assignee${index}" class="assigneeOption" value="${index}">
-    <div class="initials-logo" style="">${getInitials(user.name)}</div>
+    <div class="initials-logo" style="background-color: ${
+      user.color
+    }">${getInitials(user.name)}</div>
     <div class="assigneeName">${user.name}</div>
-    <img id="assigneeCheckbox${index}" onclick="unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
+    <img id="assigneeCheckbox${index}" onclick="task_unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
 </div>
 `;
 }
 
-function createUnassignedContact(user, index) {
+function task_createUnassignedContact(user, index) {
   let selector = document.getElementById("assign_select");
   selector.innerHTML += /*html*/ `
   <div id="assignee${index}" class="assigneeOption" value="${index}">
-    <div class="initials-logo" style="">${getInitials(user.name)}</div>
+    <div class="initials-logo" style="background-color: ${
+      user.color
+    }">${getInitials(user.name)}</div>
     <div class="assigneeName">${user.name}</div>
-    <img id="assigneeCheckbox${index}" onclick="assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
+    <img id="assigneeCheckbox${index}" onclick="task_assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
 </div>
 `;
 }
