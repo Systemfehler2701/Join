@@ -290,13 +290,13 @@ function board_subTaskProgress(array, i, arrayName) {
   }
 }
 
-function board_displayAssignees(array, i) {
+function board_displayAssignees(array, i, arrayName) {
   let task = array[i];
   let assigned = task["assignees"];
   for (let j = 0; j < assigned.length; j++) {
     const assigneeNumber = assigned[j];
     let user = users[assigneeNumber];
-    document.getElementById(`assignees${i}`).innerHTML += /*html*/ `
+    document.getElementById(`assignees${arrayName}${i}`).innerHTML += /*html*/ `
     <div class="initials-logo">${getInitials(user.name)}</div>
   `;
   }
@@ -394,7 +394,7 @@ function board_createTaskCard(array, i, arrayName) {
             <progress id="progressbar${arrayName}${i}" max="100" value="0"></progress>
         </div>
         <div class="cardBottom">
-            <div id="assignees${i}" class="assignees"></div>
+            <div id="assignees${arrayName}${i}" class="assignees"></div>
             <img src="${task["priority"]["symbol"]}" alt=""> 
         </div>
       </div>
