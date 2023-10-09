@@ -159,8 +159,8 @@ function task_editSubtask(i) {
   subTaskDisplay.innerHTML = `
       <input type="text" id="editedInput${i}" value="${currentValue}"  />
       <div>
-        <img onclick="cutSubtask( ${i})" src="/assets/img/delete.svg" alt="">
-        <img onclick="saveSubtaskEdit(${i})" src="/assets/img/Vector 17.svg" alt="">
+        <img onclick="task_cutSubtask( ${i})" src="/assets/img/delete.svg" alt="">
+        <img onclick="task_saveSubtaskEdit(${i})" src="/assets/img/Vector 17.svg" alt="">
       </div>
     `;
 }
