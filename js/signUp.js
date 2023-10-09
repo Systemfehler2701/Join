@@ -94,10 +94,10 @@ function checkPassword() {
 }
 
 // function checkbox() {
-//   if (signUpCheck.checked) {
+//    if (signUpCheck.checked) {
 //     enable;
 //   } else {
-//     signUpPw.type = "password";
+//      signUpPw.type = "password";
 //     signUpPw2.type = "password";
-//   }
-// }
+//    }
+//  }
