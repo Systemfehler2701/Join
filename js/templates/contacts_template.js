@@ -24,7 +24,7 @@ function renderContacts(element) {
             <!-- Dieser Container zeigt die Kontakt-Details an -->
         </div>
 
-        <!-- Overlay für Kontaktformular -->
+        <!-- Overlay für Kontakt hinzufuegen -->
         <div class="overlay" id="overlay">
             <div class="containerAll">
                 <div class="darkside">
@@ -57,43 +57,43 @@ function renderContacts(element) {
                 </div>
             </div>
         </div>
-
         <!-- Overlay für Kontakt bearbeiten -->
         <div class="overlay" id="editOverlay">
-            <div class="containerAll">
-                <div class="darkside">
-                    <img src="/assets/img/logo-white.svg" alt="">
-                    <h3>Edit contact</h3>
-                </div>
-                <div class="form-container">
-                <button class="closeWindow" id="closeEditForm">X</button>
-                    <div class="Edit-Container">
-                        <div class="overlayPerson" id="editInitialsLogo"></div>
-                        <div>
-                            
-                        <form class="input-Area" id="editForm">
-                            <input type="hidden" id="editIndex">
-
-                            <label for="editName">Name:</label>
-                            <input class="inputName" type="text" id="editName" required>
-
-                            <label for="editEmail">E-Mail:</label>
-                            <input class="inputMail" type="email" id="editEmail" required>
-
-                            <label for="editPhone">Telefonnummer:</label>
-                            <input class="inputPhone" type="tel" id="editPhone" required>
-
-                            <div class="buttonArea">
-                            <button class="deleteBtn" type="button" id="deleteContactBtn">Delete</button>
-    <button class="createBtn" type="submit"><span>Save</span><img src="/assets/img/check.png"></button>
-    <button class="closeBtn" id="closeEditForm">Close</button>
-                        </form>
-    
-</div>
-</div>
-                    </div>
+    <div class="containerAll">
+        <div class="darkside">
+            <img src="/assets/img/logo-white.svg" alt="">
+            <h2>Edit contact</h2> <!-- h2 hinzugefügt um Konsistenz mit dem oberen Overlay zu bewahren -->
+            <span class="blueLineHorizontal"></span>
+        </div>
+        <div class="form-container">
+            <button class="closeWindow" id="closeEditForm">X</button> 
+            <div class="overlayContainer">
+                <div class="overlayPerson" id="editInitialsLogo">
+                    <!-- Bild hinzugefügt, um Konsistenz mit dem oberen Overlay zu bewahren -->
+                    <img class="person-img" src="/assets/img/person.svg" alt="">
                 </div>
             </div>
-        </div>`;
+            <form class="input-Area" id="editForm">
+                <input type="hidden" id="editIndex">
+                
+                
+                <input class="inputName" type="text" id="editName" required>
+                
+                
+                <input class="inputMail" type="email" id="editEmail" required>
+                
+                <input class="inputPhone" type="tel" id="editPhone" required>
+                
+                <div class="buttonArea">
+                    <button class="deleteBtn" type="button" id="deleteContactBtn">Delete</button>
+                    <button class="createBtn" type="submit">
+                        <span>Save</span><img src="/assets/img/check.png" alt="">
+                    </button>
+                    <button class="closeBtn" id="closeEditFormBottom">Close</button> <!-- ID geändert um Eindeutigkeit zu gewährleisten -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>`;
     addContactsEventlistener();
 }

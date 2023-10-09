@@ -241,6 +241,8 @@ form button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 467px;
+    height: 594px;
 }
 
 .darkside img {
@@ -335,6 +337,9 @@ form button {
 .email-blue {
     color: blue;
     cursor: pointer;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
 }
 
 .inputName {
@@ -611,4 +616,27 @@ form button {
     border-radius: 3px;
     width: 74px;
     margin-left: 15px;
+}
+
+.contactInformation h3 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.contactInformation h4 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19.2px;
+}
+
+.contactsIcons {
+    Width: 159px;
+    Height: 24px;
+}
+
+.contactUser {
+    width: 287px;
+    height: 88px;
+    gap: 8px;
 }

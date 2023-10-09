@@ -11,11 +11,14 @@ function renderSummary(element) {
 
 function renderSummaryContent() {
     let content = document.getElementById("content");
-    content.innerHTML = /* html */ `<div class="summary-content">
+    content.innerHTML = /* html */ `
+    ${renderSummaryWelcome("moblie")}
+    <div class="summary-content">
+
     ${renderSummaryHeader()}
     <div class="summary-info">
         ${renderSummaryTask()}
-        ${renderSummaryWelcome()}
+        ${renderSummaryWelcome("desktop")}
     </div>
 </div>`;
 }
@@ -139,11 +142,12 @@ function renderSummaryFeedback() {
     </div>`;
 }
 
-function renderSummaryWelcome() {
+
+function renderSummaryWelcome(responsiveClass) {
     return /* html */ `
-    <div class="summary-welcome">
-        <div id="summary-greeting"></div>
-        <div id="summary-user">${getUserGreeting()}</div>
+    <div class="summary-welcome ${responsiveClass}">
+        <div class="summary-greeting">${greet()}</div>
+        <div class="summary-user">${getUserGreeting()}</div>
     </div>`;
 }
 
