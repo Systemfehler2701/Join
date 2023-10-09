@@ -146,6 +146,7 @@
     gap: 16px;
     color: white;
     border: none;
+    cursor: pointer;
 }
 
 .addButton:hover {
@@ -201,6 +202,8 @@ form label {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    border: 1px solid lightgray;
+    background-color: white;
 }
 
 form button {
@@ -250,7 +253,6 @@ form button {
     /* 100% der Bildschirmbreite */
     height: 100vh;
     /* 100% der Bildschirmhöhe */
-    background: rgba(0, 0, 0, 0.7);
     /* Ein leicht durchsichtiger schwarzer Hintergrund für das Overlay */
     z-index: 1000;
     /* Ein hoher z-index, um sicherzustellen, dass es über anderen Elementen angezeigt wird */
@@ -363,15 +365,30 @@ form button {
     width: 422px;
     gap: 10px;
     Padding: 13px, 21px, 13px, 21px;
-    background: url(/assets/img/);
+    background: url(/assets/img/call.svg);
     background-repeat: no-repeat;
     background-position: 95%;
 }
 
 .editArea {
-    justify-content: center;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+}
+
+.editArea input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    gap: 32px;
+    width: 422px;
+    height: 48px;
 }
 
 .createBtn {
@@ -428,13 +445,6 @@ form button {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.edit-Area {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
 }
 
 .Edit-whiteside {
@@ -529,7 +539,6 @@ form button {
     position: fixed;
     top: 0;
     right: -50%;
-    width: 50%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
     overflow-x: hidden;
@@ -540,4 +549,14 @@ form button {
 
 .overlay.active {
     right: 25%;
+}
+
+.closeWindow {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    border-style: none;
+    background-color: white;
+    cursor: pointer;
+    padding: 0;
 }
