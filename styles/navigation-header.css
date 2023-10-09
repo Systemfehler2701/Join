@@ -208,6 +208,10 @@ nav span {
     padding: 5px;
 }
 
+.header-submenu {
+    cursor: pointer;
+}
+
 .header-submenu div {
     display: flex;
     align-items: center;

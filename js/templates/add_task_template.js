@@ -7,8 +7,8 @@ function renderAddTask(element) {
     subtasks = [];
     subtasksDone = [];
     content.innerHTML = createNewTask("toDo");
-    renderCategoryOptions();
-    renderAssigneeOptions();
+    task_renderCategoryOptions();
+    task_renderAssigneeOptions();
 }
 
 function createNewTask(array) {
@@ -34,8 +34,8 @@ function createNewTask(array) {
                     <div class="assignment">
                         <h2>Assigned to</h2>
                         <div  class="assignmentInput" id="assignmentInput">
-                            <input onclick="toggleAssigneeOptions(this)" onkeyup="searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
-                            <div id="assignmentSelectButton" onclick="toggleAssigneeOptions(this)">
+                            <input onclick="task_toggleAssigneeOptions(this)" onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+                            <div id="assignmentSelectButton" onclick="task_toggleAssigneeOptions(this)">
                                 <img src="/assets/img/arrow_drop_downaa.svg" alt="">
                             </div>
                         </div> 
@@ -64,15 +64,15 @@ function createNewTask(array) {
                             <h2>Prio</h2>*
                         </div>
                         <div class="priocontainer">
-                            <div onclick="setPrio(0)" id="Prio0">
+                            <div onclick="task_setPrio(0)" id="Prio0">
                                 Urgent
                                 <img id="Prio0_img" src="/assets/img/Prio_alta.png" class="">
                             </div>
-                            <div onclick="setPrio(1)" id="Prio1">
+                            <div onclick="task_setPrio(1)" id="Prio1">
                                 Medium
                                 <img id="Prio1_img" src="/assets/img/Prio_media.png" class="">
                             </div>
-                            <div onclick="setPrio(2)" id="Prio2">
+                            <div onclick="task_setPrio(2)" id="Prio2">
                                 Low
                                 <img id="Prio2_img" src="/assets/img/Prio_baja.png" class="">
                             </div>
@@ -91,7 +91,7 @@ function createNewTask(array) {
                         <div class="subtask">
                             <h2>Subtasks</h2>
                             <div>
-                                <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
+                                <input onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
                                 <div class="subtaskimages" id="subtaskField">
                                     <img src="/assets/img/Subtasks icons11.svg" alt="">
                                 </div>
@@ -105,8 +105,8 @@ function createNewTask(array) {
                     <h2>This field is required</h2>
                 </div>
                 <div class="buttons">
-                    <button onclick="resetForm()" class="clear">Clear</button>
-                    <button onclick="addTask('${array}')" class="create">Create Task</button>
+                    <button onclick="task_resetForm()" class="clear">Clear</button>
+                    <button onclick="task_addTask('${array}')" class="create">Create Task</button>
                 </div>
             </div>
         </div>

@@ -5,22 +5,6 @@
     #content {
         padding: 40px;
     }
-    nav {
-        width: 150px;
-    }
-    #left-layout {
-        min-width: 150px;
-        width: 150px;
-    }
-    .navigation-img {
-        width: 150px;
-    }
-    .navigation-menu {
-        width: 150px;
-    }
-    .menu-button {
-        padding: 8px 20px;
-    }
     .summary-header h1 {
         margin: 20px 0;
     }
@@ -37,11 +21,6 @@
     }
     .summary-task p {
         padding: 0 8px;
-    }
-    .contact-leftside {
-        left: 150px;
-        padding: 0 20px 20px 20px;
-        width: 370px;
     }
     .rightside {
         padding: 10px 50px;
@@ -102,10 +81,10 @@
         font-size: 45px;
         font-weight: 700;
     }
-    .panels {
+    <<<<<<< HEAD .panels {
         flex-wrap: wrap;
     }
-    .taskpanel {
+    =======>>>>>>>64c4a1ccb623e933143288b7eea8f88ffba2a995 .taskpanel {
         width: 310px;
     }
     .head {
@@ -134,16 +113,52 @@
     }
 }
 
+@media (max-width: 999px) {
+    .head {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+}
+
+@media (max-width: 970px) {
+    #left-layout,
+    nav,
+    .navigation-menu,
+    .navigation-img {
+        width: 190px;
+        min-width: 190px;
+    }
+    .menu-button {
+        padding: 8px 20px;
+    }
+    .contact-leftside {
+        left: 190px;
+        padding: 0 20px 20px 20px;
+        width: 370px;
+    }
+    .head {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+}
+
+@media(max-width: 900px) {
+    .panels {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 865px) {
     #left-layout {
-        position: absolute;
+        position: fixed;
         bottom: 0px;
         width: 100%;
         height: 80px;
     }
     #content {
         margin-top: 90px;
-        overflow-y: scroll;
     }
     nav {
         flex-direction: row;
@@ -172,6 +187,9 @@
     nav .menu-button {
         flex-direction: column;
         align-items: center;
+        border-radius: 8px;
+        padding: 10px 5px;
+        margin-top: 3px;
     }
     .headline {
         display: none;
@@ -189,13 +207,19 @@
         padding: 5px 40px 5px 40px;
         align-items: center;
     }
+    .summary-content {
+        height: fit-content;
+    }
     .summary-header {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-evenly;
         align-items: flex-start;
         width: 400px;
         height: 185px;
+    }
+    .summary-info {
+        height: 500px;
     }
     .img-full {
         display: none;
@@ -222,19 +246,25 @@
     .summary-welcome {
         display: none;
     }
-}
-
-@media (max-width: 739px) {
-    .head {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
+    .header-submenu {
+        width: 135px;
+        height: 150px;
+        top: 90px;
+        padding: 0;
+    }
+    .header-submenu div {
+        width: 105px;
+        height: 35px;
+        padding: 2px 8px;
     }
     .headleft {
         width: 100%;
         flex-direction: column;
         align-items: flex-end;
     }
+}
+
+@media (max-width: 739px) {
     .searchbar {
         width: 100%;
     }
@@ -260,12 +290,20 @@
     .searchbar input {
         width: -webkit-fill-available;
     }
-    .containerAll {
-        flex-direction: column;
-    }
 }
 
-@media (max-width: 432px) {
+@media (max-width: 440px) {
+    #content {
+        padding: 20px;
+    }
+    .summary-line1,
+    .summary-line2,
+    .summary-line3 {
+        width: 300px;
+    }
+    .summary-upcoming {
+        width: 300px;
+    }
     .addTaskBottom {
         flex-direction: column;
         align-items: flex-start;
