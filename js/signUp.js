@@ -33,11 +33,11 @@ async function renderSignUpMask() {
       />
       <span>
         I accept the
-        <a onclick="renderPolicy()">Privacy Policy</a>
+        <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
       </span> 
       </div>
       <div id="loginButtons">
-      <button>Sign Up</button>
+      <button id="signUpBtn" type=>Sign Up</button>
 </div>
       
     </div>
@@ -89,5 +89,14 @@ function checkPassword() {
     return; // Die Funktion abbrechen, wenn die Passwörter nicht übereinstimmen
   } else {
     register();
+  }
+}
+
+function checkbox() {
+  if (signUpCheck.checked) {
+    enable
+  } else {
+    signUpPw.type = "password";
+    signUpPw2.type = "password";
   }
 }
