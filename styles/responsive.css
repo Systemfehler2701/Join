@@ -1,286 +1,289 @@
 @media (max-width: 1445px) {
-  .summary-task {
-    margin-right: 40px;
-  }
-  #content {
-    padding: 40px;
-  }
-  nav {
-    width: 150px;
-  }
-  #left-layout {
-    min-width: 150px;
-    width: 150px;
-  }
-  .navigation-img {
-    width: 150px;
-  }
-  .navigation-menu {
-    width: 150px;
-  }
-  .menu-button {
-    padding: 8px 20px;
-  }
-  .summary-header h1 {
-    margin: 20px 0;
-  }
-  .summary-header {
-    height: 100px;
-  }
-  .summary-todo,
-  .summary-done,
-  .summary-upcoming,
-  .summary-board,
-  .summary-progress,
-  .summary-feedback {
-    height: 85px;
-  }
-  .summary-task p {
-    padding: 0 8px;
-  }
-  .contact-leftside {
-    left: 150px;
-    padding: 0 20px 20px 20px;
-    width: 370px;
-  }
-  .rightside {
-    padding: 10px 50px;
-    margin-left: 370px;
-  }
+    .summary-task {
+        margin-right: 40px;
+    }
+    #content {
+        padding: 40px;
+    }
+    nav {
+        width: 150px;
+    }
+    #left-layout {
+        min-width: 150px;
+        width: 150px;
+    }
+    .navigation-img {
+        width: 150px;
+    }
+    .navigation-menu {
+        width: 150px;
+    }
+    .menu-button {
+        padding: 8px 20px;
+    }
+    .summary-header h1 {
+        margin: 20px 0;
+    }
+    .summary-header {
+        height: 100px;
+    }
+    .summary-todo,
+    .summary-done,
+    .summary-upcoming,
+    .summary-board,
+    .summary-progress,
+    .summary-feedback {
+        height: 85px;
+    }
+    .summary-task p {
+        padding: 0 8px;
+    }
+    .contact-leftside {
+        left: 150px;
+        padding: 0 20px 20px 20px;
+        width: 370px;
+    }
+    .rightside {
+        padding: 10px 50px;
+        margin-left: 370px;
+    }
 }
 
 @media (max-width: 1190px) {
-  .summary-todo,
-  .summary-done,
-  .summary-upcoming {
-    padding: 15px 20px;
-    height: 85px;
-  }
-  .summary-todo,
-  .summary-done {
-    width: 164px;
-  }
-  .summary-upcoming {
-    width: 345px;
-  }
-  .summary-board,
-  .summary-progress,
-  .summary-feedback {
-    width: 122px;
-    height: 85px;
-  }
-  .summary-line1,
-  .summary-line3 {
-    width: 385px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .summary-line2 {
-    width: 385px;
-  }
-  .summary-task span {
-    font-size: 50px;
-    padding: 0 8px;
-  }
-  .summary-task p {
-    font-size: 18px;
-  }
-  .summary-task svg {
-    height: 50px;
-  }
-  .upcoming-img {
-    height: 50px;
-  }
-  .summary-welcome {
-    height: 390px;
-  }
-  #summary-greeting {
-    font-size: 35px;
-    font-weight: 500;
-  }
-  #summary-user {
-    font-size: 45px;
-    font-weight: 700;
-  }
-  .panels {
-    flex-wrap: wrap;
-  }
-  .taskpanel {
-    width: 310px;
-  }
-  .head {
-    gap: 14px;
-  }
-  .headleft {
-    gap: 14px;
-  }
-  .taskbody .task_input {
-    flex-direction: column;
-  }
-  .task_input .divider {
-    display: none;
-  }
-  .input1 {
-    width: 100% !important;
-  }
-  .input2 {
-    width: 100% !important;
-  }
-  .assigneeOptionContainer {
-    width: 96.5%;
-  }
-  .addedSubtasks {
-    margin-bottom: 16px;
-  }
+    .summary-todo,
+    .summary-done,
+    .summary-upcoming {
+        padding: 15px 20px;
+        height: 85px;
+    }
+    .summary-todo,
+    .summary-done {
+        width: 164px;
+    }
+    .summary-upcoming {
+        width: 345px;
+    }
+    .summary-board,
+    .summary-progress,
+    .summary-feedback {
+        width: 122px;
+        height: 85px;
+    }
+    .summary-line1,
+    .summary-line3 {
+        width: 385px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .summary-line2 {
+        width: 385px;
+    }
+    .summary-task span {
+        font-size: 50px;
+        padding: 0 8px;
+    }
+    .summary-task p {
+        font-size: 18px;
+    }
+    .summary-task svg {
+        height: 50px;
+    }
+    .upcoming-img {
+        height: 50px;
+    }
+    .summary-welcome {
+        height: 390px;
+    }
+    #summary-greeting {
+        font-size: 35px;
+        font-weight: 500;
+    }
+    #summary-user {
+        font-size: 45px;
+        font-weight: 700;
+    }
+    .panels {
+        flex-wrap: wrap;
+    }
+    .taskpanel {
+        width: 310px;
+    }
+    .head {
+        gap: 14px;
+    }
+    .headleft {
+        gap: 14px;
+    }
+    .taskbody .task_input {
+        flex-direction: column;
+    }
+    .task_input .divider {
+        display: none;
+    }
+    .input1 {
+        width: 100% !important;
+    }
+    .input2 {
+        width: 100% !important;
+    }
+    .assigneeOptionContainer {
+        width: 96.5%;
+    }
+    .addedSubtasks {
+        margin-bottom: 16px;
+    }
 }
 
 @media (max-width: 865px) {
-  #left-layout {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 80px;
-  }
-  #content {
-    margin-top: 90px;
-    overflow-y: scroll;
-  }
-  nav {
-    flex-direction: row;
-    justify-content: center;
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 80px;
-  }
-  .navigation-menu {
-    flex-direction: row;
-    width: 100%;
-    height: fit-content;
-    justify-content: space-around;
-  }
-  .summary-info {
-    display: flex;
-    justify-content: center;
-  }
-  .footer {
-    display: none;
-  }
-  .navigation-img {
-    display: none;
-  }
-  nav .menu-button {
-    flex-direction: column;
-    align-items: center;
-  }
-  .headline {
-    display: none;
-  }
-  .summary-header h1 {
-    margin: 0px 0;
-  }
-  .grey-logo {
-    display: flex !important;
-    height: 60px;
-    width: 50px;
-  }
-  #header {
-    height: 80px;
-    padding: 5px 40px 5px 40px;
-    align-items: center;
-  }
-  .summary-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 400px;
-    height: 185px;
-  }
-  .img-full {
-    display: none;
-  }
-  .img-responsive {
-    display: flex !important;
-    transform: rotateZ(90deg);
-    margin: -25px 0 0 43px;
-    height: 90px;
-  }
-  .summary-header h1 {
-    font-size: 47px;
-  }
-  .summary-header h2 {
-    font-size: 20px;
-    margin: 0;
-  }
-  .overlayBlank {
-    margin-left: 0;
-  }
-  .summary-task {
-    margin-top: 0;
-  }
-  .summary-welcome {
-    display: none;
-  }
+    #left-layout {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 80px;
+    }
+    #content {
+        margin-top: 90px;
+        overflow-y: scroll;
+    }
+    nav {
+        flex-direction: row;
+        justify-content: center;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 80px;
+    }
+    .navigation-menu {
+        flex-direction: row;
+        width: 100%;
+        height: fit-content;
+        justify-content: space-around;
+    }
+    .summary-info {
+        display: flex;
+        justify-content: center;
+    }
+    .footer {
+        display: none;
+    }
+    .navigation-img {
+        display: none;
+    }
+    nav .menu-button {
+        flex-direction: column;
+        align-items: center;
+    }
+    .headline {
+        display: none;
+    }
+    .summary-header h1 {
+        margin: 0px 0;
+    }
+    .grey-logo {
+        display: flex !important;
+        height: 60px;
+        width: 50px;
+    }
+    #header {
+        height: 80px;
+        padding: 5px 40px 5px 40px;
+        align-items: center;
+    }
+    .summary-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 400px;
+        height: 185px;
+    }
+    .img-full {
+        display: none;
+    }
+    .img-responsive {
+        display: flex !important;
+        transform: rotateZ(90deg);
+        margin: -25px 0 0 43px;
+        height: 90px;
+    }
+    .summary-header h1 {
+        font-size: 47px;
+    }
+    .summary-header h2 {
+        font-size: 20px;
+        margin: 0;
+    }
+    .overlayBlank {
+        margin-left: 0;
+    }
+    .summary-task {
+        margin-top: 0;
+    }
+    .summary-welcome {
+        display: none;
+    }
 }
 
 @media (max-width: 739px) {
-  .head {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-  .headleft {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .searchbar {
-    width: 100%;
-  }
-  #content {
-    margin-bottom: 74px;
-    /* Must be the height of the bottom-navbar. Please adjst if necessary JK 4.10.23*/
-    justify-content: center;
-  }
-  .taskbody {
-    width: 95%;
-  }
-  .clear {
-    display: none;
-  }
-  .overlayBlank {
-    padding: 30px 24px 30px 24px;
-  }
-  .taskbody h1 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-top: 0;
-  }
-  .searchbar input {
-    width: -webkit-fill-available;
-  }
+    .head {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .headleft {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .searchbar {
+        width: 100%;
+    }
+    #content {
+        margin-bottom: 74px;
+        /* Must be the height of the bottom-navbar. Please adjst if necessary JK 4.10.23*/
+        justify-content: center;
+    }
+    .taskbody {
+        width: 95%;
+    }
+    .clear {
+        display: none;
+    }
+    .overlayBlank {
+        padding: 30px 24px 30px 24px;
+    }
+    .taskbody h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-top: 0;
+    }
+    .searchbar input {
+        width: -webkit-fill-available;
+    }
+    .containerAll {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 432px) {
-  .addTaskBottom {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 0;
-    gap: 40px;
-  }
-  .taskbody .priocontainer div {
-    width: 32%;
-    font-size: 16px;
-  }
-  .assignmentSelect {
-    font-size: 18px;
-  }
-  .head {
-    width: 310px;
-  }
-  .searchbar input {
-    width: -webkit-fill-available;
-    max-width: 237px;
-  }
+    .addTaskBottom {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 0;
+        gap: 40px;
+    }
+    .taskbody .priocontainer div {
+        width: 32%;
+        font-size: 16px;
+    }
+    .assignmentSelect {
+        font-size: 18px;
+    }
+    .head {
+        width: 310px;
+    }
+    .searchbar input {
+        width: -webkit-fill-available;
+        max-width: 237px;
+    }
 }
