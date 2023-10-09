@@ -68,7 +68,7 @@ function renderNotice() {
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
     <div class="help-content">
-            <div class="arrow-left"><img src="assets/img/arrow-left-line.svg"></div>
+            <div class="arrow-left"><img src="assets/img/arrow-left-line.svg" onclick=""></div>
             <h1>Legal Notice</h1>
             <h2>Imprint</h2>
             <ul>
