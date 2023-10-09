@@ -11,7 +11,7 @@ function renderAddTask(element) {
     task_renderAssigneeOptions();
 }
 
-function createNewTask(array) {
+function createNewTask(arrayAsString) {
     let currentDate = getCurrentDate();
     return /* html */ `
     <div class="taskbody">
@@ -106,7 +106,7 @@ function createNewTask(array) {
                 </div>
                 <div class="buttons">
                     <button onclick="task_resetForm()" class="clear">Clear</button>
-                    <button onclick="task_addTask('${array}')" class="create">Create Task</button>
+                    <button onclick="task_addTask('${arrayAsString}')" class="create">Create Task</button>
                 </div>
             </div>
         </div>

@@ -32,10 +32,14 @@ function renderContacts(element) {
                     <button id="closeForm">X</button>
                     <h2>add contact</h2>
                     <h3>Tasks are better with a team!</h3>
+                    <span class="blueLineHorizontal"></span>
                 </div>
                 <div class="form-container">
+                    <div class="overlayContainer">
                     <div class="overlayPerson">
-                        <img class="person" src="/assets/img/person.svg">
+                        
+                        <img class="person img"src="/assets/img/person.svg">
+                    </div>
                     </div>
                     <form class="input-Area" id="contactForm">
 
