@@ -1,15 +1,15 @@
 function greet() {
     let date = new Date();
-    let hour = date.getHours();;
+    let hour = date.getHours();
     if (hour >= 17) {
-        document.getElementById('summary-greeting').innerHTML = `Good evening`;
+        return 'Good evening';
     } else if (hour >= 14) {
-        document.getElementById('summary-greeting').innerHTML = `Good afternoon`;
+        return `Good afternoon`;
     } else if (hour >= 11) {
-        document.getElementById('summary-greeting').innerHTML = `Welcome`;
+        return `Welcome`;
     } else if (hour >= 6) {
-        document.getElementById('summary-greeting').innerHTML = `Good morning`;
+        return `Good morning`;
     } else if (hour >= 0) {
-        document.getElementById('summary-greeting').innerHTML = `Don't feed the Gremlins`;
+        return `Don't feed the Gremlins`;
     }
 }

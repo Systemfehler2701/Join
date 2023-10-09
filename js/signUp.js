@@ -47,7 +47,7 @@ async function renderSignUpMask() {
 
 async function register() {
   try {
-    registerBtn.disabled = true;
+    signUpBtn.disabled = true;
 
     if (signUpPw.value !== signUpPw2.value) {
       alert("Die Passwörter stimmen nicht überein.");
@@ -77,7 +77,7 @@ function resetForm() {
     signUpEmail.value = "";
     signUpPw.value = "";
     signUpPw2.value = "";
-    registerBtn.disabled = false;
+    signUpBtn.disabled = false;
   } catch (e) {
     console.error("Reset error:", e);
   }
@@ -93,11 +93,11 @@ function checkPassword() {
   }
 }
 
-function checkbox() {
-  if (signUpCheck.checked) {
-    enable;
-  } else {
-    signUpPw.type = "password";
-    signUpPw2.type = "password";
-  }
-}
+// function checkbox() {
+//   if (signUpCheck.checked) {
+//     enable;
+//   } else {
+//     signUpPw.type = "password";
+//     signUpPw2.type = "password";
+//   }
+// }
