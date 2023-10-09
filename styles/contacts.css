@@ -49,6 +49,7 @@
 }
 
 .contactView {
+    display: flex;
     gap: 21px;
     height: 200px;
 }
@@ -160,13 +161,14 @@
     display: flex;
     flex-direction: row;
     color: white;
-    width: 80%;
     max-width: 1000px;
     height: 550px;
-    border-radius: 20px;
+    border-radius: 30px;
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 1212px;
+    height: 592px;
 }
 
 #closeForm {
@@ -174,11 +176,10 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    right: 10px;
-    top: 5px;
+    right: 34px;
+    top: 48px;
     cursor: pointer;
-    background-color: #2a3647;
-    color: #ffffff;
+    color: #2a3647;
     border: none;
     border-radius: 50%;
     width: 20px;
@@ -202,8 +203,8 @@ form label {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    border: 1px solid lightgray;
     background-color: white;
+    margin-right: 34px;
 }
 
 form button {
@@ -227,9 +228,13 @@ form button {
     margin-left: 380px;
 }
 
+.contactInfo {
+    transform: translateX(200%);
+    animation: slideIn 1s forwards;
+}
+
 .darkside {
     background-color: #2A3647;
-    width: 38%;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     display: flex;
@@ -241,7 +246,11 @@ form button {
 .darkside img {
     height: 66.48px;
     width: 55.6px;
-    padding-left: 46.9;
+}
+
+.darkside h2 {
+    font-weight: 700 !important;
+    font-size: 61px;
 }
 
 .overlay {
@@ -290,7 +299,7 @@ form button {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     height: 570px;
-    width: 90%;
+    width: 70%;
     max-width: 1212px;
 }
 
@@ -318,17 +327,8 @@ form button {
     align-items: center;
 }
 
-.contactView {
-    display: flex;
-    gap: 54px;
-}
-
 .contactInformation {
     align-items: center;
-    flex-direction: column;
-}
-
-.name {
     flex-direction: column;
 }
 
@@ -339,17 +339,17 @@ form button {
 
 .inputName {
     border-radius: 10px;
-    height: 50px;
     width: 422px;
     gap: 10px;
     background: url(/assets/img/person.svg);
     background-repeat: no-repeat;
     background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
 }
 
 .inputMail {
     border-radius: 10px;
-    height: 50px;
     width: 422px;
     gap: 10px;
     Padding: 13px, 21px, 13px, 21px;
@@ -357,17 +357,20 @@ form button {
     background: url(/assets/img/mail.svg);
     background-repeat: no-repeat;
     background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
 }
 
 .inputPhone {
     border-radius: 10px;
-    height: 50px;
     width: 422px;
     gap: 10px;
     Padding: 13px, 21px, 13px, 21px;
     background: url(/assets/img/call.svg);
     background-repeat: no-repeat;
     background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
 }
 
 .editArea {
@@ -395,13 +398,33 @@ form button {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 50px;
-    width: 200px;
+    height: 56px;
     background: #2A3647;
     color: white;
     border-radius: 10px;
     font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.deleteBtn {
+    height: 56px;
+    width: 126px;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 20px;
+    margin-right: 32px;
+    padding: 16px;
+    cursor: pointer;
+    color: #2A3647;
+    gap: 4px;
+    font-weight: 400;
+    line-height: 24px;
 }
 
 .closeBtn {
@@ -422,6 +445,7 @@ form button {
 .buttonOverview {
     display: flex;
     justify-content: space-between;
+    gap: 25px;
 }
 
 .alphabet-section {
@@ -439,6 +463,17 @@ form button {
 
 .Edit-Container {
     display: flex;
+    left: unset;
+    padding: 0;
+    transition: right 0.4s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    height: 570px;
+    width: 90%;
+    max-width: 1212px px;
 }
 
 .initials-logo-edit {
@@ -476,28 +511,26 @@ form button {
 .buttonArea {
     display: flex;
     margin-top: 20px;
+    margin-right: 34px;
 }
 
 .cancelBtn {
     height: 56px;
+    width: 126px;
     border: 1px solid #2A3647;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    font-size: 24px;
+    font-size: 20px;
     margin-right: 32px;
     padding: 16px;
     cursor: pointer;
-    color: black;
-}
-
-.input-Area {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
+    color: #2A3647;
+    gap: 4px;
+    font-weight: 400;
+    line-height: 24px;
 }
 
 .overlayPerson {
@@ -509,12 +542,15 @@ form button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 80px 0 32px;
 }
 
-.contactName {
-    font: inter 500;
-    font-size: 47px;
+.overlayContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 150px;
+    width: 30%;
+    margin-bottom: 90px;
 }
 
 .iconWrapper {
@@ -545,10 +581,8 @@ form button {
     transition: right 0.5s ease-in-out;
     padding: 60px 0 0 25px;
     color: white;
-}
-
-.overlay.active {
-    right: 25%;
+    transform: translateX(200%);
+    animation: slideIn 1s forwards;
 }
 
 .closeWindow {
@@ -559,4 +593,22 @@ form button {
     background-color: white;
     cursor: pointer;
     padding: 0;
+}
+
+.name h3 {
+    font-weight: 500;
+}
+
+.contactUser h3 {
+    font-weight: 500;
+    font-size: 47px;
+    gap: 0;
+}
+
+.blueLineHorizontal {
+    height: 0px;
+    border: 3px solid #29abe2;
+    border-radius: 3px;
+    width: 74px;
+    margin-left: 15px;
 }

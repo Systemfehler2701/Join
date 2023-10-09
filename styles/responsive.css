@@ -5,9 +5,6 @@
     #content {
         padding: 40px;
     }
-    .menu-button {
-        padding: 8px 20px;
-    }
     .summary-header h1 {
         margin: 20px 0;
     }
@@ -24,11 +21,6 @@
     }
     .summary-task p {
         padding: 0 8px;
-    }
-    .contact-leftside {
-        left: 150px;
-        padding: 0 20px 20px 20px;
-        width: 370px;
     }
     .rightside {
         padding: 10px 50px;
@@ -89,7 +81,7 @@
         font-size: 45px;
         font-weight: 700;
     }
-    .panels {
+    HEAD .panels {
         flex-wrap: wrap;
     }
     .taskpanel {
@@ -118,6 +110,43 @@
     }
     .addedSubtasks {
         margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 999px) {
+    .head {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+}
+
+@media (max-width: 970px) {
+    #left-layout,
+    nav,
+    .navigation-menu,
+    .navigation-img {
+        width: 190px;
+        min-width: 190px;
+    }
+    .menu-button {
+        padding: 8px 20px;
+    }
+    .contact-leftside {
+        left: 190px;
+        padding: 0 20px 20px 20px;
+        width: 370px;
+    }
+    .head {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+}
+
+@media(max-width: 900px) {
+    .panels {
+        justify-content: center;
     }
 }
 
@@ -228,19 +257,34 @@
         height: 35px;
         padding: 2px 8px;
     }
-}
-
-@media (max-width: 739px) {
-    .head {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
     .headleft {
         width: 100%;
         flex-direction: column;
         align-items: flex-end;
     }
+    .containerAll {
+        flex-direction: column;
+        height: 700px;
+    }
+    .darkside,
+    .formcontainer {
+        width: 100%;
+        height: 200px;
+    }
+    .person-img {
+        width: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+    }
+    .input-Area {
+        position: center;
+    }
+}
+
+@media (max-width: 739px) {
     .searchbar {
         width: 100%;
     }

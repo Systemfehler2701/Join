@@ -3,7 +3,7 @@
     background-color: #f6f7f8;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     max-width: 1208px;
     min-height: 688px;
@@ -13,7 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 87.41%;
+    width: 100%;
     gap: 32px;
 }
 
@@ -104,10 +104,12 @@
 
 .panels {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 2%;
     margin-top: 40px;
     height: 100%;
+    width: 100%;
     user-select: none;
 }
 
@@ -115,7 +117,7 @@
     display: flex;
     flex-direction: column;
     width: 244px;
-    min-width: 244px;
+    min-width: 200px;
     gap: 16px;
 }
 
@@ -226,6 +228,20 @@ progress {
     width: 128px;
 }
 
+.assignees {
+    width: 80%;
+}
+
+
+.assignees div {
+    margin-right: -16px !important;
+}
+
+.assignees div:hover {
+    margin: 0;
+    transform: scale(1.2);
+}
+
 .cardBottom {
     display: flex;
     justify-content: space-between;
@@ -239,8 +255,6 @@ progress {
 
 
 /* Here begins the styling of the Taskcard Overlay the following elements have "Full" at the end of their name to avoid confusion */
-
-
 /* Here begins the styling of the Taskcard Overlay the following elements have "Full" at the end of their name to avoid confusion */
 
 .Boardoverlay {
@@ -274,14 +288,9 @@ progress {
     border-radius: 30px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
     padding: 40px 48px 40px 48px;
+    /* Animation @keyframes is in style.css */
     transform: translateX(200%);
     animation: slideIn 1s forwards;
-}
-
-@keyframes slideIn {
-    to {
-        transform: translateX(0);
-    }
 }
 
 .FullTaskCard {
@@ -653,6 +662,7 @@ progress {
 
 .subtasksEdit {
     width: 100%;
+    margin-bottom: 16px;
 }
 
 .subtasksEdit p {

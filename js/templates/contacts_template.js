@@ -20,7 +20,7 @@ function renderContacts(element) {
                 <img class="contact-img" src="/assets/img/blue-stroke.svg">
                 <h2>Better with a team</h2>
             </div>
-            <div id="detailsContainer"></div>
+            <div class="contactInfo" id="detailsContainer"></div>
             <!-- Dieser Container zeigt die Kontakt-Details an -->
         </div>
 
@@ -32,10 +32,14 @@ function renderContacts(element) {
                     <button id="closeForm">X</button>
                     <h2>add contact</h2>
                     <h3>Tasks are better with a team!</h3>
+                    <span class="blueLineHorizontal"></span>
                 </div>
                 <div class="form-container">
+                    <div class="overlayContainer">
                     <div class="overlayPerson">
-                        <img class="person" src="/assets/img/person.svg">
+                        
+                        <img class="person img"src="/assets/img/person.svg">
+                    </div>
                     </div>
                     <form class="input-Area" id="contactForm">
 
@@ -47,7 +51,7 @@ function renderContacts(element) {
                         <input class="inputPhone" type="text" placeholder="Phone" id="phone" required>
                         <div class="buttonArea">
                         <button class="cancelBtn"> <span>Cancel</span><img src="/assets/img/close.svg"></button>
-                        <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/img/check.svg"></button>
+                        <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/img/check.png"></button>
                         </div>
                     </form>
                 </div>
@@ -61,13 +65,13 @@ function renderContacts(element) {
                     <img src="/assets/img/logo-white.svg" alt="">
                     <h3>Edit contact</h3>
                 </div>
-                <div class="Edit-whiteside">
+                <div class="form-container">
                 <button class="closeWindow" id="closeEditForm">X</button>
                     <div class="Edit-Container">
-                        <div class="initials-logo-edit" id="editInitialsLogo"></div>
+                        <div class="overlayPerson" id="editInitialsLogo"></div>
                         <div>
                             
-                        <div class="input-Area" id="editForm">
+                        <form class="input-Area" id="editForm">
                             <input type="hidden" id="editIndex">
 
                             <label for="editName">Name:</label>
@@ -79,10 +83,12 @@ function renderContacts(element) {
                             <label for="editPhone">Telefonnummer:</label>
                             <input class="inputPhone" type="tel" id="editPhone" required>
 
-                            <div class="buttonOverview">
-    <button class="createBtn" type="submit">Save</button>
+                            <div class="buttonArea">
+                            <button class="deleteBtn" type="button" id="deleteContactBtn">Delete</button>
+    <button class="createBtn" type="submit"><span>Save</span><img src="/assets/img/check.png"></button>
     <button class="closeBtn" id="closeEditForm">Close</button>
-    <button class="deleteBtn" type="button" id="deleteContactBtn">Delete</button>
+                        </form>
+    
 </div>
 </div>
                     </div>
