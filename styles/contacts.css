@@ -4,8 +4,35 @@
     height: 100%;
 }
 
+.contact-leftside {
+    background-color: white;
+    box-shadow: 4px 0px 6px 0px #00000010;
+    position: fixed;
+    top: 106px;
+    left: 233px;
+    height: 90%;
+    padding: 0 40px 40px 40px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.contact-left-button {
+    background-color: white;
+    position: sticky;
+    top: 0px;
+    left: 0;
+    width: -webkit-fill-available;
+    min-height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .contactfield {
-    min-width: 450px;
+    min-width: 350px;
     height: 100px;
     border: solid transparent;
     display: flex;
@@ -14,6 +41,23 @@
     border-color: white;
     padding: 15px, 24px, 15px, 24px;
     gap: 35px;
+    cursor: pointer;
+}
+
+.contactfield:hover {
+    background-color: lightgrey;
+}
+
+.contactView {
+    display: flex;
+    gap: 21px;
+    height: 200px;
+}
+
+.addButton span {
+    font-size: 21px;
+    font-weight: 700;
+    margin-right: 10px;
 }
 
 .name {
@@ -82,12 +126,15 @@
     border-radius: 10px px;
 }
 
-.h1 {
-    width: 569px;
-    height: 73px;
-    top: 206px;
-    left: 743px;
-    gap: 30px
+.contacts-headline h1 {
+    font-size: 61px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.contacts-headline h2 {
+    font-size: 27px;
+    font-weight: 400;
 }
 
 .addButton {
@@ -99,6 +146,12 @@
     padding: 12px;
     gap: 16px;
     color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.addButton:hover {
+    background-color: #29ABE2;
 }
 
 .containerAll {
@@ -108,22 +161,25 @@
     display: flex;
     flex-direction: row;
     color: white;
-    width: 80%;
     max-width: 1000px;
     height: 550px;
-    border-radius: 20px;
+    border-radius: 30px;
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 1212px;
+    height: 592px;
 }
 
 #closeForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    right: 10px;
-    top: 5px;
+    right: 34px;
+    top: 48px;
     cursor: pointer;
-    background-color: #2a3647;
-    color: #ffffff;
+    color: #2a3647;
     border: none;
     border-radius: 50%;
     width: 20px;
@@ -131,6 +187,9 @@
     text-align: center;
     line-height: 20px;
     font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form label {
@@ -144,28 +203,38 @@ form label {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    background-color: white;
+    margin-right: 34px;
 }
 
 form button {
     display: block;
-    width: 100%;
-    padding: 10px;
+    width: fit-content;
+    padding: 15px;
     border: none;
     background-color: #2a3647;
     color: #ffffff;
     cursor: pointer;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .rightside {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-direction: column;
+    padding: 0 70px;
+    margin-left: 380px;
+}
+
+.contactInfo {
+    transform: translateX(200%);
+    animation: slideIn 1s forwards;
 }
 
 .darkside {
     background-color: #2A3647;
-    width: 38%;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     display: flex;
@@ -177,7 +246,11 @@ form button {
 .darkside img {
     height: 66.48px;
     width: 55.6px;
-    padding-left: 46.9;
+}
+
+.darkside h2 {
+    font-weight: 700 !important;
+    font-size: 61px;
 }
 
 .overlay {
@@ -189,7 +262,6 @@ form button {
     /* 100% der Bildschirmbreite */
     height: 100vh;
     /* 100% der Bildschirmhöhe */
-    background: rgba(0, 0, 0, 0.7);
     /* Ein leicht durchsichtiger schwarzer Hintergrund für das Overlay */
     z-index: 1000;
     /* Ein hoher z-index, um sicherzustellen, dass es über anderen Elementen angezeigt wird */
@@ -211,13 +283,10 @@ form button {
     display: flex;
 }
 
-.headline {
+.contacts-headline {
     display: flex;
     gap: 16px;
-}
-
-.rightside {
-    flex-direction: column;
+    align-items: center;
 }
 
 .form-container {
@@ -230,7 +299,7 @@ form button {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     height: 570px;
-    width: 90%;
+    width: 70%;
     max-width: 1212px;
 }
 
@@ -258,37 +327,29 @@ form button {
     align-items: center;
 }
 
-.contactView {
-    display: flex;
-    gap: 54px;
-}
-
 .contactInformation {
     align-items: center;
     flex-direction: column;
 }
 
-.name {
-    flex-direction: column;
-}
-
 .email-blue {
     color: blue;
+    cursor: pointer;
 }
 
 .inputName {
     border-radius: 10px;
-    height: 50px;
     width: 422px;
     gap: 10px;
     background: url(/assets/img/person.svg);
     background-repeat: no-repeat;
     background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
 }
 
 .inputMail {
     border-radius: 10px;
-    height: 50px;
     width: 422px;
     gap: 10px;
     Padding: 13px, 21px, 13px, 21px;
@@ -296,36 +357,74 @@ form button {
     background: url(/assets/img/mail.svg);
     background-repeat: no-repeat;
     background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
 }
 
 .inputPhone {
     border-radius: 10px;
-    height: 50px;
     width: 422px;
     gap: 10px;
     Padding: 13px, 21px, 13px, 21px;
-    background: url(/assets/img/);
+    background: url(/assets/img/call.svg);
     background-repeat: no-repeat;
     background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
 }
 
 .editArea {
-    justify-content: center;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+}
+
+.editArea input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    gap: 32px;
+    width: 422px;
+    height: 48px;
 }
 
 .createBtn {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 50px;
-    width: 200px;
+    height: 56px;
     background: #2A3647;
     color: white;
     border-radius: 10px;
     font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
+    gap: 8px;
+}
+
+.deleteBtn {
+    height: 56px;
+    width: 126px;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 20px;
+    margin-right: 32px;
+    padding: 16px;
+    cursor: pointer;
+    color: #2A3647;
+    gap: 4px;
+    font-weight: 400;
+    line-height: 24px;
 }
 
 .closeBtn {
@@ -346,10 +445,11 @@ form button {
 .buttonOverview {
     display: flex;
     justify-content: space-between;
+    gap: 25px;
 }
 
 .alphabet-section {
-    border-bottom: 1px solid;
+    border-bottom: 2px solid #D1D1D1;
     padding: 17px;
     gap: 8px;
 }
@@ -359,4 +459,156 @@ form button {
     width: 120px;
     border: 3px;
     border-radius: 70px;
+}
+
+.Edit-Container {
+    display: flex;
+    left: unset;
+    padding: 0;
+    transition: right 0.4s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    height: 570px;
+    width: 90%;
+    max-width: 1212px px;
+}
+
+.initials-logo-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Edit-whiteside {
+    display: flex;
+    align-items: center;
+}
+
+.editIcon:hover {
+    color: #29ABE2;
+    cursor: pointer;
+}
+
+.editSymbol {
+    color: #29ABE2;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.deleteIcon:hover {
+    color: #29ABE2;
+    cursor: pointer;
+}
+
+.contactsIcons {
+    display: flex;
+    gap: 32px;
+}
+
+.buttonArea {
+    display: flex;
+    margin-top: 20px;
+    margin-right: 34px;
+}
+
+.cancelBtn {
+    height: 56px;
+    width: 126px;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 20px;
+    margin-right: 32px;
+    padding: 16px;
+    cursor: pointer;
+    color: #2A3647;
+    gap: 4px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.overlayPerson {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    border: 1px solid white;
+    background-color: #B8B9BA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlayContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 150px;
+    width: 30%;
+    margin-bottom: 90px;
+}
+
+.iconWrapper {
+    cursor: pointer;
+    display: inline-block;
+    /* oder flex, je nach Bedarf */
+}
+
+.iconWrapper:hover .icon,
+.iconWrapper:hover .iconText {
+    color: #29ABE2;
+    filter: brightness(0) saturate(100%) invert(36%) sepia(95%) saturate(3881%) hue-rotate(175deg) brightness(101%) contrast(101%);
+}
+
+.iconText {
+    color: IhreStartFarbe;
+    /* Setzen Sie die gewünschte Anfangsfarbe */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-x: hidden;
+    transition: right 0.5s ease-in-out;
+    padding: 60px 0 0 25px;
+    color: white;
+    transform: translateX(200%);
+    animation: slideIn 1s forwards;
+}
+
+.closeWindow {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    border-style: none;
+    background-color: white;
+    cursor: pointer;
+    padding: 0;
+}
+
+.name h3 {
+    font-weight: 500;
+}
+
+.contactUser h3 {
+    font-weight: 500;
+    font-size: 47px;
+    gap: 0;
+}
+
+.blueLineHorizontal {
+    height: 0px;
+    border: 3px solid #29abe2;
+    border-radius: 3px;
+    width: 74px;
+    margin-left: 15px;
 }

@@ -28,13 +28,16 @@ let users = [{
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const colors = ['#FF7A00', '#FF5EB3', '#6E52FF', '#9327FF', '#00BEE8', '#1FD7C1', '#FF745E', '#FFA35E', '#FC71FF', '#FFC701', '#0038FF', '#C3FF2B', '#FFE62B', '#FF4646', '#FFBB2B'];
 
-function loadContacts() {
+async function renderContactList() {
+    users = JSON.parse(await getItem('contacts'));
     let content = '';
     let currentInitial = '';
 
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
         const userInitial = user.name[0].toUpperCase();
+
+        user.color = getColor(user.name);
 
         if (!user.color) {
             user.color = colors[Math.floor(Math.random() * colors.length)];
@@ -61,7 +64,7 @@ function loadContacts() {
     document.getElementById('contactlist').innerHTML = content;
 }
 
-function addContact(e) {
+async function addContact(e) {
     e.preventDefault();
 
     const name = document.getElementById('name').value;
@@ -78,8 +81,10 @@ function addContact(e) {
 
     users.push(newUser);
     users.sort((a, b) => a.name.localeCompare(b.name));
-    loadContacts();
+    await setItem('contacts', users);
+    renderContactList();
     closeOverlay();
+
 }
 
 function getInitials(name) {
@@ -110,8 +115,16 @@ function showDetails(index) {
             <div class="detailsLogo" style="background-color: ${user.color}; margin: 0 auto;">${initials}</div>
             <div class="name">
                 <h3>${user.name}</h3>
-                <img src="/assets/img/edit.svg" onclick= editContact(${index})> Edit
-                <img src="/assets/img/delete.svg" onclick= deleteContact(${index})> Delete 
+                <div class="contactsIcons">
+    <div class="iconWrapper" onclick="editContact(${index})">
+        <img class="icon" src="/assets/img/edit.svg">
+        <span class="iconText">Edit</span>
+    </div>
+    <div class="iconWrapper" onclick="deleteContact(${index})">
+        <img class="icon" src="/assets/img/delete.svg">
+        <span class="iconText">Delete</span>
+    </div>
+</div>
             </div>
         </div>
         <div class="contactInformation">
@@ -131,13 +144,22 @@ function changeBackgroundColor(i) {
         document.getElementById(`painted${j}`).classList.remove('selected');
     }
     document.getElementById(`painted${i}`).classList.add('selected');
+
+
+}
+
+function getColor(name) {
+    const sum = name.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+    const colorIndex = sum % colors.length;
+    return colors[colorIndex];
 }
 
 function deleteContact(index) {
     users.splice(index, 1);
-    loadContacts();
+    renderContactList();
     document.getElementById('detailsContainer').innerHTML = '';
     closeOverlay();
+    setItem('contacts', users);
 }
 
 function editContact(index) {
@@ -146,12 +168,11 @@ function editContact(index) {
     document.getElementById('editEmail').value = user.mail;
     document.getElementById('editPhone').value = user.phone;
     document.getElementById('editIndex').value = index;
-
     const editInitialsLogo = document.getElementById('editInitialsLogo');
     editInitialsLogo.textContent = getInitials(user.name);
     editInitialsLogo.style.backgroundColor = user.color;
-
     document.getElementById('editOverlay').style.display = 'block';
+    setItem('contacts', users);
 }
 
 function updateContact(e) {
@@ -167,7 +188,7 @@ function updateContact(e) {
     // Das Array erneut sortieren, nachdem ein Kontakt bearbeitet wurde
     users.sort((a, b) => a.name.localeCompare(b.name));
 
-    loadContacts();
+    renderContactList();
     closeEditOverlay();
     clearDetails();
 }
@@ -182,11 +203,16 @@ function clearDetails() {
 }
 
 // Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-    loadContacts();
+function addContactsEventlistener() {
+    renderContactList();
     document.getElementById('contactForm').addEventListener('submit', addContact);
     document.querySelector('.addButton').addEventListener('click', openOverlay);
     document.getElementById('closeForm').addEventListener('click', closeOverlay);
     document.getElementById('editForm').addEventListener('submit', updateContact);
     document.getElementById('closeEditForm').addEventListener('click', closeEditOverlay);
-});
+    document.getElementById('deleteContactBtn').addEventListener('click', function() {
+        const indexToDelete = document.getElementById('editIndex').value;
+        deleteContact(indexToDelete);
+        document.getElementById('editOverlay').style.display = 'none';
+    });
+}

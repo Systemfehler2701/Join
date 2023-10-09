@@ -1,20 +1,23 @@
 ///ADD TASK TEMPLATES///
 function renderAddTask(element) {
-  document.getElementById("help-link").classList.remove("d-none");
-  navigationMenuClicked(element);
-  let content = document.getElementById("content");
-  content.innerHTML = createNewTask("ToDo");
-  renderCategoryOptions();
+    document.getElementById("help-link").classList.remove("d-none");
+    navigationMenuClicked(element);
+    let content = document.getElementById("content");
+    Prio = [];
+    subtasks = [];
+    subtasksDone = [];
+    content.innerHTML = createNewTask("toDo");
+    task_renderCategoryOptions();
+    task_renderAssigneeOptions();
 }
 
-function createNewTask(array) {
-  let currentDate = getCurrentDate();
-  console.log(currentDate);
-  return /* html */ `
+function createNewTask(arrayAsString) {
+    let currentDate = getCurrentDate();
+    return /* html */ `
     <div class="taskbody">
         <h1>Add Task</h1>
-        <div>
-            <div class="task_input">
+        <div style="width: 100%">
+            <div class="task_input scroll">
                 <div class="input1">
                     <div class="title">
                         <div class="uselessAstriks">
@@ -25,14 +28,26 @@ function createNewTask(array) {
                     </div>
                     <div class="description">
                         <h2>Description</h2>
-                        <textarea name="" id="description" cols="56" rows="10" placeholder="Enter a Description"></textarea>
+                        <textarea class="scroll" name="" id="description" cols="56" rows="10" placeholder="Enter a Description"></textarea>
                         <div class="Taskerror" style="display: none;" id="errorDescription"> This field needs to be filled out</div>
                     </div>
                     <div class="assignment">
                         <h2>Assigned to</h2>
-                        <select id="assign_select">
-                            <option value="null">Select contacts to assign</option>
-                        </select>
+                        <div  class="assignmentInput" id="assignmentInput">
+                            <input onclick="task_toggleAssigneeOptions(this)" onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+                            <div id="assignmentSelectButton" onclick="task_toggleAssigneeOptions(this)">
+                                <img src="/assets/img/arrow_drop_downaa.svg" alt="">
+                            </div>
+                        </div> 
+                        <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
+                            <div  id="assign_select" class="assignmentContainer scroll"></div>
+                            <div class="ContactButtonContainer">
+                              <div class="newContactButton" id="assignmentNewContact">Add New contact
+                                <img src="/assets/img/person_add.svg" alt="">
+                              </div> 
+                            </div>
+                        </div>
+                        <div class="assigneeList" id="assigneeList"></div>
                     </div>
                 </div>
                 <div class="divider"></div>
@@ -49,20 +64,20 @@ function createNewTask(array) {
                             <h2>Prio</h2>*
                         </div>
                         <div class="priocontainer">
-                            <div onclick="setPrio(0)" id="Prio0">
+                            <div onclick="task_setPrio(0)" id="Prio0">
                                 Urgent
                                 <img id="Prio0_img" src="/assets/img/Prio_alta.png" class="">
                             </div>
-                            <div onclick="setPrio(1)" id="Prio1">
+                            <div onclick="task_setPrio(1)" id="Prio1">
                                 Medium
                                 <img id="Prio1_img" src="/assets/img/Prio_media.png" class="">
                             </div>
-                            <div onclick="setPrio(2)" id="Prio2">
+                            <div onclick="task_setPrio(2)" id="Prio2">
                                 Low
                                 <img id="Prio2_img" src="/assets/img/Prio_baja.png" class="">
                             </div>
                         </div>
-                        <div class="Taskerror" style="display: none;" id="errorPriority"> You need to Select a Priority</div>
+                        <div class="Taskerror" style="display: none;" id="errorPriority">You need to Select a Priority</div>
                     </div>
                     <div class="category">
                         <div class="uselessAstriks">
@@ -76,7 +91,7 @@ function createNewTask(array) {
                         <div class="subtask">
                             <h2>Subtasks</h2>
                             <div>
-                                <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
+                                <input onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
                                 <div class="subtaskimages" id="subtaskField">
                                     <img src="/assets/img/Subtasks icons11.svg" alt="">
                                 </div>
@@ -90,8 +105,8 @@ function createNewTask(array) {
                     <h2>This field is required</h2>
                 </div>
                 <div class="buttons">
-                    <button onclick="resetForm()" class="clear">Clear</button>
-                    <button onclick="addTask('${array}')" class="create">Create Task</button>
+                    <button onclick="task_resetForm()" class="clear">Clear</button>
+                    <button onclick="task_addTask('${arrayAsString}')" class="create">Create Task</button>
                 </div>
             </div>
         </div>

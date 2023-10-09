@@ -1,17 +1,16 @@
 ///BOARD TEMPLATES///
 function renderBoard(element) {
-    document.getElementById('help-link').classList.remove("d-none");
+    document.getElementById("help-link").classList.remove("d-none");
     navigationMenuClicked(element);
-    let content = document.getElementById('content');
+    let content = document.getElementById("content");
     content.innerHTML = /* html */ `
     ${renderBoardOverlay()}
     ${renderBoardBody()}`;
     overlay = document.getElementById("BoardOverlay");
     overlayBody = document.getElementById("boardOverlaybody");
-    blocker = document.getElementById("blocker")
-    Board_loadTasks()
+    blocker = document.getElementById("blocker");
+    board_loadTasks();
 }
-
 
 function renderBoardOverlay() {
     return /* html */ `
@@ -21,7 +20,6 @@ function renderBoardOverlay() {
     </section>`;
 }
 
-
 function renderBoardBody() {
     return /* html */ `
     <section class="boardbody">
@@ -29,7 +27,6 @@ function renderBoardBody() {
         ${renderBoardPanels()}
     </section>`;
 }
-
 
 function renderBoardPanels() {
     return /* html */ `
@@ -47,53 +44,51 @@ function renderBoardHead() {
         <h1 class="h1">Board</h1>
         <div class="headleft">
             <div class="searchbar">
-                <input onkeyup="Board_resetSearch()" type="text" id="taskSearch" placeholder="Find task">
+                <input onkeyup="board_resetSearch()" type="text" id="taskSearch" placeholder="Find task">
                 <div class="divider"></div>
                 <div class="searchbutton">
-                    <img onclick="Board_search()" src="assets/img/search.svg" alt="">
+                    <img onclick="board_search()" src="assets/img/search.svg" alt="">
                 </div>
             </div>
-            <button onclick="Board_addTask('ToDo')">Add task</button>
+            <div class="headAddButton">
+              <button onclick="board_addTask('toDo')">Add task</button>
+            </div>
         </div>
     </div>`;
 }
-
 
 function renderBoardTaskTodo() {
     return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>To do</h2>
-            <button onclick="Board_addTask('ToDo')" class="add"></button>
+            <button onclick="board_addTask('toDo')" class="add"></button>
         </div>
-        <div id="ToDo" class="panelbody"></div>
+        <div id="toDo" class="panelbody" ondrop="drop('toDo')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
 }
-
 
 function renderBoardTaskProgress() {
     return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>In progress</h2>
-            <button onclick="Board_addTask('InProgress')" class="add"></button>
+            <button onclick="board_addTask('inProgress')" class="add"></button>
         </div>
-        <div id="inProgress" class="panelbody"></div>
+        <div id="inProgress" class="panelbody" ondrop="drop('inProgress')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
 }
-
 
 function renderBoardTaskFeedback() {
     return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>Await feedback</h2>
-            <button onclick="Board_addTask('Awaiting')" class="add"></button>
+            <button onclick="board_addTask('feedback')" class="add"></button>
         </div>
-        <div id="awaitFeedback" class="panelbody"></div>
+        <div id="awaitFeedback" class="panelbody" ondrop="drop('feedback')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
 }
-
 
 function renderBoardTaskDone() {
     return /* html */ `
@@ -101,6 +96,6 @@ function renderBoardTaskDone() {
         <div class="panelhead">
             <h2>Done</h2>
         </div>
-        <div id="done" class="panelbody"></div>
+        <div id="done" class="panelbody" ondrop="drop('done')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
 }

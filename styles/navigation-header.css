@@ -20,7 +20,7 @@ nav {
     display: flex;
     flex-direction: column;
     width: 232px;
-    height: 100vh;
+    height: 100%;
     background-color: #2A3647;
     justify-content: space-between;
     user-select: none;
@@ -72,16 +72,20 @@ nav {
     transform: scale(1.2);
 }
 
-.user-profile-initials {
+#user-profile-initials {
     height: 56px;
     width: 56px;
     border: #2A3647 solid 3px;
     border-radius: 100%;
     cursor: pointer;
     color: #29ABE2;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.user-profile-initials:hover {
+#user-profile-initials:hover {
     background-color: lightgrey;
 }
 
@@ -202,6 +206,10 @@ nav span {
     right: 20px;
     border-radius: 20px 0 20px 20px;
     padding: 5px;
+}
+
+.header-submenu {
+    cursor: pointer;
 }
 
 .header-submenu div {

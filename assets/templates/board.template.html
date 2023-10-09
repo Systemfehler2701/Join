@@ -12,7 +12,7 @@
 
 </head>
 
-<body onload="Board_loadTasks()">
+<body onload="board_loadTasks()">
     <!--  -->
 
     <section id="BoardOverlay" class="Boardoverlay" style="display: none;">
@@ -24,25 +24,25 @@
             <h1 class="h1">Board</h1>
             <div class="headleft">
                 <div class="searchbar">
-                    <input onkeyup="Board_resetSearch()" id="taskSearch" type="text" placeholder="Find task">
+                    <input onkeyup="board_resetSearch()" id="taskSearch" type="text" placeholder="Find task">
                     <div class="divider"></div>
-                    <img onclick="Board_search()" src="../img/search.svg" alt="">
+                    <img onclick="board_search()" src="../img/search.svg" alt="">
                 </div>
-                <button onclick="Board_addTask('ToDo')">Add task</button>
+                <button onclick="board_addTask('toDo')">Add task</button>
             </div>
         </div>
         <div class="panels">
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>To do</h2>
-                    <button onclick="Board_addTask('ToDo')" class="add"></button>
+                    <button onclick="board_addTask('toDo')" class="add"></button>
                 </div>
-                <div id="ToDo" class="panelbody"></div>
+                <div id="toDo" class="panelbody"></div>
             </div>
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>In progress</h2>
-                    <button onclick="Board_addTask('InProgress')" class="add"></button>
+                    <button onclick="board_addTask('inProgress')" class="add"></button>
                 </div>
                 <div id="inProgress" class="panelbody">
                 </div>
@@ -50,7 +50,7 @@
             <div class="taskpanel">
                 <div class="panelhead">
                     <h2>Await feedback</h2>
-                    <button onclick="Board_addTask('Awaiting')" class="add"></button>
+                    <button onclick="board_addTask('feedback')" class="add"></button>
                 </div>
                 <div id="awaitFeedback" class="panelbody">
                 </div>
@@ -72,6 +72,3 @@
 </body>
 
 </html>
-
-
-

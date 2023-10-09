@@ -18,7 +18,10 @@ function renderNavHeader() {
 
 
 function renderNavMenu() {
-    return /* html */ `<div class = "navigation-menu">
+    if (currentUser === null) {
+        return " ";
+    } else {
+        return /* html */ `<div class = "navigation-menu">
     <div class = "menu-button active" onclick = "renderSummary(this);">
         <div class = "menu-icon summary"></div><span> Summary </span>
     </div>
@@ -31,7 +34,8 @@ function renderNavMenu() {
     <div class = "menu-button" onclick = "renderContacts(this)">
         <div class = "menu-icon contacts"></div><span>Contacts</span>
     </div>
-</div>`;
+    </div>`;
+    }
 }
 
 
@@ -54,7 +58,8 @@ function renderHeader() {
 
 
 function renderHeaderHeadline() {
-    return /* html */ `
+    return /* html */ `    
+    <img class="grey-logo d-none" src="assets/img/logo_main.svg">
     <div class="headline">
         <span>Kanban Project Management Tool</span>
     </div>`;
@@ -62,14 +67,20 @@ function renderHeaderHeadline() {
 
 
 function renderHeaderProfile() {
-    return /* html */ `
+    if (currentUser === null) {
+        return "";
+    } else {
+        return /* html */ `
     <div class="headline-profile">
         <div id="help-link">
             <div onclick="renderHelp()"><img src="/assets/img/help.svg"></div>
         </div>
-        <div onclick="openSubmenu()" class="user-profile-initials"></div>
+        <div onclick="openSubmenu()" id="user-profile-initials">${currentUser.name.split(" ").map((element) => element[0]).join("")}</div>
     </div>`;
+    }
 }
+
+
 
 function renderHeaderSubMenu() {
     return /* html */ `
@@ -80,7 +91,7 @@ function renderHeaderSubMenu() {
         <div onclick = "renderPolicy()">
             <p>Privacy Policy</p>
         </div>
-        <div>
+        <div onclick="logOut()">
             <p>Log out</p>
         </div>            
     </div>`;

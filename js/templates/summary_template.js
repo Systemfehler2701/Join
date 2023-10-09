@@ -1,6 +1,7 @@
 ///SUMMARY TEMPLATES///
 function renderSummary(element) {
-    document.getElementById('help-link').classList.remove("d-none");
+    getAppData();
+    document.getElementById("help-link").classList.remove("d-none");
     if (element != undefined) {
         navigationMenuClicked(element);
     }
@@ -8,9 +9,8 @@ function renderSummary(element) {
     greet();
 }
 
-
 function renderSummaryContent() {
-    let content = document.getElementById('content');
+    let content = document.getElementById("content");
     content.innerHTML = /* html */ `<div class="summary-content">
     ${renderSummaryHeader()}
     <div class="summary-info">
@@ -19,7 +19,6 @@ function renderSummaryContent() {
     </div>
 </div>`;
 }
-
 
 function renderSummaryTask() {
     return /*html*/ `
@@ -37,28 +36,26 @@ function renderSummaryTask() {
     </div>`;
 }
 
-
 function renderSummaryHeader() {
     return /* html */ `
     <div class="summary-header">
         <h1>Join 360</h1>
-        <img src="/assets/img/blue-stroke.svg">
+        <img class="img-full" src="/assets/img/blue-stroke.svg">
         <h2>Key Matrics at a Glance</h2>
+        <img class="img-responsive d-none" src="/assets/img/blue-stroke.svg">
     </div>`;
 }
-
 
 function renderSummaryTodo() {
     return /* html */ `
     <div class="summary-todo">
         ${renderSummaryTodoSvg()}
         <div>
-            <span id="todo-amount"></span>
+            <span id="todo-amount">${taskLists.toDo.length}</span>
             <p>To-do</p>
         </div>
     </div>`;
 }
-
 
 function renderSummaryTodoSvg() {
     return /* html */ `
@@ -73,18 +70,16 @@ function renderSummaryTodoSvg() {
     </svg>`;
 }
 
-
 function renderSummaryDone() {
     return /* html */ `
     <div class="summary-done">
         ${renderSummaryDoneSvg()}
         <div>
-            <span id="done-amount"></span>
+            <span id="done-amount">${taskLists.done.length}</span>
             <p>Done</p>
         </div>
     </div>`;
 }
-
 
 function renderSummaryDoneSvg() {
     return /* html */ `
@@ -94,59 +89,68 @@ function renderSummaryDoneSvg() {
     </svg>`;
 }
 
-
 function renderSummaryUpcoming() {
     return /* html */ `
+    <div class="summary-line2">
     <div class="summary-upcoming">
         <div class="upcoming-amount">
             <div class="upcoming-img"></div>
             <div>
-                <span id="upcoming-amount"></span>
-                <p>Test</p>
+                <span id="upcoming-amount">${taskLists.inProgress.length}</span>
+                <p>Urgent</p>
             </div>
         </div>
         <svg width="2" height="106" viewBox="0 0 2 106" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 1.98828V104.011" stroke="#D1D1D1" stroke-width="2" stroke-linecap="round"/>
         </svg>
         <div class="summary-date">
-            <span class="next-date">${new Date().toLocaleString('en', {month: 'long',day: 'numeric', year: 'numeric'})}</span>
+            <span class="next-date">${new Date().toLocaleString("en", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}</span>
             <p>Upcoming Deadline</p>
         </div>                      
+    </div>
     </div>`;
 }
-
 
 function renderSummaryBoard() {
     return /* html */ `
     <div class="summary-board">
-        <span id="board-amount"></span>
+        <span id="board-amount">${taskLists.inProgress.length + taskLists.toDo.length + taskLists.feedback.length}</span>
         <p>Tasks in Board</p>
     </div>`;
 }
 
-
 function renderSummaryProgress() {
     return /* html */ `
     <div class="summary-progress">
-        <span id="progress-amount"></span>
+        <span id="progress-amount">${taskLists.inProgress.length}</span>
         <p>Tasks in Progress</p>
     </div>`;
 }
 
-
 function renderSummaryFeedback() {
     return /* html */ `
     <div class="summary-feedback">
-        <span id="feedback-amount"></span>
+        <span id="feedback-amount">${taskLists.feedback.length}</span>
         <p>Awaiting Feedback</p>
     </div>`;
 }
-
 
 function renderSummaryWelcome() {
     return /* html */ `
     <div class="summary-welcome">
         <div id="summary-greeting"></div>
-        <div class="summary-user"></div>
+        <div id="summary-user">${getUserGreeting()}</div>
     </div>`;
+}
+
+function getUserGreeting() {
+    if (currentUser.name == 'Guest') {
+        return '';
+    }
+    return currentUser.name;
+
 }
