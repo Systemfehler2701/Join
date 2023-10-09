@@ -121,7 +121,7 @@
 }
 
 #login_signupBody button:hover {
-    background-color: #29ABE2 !important;
+    background-color: #29ABE2;
     box-shadow: 0px 5px 5px 0px #00000040;
 }
 
