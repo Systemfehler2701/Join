@@ -83,9 +83,9 @@ function task_resetArrays() {
   assignees = [];
 }
 
-function task_getPrioforEditor(array, i) {
+function task_getPrioforEditor(arrayAsString, i) {
   let x = null;
-  let task = taskLists[array][i];
+  let task = taskLists[arrayAsString][i];
   if (task["priority"]["priority"] == "Urgent") {
     x = 0;
   }

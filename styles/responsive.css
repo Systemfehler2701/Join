@@ -81,10 +81,10 @@
         font-size: 45px;
         font-weight: 700;
     }
-    <<<<<<< HEAD .panels {
+    HEAD .panels {
         flex-wrap: wrap;
     }
-    =======>>>>>>>64c4a1ccb623e933143288b7eea8f88ffba2a995 .taskpanel {
+    .taskpanel {
         width: 310px;
     }
     .head {

@@ -1,8 +1,8 @@
 let currentDraggedElement;
 
 
-function startDragging(arrayName, i) {
-    currentDraggedElement = { srcArray: arrayName, srcIndex: i };
+function startDragging(arrayAsString, i) {
+    currentDraggedElement = { srcArray: arrayAsString, srcIndex: i };
 }
 
 
