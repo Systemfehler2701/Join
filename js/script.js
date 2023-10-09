@@ -2,6 +2,7 @@ function app() {
     if (currentUser === null) {
         renderLoginMask();
     } else {
+        getusers();
         renderLayout();
         renderNavigation();
         renderHeader();
@@ -20,14 +21,12 @@ function renderLayout() {
     </div>`;
 }
 
-
 function appLegalNotice() {
     renderLayout();
     renderNavigation();
     renderHeader();
     renderNotice();
 }
-
 
 function appPrivacyPolicy() {
     renderLayout();
@@ -43,3 +42,18 @@ async function getAppData() {
     await board_loadFromStorage("feedback");
     await board_loadFromStorage("done");
 }
+
+async function loadUsers() {
+    try {
+      const storedUsersJSON = await getItem("users");
+      if (storedUsersJSON) {
+        const storedUsers = JSON.parse(storedUsersJSON);
+        return storedUsers;
+      } else {
+        return {}; 
+      }
+    } catch (e) {
+      console.error("Load users error:", e);
+      return {}; n
+    }
+  }
