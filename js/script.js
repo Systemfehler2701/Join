@@ -2,7 +2,7 @@ function app() {
     if (currentUser === null) {
         renderLoginMask();
     } else {
-        getusers();
+        loadUsers();
         renderLayout();
         renderNavigation();
         renderHeader();
