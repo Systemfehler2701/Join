@@ -91,7 +91,7 @@ function createNewTask(array) {
                         <div class="subtask">
                             <h2>Subtasks</h2>
                             <div>
-                                <input onkeyup="changeSubtaskAppearance()" id="subtasks" type="text" placeholder="Add new Subtask">
+                                <input onkeyup="changeSubtaskAppearance()" onkeydown="addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
                                 <div class="subtaskimages" id="subtaskField">
                                     <img src="/assets/img/Subtasks icons11.svg" alt="">
                                 </div>

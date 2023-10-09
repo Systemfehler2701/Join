@@ -116,6 +116,16 @@ function addSubtask() {
   renderSubtasks();
 }
 
+function addSubtasksOnEnter(event) {
+  subtask = document.getElementById("subtasks");
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    if (subtask != "") {
+      addSubtask();
+    }
+  }
+}
+
 function renderSubtasks() {
   let subTaskDisplay = document.getElementById("addedSubtasks");
   subTaskDisplay.innerHTML = "";
@@ -271,7 +281,9 @@ function renderAssigneeList() {
     let assigneeNumber = assignees[i];
     let user = users[assigneeNumber];
     list.innerHTML += /*html*/ `
-      <div class="initials-logo">${getInitials(user.name)}</div>
+      <div class="initials-logo" style="background-color: ${
+        user.color
+      }">${getInitials(user.name)}</div>
     `;
   }
 }
@@ -382,7 +394,9 @@ function createAssignedContact(user, index) {
   let selector = document.getElementById("assign_select");
   selector.innerHTML += /*html*/ `
   <div id="assignee${index}" class="assigneeOption" value="${index}">
-    <div class="initials-logo" style="">${getInitials(user.name)}</div>
+    <div class="initials-logo" style="background-color: ${
+      user.color
+    }">${getInitials(user.name)}</div>
     <div class="assigneeName">${user.name}</div>
     <img id="assigneeCheckbox${index}" onclick="unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
 </div>
@@ -393,7 +407,9 @@ function createUnassignedContact(user, index) {
   let selector = document.getElementById("assign_select");
   selector.innerHTML += /*html*/ `
   <div id="assignee${index}" class="assigneeOption" value="${index}">
-    <div class="initials-logo" style="">${getInitials(user.name)}</div>
+    <div class="initials-logo" style="background-color: ${
+      user.color
+    }">${getInitials(user.name)}</div>
     <div class="assigneeName">${user.name}</div>
     <img id="assigneeCheckbox${index}" onclick="assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
 </div>

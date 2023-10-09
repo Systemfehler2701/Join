@@ -239,8 +239,6 @@ progress {
 
 
 /* Here begins the styling of the Taskcard Overlay the following elements have "Full" at the end of their name to avoid confusion */
-
-
 /* Here begins the styling of the Taskcard Overlay the following elements have "Full" at the end of their name to avoid confusion */
 
 .Boardoverlay {
@@ -274,14 +272,9 @@ progress {
     border-radius: 30px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
     padding: 40px 48px 40px 48px;
+    /* Animation @keyframes is in style.css */
     transform: translateX(200%);
     animation: slideIn 1s forwards;
-}
-
-@keyframes slideIn {
-    to {
-        transform: translateX(0);
-    }
 }
 
 .FullTaskCard {
