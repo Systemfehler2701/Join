@@ -113,7 +113,7 @@ function showDetails(index) {
     const detailsContent = /* html */ `
         <div class="contactView">
             <div class="detailsLogo" style="background-color: ${user.color}; margin: 0 auto;">${initials}</div>
-            <div class="name">
+            <div class="contactUser">
                 <h3>${user.name}</h3>
                 <div class="contactsIcons">
     <div class="iconWrapper" onclick="editContact(${index})">
