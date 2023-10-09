@@ -16,6 +16,10 @@ function renderLoginMask() {
         <input type="email" id="loginEmail" placeholder="Email" />
         <input type="password" id="loginPassword" placeholder="Password" />
         </div>
+        <div id="loginRememberMe">
+        <input type="checkbox" id="loginRemember" />
+        <span>Remember me</span>
+        </div>
         <div id="loginButtons">
         <button type="submit">Log in</button>
         <button class="guest-login-btn" type="button" onclick="logInGuest()">Guest Log in</button>
