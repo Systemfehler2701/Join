@@ -68,7 +68,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    flex-direction: column;
+    line-height: 24px;
 }
 
 .initials-logo {
@@ -413,6 +413,11 @@ form button {
     gap: 8px;
 }
 
+.createBtn:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 5px 5px 0px #00000040;
+}
+
 .deleteBtn {
     height: 56px;
     width: 126px;
@@ -430,6 +435,12 @@ form button {
     gap: 4px;
     font-weight: 400;
     line-height: 24px;
+}
+
+.deleteBtn:hover {
+    background-color: white !important;
+    color: #29ABE2;
+    border-color: #29ABE2;
 }
 
 .closeBtn {
@@ -536,6 +547,12 @@ form button {
     gap: 4px;
     font-weight: 400;
     line-height: 24px;
+}
+
+.cancelBtn:hover {
+    background-color: white !important;
+    color: #29ABE2;
+    border-color: #29ABE2;
 }
 
 .overlayPerson {
