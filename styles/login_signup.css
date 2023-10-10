@@ -189,7 +189,8 @@ a {
 #logo {
     display: flex;
     position: absolute;
-    animation: moveLogo 600ms ease-in-out;
+    animation: moveLogo 800ms ease-in-out;
+    animation-fill-mode: forwards;
     height: 120px;
     width: 100px;
 }
