@@ -5,9 +5,19 @@ async function logIn() {
   try {
     const emailInput = document.getElementById("loginEmail");
     const passwordInput = document.getElementById("loginPassword");
+    const loginRememberCheckbox = document.getElementById("loginRemember");
 
     const usersData = await getItem("users");
     const users = JSON.parse(usersData);
+
+    if (loginRememberCheckbox.checked) {
+      // Wenn ausgewählt, Daten im Local Storage speichern
+      var email = loginEmailInput.value;
+      localStorage.setItem("rememberedEmail", email);
+    } else {
+      // Wenn nicht ausgewählt, zuvor gespeicherte Daten löschen
+      localStorage.removeItem("rememberedEmail");
+    }
 
     // Überprüfen, ob die eingegebene E-Mail in den Benutzerdaten vorhanden ist
     if (users.hasOwnProperty(emailInput.value)) {
@@ -25,9 +35,6 @@ async function logIn() {
     } else {
       alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe.");
     }
-
-    // console.log(currentUser);
-    // console.log(isGuestUser);
   } catch (error) {
     console.error("Fehler beim Einloggen:", error);
   }
