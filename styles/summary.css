@@ -206,10 +206,11 @@
     .next-date {
         font-size: 21px !important;
         font-weight: 700 !important;
+        padding: 0 8px;
     }
     
     .summary-welcome.mobile {
-        display: none !important;
+        display: none;
     }
     
     .summary-welcome.desktop {
@@ -228,4 +229,13 @@
         font-size: 60px;
         font-weight: 700;
         color: #29ABE2;
+    }
+    
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
     }

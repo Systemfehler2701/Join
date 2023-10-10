@@ -182,3 +182,12 @@ a {
     margin-top: 15px;
     text-decoration: none;
 }
+
+#loginRememberMe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-left: 50px;
+}

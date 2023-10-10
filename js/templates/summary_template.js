@@ -1,6 +1,7 @@
+let splashAnimation = "animate";
+
 ///SUMMARY TEMPLATES///
 function renderSummary(element) {
-    getAppData();
     document.getElementById("help-link").classList.remove("d-none");
     if (element != undefined) {
         navigationMenuClicked(element);
@@ -12,7 +13,7 @@ function renderSummary(element) {
 function renderSummaryContent() {
     let content = document.getElementById("content");
     content.innerHTML = /* html */ `
-    ${renderSummaryWelcome("moblie")}
+    ${renderSummaryWelcome("mobile")}
     <div class="summary-content">
 
     ${renderSummaryHeader()}
