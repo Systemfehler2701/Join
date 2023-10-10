@@ -42,7 +42,7 @@ async function logIn() {
 
 function logInGuest() {
   currentUser = {
-    name: "Guest (you)",
+    name: "Guest",
     email: "guest@join",
     color: '#0D0D0F'
   };
