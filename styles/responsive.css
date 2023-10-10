@@ -1,375 +1,388 @@
-        @media (max-width: 1445px) {
-            .summary-task {
-                margin-right: 40px;
-            }
-            #content {
-                padding: 40px;
-            }
-            .summary-header h1 {
-                margin: 20px 0;
-            }
-            .summary-header {
-                height: 100px;
-            }
-            .summary-todo,
-            .summary-done,
-            .summary-upcoming,
-            .summary-board,
-            .summary-progress,
-            .summary-feedback {
-                height: 85px;
-            }
-            .summary-task p {
-                padding: 0 8px;
-            }
-            .rightside {
-                padding: 10px 50px;
-                margin-left: 370px;
-            }
-            .taskbody .task_input {
-                flex-direction: column;
-            }
-            .task_input .divider {
-                display: none;
-            }
-            .input1 {
-                width: 100% !important;
-            }
-            .input2 {
-                width: 100% !important;
-            }
-            .assigneeOptionContainer {
-                width: 96.5%;
-            }
-            .addedSubtasks {
-                margin-bottom: 16px;
-            }
-        }
-        
-        @media (max-width: 1190px) {
-            .summary-todo,
-            .summary-done,
-            .summary-upcoming {
-                padding: 15px 20px;
-                height: 85px;
-            }
-            .summary-todo,
-            .summary-done {
-                width: 164px;
-            }
-            .summary-upcoming {
-                width: 345px;
-            }
-            .summary-board,
-            .summary-progress,
-            .summary-feedback {
-                width: 122px;
-                height: 85px;
-            }
-            .summary-line1,
-            .summary-line3 {
-                width: 385px;
-                display: flex;
-                justify-content: space-between;
-            }
-            .summary-line2 {
-                width: 385px;
-            }
-            .summary-task span {
-                font-size: 50px;
-                padding: 0 8px;
-            }
-            .summary-task p {
-                font-size: 18px;
-            }
-            .summary-task svg {
-                height: 50px;
-            }
-            .upcoming-img {
-                height: 50px;
-            }
-            .summary-welcome.desktop {
-                height: 390px;
-            }
-            .summary-greeting {
-                font-size: 35px;
-                font-weight: 500;
-            }
-            .summary-user {
-                font-size: 45px;
-                font-weight: 700;
-            }
-            HEAD .panels {
-                flex-wrap: wrap;
-            }
-            .taskpanel {
-                width: 310px;
-            }
-            .head {
-                gap: 14px;
-            }
-            .headleft {
-                gap: 14px;
-            }
-
-        }
-        
-        @media (max-width: 999px) {
-            .head {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 970px) {
-            #left-layout,
-            nav,
-            .navigation-menu,
-            .navigation-img {
-                width: 190px;
-                min-width: 190px;
-            }
-            .menu-button {
-                padding: 8px 20px;
-            }
-            .contact-leftside {
-                left: 190px;
-                padding: 0 20px 20px 20px;
-                width: 370px;
-            }
-            .head {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-            }
-            .overlayBlank {
-                margin-left: 190px;
-              }
-        }
-        
-        @media(max-width: 900px) {
-            .panels {
-                justify-content: center;
-            }
-            .summary-header {
-                width: 600px;
-            }
-        }
-        
-        @media (max-width: 865px) {
-            #left-layout {
-                position: fixed;
-                bottom: 0px;
-                width: 100%;
-                height: 80px;
-            }
-            #content {
-                margin-top: 90px;
-            }
-            nav {
-                flex-direction: row;
-                justify-content: center;
-                position: absolute;
-                bottom: 0px;
-                width: 100%;
-                height: 80px;
-            }
-            .summary-todo,
-            .summary-done,
-            .summary-upcoming {
-                padding: 8px 10px;
-            }
-            .summary-upcoming {
-                width: 100%;
-            }
-            .summary-line2 {
-                width: 370px;
-            }
-            .navigation-menu {
-                flex-direction: row;
-                width: 100%;
-                height: fit-content;
-                justify-content: space-around;
-            }
-            .summary-info {
-                display: flex;
-                justify-content: center;
-                width: fit-content;
-            }
-            .footer {
-                display: none;
-            }
-            .navigation-img {
-                display: none;
-            }
-            nav .menu-button {
-                flex-direction: column;
-                align-items: center;
-                border-radius: 8px;
-                padding: 10px 5px;
-                margin-top: 3px;
-            }
-            .headline {
-                display: none;
-            }
-            .summary-header h1 {
-                margin: 0px 0;
-            }
-            .grey-logo {
-                display: flex !important;
-                height: 60px;
-                width: 50px;
-            }
-            #header {
-                height: 80px;
-                padding: 5px 40px 5px 40px;
-                align-items: center;
-            }
-            .summary-content {
-                height: fit-content;
-            }
-            .summary-header {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
-                align-items: flex-start;
-                width: 400px;
-                height: 185px;
-            }
-            .summary-info {
-                height: 500px;
-            }
-            .img-full {
-                display: none;
-            }
-            .img-responsive {
-                display: flex !important;
-                transform: rotateZ(90deg);
-                margin: -25px 0 0 43px;
-                height: 90px;
-            }
-            .overlayBlank {
-                margin-left: 0;
-            }
-            .summary-task {
-                margin-top: 0;
-            }
-            .summary-welcome.desktop {
-                display: none;
-            }
-            .summary-welcome.mobile {
-                .header-submenu {
-                    width: 135px;
-                    height: 150px;
-                    top: 90px;
-                    padding: 0;
-                }
-                .header-submenu div {
-                    width: 105px;
-                    height: 35px;
-                    padding: 2px 8px;
-                }
-                .headleft {
-                    width: 100%;
-                    flex-direction: column;
-                    align-items: flex-end;
-                }
-                .containerAll {
-                    flex-direction: column;
-                }
-                .darkside,
-                .formcontainer {
-                    width: 100%;
-                    height: 200px;
-                }
-                .person-img {
-                    width: 100px;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 10;
-                }
-                .input-Area {
-                    position: center;
-                }
-            }
-            @media (max-width: 739px) {
-                .searchbar {
-                    width: 100%;
-                }
-                #content {
-                    margin-bottom: 74px;
-                    /* Must be the height of the bottom-navbar. Please adjst if necessary JK 4.10.23*/
-                    justify-content: center;
-                }
-                .taskbody {
-                    width: 95%;
-                }
-                .clear {
-                    display: none;
-                }
-                .overlayBlank {
-                    padding: 30px 24px 30px 24px;
-                }
-                .taskbody h1 {
-                    font-size: 48px;
-                    font-weight: 700;
-                    margin-top: 0;
-                }
-                .searchbar input {
-                    width: -webkit-fill-available;
-                }
-            }
-            @media (max-width: 440px) {
-                #content {
-                    padding: 20px;
-                }
-                .summary-line1,
-                .summary-line2,
-                .summary-line3 {
-                    width: 320px;
-                    gap: 10px;
-                }
-                .summary-header h1 {
-                    font-size: 47px;
-                }
-                .summary-header h2 {
-                    font-size: 20px;
-                    margin: 0;
-                }
-                .summary-upcoming {
-                    width: 300px;
-                }
-                .summary-task span {
-                    font-size: 40px;
-                }
-                .next-date {
-                    font-size: 18px !important;
-                }
-                .summary-task p {
-                    font-size: 15px;
-                }
-                .addTaskBottom {
-                    flex-direction: column;
-                    align-items: flex-start;
-                    margin-top: 0;
-                    gap: 40px;
-                }
-                .taskbody .priocontainer div {
-                    width: 32%;
-                    font-size: 16px;
-                }
-                .assignmentSelect {
-                    font-size: 18px;
-                }
-                .head {
-                    width: 310px;
-                }
-                .searchbar input {
-                    width: -webkit-fill-available;
-                    max-width: 237px;
-                }
-            }
-        }
+                    @media (max-width: 1445px) {
+                        .summary-task {
+                            margin-right: 40px;
+                        }
+                        #content {
+                            padding: 40px;
+                        }
+                        .summary-header h1 {
+                            margin: 20px 0;
+                        }
+                        .summary-header {
+                            height: 100px;
+                        }
+                        .summary-todo,
+                        .summary-done,
+                        .summary-upcoming,
+                        .summary-board,
+                        .summary-progress,
+                        .summary-feedback {
+                            height: 85px;
+                        }
+                        .summary-task p {
+                            padding: 0 8px;
+                        }
+                        .rightside {
+                            padding: 10px 50px;
+                            margin-left: 370px;
+                        }
+                        .taskbody .task_input {
+                            flex-direction: column;
+                        }
+                        .task_input .divider {
+                            display: none;
+                        }
+                        .input1 {
+                            width: 100% !important;
+                        }
+                        .input2 {
+                            width: 100% !important;
+                        }
+                        .assigneeOptionContainer {
+                            width: 96.5%;
+                        }
+                        .addedSubtasks {
+                            margin-bottom: 16px;
+                        }
+                    }
+                    
+                    @media (max-width: 1190px) {
+                        .summary-todo,
+                        .summary-done,
+                        .summary-upcoming {
+                            padding: 15px 20px;
+                            height: 85px;
+                        }
+                        .summary-todo,
+                        .summary-done {
+                            width: 164px;
+                        }
+                        .summary-upcoming {
+                            width: 345px;
+                        }
+                        .summary-board,
+                        .summary-progress,
+                        .summary-feedback {
+                            width: 122px;
+                            height: 85px;
+                        }
+                        .summary-line1,
+                        .summary-line3 {
+                            width: 385px;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .summary-line2 {
+                            width: 385px;
+                        }
+                        .summary-task span {
+                            font-size: 50px;
+                            padding: 0 8px;
+                        }
+                        .summary-task p {
+                            font-size: 18px;
+                        }
+                        .summary-task svg {
+                            height: 50px;
+                        }
+                        .upcoming-img {
+                            height: 50px;
+                        }
+                        .summary-welcome.desktop {
+                            height: 390px;
+                        }
+                        .summary-greeting {
+                            font-size: 35px;
+                            font-weight: 500;
+                        }
+                        .summary-user {
+                            font-size: 45px;
+                            font-weight: 700;
+                        }
+                        HEAD .panels {
+                            flex-wrap: wrap;
+                        }
+                        .taskpanel {
+                            width: 310px;
+                        }
+                        .head {
+                            gap: 14px;
+                        }
+                        .headleft {
+                            gap: 14px;
+                        }
+                    }
+                    
+                    @media (max-width: 999px) {
+                        .head {
+                            flex-direction: column;
+                            align-items: flex-start;
+                            width: 100%;
+                        }
+                    }
+                    
+                    @media (max-width: 970px) {
+                        #left-layout,
+                        nav,
+                        .navigation-menu,
+                        .navigation-img {
+                            width: 190px;
+                            min-width: 190px;
+                        }
+                        .menu-button {
+                            padding: 8px 20px;
+                        }
+                        .contact-leftside {
+                            left: 190px;
+                            padding: 0 20px 20px 20px;
+                            width: 370px;
+                        }
+                        .head {
+                            flex-direction: column;
+                            align-items: flex-start;
+                            width: 100%;
+                        }
+                        .overlayBlank {
+                            margin-left: 190px;
+                        }
+                        .containerAll {
+                            flex-direction: column;
+                            width: 396px;
+                            height: 760px;
+                        }
+                        .darkside {
+                            width: 100% !important;
+                            border-radius: 30px 30px 0 0;
+                        }
+                        .image-to-hide {
+                            display: none;
+                        }
+                        .formcontainer {
+                            align-items: center;
+                            width: 100%;
+                        }
+                        .inputName {
+                            align-items: center;
+                            width: 364px;
+                        }
+                        .inputMail {
+                            align-items: center;
+                            width: 100%;
+                        }
+                        .inputPhone {
+                            align-items: center;
+                            width: 364px;
+                        }
+                        .overlayPerson {
+                            position: absolute;
+                        }
+                        .rightside {
+                            display: none;
+                        }
+                        @media(max-width: 900px) {
+                            .panels {
+                                justify-content: center;
+                            }
+                            .summary-header {
+                                width: 600px;
+                            }
+                        }
+                    }
+                    
+                    @media (max-width: 865px) {
+                        #left-layout {
+                            position: fixed;
+                            bottom: 0px;
+                            width: 100%;
+                            height: 80px;
+                        }
+                        #content {
+                            margin-top: 90px;
+                        }
+                        nav {
+                            flex-direction: row;
+                            justify-content: center;
+                            position: absolute;
+                            bottom: 0px;
+                            width: 100%;
+                            height: 80px;
+                        }
+                        .summary-todo,
+                        .summary-done,
+                        .summary-upcoming {
+                            padding: 8px 10px;
+                        }
+                        .summary-upcoming {
+                            width: 100%;
+                        }
+                        .summary-line2 {
+                            width: 370px;
+                        }
+                        .navigation-menu {
+                            flex-direction: row;
+                            width: 100%;
+                            height: fit-content;
+                            justify-content: space-around;
+                        }
+                        .summary-info {
+                            display: flex;
+                            justify-content: center;
+                            width: fit-content;
+                        }
+                        .footer {
+                            display: none;
+                        }
+                        .navigation-img {
+                            display: none;
+                        }
+                        nav .menu-button {
+                            flex-direction: column;
+                            align-items: center;
+                            border-radius: 8px;
+                            padding: 10px 5px;
+                            margin-top: 3px;
+                        }
+                        .headline {
+                            display: none;
+                        }
+                        .summary-header h1 {
+                            margin: 0px 0;
+                        }
+                        .grey-logo {
+                            display: flex !important;
+                            height: 60px;
+                            width: 50px;
+                        }
+                        #header {
+                            height: 80px;
+                            padding: 5px 40px 5px 40px;
+                            align-items: center;
+                        }
+                        .summary-content {
+                            height: fit-content;
+                        }
+                        .summary-header {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-evenly;
+                            align-items: flex-start;
+                            width: 400px;
+                            height: 185px;
+                        }
+                        .summary-info {
+                            height: 500px;
+                        }
+                        .img-full {
+                            display: none;
+                        }
+                        .img-responsive {
+                            display: flex !important;
+                            transform: rotateZ(90deg);
+                            margin: -25px 0 0 43px;
+                            height: 90px;
+                        }
+                        .overlayBlank {
+                            margin-left: 0;
+                        }
+                        .summary-task {
+                            margin-top: 0;
+                        }
+                        .summary-welcome.desktop {
+                            display: none;
+                        }
+                        .summary-welcome.mobile {
+                            .header-submenu {
+                                width: 135px;
+                                height: 150px;
+                                top: 90px;
+                                padding: 0;
+                            }
+                            .header-submenu div {
+                                width: 105px;
+                                height: 35px;
+                                padding: 2px 8px;
+                            }
+                            .headleft {
+                                width: 100%;
+                                flex-direction: column;
+                                align-items: flex-end;
+                            }
+                        }
+                        @media (max-width: 739px) {
+                            .searchbar {
+                                width: 100%;
+                            }
+                            #content {
+                                margin-bottom: 74px;
+                                /* Must be the height of the bottom-navbar. Please adjst if necessary JK 4.10.23*/
+                                justify-content: center;
+                            }
+                            .taskbody {
+                                width: 95%;
+                            }
+                            .clear {
+                                display: none;
+                            }
+                            .overlayBlank {
+                                padding: 30px 24px 30px 24px;
+                            }
+                            .taskbody h1 {
+                                font-size: 48px;
+                                font-weight: 700;
+                                margin-top: 0;
+                            }
+                            .searchbar input {
+                                width: -webkit-fill-available;
+                            }
+                        }
+                        @media (max-width: 440px) {
+                            #content {
+                                padding: 20px;
+                            }
+                            .summary-line1,
+                            .summary-line2,
+                            .summary-line3 {
+                                width: 320px;
+                                gap: 10px;
+                            }
+                            .summary-header h1 {
+                                font-size: 47px;
+                            }
+                            .summary-header h2 {
+                                font-size: 20px;
+                                margin: 0;
+                            }
+                            .summary-upcoming {
+                                width: 300px;
+                            }
+                            .summary-task span {
+                                font-size: 40px;
+                            }
+                            .next-date {
+                                font-size: 18px !important;
+                            }
+                            .summary-task p {
+                                font-size: 15px;
+                            }
+                            .addTaskBottom {
+                                flex-direction: column;
+                                align-items: flex-start;
+                                margin-top: 0;
+                                gap: 40px;
+                            }
+                            .taskbody .priocontainer div {
+                                width: 32%;
+                                font-size: 16px;
+                            }
+                            .assignmentSelect {
+                                font-size: 18px;
+                            }
+                            .head {
+                                width: 310px;
+                            }
+                            .searchbar input {
+                                width: -webkit-fill-available;
+                                max-width: 237px;
+                            }
+                        }
+                    }
