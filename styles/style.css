@@ -23,16 +23,18 @@ body::-webkit-scrollbar {
 }
 
 .contact-leftside::-webkit-scrollbar,
-.panels::-webkit-scrollbar {
-    width: 10px !important;
+.panels::-webkit-scrollbar,
+.taskInputContainer::-webkit-scrollbar {
+    width: 8px !important;
     /* Breite des Scrollbalkens */
     height: 10px !important;
     /* Höhe des Scrollbalkens (bei horizontalen Scrollbalken) */
 }
 
 .contact-leftside::-webkit-scrollbar-thumb,
-.panels::-webkit-scrollbar-thumb {
-    background-color: lightgrey;
+.panels::-webkit-scrollbar-thumb,
+.taskInputContainer::-webkit-scrollbar-thumb {
+    background-color: #29ABE2;
     border-radius: 5px;
 }
 

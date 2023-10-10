@@ -4,6 +4,11 @@
         }
         #content {
             padding: 40px;
+            height: 78vh;
+            width: -webkit-fill-available;
+        }
+        #header {
+            padding: 5px 40px 5px 0px;
         }
         .summary-header h1 {
             margin: 20px 0;
@@ -23,8 +28,8 @@
             padding: 0 8px;
         }
         .rightside {
-            padding: 10px 50px;
-            margin-left: 370px;
+            padding: 10px 30px;
+            margin-left: 440px;
         }
         .taskbody .task_input {
             flex-direction: column;
@@ -104,6 +109,7 @@
         }
         .taskpanel {
             width: 310px;
+            padding: 5px;
         }
         .head {
             gap: 14px;
@@ -166,6 +172,7 @@
         }
         #content {
             margin-top: 90px;
+            position: fixed;
         }
         nav {
             flex-direction: row;
@@ -326,6 +333,9 @@
         }
         .taskbody {
             width: 95%;
+        }
+        .taskInputContainer {
+            overflow-y: scroll;
         }
         .clear {
             display: none;
