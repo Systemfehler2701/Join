@@ -31,7 +31,7 @@ function renderNavMenu() {
     <div class = "menu-button" onclick = "renderBoard(this)">
         <div class = "menu-icon board" ></div><span>Board</span>
     </div>
-    <div class = "menu-button" onclick = "renderContacts(this)">
+    <div id="navContactButton" class = "menu-button" onclick = "renderContacts(this)">
         <div class = "menu-icon contacts"></div><span>Contacts</span>
     </div>
     </div>`;

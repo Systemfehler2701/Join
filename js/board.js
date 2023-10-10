@@ -452,7 +452,7 @@ function board_createTaskEditor(arrayAsString, i) {
     <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
         <div  id="assign_select" class="assignmentContainer scroll"></div>
         <div class="ContactButtonContainer">
-            <div class="newContactButton" id="assignmentNewContact">Add New contact
+            <div onclick="goToContacts()" class="newContactButton" id="assignmentNewContact">Add New contact
                 <img src="/assets/img/person_add.svg" alt="">
             </div> 
         </div>
