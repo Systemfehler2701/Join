@@ -100,7 +100,7 @@ function renderSummaryUpcoming() {
         <div class="upcoming-amount">
             <div class="upcoming-img"></div>
             <div>
-                <span id="upcoming-amount">${taskLists.inProgress.length}</span>
+                <span id="upcoming-amount">${getCountPriority()}</span>
                 <p>Urgent</p>
             </div>
         </div>
@@ -108,11 +108,7 @@ function renderSummaryUpcoming() {
             <path d="M1 1.98828V104.011" stroke="#D1D1D1" stroke-width="2" stroke-linecap="round"/>
         </svg>
         <div class="summary-date">
-            <span class="next-date">${new Date().toLocaleString("en", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}</span>
+            <span class="next-date">${getDeadlineDate()}</span>
             <p>Upcoming Deadline</p>
         </div>                      
     </div>
@@ -150,12 +146,4 @@ function renderSummaryWelcome(responsiveClass) {
         <div class="summary-greeting">${greet()}</div>
         <div class="summary-user">${getUserGreeting()}</div>
     </div>`;
-}
-
-function getUserGreeting() {
-    if (currentUser.name == 'Guest') {
-        return '';
-    }
-    return currentUser.name;
-
 }
