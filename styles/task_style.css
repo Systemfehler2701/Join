@@ -14,8 +14,6 @@
 }
 
 .taskbody .task_input {
-  overflow-x: hidden;
-  overflow-y: scroll;
   position: relative;
   width: 100%;
   display: flex;
