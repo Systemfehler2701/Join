@@ -28,7 +28,8 @@ async function renderSignUpMask() {
       />
       </div>
       <div id="loginCheckbox">
-      <input onclick="checkCheckbox()"
+      <input 
+        required  
         class=""
         type="checkbox"
         value=""
@@ -40,7 +41,9 @@ async function renderSignUpMask() {
       </span> 
       </div>
       <div id="loginButtons">
-      <button id="signUpBtn" type=button >Sign Up</button></div>
+        <input style="display:none;" id="signUpBtn" type="submit">
+        <button onclick="signUpBtn.click();">Sign Up</button>
+      </div>
     </div>
     </form></div>`;
 }
@@ -80,18 +83,5 @@ function resetForm() {
     signUpBtn.disabled = false;
   } catch (e) {
     console.error("Reset error:", e);
-  }
-}
-
-function checkCheckbox() {
-  const signUpCheck = document.getElementById("signUpCheck");
-  const signUpBtn = document.getElementById("signUpBtn");
-
-  if (signUpCheck.checked) {
-    signUpBtn.disabled = false;
-    console.log("checked");
-  } else {
-    signUpBtn.disabled = true;
-    console.log("unchecked");
   }
 }

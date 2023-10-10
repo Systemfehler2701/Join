@@ -219,3 +219,36 @@ a {
     margin-bottom: 20px;
     margin-left: 50px;
 }
+
+.inputName {
+    border-radius: 10px;
+    width: 422px;
+    gap: 10px;
+    background: url(/assets/img/person.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
+}
+
+.inputPassword {
+    border-radius: 10px;
+    width: 422px;
+    gap: 10px;
+    background: url(/assets/img/person.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
+}
+
+.inputEmail {
+    border-radius: 10px;
+    width: 422px;
+    gap: 10px;
+    background: url(/assets/img/person.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+    padding: 13px 21px;
+    border: 1px solid#D1D1D1;
+}
