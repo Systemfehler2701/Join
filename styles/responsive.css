@@ -273,7 +273,6 @@
                 }
                 .containerAll {
                     flex-direction: column;
-                    height: 700px;
                 }
                 .darkside,
                 .formcontainer {
