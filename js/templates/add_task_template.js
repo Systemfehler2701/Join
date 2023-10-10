@@ -16,7 +16,7 @@ function createNewTask(arrayAsString) {
     return /* html */ `
     <div class="taskbody">
         <h1>Add Task</h1>
-        <div style="width: 100%">
+        <div class="taskInputContainer" style="width: 100%">
             <div class="task_input scroll">
                 <div class="input1">
                     <div class="title">
@@ -42,7 +42,7 @@ function createNewTask(arrayAsString) {
                         <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
                             <div  id="assign_select" class="assignmentContainer scroll"></div>
                             <div class="ContactButtonContainer">
-                              <div class="newContactButton" id="assignmentNewContact">Add New contact
+                              <div onclick="renderContacts(this)" class="newContactButton" id="assignmentNewContact">Add New contact
                                 <img src="/assets/img/person_add.svg" alt="">
                               </div> 
                             </div>

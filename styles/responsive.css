@@ -26,6 +26,24 @@
                 padding: 10px 50px;
                 margin-left: 370px;
             }
+            .taskbody .task_input {
+                flex-direction: column;
+            }
+            .task_input .divider {
+                display: none;
+            }
+            .input1 {
+                width: 100% !important;
+            }
+            .input2 {
+                width: 100% !important;
+            }
+            .assigneeOptionContainer {
+                width: 96.5%;
+            }
+            .addedSubtasks {
+                margin-bottom: 16px;
+            }
         }
         
         @media (max-width: 1190px) {
@@ -93,24 +111,7 @@
             .headleft {
                 gap: 14px;
             }
-            .taskbody .task_input {
-                flex-direction: column;
-            }
-            .task_input .divider {
-                display: none;
-            }
-            .input1 {
-                width: 100% !important;
-            }
-            .input2 {
-                width: 100% !important;
-            }
-            .assigneeOptionContainer {
-                width: 96.5%;
-            }
-            .addedSubtasks {
-                margin-bottom: 16px;
-            }
+
         }
         
         @media (max-width: 999px) {
@@ -142,6 +143,9 @@
                 align-items: flex-start;
                 width: 100%;
             }
+            .overlayBlank {
+                margin-left: 190px;
+              }
         }
         
         @media(max-width: 900px) {
