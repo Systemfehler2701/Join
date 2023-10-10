@@ -46,3 +46,17 @@
 .animate-done {
     opacity: 0;
 }
+
+.animate-logo-start {
+    animation: moveLogo 800ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.animate-Mask-start {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 500ms;
+    animation-delay: 200ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
