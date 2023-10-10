@@ -11,7 +11,7 @@ async function renderSignUpMask() {
     </div>
   <form id="signUp_form" onsubmit="register(); return false;">
     <div id="loginArrow">
-      <img id="loginArrow" src="../../assets/img/arrow-left-line.svg" alt="Arrow" onclick="app()">
+      <img id="loginArrowImg" src="../../assets/img/arrow-left-line.svg" alt="Arrow" onclick="app()">
     </div>
     <div id="loginHead">
       <h1 id="loginTitle">Sign Up</h1>
