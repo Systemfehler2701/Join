@@ -10,6 +10,7 @@ app {
 }
 
 #left-layout {
+    z-index: 1;
     min-width: 232px;
     width: 232px;
 }
