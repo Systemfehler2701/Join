@@ -21,3 +21,38 @@ function greet() {
     }
     return greeting;
 }
+
+
+function getUserGreeting() {
+    if (currentUser.name == 'Guest') {
+        return '';
+    }
+    return currentUser.name;
+
+}
+
+
+function getCountPriority() {
+    let amountUrgent = 0;
+    taskLists.feedback.concat(taskLists.toDo).concat(taskLists.inProgress).map((element) => {
+        if (element.priority.priority == 'Urgent') {
+            amountUrgent++
+        }
+    });
+    return amountUrgent;
+}
+
+
+function getDeadlineDate() {
+    let smallestDate = 0;
+    taskLists.feedback.concat(taskLists.toDo).concat(taskLists.inProgress).find((element) => {
+        if (element.dueDate < smallestDate || smallestDate == 0) {
+            smallestDate = element.dueDate;
+        }
+    });
+    if (smallestDate == 0) {
+        return "";
+    }
+    const timeOptions = { month: "long", day: "numeric", year: "numeric" }
+    return new Date(smallestDate).toLocaleString("en", timeOptions);
+}

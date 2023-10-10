@@ -43,11 +43,14 @@ async function renderSignUpMask() {
       <button id="signUpBtn" type=>Sign Up</button></div>
     </div>
     </form></div>`;
+  document
+    .getElementById("signUpCheck")
+    .addEventListener("change", checkCheckbox);
 }
 
 async function register() {
   try {
-    signUpBtn.disabled = true;
+    // signUpBtn.disabled = true;
 
     if (signUpPw.value !== signUpPw2.value) {
       alert("Die Passwörter stimmen nicht überein.");
@@ -93,11 +96,15 @@ function checkPassword() {
   }
 }
 
-// function checkbox() {
-//    if (signUpCheck.checked) {
-//     enable;
-//   } else {
-//      signUpPw.type = "password";
-//     signUpPw2.type = "password";
-//    }
-//  }
+function checkCheckbox() {
+  const signUpCheck = document.getElementById("signUpCheck");
+  const signUpBtn = document.getElementById("signUpBtn");
+
+  if (signUpCheck.checked) {
+    signUpBtn.disabled = false;
+    console.log("checked");
+  } else {
+    signUpBtn.disabled = true;
+    console.log("unchecked");
+  }
+}
