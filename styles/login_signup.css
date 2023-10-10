@@ -8,6 +8,14 @@
 
 /* Login */
 
+.login-area {
+    display: flex;
+    width: -webkit-fill-available;
+    justify-content: center;
+    height: 70vh;
+    align-items: center;
+}
+
 #login_signupBody {
     font-family: "Inter";
     background-color: #f6f7f8;
@@ -31,6 +39,12 @@
     border-radius: 30px;
     Gap: 20px;
     background: var(--white);
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 500ms;
+    animation-delay: 200ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 #signUp_form {
@@ -138,14 +152,21 @@ a {
 }
 
 .headline-right {
+    position: absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 279px;
     height: 49px;
-    top: 67px;
-    left: 1039px;
+    top: 50px;
+    right: 50px;
     gap: 35px;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 500ms;
+    animation-delay: 200ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 #loginTitle {
@@ -160,16 +181,17 @@ a {
     margin-bottom: 30px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
-        /* left or right or else */
-        no-repeat;
+    /* left or right or else */
+    no-repeat;
     background-size: 40% 3px;
 }
 
 #logo {
-    width: 100.03px;
-    height: 121.97px;
-    top: 80px;
-    left: 77px;
+    display: flex;
+    position: absolute;
+    animation: moveLogo 600ms ease-in-out;
+    height: 120px;
+    width: 100px;
 }
 
 #legalNotice {
@@ -181,6 +203,12 @@ a {
     color: #2A3647;
     margin-top: 15px;
     text-decoration: none;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 500ms;
+    animation-delay: 200ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 #loginRememberMe {

@@ -29,8 +29,8 @@
         transform: translate(-50%, -50%) scaleX(3) scaleY(3);
     }
     100% {
-        top: 0;
-        left: 0;
+        top: 50px;
+        left: 50px;
         transform: translate(0, 0) scaleX(1) scaleY(1);
     }
 }
