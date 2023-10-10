@@ -1,10 +1,12 @@
+let startAnimation = "animate-logo-start";
+
 function renderLoginMask() {
     var container = document.getElementById("content-app");
     var rememberedEmail = localStorage.getItem("rememberedEmail");
 
     container.innerHTML = /*html*/ `<div id="login_signupBody">
     <div class="login-headline">
-      <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
+      <img class="logo ${startAnimation}" src="../../assets/img/logo_main.svg" alt="Logo">
       <div class="headline-right">
         <span>Not a Join user?</span>
         <button id="SignUpbtn" type="button" onclick="renderSignUpMask()">Sign Up</button>
@@ -38,4 +40,5 @@ function renderLoginMask() {
         // E-Mail-Adresse in das Eingabefeld einfügen
         document.getElementById("loginEmail").value = rememberedEmail;
     }
+    startAnimation = "";
 }

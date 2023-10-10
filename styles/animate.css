@@ -34,3 +34,15 @@
         transform: translate(0, 0) scaleX(1) scaleY(1);
     }
 }
+
+.animate-welcome {
+    opacity: 1;
+    animation-name: fadeOut;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.animate-done {
+    opacity: 0;
+}

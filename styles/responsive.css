@@ -279,12 +279,6 @@
         top: 0;
         left: 0;
         background-color: #F6F7F8;
-        opacity: 1;
-        animation-name: fadeOut;
-        animation-duration: 2s;
-        animation-delay: 1s;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
     }
     .header-submenu {
         width: 135px;
