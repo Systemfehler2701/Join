@@ -1,6 +1,6 @@
 function renderLoginMask() {
   var container = document.getElementById("content-app");
-  
+  var rememberedEmail = localStorage.getItem("rememberedEmail");
 
   container.innerHTML = /*html*/ `<div id="login_signupBody">
     <div class="login-headline">
@@ -31,8 +31,6 @@ function renderLoginMask() {
       <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
       <a href="legal_notice.html" target="_blank">Legal Notice</a>
       </div>`;
-      
-      var rememberedEmail = localStorage.getItem("rememberedEmail");
       
       if (rememberedEmail) {
         // E-Mail-Adresse in das Eingabefeld einfügen

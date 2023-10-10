@@ -3,7 +3,7 @@ async function app() {
     renderLoginMask();
   } else {
     await getAppData();
-    loadUsers();
+    await loadUsers();
     renderLayout();
     renderNavigation();
     renderHeader();

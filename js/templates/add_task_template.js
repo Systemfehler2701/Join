@@ -1,16 +1,27 @@
 ///ADD TASK TEMPLATES///
+
+/**
+ * resets all arrays before rendering the addTask page into the content
+ * 
+ * @param {element} element element that needs to be displayed as active
+ */
 function renderAddTask(element) {
     document.getElementById("help-link").classList.remove("d-none");
     navigationMenuClicked(element);
     let content = document.getElementById("content");
-    Prio = [];
-    subtasks = [];
-    subtasksDone = [];
+    task_resetArrays()
     content.innerHTML = createNewTask("toDo");
     task_renderCategoryOptions();
     task_renderAssigneeOptions();
 }
 
+
+/**
+ * returns the HTML to be rendered with the renderAddTask() function
+ * 
+ * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
+ * @returns HTML
+ */
 function createNewTask(arrayAsString) {
     let currentDate = getCurrentDate();
     return /* html */ `
@@ -112,3 +123,42 @@ function createNewTask(arrayAsString) {
         </div>
     </div>`;
 }
+
+/**
+ * renders a contact into the assignee Options which has been assigned already, with a button to unassgin him
+ * 
+ * @param {object} user object from the users array
+ * @param {number} index index of the object in the users array
+ */
+function task_createAssignedContact(user, index) {
+    let selector = document.getElementById("assign_select");
+    selector.innerHTML += /*html*/ `
+    <div id="assignee${index}" class="assigneeOption" value="${index}">
+      <div class="initials-logo" style="background-color: ${
+        user.color
+      }">${getInitials(user.name)}</div>
+      <div class="assigneeName">${user.name}</div>
+      <img id="assigneeCheckbox${index}" onclick="task_unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
+  </div>
+  `;
+  }
+
+  
+/**
+ * renders a contact into the assignee Options which has not been assigned yet, with a button to assgin him
+ * 
+ * @param {object} user object from the users array
+ * @param {number} index index of the object in the users array
+ */
+  function task_createUnassignedContact(user, index) {
+    let selector = document.getElementById("assign_select");
+    selector.innerHTML += /*html*/ `
+    <div id="assignee${index}" class="assigneeOption" value="${index}">
+      <div class="initials-logo" style="background-color: ${
+        user.color
+      }">${getInitials(user.name)}</div>
+      <div class="assigneeName">${user.name}</div>
+      <img id="assigneeCheckbox${index}" onclick="task_assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
+  </div>
+  `;
+  }

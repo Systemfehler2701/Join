@@ -17,7 +17,7 @@ async function renderSignUpMask() {
       <h1 id="loginTitle">Sign Up</h1>
     </div>
     <div id="loginInput">
-      <input required type="name" id="signUpName" placeholder="Name" />
+      <input required type="text" id="signUpName" placeholder="Name" />
       <input required type="email" id="signUpEmail" placeholder="Email" />
       <input required type="password" id="signUpPw" placeholder="Password" />
       <input
@@ -28,7 +28,7 @@ async function renderSignUpMask() {
       />
       </div>
       <div id="loginCheckbox">
-      <input
+      <input onclick="checkCheckbox()"
         class=""
         type="checkbox"
         value=""
@@ -40,12 +40,9 @@ async function renderSignUpMask() {
       </span> 
       </div>
       <div id="loginButtons">
-      <button id="signUpBtn" type=>Sign Up</button></div>
+      <button id="signUpBtn" type=button >Sign Up</button></div>
     </div>
     </form></div>`;
-  document
-    .getElementById("signUpCheck")
-    .addEventListener("change", checkCheckbox);
 }
 
 async function register() {
@@ -83,16 +80,6 @@ function resetForm() {
     signUpBtn.disabled = false;
   } catch (e) {
     console.error("Reset error:", e);
-  }
-}
-
-// Überprüfen, ob die Passwörter übereinstimmen
-function checkPassword() {
-  if (password !== confirmPassword) {
-    alert("Die Passwörter stimmen nicht überein.");
-    return; // Die Funktion abbrechen, wenn die Passwörter nicht übereinstimmen
-  } else {
-    register();
   }
 }
 

@@ -42,6 +42,12 @@ const categories = [
   },
 ];
 
+/**
+ * This function is called when a new task is created, it compiles the data, validates it, saves it to the server and reloads the tasks
+ * 
+ * @param {string} list  This is the name of the array inside "tasksLists" to which the task is supposed to be added
+ */
+
 async function task_addTask(list) {
   task_resetError();
   let data = task_compileTaskData();
@@ -49,11 +55,17 @@ async function task_addTask(list) {
     taskLists[list].push(data);
     task_resetForm();
     await setItem(list, JSON.stringify(taskLists[list]));
-    board_closeOverlay();
     board_loadTasks();
   }
 }
 
+
+/**
+ * This function is called wheneer a task is edited, it compiles the data, validates it, saves it to the server and reloads the tasks
+ * 
+ * @param {string} list This is the name of the array inside "tasksLists" to which the task is supposed to be added
+ * @param {number} i This is the position of the edited task inside the array specified above
+ */
 async function task_addEditedTask(list, i) {
   task_resetError();
   let data = task_compileTaskData();
@@ -68,6 +80,10 @@ async function task_addEditedTask(list, i) {
   }
 }
 
+/**
+ * Resets all values in input fields on the task-creation section
+ * 
+ */
 function task_resetForm() {
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
@@ -76,6 +92,10 @@ function task_resetForm() {
   document.getElementById("category_selector").value = null;
 }
 
+/**
+ * resets arrays after tasks have been edited, closed or created.
+ * 
+ */
 function task_resetArrays() {
   Prio = [];
   subtasks = [];
@@ -83,6 +103,13 @@ function task_resetArrays() {
   assignees = [];
 }
 
+/**
+ * This function is called when a task is edited and it takes the priority, here shown as a number between 0 and 2. This way the priority can be displayed when the editor is opened
+ * 
+ * @param {string} arrayAsString This is the name of the array inside "tasksLists" from which information is supossed to be taken
+ * @param {number} i This is the position of the edited task inside the array specified above
+ * @returns returns the 'value' of the priority
+ */
 function task_getPrioforEditor(arrayAsString, i) {
   let x = null;
   let task = taskLists[arrayAsString][i];
@@ -99,14 +126,23 @@ function task_getPrioforEditor(arrayAsString, i) {
   return x;
 }
 
+/**
+ * Sets the priority of an opened or currently created task for later storage. Colors the respective button as well
+ * 
+ * @param {number} x A number between 0 and 2 that signals the respecive priority
+ */
 function task_setPrio(x) {
   Prio = [];
   Prio.push(priorities[x]);
   task_colorPriorityButtons(x);
 }
 
+/**
+ * adds a new subtask in the subtask array, resets the input and renders all current subtasks
+ * 
+ */
 function task_addSubtask() {
-  subtask = document.getElementById("subtasks");
+  let subtask = document.getElementById("subtasks");
   let newSubtask = {
     task: subtask.value,
     done: 0,
@@ -116,8 +152,13 @@ function task_addSubtask() {
   task_renderSubtasks();
 }
 
+
+/**
+ * enables the fucntion task_addSubtask() to be called on the enter key, if a value is present 
+ * 
+ */
 function task_addSubtasksOnEnter(event) {
-  subtask = document.getElementById("subtasks");
+  let subtask = document.getElementById("subtasks");
   if (event.keyCode == 13) {
     event.preventDefault();
     if (subtask != "") {
@@ -126,6 +167,11 @@ function task_addSubtasksOnEnter(event) {
   }
 }
 
+
+/**
+ * loops through all subtasks in the subtasks array and displays them
+ * 
+ */
 function task_renderSubtasks() {
   let subTaskDisplay = document.getElementById("addedSubtasks");
   subTaskDisplay.innerHTML = "";
@@ -147,11 +193,24 @@ function task_renderSubtasks() {
   }
 }
 
+
+/**
+ * deletes the pressed subtask and rerenders the list of subtasks
+ * 
+ * @param {number} i index of the respective subtask in the subtasks array
+ */
 function task_cutSubtask(i) {
   subtasks.splice(i, 1);
   task_renderSubtasks(i);
 }
 
+
+/**
+ * renders an input and two new buttons in the place of a displayed subtask. Gives the input the value of the subtask previously displayed.
+ * The buttons have the options to save the edited subtask or delete it
+ * 
+ * @param {number} i index of the respective subtask in the subtasks array
+ */
 function task_editSubtask(i) {
   let currentValue = subtasks[i]["task"];
   let subTaskDisplay = document.getElementById(`subtask${i}`);
@@ -165,16 +224,31 @@ function task_editSubtask(i) {
     `;
 }
 
+
+/**
+ * saves an edited subtasks and rerenders the list of subtasks
+ * 
+ * @param {*number} i index of the respective subtask in the subtasks array
+ */
 function task_saveSubtaskEdit(i) {
   let editedValue = document.getElementById(`editedInput${i}`).value;
   subtasks[i]["task"] = editedValue;
   task_renderSubtasks();
 }
 
+
+/**
+ * clears the subtask input
+ */
 function task_clearSubtask() {
   document.getElementById("subtasks").value = "";
 }
 
+
+/** 
+ * renders in the clear or save buttons into the subtask input div when something is written in the input
+ * 
+*/
 function task_changeSubtaskAppearance() {
   if (document.getElementById("subtasks").value != "") {
     document.getElementById("subtaskField").innerHTML = /*html*/ `
@@ -189,12 +263,24 @@ function task_changeSubtaskAppearance() {
   }
 }
 
+/**
+ * opens the contact page and the overlay to add a new contact
+ * 
+ */
 function goToContacts() {
-  let element = document.getElementById('navContactButton')
-  renderContacts(element)
-  openOverlay()
+  let element = document.getElementById("navContactButton");
+  renderContacts(element);
+  openOverlay();
 }
 
+/**
+ * This is called by the task_addTask(list) and task_addEditedTask(list) function.
+ * reads out the values from all necesarry inputs. 
+ * Then checks if the value has the right format and returns either correctly input data or an error
+ * 
+ * @returns correct data or a string saying "error"
+ * 
+ */
 function task_compileTaskData() {
   title = document.getElementById("title");
   description = document.getElementById("description");
@@ -225,6 +311,12 @@ function task_compileTaskData() {
   }
 }
 
+
+/**
+ * styles the button of te chosen priority
+ * 
+ * @param {number} x This is the number of the respecive priority 0 for urgent, 1 for medium, 2 for low
+ */
 function task_colorPriorityButtons(x) {
   //changes the backgroundcolor based on the selected Priority
   document.getElementById(`Prio0`).style.backgroundColor = "white";
@@ -245,7 +337,15 @@ function task_colorPriorityButtons(x) {
   document.getElementById(`Prio2_img`).classList.remove("whiteFilterImg");
   document.getElementById(`Prio${x}_img`).classList.add("whiteFilterImg");
 }
-
+/**
+ * subtasks have a value corresponding to whether or not they are finished.
+ * finished subtasks have the number 1, unfinished ones have the number 0
+ * This function loops through all subtasks in a saved task and checks if they are done.
+ * If they are done, they get pushed into the finishedSubtasks array
+ * 
+ * @param {string} list This is the name of the array inside "tasksLists" from which information is supossed to be taken
+ * @param {number} i This is the position of the edited task inside the array specified above
+ */
 function task_CheckFinishedSubtasks(list, i) {
   let subtasks = taskLists[list][i]["subtasks"];
   let finishedSubtasks = taskLists[list][i]["subtasksDone"];
@@ -257,6 +357,11 @@ function task_CheckFinishedSubtasks(list, i) {
   }
 }
 
+
+/**
+ * adds the different categories as option elements from the categories array. The index will lter determine the category
+ * 
+ */
 function task_renderCategoryOptions() {
   let selector = document.getElementById("category_selector");
   for (let index = 0; index < categories.length; index++) {
@@ -267,9 +372,14 @@ function task_renderCategoryOptions() {
   }
 }
 
+/**
+ * Loops through contacts to render all assignee options for the assignee selector and renders them
+ * Checks if user is already assigned
+ * 
+ */
 function task_renderAssigneeOptions() {
   let selector = document.getElementById("assign_select");
-  selector.innerHTML = "";
+  selector.innerHTML = ""
   for (let index = 0; index < users.length; index++) {
     let user = users[index];
     if (assignees.includes(index)) {
@@ -280,6 +390,12 @@ function task_renderAssigneeOptions() {
   }
 }
 
+/**
+ * assignees are saved by storing their index in the users array. This function goes through all indexes that are assigned
+ * and renders the respective user from the users array 
+ * 
+ * 
+ */
 function task_renderAssigneeList() {
   let list = document.getElementById("assigneeList");
   list.innerHTML = "";
@@ -294,6 +410,13 @@ function task_renderAssigneeList() {
   }
 }
 
+
+/**
+ * opens/closes the dropdown menu for the assignee-options. 
+ * Checks if the menu is already open, in which case the menu can no longer be closed by clicking in the selector 
+ * 
+ * @param {element} clickedElement 
+ */
 function task_toggleAssigneeOptions(clickedElement) {
   let selector = document.getElementById("assigneeOptionContainer");
   let selectorButton = document.getElementById("assignmentSelectButton");
@@ -310,6 +433,11 @@ function task_toggleAssigneeOptions(clickedElement) {
   }
 }
 
+/**
+ * simple search function to find contacts to assign. 
+ * Checks if user is already assigned
+ * 
+ */
 function task_searchAssignees() {
   let search = document.getElementById("assigner").value;
   let selector = document.getElementById("assign_select");
@@ -330,6 +458,12 @@ function task_searchAssignees() {
   }
 }
 
+
+/**
+ * assigns a user by pushing its index of the users array into the assignee array
+ * 
+ * @param {number} index index of the user in the users array
+ */
 function task_assign(index) {
   assignees.push(index);
   let checkbox = document.getElementById(`assigneeCheckbox${index}`);
@@ -341,6 +475,12 @@ function task_assign(index) {
   task_renderAssigneeList();
 }
 
+
+/**
+ * assigns a user by splicing its index of the users array from the assignee array
+ * 
+ * @param {number} index index of the user in the users array
+ */
 function task_unassign(index) {
   let position = assignees.indexOf(index);
   assignees.splice(position, 1);
@@ -354,6 +494,10 @@ function task_unassign(index) {
   task_renderAssigneeList();
 }
 
+/**
+ * resets all error messages by making them invisible
+ * 
+ */
 function task_resetError() {
   document.getElementById("errorTitle").style.display = "none";
   document.getElementById("errorDate").style.display = "none";
@@ -362,6 +506,15 @@ function task_resetError() {
   document.getElementById("errorCategory").style.display = "none";
 }
 
+/**
+ * goes through every single obligatory input and checks if thy have a value.
+ * If no it will display an error message under the respective input
+ * 
+ * @param {string} title values of the respective inputs
+ * @param {date} dueDate values of the respective inputs
+ * @param {number} category values of the respective inputs
+ * @returns false or true
+ */
 function task_CheckInputValidity(title, dueDate, category) {
   let validitiy = true;
   if (title == "") {
@@ -396,32 +549,13 @@ function task_CheckInputValidity(title, dueDate, category) {
   return validitiy;
 }
 
-function task_createAssignedContact(user, index) {
-  let selector = document.getElementById("assign_select");
-  selector.innerHTML += /*html*/ `
-  <div id="assignee${index}" class="assigneeOption" value="${index}">
-    <div class="initials-logo" style="background-color: ${
-      user.color
-    }">${getInitials(user.name)}</div>
-    <div class="assigneeName">${user.name}</div>
-    <img id="assigneeCheckbox${index}" onclick="task_unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
-</div>
-`;
-}
 
-function task_createUnassignedContact(user, index) {
-  let selector = document.getElementById("assign_select");
-  selector.innerHTML += /*html*/ `
-  <div id="assignee${index}" class="assigneeOption" value="${index}">
-    <div class="initials-logo" style="background-color: ${
-      user.color
-    }">${getInitials(user.name)}</div>
-    <div class="assigneeName">${user.name}</div>
-    <img id="assigneeCheckbox${index}" onclick="task_assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
-</div>
-`;
-}
+///////////////////////////////////////////////////////////////////////////////////Janitorial Function\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+/**
+ * immediately deletes all tasks from the server
+ * 
+ */
 async function FULLSTOP() {
   taskLists["toDo"] = [];
   taskLists["inProgress"] = [];
