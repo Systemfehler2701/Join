@@ -195,11 +195,13 @@ a {
 }
 
 #legalNotice {
-    font-family: "Inter";
-    font-style: normal;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    bottom: 50px;
+    width: 100%;
     font-weight: 400;
     font-size: 12px;
-    line-height: 15px;
     color: #2A3647;
     margin-top: 15px;
     text-decoration: none;
