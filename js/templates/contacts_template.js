@@ -28,7 +28,7 @@ function renderContacts(element) {
         <div class="overlay" id="overlay">
             <div class="containerAll">
                 <div class="darkside">
-                    <img src="/assets/img/logo-white.svg" alt="">
+                    <img class="image-to-hide"src="/assets/img/logo-white.svg" alt="">
                     <button id="closeForm">X</button>
                     <h2>add contact</h2>
                     <h3>Tasks are better with a team!</h3>
