@@ -1,7 +1,8 @@
 function renderLoginMask() {
-    var container = document.getElementById("content-app");
+  var container = document.getElementById("content-app");
+  
 
-    container.innerHTML = /*html*/ `<div id="login_signupBody">
+  container.innerHTML = /*html*/ `<div id="login_signupBody">
     <div class="login-headline">
       <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
       <div class="headline-right">
@@ -28,7 +29,13 @@ function renderLoginMask() {
       </div>
       <div id="legalNotice">
       <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
-      
       <a href="legal_notice.html" target="_blank">Legal Notice</a>
       </div>`;
+      
+      var rememberedEmail = localStorage.getItem("rememberedEmail");
+      
+      if (rememberedEmail) {
+        // E-Mail-Adresse in das Eingabefeld einfügen
+        document.getElementById("loginEmail").value = rememberedEmail;
+      }
 }
