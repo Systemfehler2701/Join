@@ -1,5 +1,6 @@
 html {
     scroll-behavior: smooth;
+    background-color: #F6F7F8;
 }
 
 body {
@@ -21,18 +22,19 @@ body::-webkit-scrollbar {
     display: none !important;
 }
 
-.contact-leftside::-webkit-scrollbar {
+.contact-leftside::-webkit-scrollbar,
+.panels::-webkit-scrollbar {
     width: 10px !important;
     /* Breite des Scrollbalkens */
     height: 10px !important;
     /* Höhe des Scrollbalkens (bei horizontalen Scrollbalken) */
 }
 
-.contact-leftside::-webkit-scrollbar-thumb {
+.contact-leftside::-webkit-scrollbar-thumb,
+.panels::-webkit-scrollbar-thumb {
     background-color: lightgrey;
     border-radius: 5px;
 }
-
 
 @keyframes slideIn {
     to {

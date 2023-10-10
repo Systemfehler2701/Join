@@ -206,6 +206,7 @@
     .next-date {
         font-size: 21px !important;
         font-weight: 700 !important;
+        padding: 0 8px;
     }
     
     .summary-welcome.mobile {

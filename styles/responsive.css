@@ -147,6 +147,7 @@
     @media(max-width: 900px) {
         .panels {
             justify-content: center;
+            overflow: auto;
         }
         .summary-header {
             width: 600px;
@@ -269,12 +270,10 @@
             background-color: #F6F7F8;
             opacity: 1;
             animation-name: fadeOut;
-            animation-duration: 3s;
-            /* Dauer der Animation (2 Sekunden in diesem Beispiel) */
+            animation-duration: 2s;
+            animation-delay: 1s;
             animation-timing-function: ease-in-out;
-            /* Beschleunigungseffekt am Ende */
             animation-fill-mode: forwards;
-            /* Element beibehalten, wenn die Animation beendet ist */
         }
         .header-submenu {
             width: 135px;
@@ -322,6 +321,7 @@
             margin-bottom: 74px;
             /* Must be the height of the bottom-navbar. Please adjst if necessary JK 4.10.23*/
             justify-content: center;
+            height: -webkit-fill-available;
         }
         .taskbody {
             width: 95%;
@@ -366,7 +366,8 @@
             font-size: 40px;
         }
         .next-date {
-            font-size: 18px !important;
+            font-size: 16px !important;
+            padding: 0;
         }
         .summary-task p {
             font-size: 15px;

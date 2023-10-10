@@ -1,3 +1,5 @@
+let splashAnimation = "animate";
+
 ///SUMMARY TEMPLATES///
 function renderSummary(element) {
     document.getElementById("help-link").classList.remove("d-none");
