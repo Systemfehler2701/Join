@@ -53,8 +53,8 @@ async function renderContactList() {
                 <div class="contactfield" onclick="showDetails(${i}); changeBackgroundColor(${i});">
                     <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
                     <div class="contact">
-                        <span class= 'name'><p><b>${user.name}</b></p></span>
-                        <span class='mail'><p><b>${user.mail}</b></p></span>
+                        <span class= 'name'><p><h3>${user.name}</h3></p></span>
+                        <span class='mail'><p><h3>${user.mail}</h3></p></span>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@ function showDetails(index) {
             <h4>Email</h4><br>
             <p class="email-blue">${user.mail}</p>
             <h4>Phone</h4>
-            <p><h3>${user.phone}</h3></p>
+            <p><h5>${user.phone}</h5></p>
         </div>
     `;
 

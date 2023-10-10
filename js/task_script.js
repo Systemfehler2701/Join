@@ -189,6 +189,12 @@ function task_changeSubtaskAppearance() {
   }
 }
 
+function goToContacts() {
+  let element = document.getElementById('navContactButton')
+  renderContacts(element)
+  openOverlay()
+}
+
 function task_compileTaskData() {
   title = document.getElementById("title");
   description = document.getElementById("description");
