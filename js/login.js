@@ -12,8 +12,8 @@ async function logIn() {
 
     if (loginRememberCheckbox.checked) {
       // Wenn ausgewählt, Daten im Local Storage speichern
-      var email = loginEmailInput.value;
-      localStorage.setItem("rememberedEmail", email);
+      var loginEmail = loginEmailInput.value;
+      localStorage.setItem("rememberedEmail", loginEmail);
     } else {
       // Wenn nicht ausgewählt, zuvor gespeicherte Daten löschen
       localStorage.removeItem("rememberedEmail");
