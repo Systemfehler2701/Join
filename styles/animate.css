@@ -55,7 +55,8 @@
 
 .animate-welcome {
     animation-name: fadeOut;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
+    animation-delay: 500ms;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
