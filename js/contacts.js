@@ -58,10 +58,12 @@ async function renderContactList() {
                     </div>
                 </div>
             </div>
+            
         `;
     }
 
     document.getElementById('contactlist').innerHTML = content;
+
 }
 
 async function addContact(e) {
@@ -141,9 +143,13 @@ function showDetails(index) {
 
 function changeBackgroundColor(i) {
     for (let j = 0; j < users.length; j++) {
-        document.getElementById(`painted${j}`).classList.remove('selected');
+        document.getElementById(`
+    painted$ { j }
+    `).classList.remove('selected');
     }
-    document.getElementById(`painted${i}`).classList.add('selected');
+    document.getElementById(`
+    painted$ { i }
+    `).classList.add('selected');
 
 
 }
@@ -205,6 +211,7 @@ function clearDetails() {
 // Event Listeners
 function addContactsEventlistener() {
     renderContactList();
+    document.getElementById('responsiveButton').addEventListener('click', openOverlay);
     document.getElementById('contactForm').addEventListener('submit', addContact);
     document.querySelector('.addButton').addEventListener('click', openOverlay);
     document.getElementById('closeForm').addEventListener('click', closeOverlay);
@@ -214,5 +221,14 @@ function addContactsEventlistener() {
         const indexToDelete = document.getElementById('editIndex').value;
         deleteContact(indexToDelete);
         document.getElementById('editOverlay').style.display = 'none';
+        window.addEventListener('resize', checkWindowSize);
     });
+}
+
+function checkWindowSize() {
+    if (window.innerWidth <= 980) {
+        // Hier fügen Sie den Code ein, den Sie ausführen möchten,
+        // wenn die Fenstergröße 980px oder kleiner ist
+        showDetailsResponsive();
+    }
 }

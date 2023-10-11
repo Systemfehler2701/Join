@@ -11,10 +11,12 @@ function renderContacts(element) {
         </button>
         </div>
         <div class="viewall">
+        <button id="responsiveButton" img src="assets/img/person_add.svg"></button>
             <div id="contactlist"></div>
         </div>
     </div>
-        <div class="rightside">
+
+        <div class="rightside" id="contactsforRespons">
             <div class="contacts-headline">
                 <h1>Contacts</h1>
                 <img class="contact-img" src="/assets/img/blue-stroke.svg">
@@ -28,32 +30,32 @@ function renderContacts(element) {
         <div class="overlay" id="overlay">
             <div class="containerAll">
                 <div class="darkside">
-                    <img class="image-to-hide"src="/assets/img/logo-white.svg" alt="">
-                    <button id="closeForm">X</button>
-                    <h2>add contact</h2>
-                    <h3>Tasks are better with a team!</h3>
-                    <span class="blueLineHorizontal"></span>
+                    <div class="image-to-hide">
+                    <img src="/assets/img/logo-white.svg" alt="">
+                            <h2>add contact</h2>
+                            <h3>Tasks are better with a team!</h3>
+                            <span class="blueLineHorizontal"></span>
+                        </div>
                 </div>
                 <div class="form-container">
-                    <div class="overlayContainer">
                     <div class="overlayPerson">
-                        
                         <img class="person img"src="/assets/img/person.svg">
                     </div>
-                    </div>
-                    <form class="input-Area" id="contactForm">
-
+                    <div class="inputContainer">
+                    <div class="inputArea" id="contactForm">
 
                         <input class="inputName" type="text" placeholder="Surname Name" id="name" required>
 
                         <input class="inputMail" type="text" placeholder="E-Mail" id="email" required>
 
                         <input class="inputPhone" type="text" placeholder="Phone" id="phone" required>
+</div>
                         <div class="buttonArea">
+                        <button class="closeWin" src="assets/img/close.svg" id="closeForm"></button>
                         <button class="cancelBtn"> <span>Cancel</span><img src="/assets/img/close.svg"></button>
                         <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/img/check.png"></button>
                         </div>
-                    </form>
+                        </div>
                 </div>
             </div>
         </div>
@@ -61,9 +63,11 @@ function renderContacts(element) {
         <div class="overlay" id="editOverlay">
     <div class="containerAll">
         <div class="darkside">
+        <div class="image-to-hide">
             <img src="/assets/img/logo-white.svg" alt="">
             <h2>Edit contact</h2> <!-- h2 hinzugefügt um Konsistenz mit dem oberen Overlay zu bewahren -->
             <span class="blueLineHorizontal"></span>
+            </div>
         </div>
         <div class="form-container">
             <button class="closeWindow" id="closeEditForm">X</button> 
@@ -73,9 +77,9 @@ function renderContacts(element) {
                     <img class="person-img" src="/assets/img/person.svg" alt="">
                 </div>
             </div>
-            <form class="input-Area" id="editForm">
+            <div class="inputContainer">
+            <div class="inputArea" id="editForm">
                 <input type="hidden" id="editIndex">
-                
                 
                 <input class="inputName" type="text" id="editName" required>
                 
@@ -91,7 +95,8 @@ function renderContacts(element) {
                     </button>
                     <button class="closeBtn" id="closeEditFormBottom">Close</button> <!-- ID geändert um Eindeutigkeit zu gewährleisten -->
                 </div>
-            </form>
+                </div>
+</div>
         </div>
     </div>
 </div>`;

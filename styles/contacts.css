@@ -19,6 +19,10 @@
     overflow-y: auto;
 }
 
+#responsiveButton {
+    display: none;
+}
+
 .contact-left-button {
     background-color: white;
     position: sticky;
@@ -161,7 +165,6 @@
     display: flex;
     flex-direction: row;
     color: white;
-    max-width: 1000px;
     height: 550px;
     border-radius: 30px;
     position: absolute;
@@ -196,15 +199,6 @@ form label {
     display: block;
     margin-bottom: 5px;
     font-size: 14px;
-}
-
-.input-Area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    background-color: white;
-    margin-right: 34px;
 }
 
 form button {
@@ -253,14 +247,17 @@ form button {
 .darkside h2 {
     font-weight: 700 !important;
     font-size: 61px;
+    line-height: 73.2px;
 }
 
 .overlay {
     position: fixed;
+    display: none;
     /* Damit es immer sichtbar ist, auch beim Scrollen */
     top: 0;
     left: 0;
     width: 100vw;
+    background-color: #D1D1D1;
     /* 100% der Bildschirmbreite */
     height: 100vh;
     /* 100% der Bildschirmhöhe */
@@ -269,6 +266,20 @@ form button {
     /* Ein hoher z-index, um sicherzustellen, dass es über anderen Elementen angezeigt wird */
     display: none;
     /* Versteckt es standardmäßig */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -50%;
+    height: 100%;
+    overflow-x: hidden;
+    transition: right 0.5s ease-in-out;
+    padding: 60px 0 0 25px;
+    color: white;
+    transform: translateX(200%);
+    animation: slideIn 1s forwards;
 }
 
 .whiteside {
@@ -292,6 +303,7 @@ form button {
 }
 
 .form-container {
+    display: flex;
     left: unset;
     padding: 0;
     transition: right 0.4s ease-in-out;
@@ -301,7 +313,7 @@ form button {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     height: 570px;
-    width: 70%;
+    width: 50%;
     max-width: 1212px;
 }
 
@@ -342,20 +354,29 @@ form button {
     line-height: 19.2px;
 }
 
+.inputArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: white;
+    width: 422px;
+}
+
 .inputName {
     border-radius: 10px;
-    width: 422px;
     gap: 10px;
     background: url(/assets/img/person.svg);
     background-repeat: no-repeat;
     background-position: 95%;
     padding: 13px 21px;
     border: 1px solid#D1D1D1;
+    width: 90%;
 }
 
 .inputMail {
     border-radius: 10px;
-    width: 422px;
+    width: 90%;
     gap: 10px;
     Padding: 13px, 21px, 13px, 21px;
     background-color: #FFFFFF;
@@ -368,7 +389,6 @@ form button {
 
 .inputPhone {
     border-radius: 10px;
-    width: 422px;
     gap: 10px;
     Padding: 13px, 21px, 13px, 21px;
     background: url(/assets/img/call.svg);
@@ -376,6 +396,7 @@ form button {
     background-position: 95%;
     padding: 13px 21px;
     border: 1px solid#D1D1D1;
+    width: 90%;
 }
 
 .editArea {
@@ -475,6 +496,8 @@ form button {
     width: 120px;
     border: 3px;
     border-radius: 70px;
+    fill: white;
+    background-color: lightgrey;
 }
 
 .Edit-Container {
@@ -555,12 +578,20 @@ form button {
     border-color: #29ABE2;
 }
 
+.cancelBtn img:hover {
+    background-color: white !important;
+    color: #29ABE2;
+    border-color: #29ABE2;
+}
+
+.closeWin {}
+
 .overlayPerson {
     width: 120px;
     height: 120px;
     border-radius: 100%;
-    border: 1px solid white;
-    background-color: #B8B9BA;
+    border: 3px solid white;
+    background-color: #D1D1D1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -590,20 +621,6 @@ form button {
 .iconText {
     color: IhreStartFarbe;
     /* Setzen Sie die gewünschte Anfangsfarbe */
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: -50%;
-    height: 100%;
-    overflow-x: hidden;
-    transition: right 0.5s ease-in-out;
-    padding: 60px 0 0 25px;
-    color: white;
-    transform: translateX(200%);
-    animation: slideIn 1s forwards;
 }
 
 .closeWindow {
@@ -673,7 +690,7 @@ form button {
     margin: 0;
 }
 
-.darkside h3 {
+.image-to-hide h3 {
     font-weight: 400;
     line-height: 32.4px;
     font-size: 27px;
@@ -681,5 +698,13 @@ form button {
 }
 
 .image-to-hide {
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 1.5rem;
+    flex-direction: column;
+    margin: 0;
+}
+
+.inputContainer {
+    flex-direction: column;
 }
