@@ -72,7 +72,26 @@ async function register() {
     } catch (e) {
         console.error("Register error:", e);
     }
+
+    const newUser = {
+        name: signUpName.value,
+        password: signUpPw.value,
+    };
+
+    // Verwende die E-Mail-Adresse als Schlüssel
+    regUsers[signUpEmail.value] = newUser;
+
+    await setItem("users", JSON.stringify(regUsers));
+
+    createOverlay("You Signed Up successfully.");
+    setTimeout(app, 3000);
+
+    resetForm();
+    app();
+} catch (e) {
+    console.error("Register error:", e);
 }
+
 
 function resetForm() {
     try {
@@ -82,10 +101,20 @@ function resetForm() {
         signUpPw2.value = "";
         signUpBtn.disabled = false;
     } catch (e) {
-        console.error("Reset error:", e);
+        // console.error("Reset error:", e);
     }
 }
 
-function triggerAlert() {
-    alert("Dein Konto wurde erstellt.");
+function createOverlay(message) {
+    const overlay = document.createElement("div");
+    overlay.id = "customOverlay";
+    overlay.innerHTML = `<div class="customAlert">${message}</div>`;
+    document.body.appendChild(overlay);
+}
+
+function removeOverlay() {
+    const overlay = document.getElementById("customOverlay");
+    if (overlay) {
+        overlay.parentNode.removeChild(overlay);
+    }
 }
