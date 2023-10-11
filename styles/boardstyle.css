@@ -284,9 +284,9 @@ progress {
   border-radius: 30px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
   padding: 40px 48px 40px 48px;
-  /* Animation @keyframes is in style.css */
+  /* Animation @keyframes is in animate.css */
   transform: translateX(200%);
-  animation: slideIn 1s forwards;
+  animation: slideIn 0.4s forwards;
 }
 
 .deleteOverlay {
@@ -310,8 +310,8 @@ progress {
 }
 
 .deleteOverlayBlank {
-    max-width: calc(100% - 96px);
-    padding: 40px 48px 40px 48px;
+  max-width: calc(100% - 96px);
+  padding: 40px 48px 40px 48px;
   height: 250px;
   background-color: white;
   border-radius: 30px;
@@ -319,9 +319,9 @@ progress {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  /* Animation @keyframes is in style.css */
+  /* Animation @keyframes is in animate.css */
   transform: translateX(200%);
-  animation: slideIn 1s forwards;
+  animation: slideIn 0.4s forwards;
 }
 
 .FullTaskCard {

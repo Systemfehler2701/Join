@@ -99,7 +99,7 @@
   width: 86%;
   border: none !important;
   font-size: 20px;
-    cursor: pointer;
+  cursor: pointer;
   font-family: Inter;
 }
 
@@ -208,6 +208,7 @@
 }
 
 .assigneeList {
+  flex-wrap: wrap;
   display: flex;
   margin: 12px 0;
 }
