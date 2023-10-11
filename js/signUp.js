@@ -65,6 +65,10 @@ async function register() {
     regUsers[signUpEmail.value] = newUser;
 
     await setItem("users", JSON.stringify(regUsers));
+
+    createOverlay("You Signed Up successfully.");
+    setTimeout(app, 3000);
+
     resetForm();
     app();
   } catch (e) {
@@ -80,21 +84,20 @@ function resetForm() {
     signUpPw2.value = "";
     signUpBtn.disabled = false;
   } catch (e) {
-    console.error("Reset error:", e);
+    // console.error("Reset error:", e);
   }
 }
 
-// function triggerAlert() {
-//   <label>
-//     <input type="checkbox" class="alertCheckbox" autocomplete="off" />
-//     <div class="alert notice">
-//       <span class="alertClose">X</span>
-//       <span class="alertText">
-//         You Signed Up successfully
-//         <br class="clear" />
-//       </span>
-//     </div>
-//   </label>;
+function createOverlay(message) {
+  const overlay = document.createElement("div");
+  overlay.id = "customOverlay";
+  overlay.innerHTML = `<div class="customAlert">${message}</div>`;
+  document.body.appendChild(overlay);
+}
 
-//   alert("Dein Konto wurde erstellt.");
-// }
+function removeOverlay() {
+  const overlay = document.getElementById("customOverlay");
+  if (overlay) {
+    overlay.parentNode.removeChild(overlay);
+  }
+}

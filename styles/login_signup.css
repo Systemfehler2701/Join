@@ -17,7 +17,6 @@
 }
 
 #login_signupBody {
-    font-family: "Inter";
     background-color: #f6f7f8;
     display: flex;
     flex-direction: column;
@@ -173,8 +172,6 @@
 #loginTitle {
     display: flex;
     justify-content: center;
-    font-family: "Inter";
-    font-weight: 700;
     font-size: 61px;
     Line-height: 100px;
     width: 350px;
@@ -260,4 +257,3 @@
     padding: 13px 21px;
     border: 1px solid#D1D1D1;
 }
-
