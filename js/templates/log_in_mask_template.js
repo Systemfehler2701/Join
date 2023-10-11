@@ -3,10 +3,10 @@ let startAnimationMask = "animate-Mask-start";
 let startAnimationColor = "animate-start-color";
 
 function renderLoginMask() {
-    var container = document.getElementById("content-app");
-    var rememberedEmail = localStorage.getItem("rememberedEmail");
+  var container = document.getElementById("content-app");
+  var rememberedEmail = localStorage.getItem("rememberedEmail");
 
-    container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
+  container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
     <div class="login-headline">
       <div class="logo ${startAnimationLogo}"></div>
       <div class="headline-right ${startAnimationMask}">
@@ -23,7 +23,7 @@ function renderLoginMask() {
             <input type="password" id="loginPassword" placeholder="Password" />
           </div>
           <div id="loginRememberMe">
-            <input type="checkbox" id="loginRemember" />
+            <input type="checkbox" id="loginRemember" onclick="rememberMe()"/>
             <span>Remember me</span>
           </div>
           <div id="loginButtons">
@@ -38,11 +38,7 @@ function renderLoginMask() {
       <a href="legal_notice.html" target="_blank">Legal Notice</a>
       </div>`;
 
-    if (rememberedEmail) {
-        // E-Mail-Adresse in das Eingabefeld einfügen
-        document.getElementById("loginEmail").value = rememberedEmail;
-    }
-    startAnimationLogo = "";
-    startAnimationMask = "";
-    startAnimationColor = "";
+  startAnimationLogo = "";
+  startAnimationMask = "";
+  startAnimationColor = "";
 }
