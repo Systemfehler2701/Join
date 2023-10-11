@@ -188,9 +188,11 @@
 }
 
 .logo {
+    background-image: url(/assets/img/logo_main.svg);
+    background-repeat: no-repeat;
     display: flex;
     position: absolute;
-    height: 120px;
+    height: 123px;
     width: 100px;
 }
 
