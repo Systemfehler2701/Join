@@ -23,7 +23,7 @@ function renderLoginMask() {
             <input type="password" id="loginPassword" placeholder="Password" />
           </div>
           <div id="loginRememberMe">
-            <input type="checkbox" id="loginRemember" />
+            <input type="checkbox" id="loginRemember" onclick="rememberMe()"/>
             <span>Remember me</span>
           </div>
           <div id="loginButtons">
@@ -38,10 +38,6 @@ function renderLoginMask() {
       <a href="legal_notice.html" target="_blank">Legal Notice</a>
       </div>`;
 
-    if (rememberedEmail) {
-        // E-Mail-Adresse in das Eingabefeld einfügen
-        document.getElementById("loginEmail").value = rememberedEmail;
-    }
     startAnimationLogo = "";
     startAnimationMask = "";
     startAnimationColor = "";

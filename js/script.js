@@ -4,6 +4,7 @@
 async function app() {
     if (currentUser === null) {
         renderLoginMask();
+        fillRememberedEmail();
     } else {
         await getAppData();
         await loadUsers();
