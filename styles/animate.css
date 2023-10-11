@@ -29,14 +29,31 @@
         transform: translate(-50%, -50%) scaleX(3) scaleY(3);
     }
     100% {
-        top: 50px;
-        left: 50px;
+        top: 20px;
+        left: 20px;
         transform: translate(0, 0) scaleX(1) scaleY(1);
     }
 }
 
+@keyframes fadeBackgroundColor {
+    0% {
+        background-color: #2A3647;
+    }
+    100% {
+        background-color: #F6F7F8;
+    }
+}
+
+@keyframes changeColor {
+    0% {
+        background-image: url(/assets/img/logo-white.svg);
+    }
+    100% {
+        background-image: url(/assets/img/logo_main.svg);
+    }
+}
+
 .animate-welcome {
-    opacity: 1;
     animation-name: fadeOut;
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
@@ -56,7 +73,7 @@
     opacity: 0;
     animation-name: fadeIn;
     animation-duration: 500ms;
-    animation-delay: 200ms;
+    animation-delay: 250ms;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }
