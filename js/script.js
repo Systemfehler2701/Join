@@ -1,4 +1,6 @@
 async function app() {
+  currentUser = {name: 'Guest', email: 'guest@join', color: '#0D0D0F'};
+
   if (currentUser === null) {
     renderLoginMask();
   } else {
@@ -7,7 +9,7 @@ async function app() {
     renderLayout();
     renderNavigation();
     renderHeader();
-    renderSummary();
+    renderSummary();  renderBoard();
   }
 }
 

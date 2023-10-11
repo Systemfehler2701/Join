@@ -207,7 +207,7 @@ function board_createTaskCard(arrayAsString, i) {
   let task = taskLists[arrayAsString][i];
   let category = task["category"];
   return /*html*/ `
-        <div draggable="true" ondragstart="startDragging('${arrayAsString}',${i})" onclick="board_renderFullTaskCard('${arrayAsString}', ${i})" class="taskcard">
+        <div draggable="true" ontouchcancel="cancelTouch();" ontouchstart="startTouching('${arrayAsString}', ${i}, event);" ontouchmove="moveTouching(event);" ontouchend="endTouching();" ondragstart="startDragging('${arrayAsString}',${i})" onclick="board_renderFullTaskCard('${arrayAsString}', ${i})" class="taskcard">
           <div class="categorycard" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
           <h2>${task["title"]}</h2>
           <p class="descriptioncard">

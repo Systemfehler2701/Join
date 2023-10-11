@@ -1,24 +1,90 @@
 let currentDraggedElement;
+let cloneMoveTouch;
 
 
-function startDragging(arrayAsString, i) {
-    currentDraggedElement = { srcArray: arrayAsString, srcIndex: i };
+function startDragging(srcArray, srcIndex) {
+    currentDraggedElement = { srcArray, srcIndex };
 }
 
+function drop(targetArrayName) {
+    removeHighlight();
+    tryMoveTaskToArray(targetArrayName);
+}
 
-async function drop(targetArrayName, element) {
+function startTouching(srcArray, srcIndex, event) {
+    currentDraggedElement = { srcArray, srcIndex };
+    cloneMoveTouch = event.currentTarget.cloneNode(true);
+    cloneMoveTouch.classList.add('taskcard-clone');
+    cloneMoveTouch.style.width = `${event.currentTarget.clientWidth}px`;
+    document.body.appendChild(cloneMoveTouch);
+}
+
+function moveTouching(event) {
+    cloneMoveTouch.xy = {x:event.touches[0].clientX,y:event.touches[0].clientY};
+    cloneMoveTouch.style.top = `${cloneMoveTouch.xy.y}px`;
+    cloneMoveTouch.style.left = `${cloneMoveTouch.xy.x}px`;
+    let activePanel = getTouchMoveInPanel();
+    removeHighlight();
+    if(activePanel != '') {
+        highlight(activePanel);
+    }
+}
+
+async function endTouching() {
+    try {
+        let targetArray = getTouchMoveInArrayName();
+        if (targetArray != '') {
+            tryMoveTaskToArray(targetArray);
+        }
+    }
+    catch(error) {
+        console.error(error);
+    }
+    finally {
+        cancelTouch();
+    }
+}
+
+function cancelTouch() {
+    currentDraggedElement = {};
+    removeHighlight();
+    document.querySelectorAll('.taskcard-clone').forEach(e => e.remove());
+    cloneMoveTouch.remove();
+}
+
+function getTouchMoveInArrayName() {
+    let targetPanel = getTouchMoveInPanel();
+    if (targetPanel == '') {
+        return '';
+    }
+    return targetPanel.id.replace('awaitFeedback', 'feedback')
+}
+
+function getTouchMoveInPanel() {
+    let panelList = document.querySelectorAll('.panelbody');
+    for (let i = 0; i < panelList.length; i++) {
+        const panel = panelList[i];
+        let pXY = panel.getClientRects()[0];
+        if(pXY.left < cloneMoveTouch.xy.x && cloneMoveTouch.xy.x < pXY.right && 
+           pXY.top < cloneMoveTouch.xy.y && cloneMoveTouch.xy.y < pXY.bottom) {
+            return panel;
+        }
+    }
+    return '';
+}
+
+async function tryMoveTaskToArray(targetArrayName) {
+    let sourceArrayName = currentDraggedElement.srcArray;
     let targetArray = taskLists[targetArrayName];
-    let srcArray = taskLists[currentDraggedElement.srcArray];
-    let srcIndex = currentDraggedElement.srcIndex;
-    if (srcArray == targetArray) {
-        return;
-    } else {
-        let taskToMove = srcArray.splice(srcIndex, 1);
+    let sourceArray = taskLists[sourceArrayName];
+    let sourceIndex = currentDraggedElement.srcIndex;
+    if (sourceArray != targetArray) {
+        let taskToMove = sourceArray.splice(sourceIndex, 1);
         targetArray.push(taskToMove[0]);
         await setItem(targetArrayName, JSON.stringify(targetArray));
-        await setItem(currentDraggedElement.srcArray, JSON.stringify(srcArray));
+        await setItem(sourceArrayName, JSON.stringify(sourceArray));
         board_loadTasks();
-        removeHighlight(element);
+        removeHighlight();
     }
 }
 
@@ -33,7 +99,7 @@ function highlight(element) {
 }
 
 
-function removeHighlight(element) {
+function removeHighlight() {
     let activeElement = document.querySelector('.panelbody.panelbody-highlight');
     if (activeElement != undefined) {
         activeElement.classList.remove('panelbody-highlight');
