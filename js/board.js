@@ -239,7 +239,7 @@ function board_renderDone() {
 }
 
 /**
- * renders placeholder
+ * renders placeholder into an empty array
  *
  * @param {Element} panel The element on the board in which the tasks are displayed
  * @param {string} placeholder the text that needs to be displayed insted of tasks
