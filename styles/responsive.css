@@ -391,7 +391,6 @@
 @media (max-width: 500px) {
     #login_signupBody {
         padding: 0px;
-        background-color: #2A3647;
     }
     .logo {
         top: 20px;
@@ -406,7 +405,6 @@
     }
     .animate-start-color {
         animation: fadeBackgroundColor 800ms ease-in-out;
-        animation-delay: 300ms;
         animation-fill-mode: forwards;
     }
 }
