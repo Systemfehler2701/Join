@@ -16,7 +16,12 @@ async function logIn() {
       // Überprüfen, ob das eingegebene Passwort mit dem gespeicherten Passwort übereinstimmt
       if (userData.password === passwordInput.value) {
         // Kopiere alle Benutzerdaten in den currentUser
-        currentUser = { email: emailInput.value, name: userData.name, color: '#7D0C03', user: 'current'};
+        currentUser = {
+          email: emailInput.value,
+          name: userData.name,
+          color: "#7D0C03",
+          user: "current",
+        };
         isGuestUser = false;
         app();
       } else {
@@ -34,8 +39,8 @@ function logInGuest() {
   currentUser = {
     name: "Guest",
     email: "guest@join",
-    color: '#0D0D0F',
-    user: 'current'
+    color: "#0D0D0F",
+    user: "current",
   };
   isGuestUser = true;
   app();
@@ -51,12 +56,12 @@ function rememberMe() {
   var loginEmailInput = document.getElementById("loginEmail");
 
   if (loginRememberCheckbox.checked) {
-      // Wenn die Checkbox ausgewählt ist, schreibe den Wert von loginEmail ins localStorage
-      var emailValue = loginEmailInput.value;
-      localStorage.setItem("rememberedEmail", emailValue);
+    // Wenn die Checkbox ausgewählt ist, schreibe den Wert von loginEmail ins localStorage
+    var emailValue = loginEmailInput.value;
+    localStorage.setItem("rememberedEmail", emailValue);
   } else {
-      // Wenn die Checkbox nicht ausgewählt ist, entferne den Eintrag aus dem localStorage
-      localStorage.removeItem("rememberedEmail");
+    // Wenn die Checkbox nicht ausgewählt ist, entferne den Eintrag aus dem localStorage
+    localStorage.removeItem("rememberedEmail");
   }
 }
 
@@ -65,6 +70,6 @@ function fillRememberedEmail() {
   var rememberedEmail = localStorage.getItem("rememberedEmail");
 
   if (rememberedEmail) {
-      loginEmailInput.value = rememberedEmail;
+    loginEmailInput.value = rememberedEmail;
   }
 }
