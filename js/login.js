@@ -26,7 +26,7 @@ async function logIn() {
       // Überprüfen, ob das eingegebene Passwort mit dem gespeicherten Passwort übereinstimmt
       if (userData.password === passwordInput.value) {
         // Kopiere alle Benutzerdaten in den currentUser
-        currentUser = { email: emailInput.value, name: userData.name, color: '#7D0C03' };
+        currentUser = { email: emailInput.value, name: userData.name, color: '#7D0C03', user: 'current'};
         isGuestUser = false;
         app();
       } else {
@@ -53,4 +53,18 @@ function logInGuest() {
 function logOut() {
   currentUser = null;
   app();
+}
+
+async function addCurrentUser() {
+  users = JSON.parse(await getItem("contacts"));
+  userArray.unshift(currentUser)
+  await setItem('contacts', users);
+}
+
+async function removeCurrentUser() {
+  users = JSON.parse(await getItem("contacts"));
+  if(users[0]['user'] == 'current') {
+    users.splice(0, 1);
+    await setItem('contacts', users);
+  }
 }
