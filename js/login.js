@@ -44,7 +44,8 @@ function logInGuest() {
   currentUser = {
     name: "Guest",
     email: "guest@join",
-    color: '#0D0D0F'
+    color: '#0D0D0F',
+    user: 'current'
   };
   isGuestUser = true;
   app();
@@ -53,18 +54,4 @@ function logInGuest() {
 function logOut() {
   currentUser = null;
   app();
-}
-
-async function addCurrentUser() {
-  users = JSON.parse(await getItem("contacts"));
-  userArray.unshift(currentUser)
-  await setItem('contacts', users);
-}
-
-async function removeCurrentUser() {
-  users = JSON.parse(await getItem("contacts"));
-  if(users[0]['user'] == 'current') {
-    users.splice(0, 1);
-    await setItem('contacts', users);
-  }
 }
