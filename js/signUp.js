@@ -1,9 +1,9 @@
 let regUsers = {};
 
 async function renderSignUpMask() {
-    var container = document.getElementById("content-app");
+  var container = document.getElementById("content-app");
 
-    container.innerHTML = /*html*/ `
+  container.innerHTML = /*html*/ `
       <div id="login_signupBody">
         <div class="login-headline">
           <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
@@ -50,32 +50,17 @@ async function renderSignUpMask() {
 }
 
 async function register() {
-    try {
-        // signUpBtn.disabled = true;
+  try {
+    // signUpBtn.disabled = true;
 
-        if (signUpPw.value !== signUpPw2.value) {
-            alert("Die Passwörter stimmen nicht überein.");
-            return;
-        }
-
-        const newUser = {
-            name: signUpName.value,
-            password: signUpPw.value,
-        };
-
-        // Verwende die E-Mail-Adresse als Schlüssel
-        regUsers[signUpEmail.value] = newUser;
-
-        await setItem("users", JSON.stringify(regUsers));
-        resetForm();
-        app();
-    } catch (e) {
-        console.error("Register error:", e);
+    if (signUpPw.value !== signUpPw2.value) {
+      alert("Die Passwörter stimmen nicht überein.");
+      return;
     }
 
     const newUser = {
-        name: signUpName.value,
-        password: signUpPw.value,
+      name: signUpName.value,
+      password: signUpPw.value,
     };
 
     // Verwende die E-Mail-Adresse als Schlüssel
@@ -88,33 +73,33 @@ async function register() {
 
     resetForm();
     app();
-} catch (e) {
+  } catch (e) {
     console.error("Register error:", e);
+  }
 }
 
-
 function resetForm() {
-    try {
-        signUpName.value = "";
-        signUpEmail.value = "";
-        signUpPw.value = "";
-        signUpPw2.value = "";
-        signUpBtn.disabled = false;
-    } catch (e) {
-        // console.error("Reset error:", e);
-    }
+  try {
+    signUpName.value = "";
+    signUpEmail.value = "";
+    signUpPw.value = "";
+    signUpPw2.value = "";
+    signUpBtn.disabled = false;
+  } catch (e) {
+    // console.error("Reset error:", e);
+  }
 }
 
 function createOverlay(message) {
-    const overlay = document.createElement("div");
-    overlay.id = "customOverlay";
-    overlay.innerHTML = `<div class="customAlert">${message}</div>`;
-    document.body.appendChild(overlay);
+  const overlay = document.createElement("div");
+  overlay.id = "customOverlay";
+  overlay.innerHTML = `<div class="customAlert">${message}</div>`;
+  document.body.appendChild(overlay);
 }
 
 function removeOverlay() {
-    const overlay = document.getElementById("customOverlay");
-    if (overlay) {
-        overlay.parentNode.removeChild(overlay);
-    }
+  const overlay = document.getElementById("customOverlay");
+  if (overlay) {
+    overlay.parentNode.removeChild(overlay);
+  }
 }
