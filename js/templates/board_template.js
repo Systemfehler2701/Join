@@ -154,9 +154,9 @@ function createFullTaskCard(arrayAsString, i) {
     year: "numeric",
   });
   return /*html*/ `
-    <section id="DeleteOverlay" class="Boardoverlay" style="display: none;">
-       <div onclick="board_GoBack()" id ="Deleteblocker" class="blocker"></div>
-       <div id="DeleteOverlaybody" class="overlayBlank"></div>
+    <section id="DeleteOverlay" class="deleteOverlay" style="display: none;">
+       <div onclick="board_GoBack()" id ="Deleteblocker" class="deleteBlocker"></div>
+       <div id="DeleteOverlaybody" class="deleteOverlayBlank"></div>
     </section>
     <div class="FullTaskCard">
       <div class="cardheadFull">
@@ -188,7 +188,7 @@ function createFullTaskCard(arrayAsString, i) {
         </div>
       
       <div class="editorbarFull">
-          <button onclick="board_renderWarning('${arrayAsString}}', ${i})" class="del">Delete</button>
+          <button onclick="board_renderWarning('${arrayAsString}', ${i})" class="del">Delete</button>
           <img src="/assets/img/Vector 3.svg" alt="">
           <button onclick="board_editTask('${arrayAsString}', ${i})" class="edit">Edit</button>
       </div>
