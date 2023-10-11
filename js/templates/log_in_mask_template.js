@@ -19,7 +19,7 @@ function renderLoginMask() {
         <div id="loginHead">
           <h1 id="loginTitle">Log in</h1>
           <div id="loginInput">
-            <input type="email" id="loginEmail" placeholder="Email" />
+            <input type="email" id="loginEmail" class="inputEmailImg"placeholder="Email" />
             <input type="password" id="loginPassword" placeholder="Password" />
           </div>
           <div id="loginRememberMe">
