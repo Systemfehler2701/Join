@@ -230,12 +230,3 @@
         font-weight: 700;
         color: #29ABE2;
     }
-    
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-        }
-        to {
-            opacity: 0;
-        }
-    }

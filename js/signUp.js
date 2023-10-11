@@ -3,49 +3,48 @@ let regUsers = {};
 async function renderSignUpMask() {
   var container = document.getElementById("content-app");
 
-  container.innerHTML = `<div id="login_signupBody">
+  container.innerHTML = /*html*/ `
+      <div id="login_signupBody">
         <div class="login-headline">
-      <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
-      <div class="headline-right">
-      </div>
-    </div>
-  <form id="signUp_form" onsubmit="register(); return false;">
-    <div id="loginArrow">
-      <img id="loginArrow" src="../../assets/img/arrow-left-line.svg" alt="Arrow" onclick="app()">
-    </div>
-    <div id="loginHead">
-      <h1 id="loginTitle">Sign Up</h1>
-    </div>
-    <div id="loginInput">
-      <input required type="name" id="signUpName" placeholder="Name" />
-      <input required type="email" id="signUpEmail" placeholder="Email" />
-      <input required type="password" id="signUpPw" placeholder="Password" />
-      <input
-        required
-        type="password"
-        id="signUpPw2"
-        placeholder="Confirm Password"
-      />
-      </div>
-      <div id="loginCheckbox">
-      <input
-        class=""
-        type="checkbox"
-        value=""
-        id="signUpCheck"
-        unchecked
-      />
-      <span>
-        I accept the <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
-      </span> 
-      </div>
-      <div id="loginButtons">
-      <button id="signUpBtn" type=>Sign Up</button></div>
-    </div>
-    </form></div>`;
-  document
-    .getElementById("signUpCheck")
-    .addEventListener("change", checkCheckbox);
+          <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
+          <div class="headline-right">
+          </div>
+        </div>
+        <form id="signUp_form" onsubmit="register(); return false;">
+          <div id="loginArrow">
+            <img id="loginArrowImg" src="../../assets/img/arrow-left-line.svg" alt="Arrow" onclick="app()">
+          </div>
+          <div id="loginHead">
+            <h1 id="loginTitle">Sign Up</h1>
+          </div>
+          <div id="loginInput">
+            <input required type="text" id="signUpName" placeholder="Name" />
+            <input required type="email" id="signUpEmail" placeholder="Email" />
+            <input required type="password" id="signUpPw" placeholder="Password" />
+            <input
+            required
+            type="password"
+            id="signUpPw2"
+            placeholder="Confirm Password"
+            />
+          </div>
+          <div id="loginCheckbox">
+            <input 
+            required  
+            class=""
+            type="checkbox"
+            value=""
+            id="signUpCheck"
+            unchecked
+            />
+            <span>I accept the <a href="privacy_policy.html" target="_blank">Privacy Policy</a></span> 
+          </div>
+          <div id="loginButtons">
+            <input style="display:none;" id="signUpBtn" type="submit">
+            <button onclick="signUpBtn.click();">Sign Up</button>
+          </div>
+        </form>
+      </div>`;
 }
 
 async function register() {
@@ -67,7 +66,6 @@ async function register() {
 
     await setItem("users", JSON.stringify(regUsers));
     resetForm();
-    alert("Dein Konto wurde erstellt.");
     app();
   } catch (e) {
     console.error("Register error:", e);
@@ -86,25 +84,6 @@ function resetForm() {
   }
 }
 
-// Überprüfen, ob die Passwörter übereinstimmen
-function checkPassword() {
-  if (password !== confirmPassword) {
-    alert("Die Passwörter stimmen nicht überein.");
-    return; // Die Funktion abbrechen, wenn die Passwörter nicht übereinstimmen
-  } else {
-    register();
-  }
-}
-
-function checkCheckbox() {
-  const signUpCheck = document.getElementById("signUpCheck");
-  const signUpBtn = document.getElementById("signUpBtn");
-
-  if (signUpCheck.checked) {
-    signUpBtn.disabled = false;
-    console.log("checked");
-  } else {
-    signUpBtn.disabled = true;
-    console.log("unchecked");
-  }
+function triggerAlert() {
+  alert("Dein Konto wurde erstellt.");
 }

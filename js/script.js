@@ -1,9 +1,13 @@
+/**
+ * This function start the app and render the login-mask or the summary
+ */
 async function app() {
   if (currentUser === null) {
     renderLoginMask();
+    fillRememberedEmail();
+    await loadUsers();
   } else {
     await getAppData();
-    loadUsers();
     renderLayout();
     renderNavigation();
     renderHeader();
@@ -11,6 +15,9 @@ async function app() {
   }
 }
 
+/**
+ * This function create the basic for the content
+ */
 function renderLayout() {
   let content = document.getElementById("content-app");
   content.innerHTML = "";
@@ -22,6 +29,9 @@ function renderLayout() {
     </div>`;
 }
 
+/**
+ * This function render legal notice content
+ */
 function appLegalNotice() {
   renderLayout();
   renderNavigation();
@@ -29,6 +39,9 @@ function appLegalNotice() {
   renderNotice();
 }
 
+/**
+ * This function render privacy policy content
+ */
 function appPrivacyPolicy() {
   renderLayout();
   renderNavigation();
@@ -36,6 +49,9 @@ function appPrivacyPolicy() {
   renderPolicy();
 }
 
+/**
+ * This function load all data from storage
+ */
 async function getAppData() {
   users = JSON.parse(await getItem("contacts"));
   await board_loadFromStorage("toDo");

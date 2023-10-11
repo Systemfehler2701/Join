@@ -1,7 +1,7 @@
 ///ADD TASK TEMPLATES///
 
 /**
- * resets all arrays before rendering the addTask page into the content
+ * resets all arrays before rendering the addTask page into the content, also undefines 'overlayBody' to signal that the task is added in the add task submenu
  * 
  * @param {element} element element that needs to be displayed as active
  */
@@ -10,6 +10,7 @@ function renderAddTask(element) {
     navigationMenuClicked(element);
     let content = document.getElementById("content");
     task_resetArrays()
+    overlayBody = undefined
     content.innerHTML = createNewTask("toDo");
     task_renderCategoryOptions();
     task_renderAssigneeOptions();
@@ -25,7 +26,7 @@ function renderAddTask(element) {
 function createNewTask(arrayAsString) {
     let currentDate = getCurrentDate();
     return /* html */ `
-    <div class="taskbody">
+    <div onclick="task_closeOverlay(event, this)" class="taskbody">
         <h1>Add Task</h1>
         <div class="taskInputContainer" style="width: 100%">
             <div class="task_input scroll">
@@ -44,13 +45,13 @@ function createNewTask(arrayAsString) {
                     </div>
                     <div class="assignment">
                         <h2>Assigned to</h2>
-                        <div  class="assignmentInput" id="assignmentInput">
-                            <input onclick="task_toggleAssigneeOptions(this)" onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
-                            <div id="assignmentSelectButton" onclick="task_toggleAssigneeOptions(this)">
+                        <div  onclick="task_openOverlay(event)" class="assignmentInput" id="assignmentInput">
+                            <input onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+                            <div id="assignmentSelectButton" onclick="task_closeOverlay(event, this)">
                                 <img src="/assets/img/arrow_drop_downaa.svg" alt="">
                             </div>
                         </div> 
-                        <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
+                        <div onclick="preventClose(event)" class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
                             <div  id="assign_select" class="assignmentContainer scroll"></div>
                             <div class="ContactButtonContainer">
                               <div onclick="goToContacts()" class="newContactButton" id="assignmentNewContact">Add New contact
@@ -162,3 +163,5 @@ function task_createAssignedContact(user, index) {
   </div>
   `;
   }
+
+  //onkeyup="task_searchAssignees()"

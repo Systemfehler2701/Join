@@ -1,19 +1,27 @@
-let splashAnimation = "animate";
+let splashAnimation = "animate-welcome";
 
 ///SUMMARY TEMPLATES///
+
+/**
+ * this function calls the render summary function
+ * 
+ * @param {HTMLElement} element - This element will get the class active
+ */
 function renderSummary(element) {
     document.getElementById("help-link").classList.remove("d-none");
     if (element != undefined) {
         navigationMenuClicked(element);
     }
     renderSummaryContent();
-    greet();
 }
 
+/**
+ * this function render the summary content
+ */
 function renderSummaryContent() {
     let content = document.getElementById("content");
     content.innerHTML = /* html */ `
-    ${renderSummaryWelcome("mobile")}
+    ${renderSummaryWelcome("mobile "+splashAnimation)}
     <div class="summary-content">
 
     ${renderSummaryHeader()}
@@ -22,7 +30,9 @@ function renderSummaryContent() {
         ${renderSummaryWelcome("desktop")}
     </div>
 </div>`;
+    splashAnimation = "animate-done";
 }
+
 
 function renderSummaryTask() {
     return /*html*/ `
@@ -40,6 +50,7 @@ function renderSummaryTask() {
     </div>`;
 }
 
+
 function renderSummaryHeader() {
     return /* html */ `
     <div class="summary-header">
@@ -50,6 +61,9 @@ function renderSummaryHeader() {
     </div>`;
 }
 
+/**
+ * @returns html
+ */
 function renderSummaryTodo() {
     return /* html */ `
     <div class="summary-todo">
@@ -143,7 +157,7 @@ function renderSummaryFeedback() {
 function renderSummaryWelcome(responsiveClass) {
     return /* html */ `
     <div class="summary-welcome ${responsiveClass}">
-        <div class="summary-greeting">${greet()}</div>
+        <div class="summary-greeting">${greetTime()}</div>
         <div class="summary-user">${getUserGreeting()}</div>
     </div>`;
 }
