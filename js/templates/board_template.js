@@ -142,7 +142,7 @@ function renderBoardTaskDone() {
  * fetches the information about the task from the taskLists array and renders a task-card
  * 
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
- * @param {*} i
+ * @param {number} i
  * @returns HTML to create the task card in the overlay
  */
 function createFullTaskCard(arrayAsString, i) {
@@ -242,7 +242,7 @@ function board_createTaskEditor(arrayAsString, i) {
   let month = ("0" + (date.getMonth() + 1)).slice(-2);
   let year = date.getFullYear();
   return /*html*/ `
-  <div class="cardheadEdit">
+  <div onclick="task_closeOverlay(event, this)" class="cardheadEdit">
     <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
   </div>
   <div class="TaskEditorBody scroll">
@@ -282,13 +282,13 @@ function board_createTaskEditor(arrayAsString, i) {
   </div>
   <div class="assignment">
       <h2>Assigned to</h2>
-      <div  class="assignmentInput" id="assignmentInput">
-        <input onclick="task_toggleAssigneeOptions(this)" onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
-        <div id="assignmentSelectButton" onclick="task_toggleAssigneeOptions(this)">
+      <div onclick="task_openOverlay(event)" class="assignmentInput" id="assignmentInput">
+        <input  onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+        <div id="assignmentSelectButton" onclick="task_closeOverlay(event, this)">
           <img src="/assets/img/arrow_drop_downaa.svg" alt="">
         </div>
       </div> 
-      <div class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
+      <div onclick="preventClose(event)" class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
           <div  id="assign_select" class="assignmentContainer scroll"></div>
           <div class="ContactButtonContainer">
               <div onclick="goToContacts()" class="newContactButton" id="assignmentNewContact">Add New contact

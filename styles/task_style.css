@@ -108,6 +108,7 @@
 }
 
 .assignmentInput {
+  cursor: pointer;
   position: relative;
   min-height: 25.5px;
   background-color: white;
