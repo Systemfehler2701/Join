@@ -1,15 +1,16 @@
 let regUsers = {};
 
 async function renderSignUpMask() {
-  var container = document.getElementById("content-app");
+    var container = document.getElementById("content-app");
 
-  container.innerHTML = /*html*/ `
+    container.innerHTML = /*html*/ `
       <div id="login_signupBody">
         <div class="login-headline">
           <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
           <div class="headline-right">
           </div>
         </div>
+        <div class="signUp-formular">
         <form id="signUp_form" onsubmit="register(); return false;">
           <div id="loginArrow">
             <img id="loginArrowImg" src="../../assets/img/arrow-left-line.svg" alt="Arrow" onclick="app()">
@@ -44,46 +45,47 @@ async function renderSignUpMask() {
             <button onclick="signUpBtn.click();">Sign Up</button>
           </div>
         </form>
+      </div>
       </div>`;
 }
 
 async function register() {
-  try {
-    // signUpBtn.disabled = true;
+    try {
+        // signUpBtn.disabled = true;
 
-    if (signUpPw.value !== signUpPw2.value) {
-      alert("Die Passwörter stimmen nicht überein.");
-      return;
+        if (signUpPw.value !== signUpPw2.value) {
+            alert("Die Passwörter stimmen nicht überein.");
+            return;
+        }
+
+        const newUser = {
+            name: signUpName.value,
+            password: signUpPw.value,
+        };
+
+        // Verwende die E-Mail-Adresse als Schlüssel
+        regUsers[signUpEmail.value] = newUser;
+
+        await setItem("users", JSON.stringify(regUsers));
+        resetForm();
+        app();
+    } catch (e) {
+        console.error("Register error:", e);
     }
-
-    const newUser = {
-      name: signUpName.value,
-      password: signUpPw.value,
-    };
-
-    // Verwende die E-Mail-Adresse als Schlüssel
-    regUsers[signUpEmail.value] = newUser;
-
-    await setItem("users", JSON.stringify(regUsers));
-    resetForm();
-    app();
-  } catch (e) {
-    console.error("Register error:", e);
-  }
 }
 
 function resetForm() {
-  try {
-    signUpName.value = "";
-    signUpEmail.value = "";
-    signUpPw.value = "";
-    signUpPw2.value = "";
-    signUpBtn.disabled = false;
-  } catch (e) {
-    console.error("Reset error:", e);
-  }
+    try {
+        signUpName.value = "";
+        signUpEmail.value = "";
+        signUpPw.value = "";
+        signUpPw2.value = "";
+        signUpBtn.disabled = false;
+    } catch (e) {
+        console.error("Reset error:", e);
+    }
 }
 
 function triggerAlert() {
-  alert("Dein Konto wurde erstellt.");
+    alert("Dein Konto wurde erstellt.");
 }
