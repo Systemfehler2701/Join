@@ -182,8 +182,8 @@
     margin-bottom: 10px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
-    /* left or right or else */
-    no-repeat;
+        /* left or right or else */
+        no-repeat;
     background-size: 47% 3px;
 }
 
@@ -226,6 +226,8 @@
     margin-left: 50px;
 }
 
+/* Noch nicht funktional */
+
 .inputName {
     border-radius: 10px;
     width: 422px;
@@ -258,3 +260,4 @@
     padding: 13px 21px;
     border: 1px solid#D1D1D1;
 }
+

@@ -63,15 +63,14 @@ async function getAppData() {
 async function loadUsers() {
   try {
     const storedUsersJSON = await getItem("users");
+    let regUsers;
     if (storedUsersJSON) {
-      const storedUsers = JSON.parse(storedUsersJSON);
-      return storedUsers;
+      regUsers = JSON.parse(storedUsersJSON);
     } else {
-      return {};
+      regUsers = {};
     }
   } catch (e) {
     console.error("Load users error:", e);
     return {};
-    n;
   }
 }

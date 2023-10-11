@@ -84,6 +84,17 @@ function resetForm() {
   }
 }
 
-function triggerAlert() {
-  alert("Dein Konto wurde erstellt.");
-}
+// function triggerAlert() {
+//   <label>
+//     <input type="checkbox" class="alertCheckbox" autocomplete="off" />
+//     <div class="alert notice">
+//       <span class="alertClose">X</span>
+//       <span class="alertText">
+//         You Signed Up successfully
+//         <br class="clear" />
+//       </span>
+//     </div>
+//   </label>;
+
+//   alert("Dein Konto wurde erstellt.");
+// }
