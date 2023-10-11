@@ -1,4 +1,9 @@
-function greet() {
+/**
+ * This function changes the greeting text depending on the time 
+ * 
+ * @returns the greeting value
+ */
+function greetTime() {
     let date = new Date();
     let hour = date.getHours();
     let greeting = "";
@@ -22,7 +27,11 @@ function greet() {
     return greeting;
 }
 
-
+/**
+ * This function get the current user name
+ * 
+ * @returns the name of the current user
+ */
 function getUserGreeting() {
     if (currentUser.name == 'Guest') {
         return '';
@@ -31,7 +40,11 @@ function getUserGreeting() {
 
 }
 
-
+/**
+ * This function searches all arrays for priority and counts them
+ * 
+ * @returns the amount of priority
+ */
 function getCountPriority() {
     let amountUrgent = 0;
     taskLists.feedback.concat(taskLists.toDo).concat(taskLists.inProgress).map((element) => {
@@ -42,17 +55,21 @@ function getCountPriority() {
     return amountUrgent;
 }
 
-
+/**
+ * This function searches all arrays for the earliest date
+ * 
+ * @returns the next deadline date
+ */
 function getDeadlineDate() {
-    let smallestDate = 0;
+    let earliestDate = 0;
     taskLists.feedback.concat(taskLists.toDo).concat(taskLists.inProgress).find((element) => {
-        if (element.dueDate < smallestDate || smallestDate == 0) {
-            smallestDate = element.dueDate;
+        if (element.dueDate < earliestDate || earliestDate == 0) {
+            earliestDate = element.dueDate;
         }
     });
-    if (smallestDate == 0) {
+    if (earliestDate == 0) {
         return "";
     }
     const timeOptions = { month: "long", day: "numeric", year: "numeric" }
-    return new Date(smallestDate).toLocaleString("en", timeOptions);
+    return new Date(earliestDate).toLocaleString("en", timeOptions);
 }

@@ -29,7 +29,7 @@ function renderLayout() {
 }
 
 /**
- * This function render legal notice
+ * This function render legal notice content
  */
 function appLegalNotice() {
     renderLayout();
@@ -39,7 +39,7 @@ function appLegalNotice() {
 }
 
 /**
- * This function render privacy policy
+ * This function render privacy policy content
  */
 function appPrivacyPolicy() {
     renderLayout();
