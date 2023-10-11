@@ -279,12 +279,6 @@
         top: 0;
         left: 0;
         background-color: #F6F7F8;
-        opacity: 1;
-        animation-name: fadeOut;
-        animation-duration: 2s;
-        animation-delay: 1s;
-        animation-timing-function: ease-in-out;
-        animation-fill-mode: forwards;
     }
     .header-submenu {
         width: 135px;
@@ -355,6 +349,63 @@
     .summary-upcoming {
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+    #login_signupBody {
+        padding: 20px;
+    }
+    .login-area {
+        height: 80vh;
+    }
+    #login_form {
+        Width: 380px;
+        Height: 550px;
+        border-radius: 30px;
+        Gap: 40px;
+    }
+    #loginInput input {
+        gap: 32px;
+        width: 320px;
+        height: 48px;
+    }
+    #loginButtons {
+        display: flex;
+        flex-direction: column;
+    }
+    #loginRememberMe {
+        margin: 40px 20px;
+        justify-content: flex-start;
+    }
+    .login-btn,
+    .guest-login-btn {
+        width: 170px;
+    }
+    .headline-right {
+        width: 279px;
+        height: 49px;
+        top: 50px;
+        right: 50px;
+        gap: 35px;
+    }
+}
+
+@media (max-width: 500px) {
+    #login_signupBody {
+        padding: 0px;
+    }
+    .logo {
+        top: 20px;
+        left: 20px;
+        height: 80px;
+        width: 66px;
+        background-size: cover;
+        background-image: url(/assets/img/logo_main.svg);
+    }
+    .animate-logo-start {
+        animation: moveLogo 800ms ease-in-out, changeColor 800ms ease-in-out;
+    }
+    .animate-start-color {
+        animation: fadeBackgroundColor 800ms ease-in-out;
+        animation-fill-mode: forwards;
     }
 }
 

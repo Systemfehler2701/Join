@@ -1,4 +1,4 @@
-let splashAnimation = "animate";
+let splashAnimation = "animate-welcome";
 
 ///SUMMARY TEMPLATES///
 function renderSummary(element) {
@@ -13,7 +13,7 @@ function renderSummary(element) {
 function renderSummaryContent() {
     let content = document.getElementById("content");
     content.innerHTML = /* html */ `
-    ${renderSummaryWelcome("mobile")}
+    ${renderSummaryWelcome("mobile "+splashAnimation)}
     <div class="summary-content">
 
     ${renderSummaryHeader()}
@@ -22,6 +22,7 @@ function renderSummaryContent() {
         ${renderSummaryWelcome("desktop")}
     </div>
 </div>`;
+    splashAnimation = "animate-done";
 }
 
 function renderSummaryTask() {

@@ -26,7 +26,7 @@ async function logIn() {
       // Überprüfen, ob das eingegebene Passwort mit dem gespeicherten Passwort übereinstimmt
       if (userData.password === passwordInput.value) {
         // Kopiere alle Benutzerdaten in den currentUser
-        currentUser = { email: emailInput.value, name: userData.name, color: '#7D0C03' };
+        currentUser = { email: emailInput.value, name: userData.name, color: '#7D0C03', user: 'current'};
         isGuestUser = false;
         app();
       } else {
@@ -44,7 +44,8 @@ function logInGuest() {
   currentUser = {
     name: "Guest",
     email: "guest@join",
-    color: '#0D0D0F'
+    color: '#0D0D0F',
+    user: 'current'
   };
   isGuestUser = true;
   app();

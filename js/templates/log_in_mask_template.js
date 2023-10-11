@@ -1,17 +1,21 @@
+let startAnimationLogo = "animate-logo-start";
+let startAnimationMask = "animate-Mask-start";
+let startAnimationColor = "animate-start-color";
+
 function renderLoginMask() {
     var container = document.getElementById("content-app");
     var rememberedEmail = localStorage.getItem("rememberedEmail");
 
-    container.innerHTML = /*html*/ `<div id="login_signupBody">
+    container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
     <div class="login-headline">
-      <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
-      <div class="headline-right">
+      <div class="logo ${startAnimationLogo}"></div>
+      <div class="headline-right ${startAnimationMask}">
         <span>Not a Join user?</span>
         <button id="SignUpbtn" type="button" onclick="renderSignUpMask()">Sign Up</button>
       </div>
     </div>
     <div class="login-area">
-      <form onsubmit="logIn(); return false;" id="login_form">
+      <form class="${startAnimationMask}" onsubmit="logIn(); return false;" id="login_form">
         <div id="loginHead">
           <h1 id="loginTitle">Log in</h1>
           <div id="loginInput">
@@ -23,13 +27,13 @@ function renderLoginMask() {
             <span>Remember me</span>
           </div>
           <div id="loginButtons">
-            <button type="submit">Log in</button>
+            <button class="login-btn" type="submit">Log in</button>
             <button class="guest-login-btn" type="button" onclick="logInGuest()">Guest Log in</button>
           </div>
         </div>  
       </form>
     </div>
-      <div id="legalNotice">
+      <div class="legalNotice ${startAnimationMask}">
       <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
       <a href="legal_notice.html" target="_blank">Legal Notice</a>
       </div>`;
@@ -38,4 +42,7 @@ function renderLoginMask() {
         // E-Mail-Adresse in das Eingabefeld einfügen
         document.getElementById("loginEmail").value = rememberedEmail;
     }
+    startAnimationLogo = "";
+    startAnimationMask = "";
+    startAnimationColor = "";
 }

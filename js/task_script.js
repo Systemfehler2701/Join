@@ -44,6 +44,8 @@ const categories = [
 
 /**
  * This function is called when a new task is created, it compiles the data, validates it, saves it to the server and reloads the tasks
+ * All inputs are reset
+ * If the task creator is opened in the board overlay, the overlay is closed
  * 
  * @param {string} list  This is the name of the array inside "tasksLists" to which the task is supposed to be added
  */
@@ -54,8 +56,13 @@ async function task_addTask(list) {
   if (data != "error") {
     taskLists[list].push(data);
     task_resetForm();
+    task_resetArrays()
+    task_renderAssigneeList()
     await setItem(list, JSON.stringify(taskLists[list]));
-    board_loadTasks();
+    if(overlayBody != undefined) {
+      board_loadTasks();
+      board_closeOverlay();
+    }
   }
 }
 
@@ -73,6 +80,7 @@ async function task_addEditedTask(list, i) {
     taskLists[list][i] = data;
     task_CheckFinishedSubtasks(list, i);
     task_resetForm();
+    task_resetArrays()
     await setItem(list, JSON.stringify(taskLists[list]));
 
     board_closeOverlay();

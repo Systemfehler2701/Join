@@ -1,7 +1,7 @@
 ///ADD TASK TEMPLATES///
 
 /**
- * resets all arrays before rendering the addTask page into the content
+ * resets all arrays before rendering the addTask page into the content, also undefines 'overlayBody' to signal that the task is added in the add task submenu
  * 
  * @param {element} element element that needs to be displayed as active
  */
@@ -10,6 +10,7 @@ function renderAddTask(element) {
     navigationMenuClicked(element);
     let content = document.getElementById("content");
     task_resetArrays()
+    overlayBody = undefined
     content.innerHTML = createNewTask("toDo");
     task_renderCategoryOptions();
     task_renderAssigneeOptions();
