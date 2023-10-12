@@ -139,6 +139,10 @@ function showDetails(index) {
     `;
 
     document.getElementById('detailsContainer').innerHTML = detailsContent;
+    if (window.innerWidth <= 980) {
+        document.querySelector('.rightside').style.display = 'block';
+    }
+
 }
 
 function changeBackgroundColor(i) {
@@ -222,13 +226,8 @@ function addContactsEventlistener() {
         deleteContact(indexToDelete);
         document.getElementById('editOverlay').style.display = 'none';
         window.addEventListener('resize', checkWindowSize);
+        document.getElementById('backToContacts').addEventListener('click', () => {
+            document.querySelector('.rightside').style.display = 'none';
+        });
     });
-}
-
-function checkWindowSize() {
-    if (window.innerWidth <= 980) {
-        // Hier fügen Sie den Code ein, den Sie ausführen möchten,
-        // wenn die Fenstergröße 980px oder kleiner ist
-        showDetailsResponsive();
-    }
 }
