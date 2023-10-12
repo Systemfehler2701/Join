@@ -31,6 +31,11 @@ function togglePasswordVisibility() {
     }
 }
 
+/**
+ * Logs in the user with the provided email and password.
+ *
+ * @return {Promise<void>} - Resolves when the user is logged in.
+ */
 async function logIn() {
     try {
         const emailInput = document.getElementById("loginEmail");
@@ -55,16 +60,21 @@ async function logIn() {
                 isGuestUser = false;
                 app();
             } else {
-                alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe");
+                // alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe");
             }
         } else {
-            alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe.");
+            // alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe.");
         }
     } catch (error) {
         console.error("Fehler beim Einloggen:", error);
     }
 }
 
+/**
+ * Logs in a guest user.
+ *
+ * @return {undefined} No return value.
+ */
 function logInGuest() {
     currentUser = {
         name: "Guest",
@@ -76,11 +86,24 @@ function logInGuest() {
     app();
 }
 
+/**
+ * Logs out the current user and calls the app function.
+ *
+ * @param {none} - No parameters.
+ * @return {none} - No return value.
+ */
 function logOut() {
     currentUser = null;
     app();
 }
 
+/**
+ * Saves the value of the login email input to localStorage if the remember checkbox is checked,
+ * otherwise removes the entry from localStorage.
+ *
+ * @param {undefined} 
+ * @return {undefined}
+ */
 function rememberMe() {
     var loginRememberCheckbox = document.getElementById("loginRemember");
     var loginEmailInput = document.getElementById("loginEmail");
@@ -95,6 +118,12 @@ function rememberMe() {
     }
 }
 
+/**
+ * Fills the login email input field with the remembered email, if available.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 function fillRememberedEmail() {
     var loginEmailInput = document.getElementById("loginEmail");
     var rememberedEmail = localStorage.getItem("rememberedEmail");
