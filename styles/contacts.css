@@ -498,6 +498,8 @@ form button {
     border-radius: 70px;
     fill: white;
     background-color: lightgrey;
+    left: calc(50% - 50px);
+    top: calc(230px - 60px);
 }
 
 .Edit-Container {
@@ -584,7 +586,9 @@ form button {
     border-color: #29ABE2;
 }
 
-.closeWin {}
+.closeWin {
+    background-color: #2A3647;
+}
 
 .overlayPerson {
     width: 120px;
@@ -707,4 +711,8 @@ form button {
 
 .inputContainer {
     flex-direction: column;
+}
+
+#backToContacts {
+    display: none;
 }
