@@ -27,11 +27,21 @@ function renderContacts(element) {
                   <img class="contact-img-responsive" src="/assets/img/Vector 5.svg">
             </div>
             <div class="contactInfo" id="detailsContainer"></div>
-            <button id="responsiveIcon"><img src="assets/img/more_vert.svg"></button>
-            <div id="menu" class="menu-hidden">
-    <button id="editButton">Edit</button>
-    <button id="deleteButton">Delete</button>
+            <div class="responsiveMenu">
+            <button id="menu"><img src="assets/img/more_vert.svg"></button>
+            </div>
+ 
+            <div id="overlay" class="overlay-hidden">
+    <div class="iconWrapper" onclick="editContact(currentlyDisplayedContactIndex)">
+        <img class="icon" src="/assets/img/edit.svg">
+        <span class="iconText">Edit</span>
+    </div>
+    <div class="iconWrapper" onclick="deleteContact(currentlyDisplayedContactIndex)">
+        <img class="icon" src="/assets/img/delete.svg">
+        <span class="iconText">Delete</span>
+    </div>
 </div>
+   
             <!-- Dieser Container zeigt die Kontakt-Details an -->
         </div>
 
