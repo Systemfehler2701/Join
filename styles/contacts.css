@@ -428,6 +428,7 @@ form button {
     font-weight: 700;
     cursor: pointer;
     gap: 8px;
+    border: none;
 }
 
 .createBtn:hover {

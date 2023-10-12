@@ -68,11 +68,20 @@
     }
 }
 
-.animate-welcome {
+.animate-fade-in {
     opacity: 0;
     animation-name: fadeIn;
     animation-duration: 1.5s;
     animation-delay: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.animate-fade-out {
+    opacity: 1;
+    animation-name: fadeOut;
+    animation-duration: 500ms;
+    animation-delay: 1s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 }

@@ -28,7 +28,7 @@ function renderNavMenu() {
     <div class = "menu-button" onclick = "renderAddTask(this);">
         <div class = "menu-icon add-task" ></div><span>Add Task</span>
     </div>
-    <div class = "menu-button" onclick = "renderBoard(this)">
+    <div id="navBoardButton" class = "menu-button" onclick = "renderBoard(this)">
         <div class = "menu-icon board" ></div><span>Board</span>
     </div>
     <div id="navContactButton" class = "menu-button" onclick = "renderContacts(this)">
@@ -79,7 +79,6 @@ function renderHeaderProfile() {
     </div>`;
     }
 }
-
 
 
 function renderHeaderSubMenu() {
