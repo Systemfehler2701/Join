@@ -10,9 +10,9 @@ function renderContacts(element) {
             <img src="assets/img/person_add.svg">
         </button>
         </div>
-        <div class="viewall">
+        <div class="viewall scroll">
             <button id="responsiveButton"><img src="assets/img/person_add.svg"></button>
-            <div id="contactlist"></div>
+            <div style="width: 100%" id="contactlist"></div>
         </div>
     </div>
 
