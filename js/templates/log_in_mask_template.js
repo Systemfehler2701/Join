@@ -21,7 +21,7 @@ function renderLoginMask() {
           <div id="loginInput">
             <input type="email" id="loginEmail" class="inputEmailImg" placeholder="Email" />
             <input type="password" id="loginPassword" placeholder="Password"/>
-            <img id="togglePassword" onclick="togglePasswordVisibility()">
+            <img id="togglePassword" onclick="togglePasswordVisibility()" src="">
           </div>
           <div id="loginRememberMe">
             <input type="checkbox" id="loginRemember" onclick="rememberMe()"/>
