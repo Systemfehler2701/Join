@@ -73,3 +73,12 @@ function fillRememberedEmail() {
     loginEmailInput.value = rememberedEmail;
   }
 }
+
+function loginTogglePw() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}

@@ -217,31 +217,29 @@
 #loginRememberMe {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: row;
     margin-bottom: 20px;
     margin-left: 50px;
 }
-
 
 /* Noch nicht funktional */
 
 .inputName {
     background: url(../assets/img/person.svg);
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: 98%;
 }
 
 .inputPassword {
     background: url(../assets/img/);
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: 98%;
 }
 
 .inputEmailImg {
     background: url(../assets/img/mail.svg);
     background-repeat: no-repeat;
-    background-position: 100%;
+    background-position: 98%;
 }
 
 .signUp-formular {
