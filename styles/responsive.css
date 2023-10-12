@@ -387,6 +387,7 @@
     }
     .summary-content {
         height: fit-content;
+        z-index: 2;
     }
     .summary-header {
         display: flex;
@@ -420,7 +421,7 @@
     .summary-welcome.mobile {
         display: flex;
         flex-direction: column;
-        z-index: 3;
+        z-index: 1;
         justify-content: center;
         align-items: center;
         width: 100vw;
@@ -512,7 +513,7 @@
         flex-direction: column;
     }
     #loginRememberMe {
-        margin: 40px 20px;
+        margin: 0 20px 39px 20px;
         justify-content: flex-start;
     }
     .login-btn,
@@ -543,6 +544,12 @@
         left: -220px;
         height: 32px;
         width: 32px;
+    }
+    .password-img {
+        right: -150px;
+    }
+    #loginInput {
+        margin-bottom: 0px;
     }
 }
 
@@ -618,6 +625,9 @@
     .summary-header h2 {
         font-size: 20px;
         margin: 0;
+    }
+    .password-img {
+        right: -128px;
     }
     .summary-upcoming {
         width: 300px;

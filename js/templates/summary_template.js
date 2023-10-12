@@ -13,6 +13,7 @@ function renderSummary(element) {
         navigationMenuClicked(element);
     }
     renderSummaryContent();
+    splashAnimation = "animate-done";
 }
 
 /**
@@ -21,16 +22,15 @@ function renderSummary(element) {
 function renderSummaryContent() {
     let content = document.getElementById("content");
     content.innerHTML = /* html */ `
-    ${renderSummaryWelcome("mobile "+splashAnimation)}
-    <div class="summary-content">
+    ${renderSummaryWelcome("mobile")}
+    <div class="summary-content ${splashAnimation}">
+        ${renderSummaryHeader()}
+        <div class="summary-info">
+            ${renderSummaryTask()}
+            ${renderSummaryWelcome("desktop")}
+        </div>
+    </div>`;
 
-    ${renderSummaryHeader()}
-    <div class="summary-info">
-        ${renderSummaryTask()}
-        ${renderSummaryWelcome("desktop")}
-    </div>
-</div>`;
-    splashAnimation = "animate-done";
 }
 
 

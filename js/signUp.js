@@ -1,5 +1,10 @@
 let regUsers = {};
 
+/**
+ * Renders the sign-up mask on the page.
+ *
+ * @return {Promise} A promise that resolves when the mask is rendered.
+ */
 async function renderSignUpMask() {
   var container = document.getElementById("content-app");
 
@@ -21,8 +26,8 @@ async function renderSignUpMask() {
           <div id="loginInput">
             <input required type="text" id="signUpName" class="inputNameSignUp" placeholder="Name" />
             <input required type="email" id="signUpEmail" class="inputEmailImg" placeholder="Email" />
-            <input required type="password" id="signUpPw" class="inputPassword" placeholder="Password" />
-            <input required type="password" id="signUpPw2" class="inputPassword" placeholder="Confirm Password"/>
+            <input required type="password" id="signUpPw" class="inputPassword" minlength="8" placeholder="Password" />
+            <input required type="password" id="signUpPw2" class="inputPassword" minlength="8" placeholder="Confirm Password"/>
           </div>
           <div id="loginCheckbox">
             <input 
@@ -36,15 +41,20 @@ async function renderSignUpMask() {
             <span>I accept the <a href="privacy_policy.html" target="_blank">Privacy Policy</a></span> 
           </div>
           <div id="loginButtons">
-            <input style="display:none;" class="signUpBtn" type="submit">
+            <input style="display:none;" id="signUpBtn" class="signUpBtn" type="submit">
             <button onclick="signUpBtn.click();">Sign Up</button>
           </div>
         </form>
       </div>
-      <div id="SignUpMsgBox">You Signed Up successfully</div>
+      <div id="signUpMsgBox">You Signed Up successfully</div>
       </div>`;
 }
 
+/**
+ * Register a new user.
+ *
+ * @return {Promise<void>} Returns a Promise that resolves with no value.
+ */
 async function register() {
   try {
     // signUpBtn.disabled = true;
@@ -65,30 +75,44 @@ async function register() {
     await setItem("users", JSON.stringify(regUsers));
 
     msgSignUp();
-    setTimeout(app(), 3000);
+
+    setTimeout(function () {
+      app();
+    }, 1500);
 
     resetForm();
-    app();
   } catch (e) {
     //console.error("Register error:", e);
   }
 }
 
+/**
+ * Resets the form by clearing the values of the input fields.
+ *
+ * @param {type} - No parameters needed.
+ * @return {type} - No return value.
+ */
 function resetForm() {
   try {
     signUpName.value = "";
     signUpEmail.value = "";
     signUpPw.value = "";
     signUpPw2.value = "";
-    signUpBtn.disabled = false;
   } catch (e) {
     // console.error("Reset error:", e);
   }
 }
 
+/**
+ * A description of the entire function.
+ *
+ * @return {undefined} No return value
+ */
 function msgSignUp() {
-  var signUpMsgBox = document.getElementById("SignUpMsgBox");
-
-  // Zeige das SignUpMsgBox-Div an
-  signUpMsgBox.style.display = "block";
+  var signUpMsgBox = document.getElementById("signUpMsgBox");
+  if (signUpMsgBox.style.display === "") {
+    signUpMsgBox.style.display = "block";
+  } else {
+  }
 }
+
