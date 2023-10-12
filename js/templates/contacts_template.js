@@ -31,7 +31,7 @@ function renderContacts(element) {
             <button id="menu"><img src="assets/img/more_vert.svg"></button>
             </div>
  
-            <div id="overlay" class="overlay-hidden">
+            <div id="contactOverlay" class="overlay-hidden">
     <div class="iconWrapper" onclick="editContact(currentlyDisplayedContactIndex)">
         <img class="icon" src="/assets/img/edit.svg">
         <span class="iconText">Edit</span>

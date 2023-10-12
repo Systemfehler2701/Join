@@ -155,13 +155,9 @@ function showDetails(index) {
 
 function changeBackgroundColor(i) {
     for (let j = 0; j < users.length; j++) {
-        document.getElementById(`
-    painted$ { j }
-    `).classList.remove('selected');
+        document.getElementById(`painted${j}`).classList.remove('selected');
     }
-    document.getElementById(`
-    painted$ { i }
-    `).classList.add('selected');
+    document.getElementById(`painted${i}`).classList.add('selected');
 
 
 }
@@ -223,6 +219,7 @@ function clearDetails() {
 // Event Listeners
 function addContactsEventlistener() {
     renderContactList();
+
     document.getElementById('menu').addEventListener('click', toggleOverlay);
     document.getElementById('responsiveButton').addEventListener('click', openOverlay);
     document.getElementById('contactForm').addEventListener('submit', addContact);
@@ -242,7 +239,7 @@ function addContactsEventlistener() {
 }
 
 function toggleOverlay() {
-    var overlay = document.getElementById('overlay');
+    var overlay = document.getElementById('contactOverlay');
 
     if (overlay.classList.contains('overlay-hidden')) {
         overlay.classList.remove('overlay-hidden');
