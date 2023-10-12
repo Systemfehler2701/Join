@@ -65,10 +65,12 @@ async function register() {
     await setItem("users", JSON.stringify(regUsers));
 
     msgSignUp();
+    setTimeout(app(), 3000);
+
     resetForm();
     app();
   } catch (e) {
-    console.error("Register error:", e);
+    //console.error("Register error:", e);
   }
 }
 
@@ -82,4 +84,11 @@ function resetForm() {
   } catch (e) {
     // console.error("Reset error:", e);
   }
+}
+
+function msgSignUp() {
+  var signUpMsgBox = document.getElementById("SignUpMsgBox");
+
+  // Zeige das SignUpMsgBox-Div an
+  signUpMsgBox.style.display = "block";
 }

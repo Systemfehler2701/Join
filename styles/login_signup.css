@@ -263,4 +263,5 @@
     color: #ffffff;
     cursor: pointer;
     border-radius: 15px;
+    display: none;
 }
