@@ -219,6 +219,24 @@
         right: 16px;
         cursor: pointer;
     }
+    .deleteBtn {
+        height: 45px;
+        width: 126px;
+        border: 1px solid #2A3647;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        font-size: 15px;
+        margin-right: 32px;
+        padding: 16px;
+        cursor: pointer;
+        color: #2A3647;
+        gap: 4px;
+        font-weight: 400;
+        line-height: 24px;
+    }
     .addButton {
         display: none;
     }
@@ -264,7 +282,7 @@
         height: 80px;
     }
     #content {
-        margin-top: 90px;
+        margin-top: 44px;
         position: fixed;
     }
     nav {

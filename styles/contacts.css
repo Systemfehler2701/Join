@@ -551,7 +551,6 @@ form button {
 .buttonArea {
     display: flex;
     margin-top: 20px;
-    margin-right: 34px;
 }
 
 .cancelBtn {
