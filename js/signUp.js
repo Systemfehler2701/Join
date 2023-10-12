@@ -36,11 +36,12 @@ async function renderSignUpMask() {
             <span>I accept the <a href="privacy_policy.html" target="_blank">Privacy Policy</a></span> 
           </div>
           <div id="loginButtons">
-            <input style="display:none;" id="signUpBtn" type="submit">
+            <input style="display:none;" class="signUpBtn" type="submit">
             <button onclick="signUpBtn.click();">Sign Up</button>
           </div>
         </form>
       </div>
+      <div id="SignUpMsgBox">You Signed Up successfully</div>
       </div>`;
 }
 
@@ -63,9 +64,7 @@ async function register() {
 
     await setItem("users", JSON.stringify(regUsers));
 
-    createOverlay("You Signed Up successfully.");
-    setTimeout(app, 3000);
-
+    msgSignUp();
     resetForm();
     app();
   } catch (e) {
@@ -82,19 +81,5 @@ function resetForm() {
     signUpBtn.disabled = false;
   } catch (e) {
     // console.error("Reset error:", e);
-  }
-}
-
-function createOverlay(message) {
-  const overlay = document.createElement("div");
-  overlay.id = "customOverlay";
-  overlay.innerHTML = `<div class="customAlert">${message}</div>`;
-  document.body.appendChild(overlay);
-}
-
-function removeOverlay() {
-  const overlay = document.getElementById("customOverlay");
-  if (overlay) {
-    overlay.parentNode.removeChild(overlay);
   }
 }
