@@ -36,12 +36,12 @@ async function renderSignUpMask() {
             <span>I accept the <a href="privacy_policy.html" target="_blank">Privacy Policy</a></span> 
           </div>
           <div id="loginButtons">
-            <input style="display:none;" class="signUpBtn" type="submit">
+            <input style="display:none;" id="signUpBtn" class="signUpBtn" type="submit">
             <button onclick="signUpBtn.click();">Sign Up</button>
           </div>
         </form>
       </div>
-      <div id="SignUpMsgBox">You Signed Up successfully</div>
+      <div id="signUpMsgBox">You Signed Up successfully</div>
       </div>`;
 }
 
@@ -66,8 +66,11 @@ async function register() {
 
     msgSignUp();
 
+    setTimeout(function () {
+      app();
+    }, 1500);
+
     resetForm();
-    app(setTimeout(3000));
   } catch (e) {
     //console.error("Register error:", e);
   }
@@ -79,15 +82,15 @@ function resetForm() {
     signUpEmail.value = "";
     signUpPw.value = "";
     signUpPw2.value = "";
-    signUpBtn.disabled = false;
   } catch (e) {
     // console.error("Reset error:", e);
   }
 }
 
 function msgSignUp() {
-  var signUpMsgBox = document.getElementById("SignUpMsgBox");
-  if (signUpMsgBox.style.display === "none") {
+  var signUpMsgBox = document.getElementById("signUpMsgBox");
+  if (signUpMsgBox.style.display === "") {
     signUpMsgBox.style.display = "block";
+  } else {
   }
 }

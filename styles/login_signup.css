@@ -270,7 +270,7 @@
     align-items: center;
 }
 
-#SignUpMsgBox {
+#signUpMsgBox {
     position: absolute;
     display: none;
     top: 45%;
