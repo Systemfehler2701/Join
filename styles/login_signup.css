@@ -179,8 +179,8 @@
     margin-bottom: 10px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
-    /* left or right or else */
-    no-repeat;
+        /* left or right or else */
+        no-repeat;
     background-size: 47% 3px;
 }
 
@@ -222,8 +222,6 @@
     margin-left: 50px;
 }
 
-/* Noch nicht funktional */
-
 .inputNameSignUp {
     background: url(../assets/img/person.svg);
     background-repeat: no-repeat;
@@ -248,4 +246,21 @@
     height: 64vh;
     justify-content: center;
     align-items: center;
+}
+
+#SignUpMsgBox {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    font-size: 25px;
+    color: white;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    display: block;
+    padding: 10px;
+    border: none;
+    background-color: #2a3647;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 15px;
 }
