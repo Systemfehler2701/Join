@@ -117,6 +117,16 @@
     .headleft {
         gap: 14px;
     }
+    .rightside {
+        display: none;
+    }
+    .contact-leftside {
+        width: calc(100% - 80px);
+        align-items: flex-start;
+    }
+    .contact-left-button {
+        width: auto;
+    }
 }
 
 @media (max-width: 999px) {
@@ -138,11 +148,7 @@
     .menu-button {
         padding: 8px 20px;
     }
-    .contact-leftside {
-        left: 190px;
-        padding: 0 20px 20px 20px;
-        width: 370px;
-    }
+
     .head {
         flex-direction: column;
         align-items: flex-start;
@@ -196,13 +202,6 @@
     .rightside {
         display: none;
     }
-    .contact-leftside {
-        position: absolute;
-        width: 100vw;
-        top: 0px;
-        left: 0px;
-        height: 84vh;
-    }
     .cancelBtn {
         display: none;
     }
@@ -216,7 +215,7 @@
         border-radius: 50%;
         position: fixed;
         bottom: 120px;
-        right: 16px;
+        right: 10%;
         cursor: pointer;
     }
     .addButton {
@@ -242,6 +241,26 @@
         font-weight: 700;
         cursor: pointer;
         gap: 8px;
+    }
+    .contact-leftside {
+        position: unset;
+        padding: 0;
+        background-color:#F6F7F8;
+        box-shadow: none;
+        overflow-y: hidden;
+        width: 100%;
+        height: 100%;
+    }
+    .contactfield {
+        border: none;
+    }
+    .contact-left-button {
+        height: 0;
+        min-height: 0px !important;
+    }
+    .viewall {
+        width: 100%;
+        overflow-y: scroll;
     }
 }
 
