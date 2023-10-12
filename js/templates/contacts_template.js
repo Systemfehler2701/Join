@@ -11,7 +11,7 @@ function renderContacts(element) {
         </button>
         </div>
         <div class="viewall">
-        <button id="responsiveButton" img src="assets/img/person_add.svg"></button>
+            <button id="responsiveButton"><img src="assets/img/person_add.svg"></button>
             <div id="contactlist"></div>
         </div>
     </div>
@@ -53,7 +53,7 @@ function renderContacts(element) {
                         <input class="inputPhone" type="text" placeholder="Phone" id="phone" required>
 </div>
                         <div class="buttonArea">
-                        <button class="closeWin" src="assets/img/close.svg" id="closeForm"></button>
+                        <button class="closeWin" img src="assets/img/person_add.svg" id="closeForm"></button>
                         <button class="cancelBtn"> <span>Cancel</span><img src="/assets/img/close.svg"></button>
                         <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/img/check.png"></button>
                         </div>
