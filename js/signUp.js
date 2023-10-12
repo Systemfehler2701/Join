@@ -19,9 +19,9 @@ async function renderSignUpMask() {
             <h1 id="loginTitle">Sign Up</h1>
           </div>
           <div id="loginInput">
-            <input required type="text" id="signUpName" placeholder="Name" />
-            <input required type="email" id="signUpEmail" placeholder="Email" />
-            <input required type="password" id="signUpPw" placeholder="Password" />
+            <input required type="text" id="signUpName" class="inputName" placeholder="Name" />
+            <input required type="email" id="signUpEmail" class="inputEmailImg" placeholder="Email" />
+            <input required type="password" id="signUpPw" class="" placeholder="Password" />
             <input
             required
             type="password"
@@ -54,7 +54,7 @@ async function register() {
     // signUpBtn.disabled = true;
 
     if (signUpPw.value !== signUpPw2.value) {
-      alert("Die Passwörter stimmen nicht überein.");
+      // alert("Die Passwörter stimmen nicht überein.");
       return;
     }
 
