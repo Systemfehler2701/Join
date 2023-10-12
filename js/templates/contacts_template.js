@@ -17,6 +17,7 @@ function renderContacts(element) {
     </div>
 
         <div class="rightside" id="contactsforRespons">
+        
         <img src="/assets/img/arrow-left-line.svg" alt="Back" id="backArrow" style="display:none;">
 
             <div class="contacts-headline">
@@ -26,6 +27,11 @@ function renderContacts(element) {
                   <img class="contact-img-responsive" src="/assets/img/Vector 5.svg">
             </div>
             <div class="contactInfo" id="detailsContainer"></div>
+            <button id="responsiveIcon"><img src="assets/img/more_vert.svg"></button>
+            <div id="menu" class="menu-hidden">
+    <button id="editButton">Edit</button>
+    <button id="deleteButton">Delete</button>
+</div>
             <!-- Dieser Container zeigt die Kontakt-Details an -->
         </div>
 
@@ -44,7 +50,7 @@ function renderContacts(element) {
                     <div class="overlayPerson">
                         <img class="person img"src="/assets/img/person.svg">
                     </div>
-                    <div class="inputContainer">
+                    <div class="inputContainer"> 
                     <div class="inputArea" id="contactForm">
 
                         <input class="inputName" type="text" placeholder="Surname Name" id="name" required>
@@ -52,7 +58,7 @@ function renderContacts(element) {
                         <input class="inputMail" type="text" placeholder="E-Mail" id="email" required>
 
                         <input class="inputPhone" type="text" placeholder="Phone" id="phone" required>
-</div>
+                    </div>
                         <div class="buttonArea">
                         <button class="closeWin" img src="assets/img/person_add.svg" id="closeForm"></button>
                         <button class="cancelBtn"> <span>Cancel</span><img src="/assets/img/close.svg"></button>
@@ -68,27 +74,24 @@ function renderContacts(element) {
         <div class="darkside">
         <div class="image-to-hide">
             <img src="/assets/img/logo-white.svg" alt="">
-            <h2>Edit contact</h2> <!-- h2 hinzugefügt um Konsistenz mit dem oberen Overlay zu bewahren -->
+            <h2>Edit contact</h2> 
             <span class="blueLineHorizontal"></span>
             </div>
         </div>
         <div class="form-container">
             <button class="closeWindow" id="closeEditForm">X</button> 
-            <div class="overlayContainer">
-                <div class="overlayPerson" id="editInitialsLogo">
-                    <!-- Bild hinzugefügt, um Konsistenz mit dem oberen Overlay zu bewahren -->
+            
+                <div class="detailsLogo" id="editInitialsLogo">
+                    
                     <img class="person-img" src="/assets/img/person.svg" alt="">
                 </div>
-            </div>
+            
             <div class="inputContainer">
             <div class="inputArea" id="editForm">
                 <input type="hidden" id="editIndex">
                 
-                <input class="inputName" type="text" id="editName" required>
-                
-                
-                <input class="inputMail" type="email" id="editEmail" required>
-                
+                <input class="inputName" type="text" id="editName" required>  
+                <input class="inputMail" type="email" id="editEmail" required>           
                 <input class="inputPhone" type="tel" id="editPhone" required>
                 
                 <div class="buttonArea">
@@ -96,8 +99,7 @@ function renderContacts(element) {
                     <button class="createBtn" type="submit">
                         <span>Save</span><img src="/assets/img/check.png" alt="">
                     </button>
-                    <button class="closeBtn" id="closeEditFormBottom">Close</button> <!-- ID geändert um Eindeutigkeit zu gewährleisten -->
-                </div>
+                    <button class="closeBtn" id="closeEditFormBottom">Close</button> 
                 </div>
 </div>
         </div>

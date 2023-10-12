@@ -111,9 +111,9 @@ function closeOverlay() {
 function showDetails(index) {
     const user = users[index];
     const initials = getInitials(user.name);
-    if(window.innerWidth < 1190) {
-        document.getElementById('leftside').style.display= 'none'
-        document.getElementById('contactsforRespons').style.display= 'flex'
+    if (window.innerWidth < 1190) {
+        document.getElementById('leftside').style.display = 'none'
+        document.getElementById('contactsforRespons').style.display = 'flex'
     }
     const detailsContent = /* html */ `
         <div class="contactView">
@@ -234,3 +234,20 @@ function addContactsEventlistener() {
         });
     });
 }
+document.getElementById('responsiveIcon').addEventListener('click', function() {
+    // Menü umschalten (anzeigen/verstecken)
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('menu-hidden');
+});
+
+document.getElementById('editButton').addEventListener('click', function() {
+    // Ihre Editier-Funktion hier
+    console.log('Edit button clicked');
+    document.getElementById('menu').classList.add('menu-hidden'); // Menü verstecken nach Klick
+});
+
+document.getElementById('deleteButton').addEventListener('click', function() {
+    // Ihre Lösch-Funktion hier
+    console.log('Delete button clicked');
+    document.getElementById('menu').classList.add('menu-hidden'); // Menü verstecken nach Klick
+});

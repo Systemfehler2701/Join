@@ -254,19 +254,12 @@ form button {
 .overlay {
     position: fixed;
     display: none;
-    /* Damit es immer sichtbar ist, auch beim Scrollen */
     top: 0;
     left: 0;
     width: 100vw;
-    background-color: #d1d1d1;
-    /* 100% der Bildschirmbreite */
     height: 100vh;
-    /* 100% der Bildschirmhöhe */
-    /* Ein leicht durchsichtiger schwarzer Hintergrund für das Overlay */
     z-index: 1000;
-    /* Ein hoher z-index, um sicherzustellen, dass es über anderen Elementen angezeigt wird */
     display: none;
-    /* Versteckt es standardmäßig */
 }
 
 .overlay {
@@ -594,14 +587,14 @@ form button {
 }
 
 .overlayPerson {
+    display: flex;
+    align-items: center;
     width: 120px;
     height: 120px;
     border-radius: 100%;
     border: 3px solid white;
     background-color: #d1d1d1;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .overlayContainer {
@@ -725,5 +718,21 @@ form button {
 }
 
 .contact-img-responsive {
+    display: none;
+}
+
+.responsiveIcon {
+    display: none;
+}
+
+#menu {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.menu-hidden {
     display: none;
 }
