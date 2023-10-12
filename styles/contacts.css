@@ -752,3 +752,20 @@ form button {
 #overlay.overlay-visible {
     bottom: 0;
 }
+
+#menu {
+    display: none;
+}
+
+.arrowBack {
+    display: flex;
+    position: sticky;
+    top: 230px;
+    justify-content: flex-end;
+}
+
+.arrowBack img {
+    height: 32px;
+    width: 32px;
+    border-radius: 100%;
+}
