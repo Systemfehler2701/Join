@@ -109,10 +109,14 @@ function closeOverlay() {
 }
 
 function showDetails(index) {
+    currentlyDisplayedContactIndex = index
     const user = users[index];
     const initials = getInitials(user.name);
-    if(window.innerWidth < 1190) {
+    if(screenData.internalWidth == 'mobile') {
         document.getElementById('leftside').style.display= 'none'
+        document.getElementById('contactsforRespons').style.display= 'flex'
+    } if(screenData.internalWidth == 'fullscreen') {
+        document.getElementById('leftside').style.display= 'flex'
         document.getElementById('contactsforRespons').style.display= 'flex'
     }
     const detailsContent = /* html */ `
