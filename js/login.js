@@ -5,7 +5,9 @@ let isGuestUser = false;
  * This function checks the value of the input field and changes the image
  */
 function changePasswordImg() {
-    if (document.getElementById("loginPassword").value != "") {
+    let passwordField = document.getElementById("loginPassword");
+    passwordField.type = "password";
+    if (passwordField.value != "") {
         document.getElementById("password-img").style.backgroundImage = 'url(../assets/img/visibility_off.svg)';
     } else {
         document.getElementById("password-img").style.backgroundImage = 'url(../assets/img/lock.svg)';
