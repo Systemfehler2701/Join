@@ -227,13 +227,13 @@
 .inputName {
     background: url(../assets/img/person.svg);
     background-repeat: no-repeat;
-    background-position: 95%;
+    background-position: 100%;
 }
 
 .inputPassword {
-    background: url();
+    background: url(../assets/img/);
     background-repeat: no-repeat;
-    background-position: 95%;
+    background-position: 100%;
 }
 
 .inputEmailImg {

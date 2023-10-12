@@ -54,7 +54,7 @@ async function register() {
     // signUpBtn.disabled = true;
 
     if (signUpPw.value !== signUpPw2.value) {
-      alert("Die Passwörter stimmen nicht überein.");
+      // alert("Die Passwörter stimmen nicht überein.");
       return;
     }
 
