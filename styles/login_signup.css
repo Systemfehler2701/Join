@@ -225,14 +225,14 @@
 
 /* Noch nicht funktional */
 
-.inputName {
+.inputNameSignUp {
     background: url(../assets/img/person.svg);
     background-repeat: no-repeat;
     background-position: 98%;
 }
 
 .inputPassword {
-    background: url(../assets/img/);
+    background: url(../assets/img/lock.svg);
     background-repeat: no-repeat;
     background-position: 98%;
 }
