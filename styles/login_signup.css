@@ -17,7 +17,6 @@
 }
 
 #login_signupBody {
-    font-family: "Inter";
     background-color: #f6f7f8;
     display: flex;
     flex-direction: column;
@@ -173,8 +172,6 @@
 #loginTitle {
     display: flex;
     justify-content: center;
-    font-family: "Inter";
-    font-weight: 700;
     font-size: 61px;
     Line-height: 100px;
     width: 350px;
@@ -226,6 +223,9 @@
     margin-left: 50px;
 }
 
+
+/* Noch nicht funktional */
+
 .inputName {
     border-radius: 10px;
     width: 422px;
@@ -241,20 +241,23 @@
     border-radius: 10px;
     width: 422px;
     gap: 10px;
-    background: url(/assets/img/person.svg);
+    background: url();
     background-repeat: no-repeat;
     background-position: 95%;
     padding: 13px 21px;
     border: 1px solid#D1D1D1;
 }
 
-.inputEmail {
-    border-radius: 10px;
-    width: 422px;
-    gap: 10px;
-    background: url(/assets/img/person.svg);
+.inputEmailImg {
     background-repeat: no-repeat;
     background-position: 95%;
-    padding: 13px 21px;
-    border: 1px solid#D1D1D1;
+    background: url(../assets/img/mail.svg);
+}
+
+.signUp-formular {
+    display: flex;
+    width: 100%;
+    height: 64vh;
+    justify-content: center;
+    align-items: center;
 }
