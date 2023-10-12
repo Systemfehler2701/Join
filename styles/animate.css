@@ -22,6 +22,21 @@
     }
 }
 
+@keyframes fadeInStayFadeOut {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 @keyframes moveLogo {
     0% {
         top: 50%;

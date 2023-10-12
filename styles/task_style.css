@@ -7,6 +7,29 @@
   max-width: 1208px;
 }
 
+.taskNotification {
+  z-index: 3;
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  width: 260px;
+  height: 64px;
+  background-color: #2a3647;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 4px black;
+  font-weight: 500;
+  font-size: 20px;
+/* @keyframes are in the animate.css */
+  opacity: 0;
+  animation: fadeInStayFadeOut 3s forwards;
+
+  
+}
+
 .taskbody h1 {
   font-size: 61px;
   font-weight: 700;
