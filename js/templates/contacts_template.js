@@ -3,16 +3,16 @@ function renderContacts(element) {
     navigationMenuClicked(element);
     let content = document.getElementById('content');
     content.innerHTML = /* html */ `
-    <div class="contact-leftside">
+    <div id="leftside" class="contact-leftside">
         <div class="contact-left-button">
         <button class="addButton">
             <span>Add new Contact</span>
             <img src="assets/img/person_add.svg">
         </button>
         </div>
-        <div class="viewall">
+        <div class="viewall scroll">
             <button id="responsiveButton"><img src="assets/img/person_add.svg"></button>
-            <div id="contactlist"></div>
+            <div style="width: 100%" id="contactlist"></div>
         </div>
     </div>
 
@@ -21,8 +21,9 @@ function renderContacts(element) {
 
             <div class="contacts-headline">
                 <h1>Contacts</h1>
-                <img class="contact-img" src="/assets/img/blue-stroke.svg">
-                <h2>Better with a team</h2>
+                  <img class="contact-img" src="/assets/img/blue-stroke.svg">
+                  <h2>Better with a team</h2>
+                  <img class="contact-img-responsive" src="/assets/img/Vector 5.svg">
             </div>
             <div class="contactInfo" id="detailsContainer"></div>
             <!-- Dieser Container zeigt die Kontakt-Details an -->

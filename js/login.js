@@ -31,7 +31,7 @@ async function logIn() {
       alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe.");
     }
   } catch (error) {
-    console.error("Fehler beim Einloggen:", error);
+    //console.error("Fehler beim Einloggen:", error);
   }
 }
 
