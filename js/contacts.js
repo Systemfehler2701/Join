@@ -223,6 +223,7 @@ function clearDetails() {
 // Event Listeners
 function addContactsEventlistener() {
     renderContactList();
+    document.getElementById('menu').addEventListener('click', toggleOverlay);
     document.getElementById('responsiveButton').addEventListener('click', openOverlay);
     document.getElementById('contactForm').addEventListener('submit', addContact);
     document.querySelector('.addButton').addEventListener('click', openOverlay);
@@ -239,20 +240,15 @@ function addContactsEventlistener() {
         });
     });
 }
-document.getElementById('responsiveIcon').addEventListener('click', function() {
-    // Menü umschalten (anzeigen/verstecken)
-    const menu = document.getElementById('menu');
-    menu.classList.toggle('menu-hidden');
-});
 
-document.getElementById('editButton').addEventListener('click', function() {
-    // Ihre Editier-Funktion hier
-    console.log('Edit button clicked');
-    document.getElementById('menu').classList.add('menu-hidden'); // Menü verstecken nach Klick
-});
+function toggleOverlay() {
+    var overlay = document.getElementById('overlay');
 
-document.getElementById('deleteButton').addEventListener('click', function() {
-    // Ihre Lösch-Funktion hier
-    console.log('Delete button clicked');
-    document.getElementById('menu').classList.add('menu-hidden'); // Menü verstecken nach Klick
-});
+    if (overlay.classList.contains('overlay-hidden')) {
+        overlay.classList.remove('overlay-hidden');
+        overlay.classList.add('overlay-visible');
+    } else {
+        overlay.classList.remove('overlay-visible');
+        overlay.classList.add('overlay-hidden');
+    }
+}

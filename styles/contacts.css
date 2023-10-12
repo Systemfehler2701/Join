@@ -725,14 +725,15 @@ form button {
     display: none;
 }
 
-#menu {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+.overlay-hidden {
+    display: none;
+    /* weitere CSS-Eigenschaften für das versteckte Overlay (Positionierung, Hintergrundfarbe, etc.) */
 }
 
-.menu-hidden {
-    display: none;
+.overlay-visible {
+    display: block;
+    /* weitere CSS-Eigenschaften für das sichtbare Overlay */
 }
+
+
+/* Optional: Styling für Ihren Menü-Button */

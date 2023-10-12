@@ -216,6 +216,7 @@
     #responsiveButton {
         display: flex;
         align-items: center;
+        justify-content: center;
         background-color: #2a3647;
         color: white;
         width: 56px;
@@ -300,6 +301,30 @@
         bottom: 120px;
         right: 10%;
         cursor: pointer;
+    }
+    #menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #2a3647;
+        color: white;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 120px;
+        right: 10%;
+        cursor: pointer;
+    }
+    .iconWrapper {
+        margin-bottom: 10px;
+    }
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+    .iconText {
+        margin-left: 10px;
     }
 }
 
