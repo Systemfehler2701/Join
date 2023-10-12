@@ -72,6 +72,7 @@
     gap: 32px;
     width: 422px;
     height: 48px;
+    cursor: pointer;
 }
 
 #loginCheckbox {
@@ -101,6 +102,13 @@
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
+}
+
+#togglePassword {
+    position: relative;
+    top: -62px;
+    right: -194px;
+    cursor: pointer;
 }
 
 #loginButtons {
@@ -179,9 +187,20 @@
     margin-bottom: 25px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
-        /* left or right or else */
-        no-repeat;
+    /* left or right or else */
+    no-repeat;
     background-size: 47% 3px;
+}
+
+#password-img {
+    position: relative;
+    top: -62px;
+    right: -196px;
+    background-image: url(../assets/img/lock.svg);
+    background-repeat: no-repeat;
+    width: 17px;
+    height: 22px;
+    cursor: pointer;
 }
 
 .logo {
