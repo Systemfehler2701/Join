@@ -349,7 +349,7 @@ async function board_revertSubtask(arrayAsString, i, j) {
 /**
  * checks if subtasks are present inside the task. If there are none, the progressbar gets hidden.
  * Then divides the finished subtasks against the unfinished ones to get a value for the progressbar
- * 
+ *
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  * @param {number} i This is the index of the rendered task in its respective array
  */
@@ -365,43 +365,44 @@ function board_subTaskProgress(arrayAsString, i) {
   }
 }
 
-
 /**
- * loops through the assignees-numbers array inside the task and renders the users at the index that the assigneenumber respresnts into the small board card 
- * 
+ * loops through the assignees-numbers array inside the task and renders the users at the index that the assigneenumber respresnts into the small board card
+ *
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  * @param {number} i This is the index of the rendered task in its respective array
  */
 function board_displayAssignees(arrayAsString, i) {
   let task = taskLists[arrayAsString][i];
   let assigned = task["assignees"];
-  for (let j = 0; j < assigned.length; j++) {
-    const assigneeNumber = assigned[j];
-    let user = users[assigneeNumber];
-    document.getElementById(
-      `assignees${arrayAsString}${i}`
-    ).innerHTML += /*html*/ `
+  if (assigned.length != 0) {
+    for (let j = 0; j < assigned.length; j++) {
+      const assigneeNumber = assigned[j];
+      let user = users[assigneeNumber];
+      document.getElementById(
+        `assignees${arrayAsString}${i}`
+      ).innerHTML += /*html*/ `
     <div class="initials-logo" style="background-color: ${
       user.color
     }">${getInitials(user.name)}</div>
   `;
+    }
   }
 }
 
-
 /**
- * loops through the assignees-numbers array inside the task and renders the users at the index that the assigneenumber respresnts into the full card 
- * 
+ * loops through the assignees-numbers array inside the task and renders the users at the index that the assigneenumber respresnts into the full card
+ *
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  * @param {number} i This is the index of the rendered task in its respective array
  */
 function board_displayAssigneesFull(arrayAsString, i) {
   let task = taskLists[arrayAsString][i];
   let assigned = task["assignees"];
-  for (let j = 0; j < assigned.length; j++) {
-    const assigneeNumber = assigned[j];
-    let user = users[assigneeNumber];
-    document.getElementById(`assigneeListFull`).innerHTML += /*html*/ `
+  if (assigned.length != 0) {
+    for (let j = 0; j < assigned.length; j++) {
+      const assigneeNumber = assigned[j];
+      let user = users[assigneeNumber];
+      document.getElementById(`assigneeListFull`).innerHTML += /*html*/ `
     <div class="assigneeFull">
       <div class="initials-logo" style="background-color: ${
         user.color
@@ -409,11 +410,12 @@ function board_displayAssigneesFull(arrayAsString, i) {
       <div class="assigneeNameFull">${user.name}</div>
     </div>
     `;
+    }
   }
 }
 
 /**
- * 
+ *
  * @returns returns the current year in YYYY format, the current month in MM format and the current day in DD format
  */
 function getCurrentDate() {

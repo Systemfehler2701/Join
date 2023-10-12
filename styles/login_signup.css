@@ -217,41 +217,29 @@
 #loginRememberMe {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: row;
     margin-bottom: 20px;
     margin-left: 50px;
 }
 
-
 /* Noch nicht funktional */
 
-.inputName {
-    border-radius: 10px;
-    width: 422px;
-    gap: 10px;
-    background: url(/assets/img/person.svg);
+.inputNameSignUp {
+    background: url(../assets/img/person.svg);
     background-repeat: no-repeat;
-    background-position: 95%;
-    padding: 13px 21px;
-    border: 1px solid#D1D1D1;
+    background-position: 98%;
 }
 
 .inputPassword {
-    border-radius: 10px;
-    width: 422px;
-    gap: 10px;
-    background: url();
+    background: url(../assets/img/lock.svg);
     background-repeat: no-repeat;
-    background-position: 95%;
-    padding: 13px 21px;
-    border: 1px solid#D1D1D1;
+    background-position: 98%;
 }
 
 .inputEmailImg {
-    background-repeat: no-repeat;
-    background-position: 95%;
     background: url(../assets/img/mail.svg);
+    background-repeat: no-repeat;
+    background-position: 98%;
 }
 
 .signUp-formular {

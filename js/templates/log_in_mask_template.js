@@ -3,10 +3,10 @@ let startAnimationMask = "animate-Mask-start";
 let startAnimationColor = "animate-start-color";
 
 function renderLoginMask() {
-  var container = document.getElementById("content-app");
-  var rememberedEmail = localStorage.getItem("rememberedEmail");
+    var container = document.getElementById("content-app");
+    var rememberedEmail = localStorage.getItem("rememberedEmail");
 
-  container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
+    container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
     <div class="login-headline">
       <div class="logo ${startAnimationLogo}"></div>
       <div class="headline-right ${startAnimationMask}">
@@ -19,8 +19,9 @@ function renderLoginMask() {
         <div id="loginHead">
           <h1 id="loginTitle">Log in</h1>
           <div id="loginInput">
-            <input type="email" id="loginEmail" class="inputEmailImg"placeholder="Email" />
-            <input type="password" id="loginPassword" placeholder="Password" />
+            <input type="email" id="loginEmail" class="inputEmailImg" placeholder="Email" />
+            <input type="password" id="loginPassword" placeholder="Password"/>
+            <img id="togglePassword" onclick="togglePasswordVisibility()" src="">
           </div>
           <div id="loginRememberMe">
             <input type="checkbox" id="loginRemember" onclick="rememberMe()"/>
@@ -38,7 +39,7 @@ function renderLoginMask() {
       <a href="legal_notice.html" target="_blank">Legal Notice</a>
       </div>`;
 
-  startAnimationLogo = "";
-  startAnimationMask = "";
-  startAnimationColor = "";
+    startAnimationLogo = "";
+    startAnimationMask = "";
+    startAnimationColor = "";
 }
