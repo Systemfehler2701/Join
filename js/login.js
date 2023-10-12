@@ -1,6 +1,22 @@
 let currentUser = null;
 let isGuestUser = false;
 
+function changePasswordImg() {
+  if (document.getElementById("loginPassword").value != "") {
+    document.getElementById("password-img").style.backgroundImage =
+      "url(../assets/img/lock.svg)";
+  }
+}
+
+function togglePasswordVisibility() {
+  let passwordField = document.getElementById("loginPassword");
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+  } else {
+    passwordField.type = "password";
+  }
+}
+
 async function logIn() {
   try {
     const emailInput = document.getElementById("loginEmail");
@@ -31,7 +47,7 @@ async function logIn() {
       alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe.");
     }
   } catch (error) {
-    //console.error("Fehler beim Einloggen:", error);
+    console.error("Fehler beim Einloggen:", error);
   }
 }
 
@@ -71,14 +87,5 @@ function fillRememberedEmail() {
 
   if (rememberedEmail) {
     loginEmailInput.value = rememberedEmail;
-  }
-}
-
-function loginTogglePw() {
-  var x = document.getElementById("myInput");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
   }
 }

@@ -58,7 +58,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     gap: 25px;
 }
 
@@ -72,6 +72,7 @@
     gap: 32px;
     width: 422px;
     height: 48px;
+    cursor: pointer;
 }
 
 #loginCheckbox {
@@ -101,6 +102,13 @@
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
+}
+
+#togglePassword {
+    position: relative;
+    top: -62px;
+    right: -194px;
+    cursor: pointer;
 }
 
 #loginButtons {
@@ -176,12 +184,23 @@
     Line-height: 100px;
     width: 350px;
     margin: auto;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
         /* left or right or else */
         no-repeat;
     background-size: 47% 3px;
+}
+
+#password-img {
+    position: relative;
+    top: -62px;
+    right: -196px;
+    background-image: url(../assets/img/lock.svg);
+    background-repeat: no-repeat;
+    width: 17px;
+    height: 22px;
+    cursor: pointer;
 }
 
 .logo {
@@ -250,18 +269,17 @@
 
 #SignUpMsgBox {
     position: absolute;
+    display: none;
     top: 45%;
     left: 50%;
     font-size: 25px;
     color: white;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    display: block;
     padding: 10px;
     border: none;
     background-color: #2a3647;
     color: #ffffff;
     cursor: pointer;
     border-radius: 15px;
-    display: none;
 }
