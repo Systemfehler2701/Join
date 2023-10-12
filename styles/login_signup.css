@@ -187,8 +187,8 @@
     margin-bottom: 25px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
-    /* left or right or else */
-    no-repeat;
+        /* left or right or else */
+        no-repeat;
     background-size: 47% 3px;
 }
 
