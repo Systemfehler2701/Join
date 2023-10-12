@@ -63,7 +63,6 @@ async function getAppData() {
 async function loadUsers() {
     try {
         const storedUsersJSON = await getItem("users");
-        let regUsers;
         if (storedUsersJSON) {
             regUsers = JSON.parse(storedUsersJSON);
         } else {
