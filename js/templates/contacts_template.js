@@ -17,9 +17,9 @@ function renderContacts(element) {
     </div>
 
         <div class="rightside" id="contactsforRespons">
-        
+        <div class="arrowBack">
         <img src="/assets/img/arrow-left-line.svg" alt="Back" id="backArrow" style="display:none;">
-
+</div>
             <div class="contacts-headline">
                 <h1>Contacts</h1>
                   <img class="contact-img" src="/assets/img/blue-stroke.svg">
