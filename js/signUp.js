@@ -65,7 +65,7 @@ async function register() {
     await setItem("users", JSON.stringify(regUsers));
 
     msgSignUp();
-    
+
     resetForm();
     app(setTimeout(3000));
   } catch (e) {

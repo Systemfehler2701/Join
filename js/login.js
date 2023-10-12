@@ -31,7 +31,6 @@ function togglePasswordVisibility() {
     }
 }
 
-
 async function logIn() {
     try {
         const emailInput = document.getElementById("loginEmail");
@@ -65,7 +64,6 @@ async function logIn() {
         console.error("Fehler beim Einloggen:", error);
     }
 }
-
 
 function logInGuest() {
     currentUser = {
