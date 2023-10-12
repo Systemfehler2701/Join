@@ -8,7 +8,8 @@ function navigationMenuClicked(element) {
     if (activeElement != undefined) {
         activeElement.classList.remove('active');
     }
-    element.classList.add('active');
+    if(element != undefined)
+        element.classList.add('active');
 }
 
 /**
