@@ -1,18 +1,32 @@
 let currentUser = null;
 let isGuestUser = false;
 
-
+/**
+ * This function checks the value of the input field and changes the image
+ */
 function changePasswordImg() {
     if (document.getElementById("loginPassword").value != "") {
+        document.getElementById("password-img").style.backgroundImage = 'url(../assets/img/visibility_off.svg)';
+    } else {
         document.getElementById("password-img").style.backgroundImage = 'url(../assets/img/lock.svg)';
     }
 }
 
+/**
+ * This function checks the value of the input field and makes the password visible or invisible
+ * 
+ * @returns void
+ */
 function togglePasswordVisibility() {
     let passwordField = document.getElementById("loginPassword");
+    if (passwordField.value == "") {
+        return;
+    }
     if (passwordField.type === "password") {
+        document.getElementById("password-img").style.backgroundImage = 'url(../assets/img/visibility.svg)';
         passwordField.type = "text";
     } else {
+        document.getElementById("password-img").style.backgroundImage = 'url(../assets/img/visibility_off.svg)';
         passwordField.type = "password";
     }
 }
