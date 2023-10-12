@@ -74,6 +74,11 @@
     height: 48px;
 }
 
+#loginInput input:focus {
+    outline: none;
+    border-color: #29ABE2;
+}
+
 #loginCheckbox {
     display: flex;
     align-items: center;

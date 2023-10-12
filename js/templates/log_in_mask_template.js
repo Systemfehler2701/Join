@@ -2,6 +2,12 @@ let startAnimationLogo = "animate-logo-start";
 let startAnimationMask = "animate-Mask-start";
 let startAnimationColor = "animate-start-color";
 
+/**
+ * Renders the login mask on the page.
+ *
+ * @param {string} containerId - The ID of the container element where the login mask will be rendered.
+ * @param {string} rememberedEmail - The email address that the user previously entered and chose to be remembered.
+ */
 function renderLoginMask() {
   var container = document.getElementById("content-app");
   var rememberedEmail = localStorage.getItem("rememberedEmail");
