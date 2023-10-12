@@ -50,8 +50,6 @@ async function logIn() {
     } catch (error) {
         console.error("Fehler beim Einloggen:", error);
     }
-} catch (error) {
-    //console.error("Fehler beim Einloggen:", error);
 }
 
 
