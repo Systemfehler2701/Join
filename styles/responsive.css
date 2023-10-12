@@ -119,13 +119,22 @@
     }
     .rightside {
         display: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        align-items: flex-start;
     }
     .contact-leftside {
         width: calc(100% - 80px);
         align-items: flex-start;
     }
     .contact-left-button {
-        width: auto;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .viewall {
+        width: 100%;
     }
 }
 
@@ -413,6 +422,9 @@
     .rightside {
         display: none;
     }
+    .contactUser h3 {
+        font-size: 36px;
+    }
 }
 
 @media (max-width: 739px) {
@@ -536,7 +548,30 @@
         height: 32px;
         width: 32px;
     }
+    .contactView {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 32px;
+    }
+    .contactsIcons {
+        display: none;
+    }
+    .contacts-headline {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .contact-img {
+        display: none;
+    }
+    .contact-img-responsive {
+        display: flex;
+    }
+    .contacts-headline h2 {
+        margin: 0;
+
+    }
 }
+
 
 @media (max-width: 440px) {
     #content {
