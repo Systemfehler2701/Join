@@ -117,6 +117,25 @@
     .headleft {
         gap: 14px;
     }
+    .rightside {
+        display: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        align-items: flex-start;
+    }
+    .contact-leftside {
+        width: calc(100% - 80px);
+        align-items: flex-start;
+    }
+    .contact-left-button {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .viewall {
+        width: 100%;
+    }
 }
 
 @media (max-width: 999px) {
@@ -138,11 +157,7 @@
     .menu-button {
         padding: 8px 20px;
     }
-    .contact-leftside {
-        left: 190px;
-        padding: 0 20px 20px 20px;
-        width: 370px;
-    }
+
     .head {
         flex-direction: column;
         align-items: flex-start;
@@ -196,25 +211,20 @@
     .rightside {
         display: none;
     }
-    .contact-leftside {
-        position: absolute;
-        width: 100vw;
-        top: 0px;
-        left: 0px;
-        height: 84vh;
-    }
     .cancelBtn {
         display: none;
     }
     #responsiveButton {
         display: flex;
+        align-items: center;
+        background-color: #2a3647;
+        color: white;
         width: 56px;
         height: 56px;
         border-radius: 50%;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         position: fixed;
         bottom: 120px;
-        right: 16px;
+        right: 10%;
         cursor: pointer;
     }
     .addButton {
@@ -227,6 +237,39 @@
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+    .createBtn {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 45px;
+        background: #2A3647;
+        color: white;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        gap: 8px;
+    }
+    .contact-leftside {
+        position: unset;
+        padding: 0;
+        background-color:#F6F7F8;
+        box-shadow: none;
+        overflow-y: hidden;
+        width: 100%;
+        height: 100%;
+    }
+    .contactfield {
+        border: none;
+    }
+    .contact-left-button {
+        height: 0;
+        min-height: 0px !important;
+    }
+    .viewall {
+        width: 100%;
+        overflow-y: scroll;
     }
 }
 
@@ -373,31 +416,14 @@
         flex-direction: column;
         align-items: flex-end;
     }
-    .containerAll {
-        flex-direction: column;
-    }
-    .darkside,
-    .formcontainer {
-        width: 100%;
-        height: 200px;
-    }
-    .person-img {
-        width: 100px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-    }
-    .inputArea {
-        position: center;
-        width: 80%;
-    }
     #backToContacts {
         display: block;
     }
     .rightside {
         display: none;
+    }
+    .contactUser h3 {
+        font-size: 36px;
     }
 }
 
@@ -522,7 +548,30 @@
         height: 32px;
         width: 32px;
     }
+    .contactView {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 32px;
+    }
+    .contactsIcons {
+        display: none;
+    }
+    .contacts-headline {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .contact-img {
+        display: none;
+    }
+    .contact-img-responsive {
+        display: flex;
+    }
+    .contacts-headline h2 {
+        margin: 0;
+
+    }
 }
+
 
 @media (max-width: 440px) {
     #content {
@@ -624,5 +673,4 @@
         justify-content: center;
         align-items: center;
     }
-
 }

@@ -111,10 +111,13 @@ function closeOverlay() {
 function showDetails(index) {
     const user = users[index];
     const initials = getInitials(user.name);
-
+    if(window.innerWidth < 1190) {
+        document.getElementById('leftside').style.display= 'none'
+        document.getElementById('contactsforRespons').style.display= 'flex'
+    }
     const detailsContent = /* html */ `
         <div class="contactView">
-            <div class="detailsLogo" style="background-color: ${user.color}; margin: 0 auto;">${initials}</div>
+            <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${initials}</div>
             <div class="contactUser">
                 <h3>${user.name}</h3>
                 <div class="contactsIcons">
@@ -130,7 +133,10 @@ function showDetails(index) {
             </div>
         </div>
         <div class="contactInformation">
+
             <h3>Contact Information</h3>
+            <br>
+            <br>
             <h4>Email</h4><br>
             <p class="email-blue">${user.mail}</p>
             <h4>Phone</h4>
@@ -139,9 +145,6 @@ function showDetails(index) {
     `;
 
     document.getElementById('detailsContainer').innerHTML = detailsContent;
-    if (window.innerWidth <= 980) {
-        document.querySelector('.rightside').style.display = 'block';
-    }
 
 }
 
