@@ -360,7 +360,6 @@ form button {
     align-items: center;
     gap: 15px;
     background-color: white;
-    width: 422px;
 }
 
 .inputName {
@@ -714,5 +713,9 @@ form button {
 }
 
 #backToContacts {
+    display: none;
+}
+
+#responsiveButton {
     display: none;
 }

@@ -130,7 +130,10 @@ function showDetails(index) {
             </div>
         </div>
         <div class="contactInformation">
+
             <h3>Contact Information</h3>
+            <br>
+            <br>
             <h4>Email</h4><br>
             <p class="email-blue">${user.mail}</p>
             <h4>Phone</h4>

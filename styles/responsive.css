@@ -208,10 +208,12 @@
     }
     #responsiveButton {
         display: flex;
+        align-items: center;
+        background-color: #2a3647;
+        color: white;
         width: 56px;
         height: 56px;
         border-radius: 50%;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         position: fixed;
         bottom: 120px;
         right: 16px;
@@ -227,6 +229,19 @@
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+    .createBtn {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 45px;
+        background: #2A3647;
+        color: white;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        gap: 8px;
     }
 }
 
@@ -372,26 +387,6 @@
         width: 100%;
         flex-direction: column;
         align-items: flex-end;
-    }
-    .containerAll {
-        flex-direction: column;
-    }
-    .darkside,
-    .formcontainer {
-        width: 100%;
-        height: 200px;
-    }
-    .person-img {
-        width: 100px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-    }
-    .inputArea {
-        position: center;
-        width: 80%;
     }
     #backToContacts {
         display: block;
@@ -624,5 +619,4 @@
         justify-content: center;
         align-items: center;
     }
-
 }
