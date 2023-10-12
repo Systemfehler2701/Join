@@ -23,13 +23,12 @@ function renderSummaryContent() {
     content.innerHTML = /* html */ `
     ${renderSummaryWelcome("mobile "+splashAnimation)}
     <div class="summary-content">
-
-    ${renderSummaryHeader()}
-    <div class="summary-info">
-        ${renderSummaryTask()}
-        ${renderSummaryWelcome("desktop")}
-    </div>
-</div>`;
+        ${renderSummaryHeader()}
+        <div class="summary-info">
+            ${renderSummaryTask()}
+            ${renderSummaryWelcome("desktop")}
+        </div>
+    </div>`;
     splashAnimation = "animate-done";
 }
 
