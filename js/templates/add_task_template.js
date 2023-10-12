@@ -2,31 +2,37 @@
 
 /**
  * resets all arrays before rendering the addTask page into the content, also undefines 'overlayBody' to signal that the task is added in the add task submenu
- * 
+ *
+ *
  * @param {element} element element that needs to be displayed as active
  */
 function renderAddTask(element) {
-    document.getElementById("help-link").classList.remove("d-none");
+  document.getElementById("help-link").classList.remove("d-none");
+  if(element) {
     navigationMenuClicked(element);
-    let content = document.getElementById("content");
-    task_resetArrays()
-    overlayBody = undefined
-    content.innerHTML = createNewTask("toDo");
-    task_renderCategoryOptions();
-    task_renderAssigneeOptions();
+  }
+  let content = document.getElementById("content");
+  task_resetArrays();
+  overlayBody = undefined;
+  content.innerHTML = createNewTask("toDo");
+  task_renderCategoryOptions();
+  task_renderAssigneeOptions();
 }
-
 
 /**
  * returns the HTML to be rendered with the renderAddTask() function
- * 
+ *
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
  * @returns HTML
  */
 function createNewTask(arrayAsString) {
-    let currentDate = getCurrentDate();
-    return /* html */ `
+  let currentDate = getCurrentDate();
+  return /* html */ `
     <div onclick="task_closeOverlay(event, this)" class="taskbody">
+        <div id="taskNotification" class="taskNotification"> 
+            Task added to board
+            <img src="/assets/img/Vector_board.svg" alt="">
+        </div>
         <h1>Add Task</h1>
         <div class="taskInputContainer" style="width: 100%">
             <div class="task_input scroll">
@@ -117,7 +123,7 @@ function createNewTask(arrayAsString) {
                     <h2>This field is required</h2>
                 </div>
                 <div class="buttons">
-                    <button onclick="task_resetForm()" class="clear">Clear</button>
+                    <button onclick="clearTaskCreator('${arrayAsString}')" class="clear">Clear</button>
                     <button onclick="task_addTask('${arrayAsString}')" class="create">Create Task</button>
                 </div>
             </div>
@@ -127,13 +133,13 @@ function createNewTask(arrayAsString) {
 
 /**
  * renders a contact into the assignee Options which has been assigned already, with a button to unassgin him
- * 
+ *
  * @param {object} user object from the users array
  * @param {number} index index of the object in the users array
  */
 function task_createAssignedContact(user, index) {
-    let selector = document.getElementById("assign_select");
-    selector.innerHTML += /*html*/ `
+  let selector = document.getElementById("assign_select");
+  selector.innerHTML += /*html*/ `
     <div id="assignee${index}" class="assigneeOption" value="${index}">
       <div class="initials-logo" style="background-color: ${
         user.color
@@ -142,18 +148,17 @@ function task_createAssignedContact(user, index) {
       <img id="assigneeCheckbox${index}" onclick="task_unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
   </div>
   `;
-  }
+}
 
-  
 /**
  * renders a contact into the assignee Options which has not been assigned yet, with a button to assgin him
- * 
+ *
  * @param {object} user object from the users array
  * @param {number} index index of the object in the users array
  */
-  function task_createUnassignedContact(user, index) {
-    let selector = document.getElementById("assign_select");
-    selector.innerHTML += /*html*/ `
+function task_createUnassignedContact(user, index) {
+  let selector = document.getElementById("assign_select");
+  selector.innerHTML += /*html*/ `
     <div id="assignee${index}" class="assigneeOption" value="${index}">
       <div class="initials-logo" style="background-color: ${
         user.color
@@ -162,6 +167,6 @@ function task_createAssignedContact(user, index) {
       <img id="assigneeCheckbox${index}" onclick="task_assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
   </div>
   `;
-  }
+}
 
-  //onkeyup="task_searchAssignees()"
+//onkeyup="task_searchAssignees()"

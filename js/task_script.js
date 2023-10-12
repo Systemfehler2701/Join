@@ -44,7 +44,7 @@ const categories = [
 
 /**
  * This function is called when a new task is created, it compiles the data, validates it, saves it to the server and reloads the tasks
- * All inputs are reset
+ * All inputs are reset, a notification is displayed and the Task-creator rerendered
  * If the task creator is opened in the board overlay, the overlay is closed
  *
  * @param {string} list  This is the name of the array inside "tasksLists" to which the task is supposed to be added
@@ -59,16 +59,18 @@ async function task_addTask(list) {
     task_resetArrays();
     task_renderAssigneeList();
     await setItem(list, JSON.stringify(taskLists[list]));
-    displayNotification()
     if (overlayBody != undefined) {
       board_loadTasks();
       board_closeOverlay();
+    } else {
+      displayTaskNotification()
+      renderAddTask()
     }
   }
 }
 
 /**
- * This function is called wheneer a task is edited, it compiles the data, validates it, saves it to the server and reloads the tasks
+ * This function is called whenever a task is edited, it compiles the data, validates it, saves it to the server and reloads the tasks
  *
  * @param {string} list This is the name of the array inside "tasksLists" to which the task is supposed to be added
  * @param {number} i This is the position of the edited task inside the array specified above
@@ -89,6 +91,21 @@ async function task_addEditedTask(list, i) {
 }
 
 /**
+ * Resets the task-form before rerendering. if else to check if the task creator is in the add task submenu or the board overlay
+ * 
+ * @param {string} arrayAsString 
+ */
+function clearTaskCreator(arrayAsString) {
+  task_resetForm()
+  if (overlayBody != undefined) {
+    board_addTask(arrayAsString)
+  } else {
+    renderAddTask()
+  }
+
+}
+
+/**
  * Resets all values in input fields on the task-creation section
  *
  */
@@ -98,6 +115,7 @@ function task_resetForm() {
   document.getElementById("assign_select").value = null;
   document.getElementById("due").value = "";
   document.getElementById("category_selector").value = null;
+
 }
 
 /**
@@ -534,6 +552,16 @@ function task_resetError() {
   document.getElementById("errorPriority").style.display = "none";
   document.getElementById("errorCategory").style.display = "none";
 }
+
+
+function displayTaskNotification() {
+  document.getElementById('taskNotification').style.display = 'flex'
+  setTimeout(() => {
+    document.getElementById('taskNotification').style.display = 'none'
+  }, 3000);
+}
+
+
 
 /**
  * goes through every single obligatory input and checks if thy have a value.
