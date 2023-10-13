@@ -6,9 +6,9 @@ let regUsers = {};
  * @return {Promise} A promise that resolves when the mask is rendered.
  */
 async function renderSignUpMask() {
-  var container = document.getElementById("content-app");
+    var container = document.getElementById("content-app");
 
-  container.innerHTML = /*html*/ `
+    container.innerHTML = /*html*/ `
       <div id="login_signupBody">
         <div class="login-headline">
           <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
@@ -26,8 +26,10 @@ async function renderSignUpMask() {
           <div id="loginInput">
             <input required type="text" id="signUpName" class="inputNameSignUp" placeholder="Name" />
             <input required type="email" id="signUpEmail" class="inputEmailImg" placeholder="Email" />
-            <input required type="password" id="signUpPw" class="inputPassword" minlength="8" placeholder="Password" />
-            <input required type="password" id="signUpPw2" class="inputPassword" minlength="8" placeholder="Confirm Password"/>
+            <input required type="password" id="signUpPw" class="inputPassword" minlength="8" placeholder="Password" onkeyup="changePasswordImg(this)" />
+            <div class="password-img" onclick="togglePasswordVisibility(this)"></div>
+            <input required type="password" id="signUpPw2" class="inputPassword" minlength="8" placeholder="Confirm Password" onkeyup="changePasswordImg(this)"/>
+            <div class="password-img" onclick="togglePasswordVisibility(this)"></div>
           </div>
           <div id="loginCheckbox">
             <input 
@@ -56,34 +58,34 @@ async function renderSignUpMask() {
  * @return {Promise<void>} Returns a Promise that resolves with no value.
  */
 async function register() {
-  try {
-    // signUpBtn.disabled = true;
+    try {
+        // signUpBtn.disabled = true;
 
-    if (signUpPw.value !== signUpPw2.value) {
-      // alert("Die Passwörter stimmen nicht überein.");
-      return;
+        if (signUpPw.value !== signUpPw2.value) {
+            // alert("Die Passwörter stimmen nicht überein.");
+            return;
+        }
+
+        const newUser = {
+            name: signUpName.value,
+            password: signUpPw.value,
+        };
+
+        // Verwende die E-Mail-Adresse als Schlüssel
+        regUsers[signUpEmail.value] = newUser;
+
+        await setItem("users", JSON.stringify(regUsers));
+
+        msgSignUp();
+
+        setTimeout(function() {
+            app();
+        }, 1500);
+
+        resetForm();
+    } catch (e) {
+        //console.error("Register error:", e);
     }
-
-    const newUser = {
-      name: signUpName.value,
-      password: signUpPw.value,
-    };
-
-    // Verwende die E-Mail-Adresse als Schlüssel
-    regUsers[signUpEmail.value] = newUser;
-
-    await setItem("users", JSON.stringify(regUsers));
-    
-    msgSignUp();
-
-    setTimeout(function () {
-      app();
-    }, 1500);
-
-    resetForm();
-  } catch (e) {
-    //console.error("Register error:", e);
-  }
 }
 
 /**
@@ -93,14 +95,14 @@ async function register() {
  * @return {type} - No return value.
  */
 function resetForm() {
-  try {
-    signUpName.value = "";
-    signUpEmail.value = "";
-    signUpPw.value = "";
-    signUpPw2.value = "";
-  } catch (e) {
-    // console.error("Reset error:", e);
-  }
+    try {
+        signUpName.value = "";
+        signUpEmail.value = "";
+        signUpPw.value = "";
+        signUpPw2.value = "";
+    } catch (e) {
+        // console.error("Reset error:", e);
+    }
 }
 
 /**
@@ -109,10 +111,8 @@ function resetForm() {
  * @return {undefined} No return value
  */
 function msgSignUp() {
-  var signUpMsgBox = document.getElementById("signUpMsgBox");
-  if (signUpMsgBox.style.display === "") {
-    signUpMsgBox.style.display = "block";
-  } else {
-  }
+    var signUpMsgBox = document.getElementById("signUpMsgBox");
+    if (signUpMsgBox.style.display === "") {
+        signUpMsgBox.style.display = "block";
+    } else {}
 }
-
