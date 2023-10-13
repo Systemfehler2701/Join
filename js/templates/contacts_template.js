@@ -44,16 +44,18 @@ function renderContacts(element) {
 <div class="contacts-overlay-content" id="overlay"> 
     <div class="contacts-overlay">
         <div class="darkside">
-            <div class="contacts-overlay-headline">
+            <div id="contacts-overlay-headline"> 
                 <img src="../assets/img/logo-white.svg">
-                <h2 id="contacts-overlay-h2"></h2>
-                <h3 id="contacts-overlay-h3"></h3>
-                <span class="blueLineHorizontal"></span>
+                <h2 id="contacts-overlay-h2">add contact</h2>
+                <h3 id="contacts-overlay-h3">Tasks are better with a team!</h3>
+                <span class="blue-line-horizontal"></span>               
             </div>
         </div>
         <div class="whiteside">
             <div class="contacts-overlay-whiteside-left">
-                <img src="">
+                <div class="contacts-overlay-icon">
+                    <img src="../assets/img/person2.svg">
+                </div>
             </div>
             <div class="contacts-overlay-whiteside-right">
                 <div class="contacts-overlay-close"><img src=""></div>

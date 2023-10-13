@@ -306,5 +306,7 @@ function renderAddContact() {
 }
 
 function openContactOverlay() {
-
+    let overlayH2Content = document.getElementById('contacts-overlay-h2');
+    overlayH2Content.innerHTML = /* html */ `
+`;
 }
