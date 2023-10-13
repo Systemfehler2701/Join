@@ -9,10 +9,10 @@ let startAnimationColor = "animate-start-color";
  * @param {string} rememberedEmail - The email address that the user previously entered and chose to be remembered.
  */
 function renderLoginMask() {
-    var container = document.getElementById("content-app");
-    var rememberedEmail = localStorage.getItem("rememberedEmail");
+  var container = document.getElementById("content-app");
+  var rememberedEmail = localStorage.getItem("rememberedEmail");
 
-    container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
+  container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
     <div class="login-headline">
       <div class="logo ${startAnimationLogo}"></div>
       <div class="headline-right ${startAnimationMask}">
@@ -39,16 +39,14 @@ function renderLoginMask() {
           </div>
         </div>  
       </form>
+      <div id="loginMsgBox" class="alert">User or password incorrect. Check your input.</div>
     </div>
       <div class="legalNotice ${startAnimationMask}">
       <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
       <a href="legal_notice.html" target="_blank">Legal Notice</a>
-      <div id="loginMsgBox">Benutzer oder Passwort falsch. Überprüfen Sie Ihre Eingabe.</div>
       </div>`;
-      
-      
 
-    startAnimationLogo = "";
-    startAnimationMask = "";
-    startAnimationColor = "";
+  startAnimationLogo = "";
+  startAnimationMask = "";
+  startAnimationColor = "";
 }

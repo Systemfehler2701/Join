@@ -49,7 +49,9 @@ async function renderSignUpMask() {
         </form>
       </div>
       <div id="signUpMsgBox">You Signed Up successfully</div>
-      </div>`;
+      </div>
+      <div id="signUpAlert" class="alert">Passwords do not match. Check your input.</div>
+      `;
 }
 
 /**
@@ -115,4 +117,14 @@ function msgSignUp() {
     if (signUpMsgBox.style.display === "") {
         signUpMsgBox.style.display = "block";
     } else {}
+}
+
+function msgSignUpAlert() {
+    var signUpMsgBox = document.getElementById("signUpAlert");
+    if (signUpMsgBox.style.display === "") {
+        signUpMsgBox.style.display = "block";
+    } else {}
+    setTimeout(function() {
+      app();
+  }, 1500);
 }

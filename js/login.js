@@ -61,17 +61,17 @@ async function logIn() {
       isGuestUser = false;
       app();
     } else {
-      msgLoginAlert();
+      msgAlert();
       setTimeout(function () {
         app();
-      }, 1000);
+      }, 2000);
       // alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe");
     }
   } else {
-    msgLoginAlert();
+    msgAlert();
     setTimeout(function () {
       app();
-    }, 1000);
+    }, 2000);
     // alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe.");
   }
 }
@@ -141,7 +141,7 @@ function fillRememberedEmail() {
   }
 }
 
-function msgLoginAlert() {
+function msgAlert() {
   var signUpMsgBox = document.getElementById("loginMsgBox");
   if (signUpMsgBox.style.display === "") {
     signUpMsgBox.style.display = "block";

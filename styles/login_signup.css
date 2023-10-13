@@ -286,10 +286,10 @@
     border-radius: 15px;
 }
 
-#loginMsgBox {
+.alert {
     position: absolute;
     display: none;
-    top: 45%;
+    top: 65%;
     left: 50%;
     font-size: 25px;
     color: white;
