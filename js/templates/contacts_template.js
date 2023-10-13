@@ -5,7 +5,7 @@ function renderContacts(element) {
     content.innerHTML = /* html */ `
     <div id="leftside" class="contact-leftside">
         <div class="contact-left-button">
-            <button class="addButton" onclick="openContactOverlay()">
+            <button class="addButton" onclick="renderAddContact()">
                 <span>Add new Contact</span>
                 <img src="assets/img/person_add.svg">
             </button>
@@ -27,7 +27,7 @@ function renderContacts(element) {
         </div>
         <div class="contactInfo" id="detailsContainer"></div>
         <div class="responsiveMenu">
-            <button id="menu"><img src="assets/img/more_vert.svg"></button>
+            <button id="menu" onclick="toggleOverlay()"><img src="assets/img/more_vert.svg"></button>
         </div>
         <div id="contactOverlay" class="overlay-hidden">
             <div class="iconWrapper" onclick="renderEditContact()">
@@ -46,32 +46,34 @@ function renderContacts(element) {
         <div class="darkside">
             <div id="contacts-overlay-headline"> 
                 <img src="../assets/img/logo-white.svg">
-                <h2 id="contacts-overlay-h2">add contact</h2>
-                <h3 id="contacts-overlay-h3">Tasks are better with a team!</h3>
+                <h2 id="contacts-overlay-h2"></h2>
+                <h3 id="contacts-overlay-h3"></h3>
                 <span class="blue-line-horizontal"></span>               
             </div>
         </div>
         <div class="whiteside">
-        <button class="goBack"><img src="assets/img/close.svg"></button>
-            <div class="contacts-overlay-whiteside-left">
-                <div class="contacts-overlay-icon">
-                    <img src="../assets/img/person2.svg">
+            <div class="contacts-overlay-close">
+                <div class="contacts-overlay-close-img" onclick="closeContactOverlay()">
+                    <div class="contacts-overlay-close-X"></div>
                 </div>
             </div>
-            <div class="contacts-overlay-whiteside-right">
-                <div class="contacts-overlay-close"><img src=""></div>
-                <div class="inputContainer">
-                    <form class="inputArea" onsubmit="">
-                        <input class="inputName" type="text"placeholder="Surname Name" id="editName" required>  
-                        <input class="inputMail" type="email"placeholder="Mail" id="editEmail" required>           
-                        <input class="inputPhone" type="tel"placeholder="Phone" id="editPhone" required>
-                        <div id="contacts-overlay-buttons">
-                            <button class="cancelBtn">Cancel<img src="assets/img/close.svg"></button>
-                            <button class="createBtn">Create Contact</button>
-                        </div>    
-                    </form>  
+            <div class="whiteside-content">
+                <div id="contacts-overlay-whiteside-left">  
+                    <div id="contacts-overlay-icon-border" class="contacts-overlay-icon-border">
+                    </div>                  
                 </div>
-            </div>
+                <div class="contacts-overlay-whiteside-right">
+                    <div class="inputContainer">
+                        <form class="contact-input-area" onsubmit="">
+                            <input class="inputName" type="text"placeholder="Surname Name" id="editName" required>  
+                            <input class="inputMail" type="email"placeholder="Email" id="editEmail" required>           
+                            <input class="inputPhone" type="tel"placeholder="Phone" id="editPhone" required>
+                            <div id="contacts-overlay-buttons">                                
+                            </div>    
+                        </form>  
+                    </div>
+                </div>
+            </div>    
         </div>    
     </div>
 </div>

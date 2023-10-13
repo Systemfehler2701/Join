@@ -262,14 +262,6 @@ form button {
     line-height: 19.2px;
 }
 
-.inputArea {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    background-color: white;
-}
-
 .inputName {
     border-radius: 10px;
     gap: 10px;
@@ -562,6 +554,7 @@ form button {
 /*overlay*/
 
 .contacts-overlay-content {
+    /*display: none;*/
     background-color: #0000003b;
     position: fixed;
     top: 0;
@@ -575,13 +568,12 @@ form button {
     padding: 60px 0 0 25px;
     color: white;
     transform: translateX(200%);
-    animation: slideIn 1s forwards;
+    /*animation: slideIn 1s forwards;*/
 }
 
 .contacts-overlay {
     transform: translate(-50%, -50%);
     animation: slideInContacts 0.8s ease-in-out;
-    background-color: white;
     display: flex;
     flex-direction: row;
     color: white;
@@ -590,8 +582,9 @@ form button {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 1212px;
-    height: 592px;
+    width: 80%;
+    max-width: 1350px;
+    height: 590px;
 }
 
 .darkside {
@@ -603,13 +596,14 @@ form button {
     justify-content: center;
     align-items: center;
     width: 35%;
-    height: 494px;
+    height: 490px;
     padding: 50px;
 }
 
 #contacts-overlay-headline {
     display: flex;
     width: 100%;
+    height: 70%;
     justify-content: flex-start;
     margin-left: 1.5rem;
     flex-direction: column;
@@ -620,6 +614,7 @@ form button {
     font-weight: 700 !important;
     font-size: 61px;
     line-height: 73.2px;
+    margin-bottom: 10px;
 }
 
 #contacts-overlay-headline h3 {
@@ -642,27 +637,44 @@ form button {
 }
 
 .whiteside {
-    left: unset;
-    padding: 0;
     transition: right 0.4s ease-in-out;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border-top-left-radius: 30px;
+    background-color: white;
+    flex-direction: column;
+    border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
-    height: 470px;
-    width: 65%;
-    padding: 50px;
+    height: 86.5%;
+    width: 75%;
+    padding: 40px 40px 40px 0;
 }
 
-.contacts-overlay-whiteside-left {
-    width: 30%;
+.whiteside-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+#contacts-overlay-whiteside-left {
+    width: 40%;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+}
+
+.contacts-overlay-icon-border {
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+    background-color: white;
+    border: solid 0.5px #eeeeee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contacts-overlay-icon {
-    width: 100px;
-    height: 100px;
+    width: 97%;
+    height: 97%;
     border-radius: 100%;
     background-color: lightgrey;
     display: flex;
@@ -676,12 +688,55 @@ form button {
 }
 
 .contacts-overlay-whiteside-right {
-    width: 70%;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 86%;
+    justify-content: center;
+    padding: 42px 42px 42px 0;
+}
+
+.contacts-overlay-close {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.contacts-overlay-close-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+}
+
+.contacts-overlay-close-X {
+    background-image: url(../assets/img/close.svg);
+    height: 15px;
+    width: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.contacts-overlay-close-img:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+.contact-input-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background-color: white;
 }
 
 #contacts-overlay-buttons {
     display: flex;
     gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: flex-start;
 }
 
 .inputContainer {
@@ -717,22 +772,6 @@ form button {
     color: #29abe2;
     border-color: #29abe2;
 }
-#contacts-overlay-buttons {
-
-    display: flex;
-    margin-top: 20px;
-    margin-right: 110px;
-}
-.goBack {
-    position: absolute;
-    top: 28px;
-    right: 50px;
-    border-style: none;
-    cursor: pointer;
-    padding: 0;
-    background-color: white;
-}
-
 
 #backToContacts {
     display: none;
@@ -750,15 +789,7 @@ form button {
     display: none;
 }
 
-.overlay-hidden {
-    display: none;
-    /* weitere CSS-Eigenschaften für das versteckte Overlay (Positionierung, Hintergrundfarbe, etc.) */
-}
-
-.overlay-visible {
-    display: block;
-    /* weitere CSS-Eigenschaften für das sichtbare Overlay */
-}
+.overlay-hidden {}
 
 
 /* Optional: Styling für Ihren Menü-Button */
@@ -770,8 +801,6 @@ form button {
 #menu {
     display: none;
 }
-
-
 
 .arrowBack {
     display: flex;

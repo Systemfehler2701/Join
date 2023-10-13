@@ -255,58 +255,48 @@ function addContactsEventlistener() {
 }
 
 function toggleOverlay() {
-    var overlay = document.getElementById("contactOverlay");
-
-    if (overlay.classList.contains('overlay-hidden')) {
-        overlay.classList.remove('overlay-hidden');
-        overlay.classList.add('overlay-visible');
-    } else {
-        overlay.classList.remove('overlay-visible');
-        overlay.classList.add('overlay-hidden');
-    }
+    document.getElementById('contactOverlay').style.animation = 'slideIn 1s forwards';
 }
 
 function renderAddContact() {
+    openContactOverlay();
+    let overlayH2Content = document.getElementById('contacts-overlay-h2');
+    overlayH2Content.innerHTML = `Add contact`;
+    let overlayH3Content = document.getElementById('contacts-overlay-h3');
+    overlayH3Content.innerHTML = `Tasks are better with a team!`;
+    let overlayIcon = document.getElementById('contacts-overlay-whiteside-left');
+    overlayIcon.innerHTML = /*html*/ `<div class="contacts-overlay-icon-border">
+    <div class="contacts-overlay-icon">
+        <img src="../assets/img/person2.svg">
+    </div>
+    </div>`;
+    let overlayButtons = document.getElementById('contacts-overlay-buttons');
+    overlayButtons.innerHTML = `<button class="cancelBtn">Cancel<img src="assets/img/close.svg"></button>
+    <button class="createBtn">Create Contact<img src="assets/img/check.png"></button>`;
 
-    document.getElementById('overlay').innerHTML = "";
+}
 
-    content = /* html */ `
-        <div class="overlay" id="overlay">
-            <div class="contacts-overlay-headline">
-                <div class="darkside">
-                    <div class="contacts-overlay-headline">
-                        <img src="/assets/img/logo-white.svg" alt="">
-                            <h2>add contact</h2>
-                            <h3>Tasks are better with a team!</h3>
-                            <span class="blueLineHorizontal"></span>
-                        </div>
-                </div>
-            <div class="form-container">
-                    <div class="overlayPerson">
-                        <img class="person img"src="/assets/img/person.svg">
-                    </div>
-                <div class="inputContainer"> 
-                    <form class="inputArea" id="contactForm">
-                        <input class="inputName" type="text" placeholder="Surname Name" id="name" required>
-                        <input class="inputMail" type="text" placeholder="E-Mail" id="email" required>
-                        <input class="inputPhone" type="text" placeholder="Phone" id="phone" required>
-                        
-                        <div class="buttonArea">
-                        <button class="closeWin" id="closeForm">
-                                        <img src="assets/img/person_add.svg" alt="Close" />
-                    </button>
-                            <button class="cancelBtn"> <span>Cancel</span><img src="/assets/img/close.svg"></button>
-                            <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/img/check.png"></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        `;
+function renderEditContact() {
+    openContactOverlay();
+    let overlayH2Content = document.getElementById('contacts-overlay-h2');
+    overlayH2Content.innerHTML = `Edit contact`;
+    let overlayH3Content = document.getElementById('contacts-overlay-h3');
+    overlayH3Content.innerHTML = ``;
+    let overlayIcon = document.getElementById('contacts-overlay-icon-border');
+    overlayIcon.innerHTML = `
+    <div class="contacts-overlay-icon">
+        <img src="../assets/img/person2.svg">
+    </div>`;
+    let overlayButtons = document.getElementById('contacts-overlay-buttons');
+    overlayButtons.innerHTML = `<button class="cancelBtn">Delete</button>
+    <button class="createBtn">Save<img src="assets/img/check.png"></button>`;
 
 }
 
 function openContactOverlay() {
-    let overlayH2Content = document.getElementById('contacts-overlay-h2');
-    overlayH2Content.innerHTML = /* html */ `
-`;
+    document.getElementById('overlay').style.animation = 'slideIn 1s forwards';
+}
+
+function closeContactOverlay() {
+    document.getElementById('overlay').style.animation = 'slideOut 1s forwards';
 }
