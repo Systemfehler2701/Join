@@ -126,7 +126,7 @@ function showDetails(index) {
             <div class="contactUser">
                 <h3>${user.name}</h3>
                 <div class="contactsIcons">
-    <div class="iconWrapper" onclick="editContact(${index})">
+    <div class="iconWrapper" onclick="renderEditContact()">
         <img class="icon" src="/assets/img/edit.svg">
         <span class="iconText">Edit</span>
     </div>
@@ -243,4 +243,81 @@ function toggleOverlay() {
         overlay.classList.remove('overlay-visible');
         overlay.classList.add('overlay-hidden');
     }
+}
+
+function renderAddContact() {
+
+    document.getElementById('overlay').innerHTML = "";
+
+    content = /* html */ `
+        <div class="overlay" id="overlay">
+            <div class="containerAll">
+                <div class="darkside">
+                    <div class="image-to-hide">
+                        <img src="/assets/img/logo-white.svg" alt="">
+                            <h2>add contact</h2>
+                            <h3>Tasks are better with a team!</h3>
+                            <span class="blueLineHorizontal"></span>
+                        </div>
+                </div>
+            <div class="form-container">
+                    <div class="overlayPerson">
+                        <img class="person img"src="/assets/img/person.svg">
+                    </div>
+                <div class="inputContainer"> 
+                    <form class="inputArea" id="contactForm">
+                        <input class="inputName" type="text" placeholder="Surname Name" id="name" required>
+                        <input class="inputMail" type="text" placeholder="E-Mail" id="email" required>
+                        <input class="inputPhone" type="text" placeholder="Phone" id="phone" required>
+                        
+                        <div class="buttonArea">
+                        <button class="closeWin" id="closeForm">
+                                        <img src="assets/img/person_add.svg" alt="Close" />
+                    </button>
+                            <button class="cancelBtn"> <span>Cancel</span><img src="/assets/img/close.svg"></button>
+                            <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/img/check.png"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        `;
+
+}
+
+function renderEditContact() {
+
+    document.getElementById('editOverlay').innerHTML = "";
+
+    content = /* html */ `
+
+    <div class="overlay" id="editOverlay">
+            <div class="containerAll">
+                <div class="darkside">
+                    <div class="image-to-hide">
+                        <img src="/assets/img/logo-white.svg" alt="">
+                        <h2>Edit contact</h2> 
+                        <span class="blueLineHorizontal"></span>
+                    </div>
+                </div>
+                        <div class="form-container">
+                                <button class="closeWindow" id="closeEditForm">X</button> 
+                            <div class="detailsLogo" id="editInitialsLogo">
+                                    <img class="person-img" src="/assets/img/person.svg" alt="">
+                            </div>    
+                                <div class="inputContainer">
+                                    <form class="inputArea" id="editForm">
+                                        <input type="hidden" id="editIndex">
+                                            <input class="inputName" type="text" id="editName" required>  
+                                            <input class="inputMail" type="email" id="editEmail" required>           
+                                            <input class="inputPhone" type="tel" id="editPhone" required>
+                                        <div class="buttonArea">
+                                            <button class="deleteBtn" type="button" id="deleteContactBtn">Delete</button>
+                                            <button class="createBtn" type="submit"><span>Save</span><img src="/assets/img/check.png" alt=""></button>
+                                            <button class="closeBtn" id="closeEditFormBottom">Close</button>
+                                    </form>  
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>`;
 }
