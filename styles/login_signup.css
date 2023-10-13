@@ -190,8 +190,8 @@
     margin-bottom: 35px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
-    /* left or right or else */
-    no-repeat;
+        /* left or right or else */
+        no-repeat;
     background-size: 47% 3px;
 }
 
@@ -255,12 +255,6 @@
     background-position: 98%;
 }
 
-.inputPassword {
-    background: url(../assets/img/lock.svg);
-    background-repeat: no-repeat;
-    background-position: 98%;
-}
-
 .inputEmailImg {
     background: url(../assets/img/mail.svg);
     background-repeat: no-repeat;
@@ -287,6 +281,23 @@
     padding: 10px;
     border: none;
     background-color: #2a3647;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+#loginMsgBox {
+    position: absolute;
+    display: none;
+    top: 45%;
+    left: 50%;
+    font-size: 25px;
+    color: white;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    padding: 10px;
+    border: none;
+    background-color: #cf1b1b;
     color: #ffffff;
     cursor: pointer;
     border-radius: 15px;

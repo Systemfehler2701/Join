@@ -1,37 +1,53 @@
 let users = [{
-        name: 'Elon Musk',
-        mail: 'elonthegreatest@twitter.to',
-        phone: '123-456-7890',
+        name: "Elon Musk",
+        mail: "elonthegreatest@twitter.to",
+        phone: "123-456-7890",
     },
     {
-        name: 'Jan Woll',
-        mail: 'woll.jan@berlin',
-        phone: '123-456-7890',
+        name: "Jan Woll",
+        mail: "woll.jan@berlin",
+        phone: "123-456-7890",
     },
     {
-        name: 'Stefanie Hinze',
-        mail: 'stefanine.hinze@google.de',
-        phone: '123-456-7890',
+        name: "Stefanie Hinze",
+        mail: "stefanine.hinze@google.de",
+        phone: "123-456-7890",
     },
     {
-        name: 'Max Mustermann',
-        mail: 'mustermann@mustermail.de',
-        phone: '123-456-7890',
+        name: "Max Mustermann",
+        mail: "mustermann@mustermail.de",
+        phone: "123-456-7890",
     },
     {
-        name: 'Michael Fischer',
-        mail: 'mustermann@mustermail.de',
-        phone: '123-456-7890',
+        name: "Michael Fischer",
+        mail: "mustermann@mustermail.de",
+        phone: "123-456-7890",
     },
-]
+];
 
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const colors = ['#FF7A00', '#FF5EB3', '#6E52FF', '#9327FF', '#00BEE8', '#1FD7C1', '#FF745E', '#FFA35E', '#FC71FF', '#FFC701', '#0038FF', '#C3FF2B', '#FFE62B', '#FF4646', '#FFBB2B'];
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const colors = [
+    "#FF7A00",
+    "#FF5EB3",
+    "#6E52FF",
+    "#9327FF",
+    "#00BEE8",
+    "#1FD7C1",
+    "#FF745E",
+    "#FFA35E",
+    "#FC71FF",
+    "#FFC701",
+    "#0038FF",
+    "#C3FF2B",
+    "#FFE62B",
+    "#FF4646",
+    "#FFBB2B",
+];
 
 async function renderContactList() {
-    users = JSON.parse(await getItem('contacts'));
-    let content = '';
-    let currentInitial = '';
+    users = JSON.parse(await getItem("contacts"));
+    let content = "";
+    let currentInitial = "";
 
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
@@ -51,7 +67,9 @@ async function renderContactList() {
         content += /* html */ `
             <div class="contactfield-wrapper" id='painted${i}'>
                 <div class="contactfield" onclick="showDetails(${i}); changeBackgroundColor(${i});">
-                    <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
+                    <div class="initials-logo" style="background-color: ${
+                      user.color
+                    }">${getInitials(user.name)}</div>
                     <div class="contact">
                         <span class= 'name'><p><h3>${user.name}</h3></p></span>
                         <span class='mail'><p><h3>${user.mail}</h3></p></span>
@@ -62,35 +80,33 @@ async function renderContactList() {
         `;
     }
 
-    document.getElementById('contactlist').innerHTML = content;
-
+    document.getElementById("contactlist").innerHTML = content;
 }
 
 async function addContact(e) {
     e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const mail = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
+    const name = document.getElementById("name").value;
+    const mail = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
     const newUser = {
         name,
         mail,
         phone,
-        color: randomColor
+        color: randomColor,
     };
 
     users.push(newUser);
     users.sort((a, b) => a.name.localeCompare(b.name));
-    await setItem('contacts', users);
+    await setItem("contacts", users);
     renderContactList();
     closeOverlay();
-
 }
 
 function getInitials(name) {
-    const parts = name.split(' ');
+    const parts = name.split(" ");
     let initials = parts[0][0];
 
     if (parts.length > 1) {
@@ -101,24 +117,24 @@ function getInitials(name) {
 }
 
 function openOverlay() {
-    document.getElementById('overlay').style.display = 'block';
+    document.getElementById("overlay").style.display = "block";
 }
 
 function closeOverlay() {
-    document.getElementById('overlay').style.display = 'none';
+    document.getElementById("overlay").style.display = "none";
 }
 
 function showDetails(index) {
-    currentlyDisplayedContactIndex = index
+    currentlyDisplayedContactIndex = index;
     const user = users[index];
     const initials = getInitials(user.name);
-    if (screenData.internalWidth == 'mobile') {
-        document.getElementById('leftside').style.display = 'none'
-        document.getElementById('contactsforRespons').style.display = 'flex'
+    if (screenData.internalWidth == "mobile") {
+        document.getElementById("leftside").style.display = "none";
+        document.getElementById("contactsforRespons").style.display = "flex";
     }
-    if (screenData.internalWidth == 'fullscreen') {
-        document.getElementById('leftside').style.display = 'flex'
-        document.getElementById('contactsforRespons').style.display = 'flex'
+    if (screenData.internalWidth == "fullscreen") {
+        document.getElementById("leftside").style.display = "flex";
+        document.getElementById("contactsforRespons").style.display = "flex";
     }
     const detailsContent = /* html */ `
         <div class="contactView">
@@ -126,7 +142,7 @@ function showDetails(index) {
             <div class="contactUser">
                 <h3>${user.name}</h3>
                 <div class="contactsIcons">
-    <div class="iconWrapper" onclick="editContact(${index})">
+    <div class="iconWrapper" onclick="renderEditContact()">
         <img class="icon" src="/assets/img/edit.svg">
         <span class="iconText">Edit</span>
     </div>
@@ -149,19 +165,18 @@ function showDetails(index) {
         </div>
     `;
 
-    document.getElementById('detailsContainer').innerHTML = detailsContent;
-
+    document.getElementById("detailsContainer").innerHTML = detailsContent;
 }
 
 function changeBackgroundColor(i) {
     for (let j = 0; j < users.length; j++) {
-        document.getElementById(`painted${j}`).classList.remove('selected');
+        document.getElementById(`painted${j}`).classList.remove("selected");
     }
-    document.getElementById(`painted${i}`).classList.add('selected');
+    document.getElementById(`painted${i}`).classList.add("selected");
 }
 
 function getColor(name) {
-    const sum = name.split('').reduce((sum, char) => sum + char.charCodeAt(0), 0);
+    const sum = name.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
     const colorIndex = sum % colors.length;
     return colors[colorIndex];
 }
@@ -169,31 +184,31 @@ function getColor(name) {
 function deleteContact(index) {
     users.splice(index, 1);
     renderContactList();
-    document.getElementById('detailsContainer').innerHTML = '';
+    document.getElementById("detailsContainer").innerHTML = "";
     closeOverlay();
 }
 
 function editContact(index) {
     const user = users[index];
-    document.getElementById('editName').value = user.name;
-    document.getElementById('editEmail').value = user.mail;
-    document.getElementById('editPhone').value = user.phone;
-    document.getElementById('editIndex').value = index;
-    const editInitialsLogo = document.getElementById('editInitialsLogo');
+    document.getElementById("editName").value = user.name;
+    document.getElementById("editEmail").value = user.mail;
+    document.getElementById("editPhone").value = user.phone;
+    document.getElementById("editIndex").value = index;
+    const editInitialsLogo = document.getElementById("editInitialsLogo");
     editInitialsLogo.textContent = getInitials(user.name);
     editInitialsLogo.style.backgroundColor = user.color;
-    document.getElementById('editOverlay').style.display = 'block';
+    document.getElementById("editOverlay").style.display = "block";
 }
 
 function updateContact(e) {
     e.preventDefault();
 
-    const index = document.getElementById('editIndex').value;
+    const index = document.getElementById("editIndex").value;
     const user = users[index];
 
-    user.name = document.getElementById('editName').value;
-    user.mail = document.getElementById('editEmail').value;
-    user.phone = document.getElementById('editPhone').value;
+    user.name = document.getElementById("editName").value;
+    user.mail = document.getElementById("editEmail").value;
+    user.phone = document.getElementById("editPhone").value;
 
     // Das Array erneut sortieren, nachdem ein Kontakt bearbeitet wurde
     users.sort((a, b) => a.name.localeCompare(b.name));
@@ -204,7 +219,7 @@ function updateContact(e) {
 }
 
 function closeEditOverlay() {
-    document.getElementById('editOverlay').style.display = 'none';
+    document.getElementById("editOverlay").style.display = "none";
 }
 
 function clearDetails() {
@@ -213,28 +228,34 @@ function clearDetails() {
 
 // Event Listeners
 function addContactsEventlistener() {
-    renderContactList();
 
-    document.getElementById('menu').addEventListener('click', toggleOverlay);
-    document.getElementById('responsiveButton').addEventListener('click', openOverlay);
-    document.getElementById('contactForm').addEventListener('submit', addContact);
-    document.querySelector('.addButton').addEventListener('click', openOverlay);
-    document.getElementById('closeForm').addEventListener('click', closeOverlay);
-    document.getElementById('editForm').addEventListener('submit', updateContact);
-    document.getElementById('closeEditForm').addEventListener('click', closeEditOverlay);
-    document.getElementById('deleteContactBtn').addEventListener('click', function() {
-        const indexToDelete = document.getElementById('editIndex').value;
-        deleteContact(indexToDelete);
-        document.getElementById('editOverlay').style.display = 'none';
-        window.addEventListener('resize', checkWindowSize);
-        document.getElementById('backToContacts').addEventListener('click', () => {
-            document.querySelector('.rightside').style.display = 'none';
+
+    document.getElementById("menu").addEventListener("click", toggleOverlay);
+    document.getElementById("responsiveButton").addEventListener("click", openOverlay);
+    document.getElementById("contactForm").addEventListener("submit", addContact);
+    document.querySelector(".addButton").addEventListener("click", openOverlay);
+    document.getElementById("closeForm").addEventListener("click", closeOverlay);
+    //   document.getElementById("editForm").addEventListener("submit", updateContact);
+    document
+        .getElementById("closeEditForm")
+        .addEventListener("click", closeEditOverlay);
+    document
+        .getElementById("deleteContactBtn")
+        .addEventListener("click", function() {
+            const indexToDelete = document.getElementById("editIndex").value;
+            deleteContact(indexToDelete);
+            document.getElementById("editOverlay").style.display = "none";
+            window.addEventListener("resize", checkWindowSize);
+            document
+                .getElementById("backToContacts")
+                .addEventListener("click", () => {
+                    document.querySelector(".rightside").style.display = "none";
+                });
         });
-    });
 }
 
 function toggleOverlay() {
-    var overlay = document.getElementById('contactOverlay');
+    var overlay = document.getElementById("contactOverlay");
 
     if (overlay.classList.contains('overlay-hidden')) {
         overlay.classList.remove('overlay-hidden');
@@ -243,4 +264,49 @@ function toggleOverlay() {
         overlay.classList.remove('overlay-visible');
         overlay.classList.add('overlay-hidden');
     }
+}
+
+function renderAddContact() {
+
+    document.getElementById('overlay').innerHTML = "";
+
+    content = /* html */ `
+        <div class="overlay" id="overlay">
+            <div class="contacts-overlay-headline">
+                <div class="darkside">
+                    <div class="contacts-overlay-headline">
+                        <img src="/assets/img/logo-white.svg" alt="">
+                            <h2>add contact</h2>
+                            <h3>Tasks are better with a team!</h3>
+                            <span class="blueLineHorizontal"></span>
+                        </div>
+                </div>
+            <div class="form-container">
+                    <div class="overlayPerson">
+                        <img class="person img"src="/assets/img/person.svg">
+                    </div>
+                <div class="inputContainer"> 
+                    <form class="inputArea" id="contactForm">
+                        <input class="inputName" type="text" placeholder="Surname Name" id="name" required>
+                        <input class="inputMail" type="text" placeholder="E-Mail" id="email" required>
+                        <input class="inputPhone" type="text" placeholder="Phone" id="phone" required>
+                        
+                        <div class="buttonArea">
+                        <button class="closeWin" id="closeForm">
+                                        <img src="assets/img/person_add.svg" alt="Close" />
+                    </button>
+                            <button class="cancelBtn"> <span>Cancel</span><img src="/assets/img/close.svg"></button>
+                            <button class="createBtn" type="submit"> <span>Create contact</span><img src="/assets/img/check.png"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        `;
+
+}
+
+function openContactOverlay() {
+    let overlayH2Content = document.getElementById('contacts-overlay-h2');
+    overlayH2Content.innerHTML = /* html */ `
+`;
 }

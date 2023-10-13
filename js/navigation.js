@@ -13,8 +13,8 @@ function navigationMenuClicked(element) {
 }
 
 /**
- * This function open the submenu
+ * This function toggle the submenu
  */
-function openSubmenu() {
+function toggleSubmenu() {
     document.getElementById('headersubmenu').classList.toggle("d-none");
 }
