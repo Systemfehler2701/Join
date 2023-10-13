@@ -165,14 +165,25 @@
     .overlayBlank {
         margin-left: 190px;
     }
+    /*overlay-respons*/
+
+    .contacts-overlay{
+        flex-direction: column;
+        width: 70%;
+        height: 70%;
+    }
+    .darkside {
+        width: 70%;
+        border-radius: 30px 30px 0 0;
+    }
     .contacts-overlay-headline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
         width: 396px;
         height: 760px;
-    }
-    .darkside {
-        width: 100% !important;
-        border-radius: 30px 30px 0 0;
+
     }
     .contacts-overlay-headline img {
         display: none;
@@ -194,6 +205,12 @@
         width: 100%;
         justify-content: center;
     }
+    .contacts-overlay-whiteside-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
     .inputName {
         width: 50%
     }
@@ -203,9 +220,9 @@
     .inputPhone {
         width: 50%
     }
-    .overlayPerson {
+    .contacts-overlay-whiteside-left {
         position: absolute;
-        margin-top: -440px;
+        margin-top: -380px;
     }
     .rightside {
         display: none;

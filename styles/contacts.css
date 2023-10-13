@@ -457,43 +457,6 @@ form button {
     gap: 32px;
 }
 
-.buttonArea {
-    display: flex;
-    margin-top: 20px;
-    margin-right: 34px;
-}
-
-.cancelBtn {
-    height: 56px;
-    width: 126px;
-    border: 1px solid #2a3647;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    font-size: 20px;
-    margin-right: 32px;
-    padding: 16px;
-    cursor: pointer;
-    color: #2a3647;
-    gap: 4px;
-    font-weight: 400;
-    line-height: 24px;
-}
-
-.cancelBtn:hover {
-    background-color: white !important;
-    color: #29abe2;
-    border-color: #29abe2;
-}
-
-.cancelBtn img:hover {
-    background-color: white !important;
-    color: #29abe2;
-    border-color: #29abe2;
-}
-
 .closeWin {
     background-color: #2a3647;
 }
@@ -725,6 +688,52 @@ form button {
     flex-direction: column;
 }
 
+.cancelBtn {
+    height: 56px;
+    width: 126px;
+    border: 1px solid #2a3647;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 20px;
+    margin-right: 32px;
+    padding: 16px;
+    cursor: pointer;
+    color: #2a3647;
+    gap: 4px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.cancelBtn:hover {
+    background-color: white !important;
+    color: #29abe2;
+    border-color: #29abe2;
+}
+
+.cancelBtn img:hover {
+    color: #29abe2;
+    border-color: #29abe2;
+}
+#contacts-overlay-buttons {
+
+    display: flex;
+    margin-top: 20px;
+    margin-right: 110px;
+}
+.goBack {
+    position: absolute;
+    top: 28px;
+    right: 50px;
+    border-style: none;
+    cursor: pointer;
+    padding: 0;
+    background-color: white;
+}
+
+
 #backToContacts {
     display: none;
 }
@@ -761,6 +770,8 @@ form button {
 #menu {
     display: none;
 }
+
+
 
 .arrowBack {
     display: flex;
