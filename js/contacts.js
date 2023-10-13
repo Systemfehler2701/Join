@@ -158,8 +158,6 @@ function changeBackgroundColor(i) {
         document.getElementById(`painted${j}`).classList.remove('selected');
     }
     document.getElementById(`painted${i}`).classList.add('selected');
-
-
 }
 
 function getColor(name) {
@@ -173,7 +171,6 @@ function deleteContact(index) {
     renderContactList();
     document.getElementById('detailsContainer').innerHTML = '';
     closeOverlay();
-    setItem('contacts', users);
 }
 
 function editContact(index) {
@@ -186,7 +183,6 @@ function editContact(index) {
     editInitialsLogo.textContent = getInitials(user.name);
     editInitialsLogo.style.backgroundColor = user.color;
     document.getElementById('editOverlay').style.display = 'block';
-    setItem('contacts', users);
 }
 
 function updateContact(e) {
@@ -206,7 +202,6 @@ function updateContact(e) {
     closeEditOverlay();
     clearDetails();
 }
-
 
 function closeEditOverlay() {
     document.getElementById('editOverlay').style.display = 'none';
