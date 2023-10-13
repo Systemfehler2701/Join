@@ -4,16 +4,14 @@ let isGuestUser = false;
 /**
  * This function checks the value of the input field and changes the image
  */
-function changePasswordImg() {
-  let passwordField = document.getElementById("loginPassword");
-  passwordField.type = "password";
-  if (passwordField.value != "") {
-    document.getElementById("password-img").style.backgroundImage =
-      "url(../assets/img/visibility_off.svg)";
-  } else {
-    document.getElementById("password-img").style.backgroundImage =
-      "url(../assets/img/lock.svg)";
-  }
+function changePasswordImg(element) {
+    let passwordField = element;
+    passwordField.type = "password";
+    if (passwordField.value != "") {
+        passwordField.nextElementSibling.style.backgroundImage = 'url(../assets/img/visibility_off.svg)';
+    } else {
+        passwordField.nextElementSibling.style.backgroundImage = 'url(../assets/img/lock.svg)';
+    }
 }
 
 /**
@@ -21,20 +19,18 @@ function changePasswordImg() {
  *
  * @returns void
  */
-function togglePasswordVisibility() {
-  let passwordField = document.getElementById("loginPassword");
-  if (passwordField.value == "") {
-    return;
-  }
-  if (passwordField.type === "password") {
-    document.getElementById("password-img").style.backgroundImage =
-      "url(../assets/img/visibility.svg)";
-    passwordField.type = "text";
-  } else {
-    document.getElementById("password-img").style.backgroundImage =
-      "url(../assets/img/visibility_off.svg)";
-    passwordField.type = "password";
-  }
+function togglePasswordVisibility(element) {
+    let passwordField = element.previousElementSibling;
+    if (passwordField.value == "") {
+        return;
+    }
+    if (passwordField.type === "password") {
+        element.style.backgroundImage = 'url(../assets/img/visibility.svg)';
+        passwordField.type = "text";
+    } else {
+        element.style.backgroundImage = 'url(../assets/img/visibility_off.svg)';
+        passwordField.type = "password";
+    }
 }
 
 /**

@@ -9,10 +9,10 @@ let startAnimationColor = "animate-start-color";
  * @param {string} rememberedEmail - The email address that the user previously entered and chose to be remembered.
  */
 function renderLoginMask() {
-  var container = document.getElementById("content-app");
-  var rememberedEmail = localStorage.getItem("rememberedEmail");
+    var container = document.getElementById("content-app");
+    var rememberedEmail = localStorage.getItem("rememberedEmail");
 
-  container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
+    container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
     <div class="login-headline">
       <div class="logo ${startAnimationLogo}"></div>
       <div class="headline-right ${startAnimationMask}">
@@ -26,8 +26,8 @@ function renderLoginMask() {
           <h1 id="loginTitle">Log in</h1>
           <div id="loginInput">
             <input type="email" id="loginEmail" class="inputEmailImg" placeholder="Email" />
-            <input id="loginPassword" type="password" placeholder="Password" onkeyup="changePasswordImg()" />
-            <div id="password-img" class="password-img" onclick="togglePasswordVisibility()"></div>
+            <input class="loginPassword" id="loginPassword" type="password" placeholder="Password" onkeyup="changePasswordImg(this)" />
+            <div  class="password-img" onclick="togglePasswordVisibility(this)"></div>
           </div>
           <div id="loginRememberMe">
             <input type="checkbox" id="loginRemember" onclick="rememberMe()"/>
@@ -48,7 +48,7 @@ function renderLoginMask() {
       
       
 
-  startAnimationLogo = "";
-  startAnimationMask = "";
-  startAnimationColor = "";
+    startAnimationLogo = "";
+    startAnimationMask = "";
+    startAnimationColor = "";
 }
