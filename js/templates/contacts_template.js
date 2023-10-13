@@ -43,14 +43,36 @@ function renderContacts(element) {
 </div>
     </div>
 
+    <  <!-- Overlay -->
 
+    <div class="overlay">
+            <div class="containerAll">
+                <div class="darkside">
+                    <div class="image-to-hide">
+                        <span class="blueLineHorizontal"></span>
+                    </div>
+                </div>
+                        <div class="form-container">
+                                
+                                    
+                        </div>    
+                            <div class="inputContainer">
+                                <form class="inputArea">
+                                    <input type="hidden">
+                                                <input class="inputName" type="text" id="editName" required>  
+                                                <input class="inputMail" type="email" id="editEmail" required>           
+                                                <input class="inputPhone" type="tel" id="editPhone" required>
+                                        <div class="buttonArea">
+                                            <button></button>
+                                            <button></button>
+                                            <button></button>
+                                </form>  
+                                        </div>
+                            </div>
+                        
+            </div>    
+    </div>
 
-    <  <!-- Overlay neu -->
-    <div class="overlay" id="overlay"> </div>
-
-    <div class="overlay" id="editOverlay"></div>
-        
-
-       `;
+    `;
     addContactsEventlistener();
 }
