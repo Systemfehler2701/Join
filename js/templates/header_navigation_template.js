@@ -75,7 +75,7 @@ function renderHeaderProfile() {
         <div id="help-link">
             <div onclick="renderHelp()"><img src="/assets/img/help.svg"></div>
         </div>
-        <div onclick="openSubmenu()" id="user-profile-initials">${currentUser.name.split(" ").map((element) => element[0]).join("")}</div>
+        <div onclick="toggleSubmenu()" id="user-profile-initials">${currentUser.name.split(" ").map((element) => element[0]).join("")}</div>
     </div>`;
     }
 }
