@@ -355,6 +355,7 @@ function task_colorPriorityButtons(x) {
   document.getElementById(`Prio2_img`).classList.remove("whiteFilterImg");
   document.getElementById(`Prio${x}_img`).classList.add("whiteFilterImg");
 }
+
 /**
  * subtasks have a value corresponding to whether or not they are finished.
  * finished subtasks have the number 1, unfinished ones have the number 0
@@ -375,6 +376,7 @@ function task_CheckFinishedSubtasks(list, i) {
   }
 }
 
+
 /**
  * adds the different categories as option elements from the categories array. The index will lter determine the category
  *
@@ -388,6 +390,7 @@ function task_renderCategoryOptions() {
         `;
   }
 }
+
 
 /**
  * Loops through contacts to render all assignee options for the assignee selector and renders them
@@ -427,60 +430,6 @@ function task_renderAssigneeList() {
   }
 }
 
-/**
- * Opens the assignee option overlay, displays the list of assignees and un-flips the selector button.
- * This function also prevents the click event from propagating to any parent elements to avoid triggering task_closeOverlay().
- *
- * @function
- * @param {Event} [event] - The click event object, if available.
- */
-function task_openOverlay(event) {
-  if (event) event.stopPropagation();
-
-  let selector = document.getElementById("assigneeOptionContainer");
-  let selectorButton = document.getElementById("assignmentSelectButton");
-
-  // Displays the assignee options and adds a flip class to the select button
-  selector.style.display = "flex";
-  selectorButton.classList.add("flip");
-  task_renderAssigneeOptions();
-}
-
-/**
- * Toggles the visibility of the assignee option overlay.
- * If the overlay is currently hidden or not set, it will display the overlay and flip the selector button.
- * Otherwise, it hides the overlay and un-flips the selector button.
- * This function also prevents the click event from propagating to any parent elements to avoid triggering task_openOverlay(event).
- *
- * @function
- * @param {Event} [event] - The click event object, if available.
- */
-function task_closeOverlay(event, clickedElement) {
-  if (event) event.stopPropagation();
-  let selector = document.getElementById("assigneeOptionContainer");
-  let selectorButton = document.getElementById("assignmentSelectButton");
-
-  if (selector.style.display === "none" && clickedElement == selectorButton) {
-    // Displays the assignee options and adds a flip class to the select button
-    selector.style.display = "flex";
-    selectorButton.classList.add("flip");
-    task_renderAssigneeOptions();
-  } else {
-    // Hides the assignee options and removes the flip class from the select button
-    selector.style.display = "none";
-    selectorButton.classList.remove("flip");
-    task_renderAssigneeOptions();
-  }
-}
-
-/**
- * This function prevents the click event from propagating to any parent elements to avoid triggering task_closeOverlay().
- *
- * @param {event} e
- */
-function preventClose(e) {
-  e.stopPropagation();
-}
 
 /**
  * simple search function to find contacts to assign.
@@ -540,6 +489,63 @@ function task_unassign(index) {
   };
   task_renderAssigneeList();
 }
+
+
+/**
+ * Opens the assignee option overlay, displays the list of assignees and un-flips the selector button.
+ * This function also prevents the click event from propagating to any parent elements to avoid triggering task_closeOverlay().
+ *
+ * @function
+ * @param {Event} [event] - The click event object, if available.
+ */
+function task_openOverlay(event) {
+  if (event) event.stopPropagation();
+
+  let selector = document.getElementById("assigneeOptionContainer");
+  let selectorButton = document.getElementById("assignmentSelectButton");
+
+  // Displays the assignee options and adds a flip class to the select button
+  selector.style.display = "flex";
+  selectorButton.classList.add("flip");
+  task_renderAssigneeOptions();
+}
+
+/**
+ * Toggles the visibility of the assignee option overlay.
+ * If the overlay is currently hidden or not set, it will display the overlay and flip the selector button.
+ * Otherwise, it hides the overlay and un-flips the selector button.
+ * This function also prevents the click event from propagating to any parent elements to avoid triggering task_openOverlay(event).
+ *
+ * @function
+ * @param {Event} [event] - The click event object, if available.
+ */
+function task_closeOverlay(event, clickedElement) {
+  if (event) event.stopPropagation();
+  let selector = document.getElementById("assigneeOptionContainer");
+  let selectorButton = document.getElementById("assignmentSelectButton");
+
+  if (selector.style.display === "none" && clickedElement == selectorButton) {
+    // Displays the assignee options and adds a flip class to the select button
+    selector.style.display = "flex";
+    selectorButton.classList.add("flip");
+    task_renderAssigneeOptions();
+  } else {
+    // Hides the assignee options and removes the flip class from the select button
+    selector.style.display = "none";
+    selectorButton.classList.remove("flip");
+    task_renderAssigneeOptions();
+  }
+}
+
+/**
+ * This function prevents the click event from propagating to any parent elements to avoid triggering task_closeOverlay().
+ *
+ * @param {event} e
+ */
+function preventClose(e) {
+  e.stopPropagation();
+}
+
 
 /**
  * resets all error messages by making them invisible

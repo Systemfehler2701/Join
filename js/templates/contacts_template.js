@@ -49,10 +49,10 @@ function renderContacts(element) {
                 <div class="darkside">
                     <div class="image-to-hide">
                         <img src="/assets/img/logo-white.svg" alt="">
-                            <h2>add contact</h2>
-                            <h3>Tasks are better with a team!</h3>
-                            <span class="blueLineHorizontal"></span>
-                        </div>
+                        <h2>add contact</h2>
+                        <h3>Tasks are better with a team!</h3>
+                        <span class="blueLineHorizontal"></span>
+                    </div>
                 </div>
             <div class="form-container">
                     <div class="overlayPerson">
@@ -105,6 +105,7 @@ function renderContacts(element) {
                             </div>
                         </div>
                 </div>
-        </div>`;
+        </div>
+</div>`;
     addContactsEventlistener();
 }
