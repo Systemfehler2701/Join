@@ -159,22 +159,6 @@
     background-color: #29abe2;
 }
 
-.contacts-overlay {
-    transform: translate(-50%, -50%);
-    animation: slideInContacts 0.8s ease-in-out;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    color: white;
-    height: 550px;
-    border-radius: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1212px;
-    height: 592px;
-}
-
 #closeForm {
     display: flex;
     justify-content: center;
@@ -228,62 +212,6 @@ form button {
     animation: slideIn 1s forwards;
 }
 
-.darkside {
-    background-color: #2a3647;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 467px;
-    height: 594px;
-}
-
-.darkside img {
-    height: 66.48px;
-    width: 55.6px;
-}
-
-.darkside h2 {
-    font-weight: 700 !important;
-    font-size: 61px;
-    line-height: 73.2px;
-}
-
-.contacts-overlay-content {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1000;
-    right: -50%;
-    overflow-x: hidden;
-    transition: right 0.5s ease-in-out;
-    padding: 60px 0 0 25px;
-    color: white;
-    transform: translateX(200%);
-    animation: slideIn 1s forwards;
-}
-
-.editOverlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1000;
-    right: -50%;
-    overflow-x: hidden;
-    transition: right 0.5s ease-in-out;
-    padding: 60px 0 0 25px;
-    color: white;
-    transform: translateX(200%);
-    animation: slideIn 1s forwards;
-}
-
 .viewall {
     display: flex;
 }
@@ -293,21 +221,6 @@ form button {
     gap: 16px;
     align-items: center;
     margin-bottom: 32px;
-}
-
-.whiteside {
-    display: flex;
-    left: unset;
-    padding: 0;
-    transition: right 0.4s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    height: 570px;
-    width: 50%;
-    max-width: 1212px;
 }
 
 #contactlist .selected .contactfield {
@@ -644,13 +557,6 @@ form button {
     margin: 0;
 }
 
-.blueLineHorizontal {
-    height: 0px;
-    border: 3px solid #29abe2;
-    border-radius: 3px;
-    width: 74px;
-}
-
 .contactInformation h3 {
     font-weight: 400;
     font-size: 20px;
@@ -689,19 +595,130 @@ form button {
     margin: 0;
 }
 
-.contacts-overlay-headline h3 {
+
+/*overlay*/
+
+.contacts-overlay-content {
+    background-color: #0000003b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    right: -50%;
+    overflow-x: hidden;
+    transition: right 0.5s ease-in-out;
+    padding: 60px 0 0 25px;
+    color: white;
+    transform: translateX(200%);
+    animation: slideIn 1s forwards;
+}
+
+.contacts-overlay {
+    transform: translate(-50%, -50%);
+    animation: slideInContacts 0.8s ease-in-out;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    height: 550px;
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1212px;
+    height: 592px;
+}
+
+.darkside {
+    background-color: #2a3647;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    height: 494px;
+    padding: 50px;
+}
+
+#contacts-overlay-headline {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-left: 1.5rem;
+    flex-direction: column;
+    margin: 0;
+}
+
+#contacts-overlay-headline h2 {
+    font-weight: 700 !important;
+    font-size: 61px;
+    line-height: 73.2px;
+}
+
+#contacts-overlay-headline h3 {
     font-weight: 400;
     line-height: 32.4px;
     font-size: 27px;
     margin: 0;
 }
 
-.contacts-overlay-headline {
+#contacts-overlay-headline img {
+    height: 66.48px;
+    width: 55.6px;
+}
+
+.blue-line-horizontal {
+    height: 0px;
+    border: 3px solid #29abe2;
+    border-radius: 3px;
+    width: 74px;
+}
+
+.whiteside {
+    left: unset;
+    padding: 0;
+    transition: right 0.4s ease-in-out;
     display: flex;
-    justify-content: flex-start;
-    margin-left: 1.5rem;
-    flex-direction: column;
-    margin: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    height: 470px;
+    width: 65%;
+    padding: 50px;
+}
+
+.contacts-overlay-whiteside-left {
+    width: 30%;
+}
+
+.contacts-overlay-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contacts-overlay-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.contacts-overlay-whiteside-right {
+    width: 70%;
+}
+
+#contacts-overlay-buttons {
+    display: flex;
+    gap: 15px;
 }
 
 .inputContainer {
@@ -736,16 +753,6 @@ form button {
 
 
 /* Optional: Styling für Ihren Menü-Button */
-
-#overlay {
-    position: fixed;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    transition: bottom 0.5s ease-in-out;
-}
 
 #overlay.overlay-visible {
     bottom: 0;

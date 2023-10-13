@@ -36,9 +36,38 @@ function renderContacts(element) {
         <img class="icon" src="/assets/img/edit.svg">
         <span class="iconText">Edit</span>
     </div>
-    <div class="iconWrapper" onclick="deleteContact(currentlyDisplayedContactIndex)">
-        <img class="icon" src="/assets/img/delete.svg">
-        <span class="iconText">Delete</span>
+    <!-- Overlay neu -->
+<div class="contacts-overlay-content" id="overlay"> 
+    <div class="contacts-overlay">
+        <div class="darkside">
+            <div id="contacts-overlay-headline"> 
+                <img src="../assets/img/logo-white.svg">
+                <h2 id="contacts-overlay-h2">add contact</h2>
+                <h3 id="contacts-overlay-h3">Tasks are better with a team!</h3>
+                <span class="blue-line-horizontal"></span>               
+            </div>
+        </div>
+        <div class="whiteside">
+            <div class="contacts-overlay-whiteside-left">
+                <div class="contacts-overlay-icon">
+                    <img src="../assets/img/person2.svg">
+                </div>
+            </div>
+            <div class="contacts-overlay-whiteside-right">
+                <div class="contacts-overlay-close"><img src=""></div>
+                <div class="inputContainer">
+                    <form class="inputArea" onsubmit="">
+                        <input class="inputName" type="text" id="editName" required>  
+                        <input class="inputMail" type="email" id="editEmail" required>           
+                        <input class="inputPhone" type="tel" id="editPhone" required>
+                        <div id="contacts-overlay-buttons">
+                            <button></button>
+                            <button></button>
+                        </div>    
+                    </form>  
+                </div>
+            </div>
+        </div>    
     </div>
 </div>
     </div>

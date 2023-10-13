@@ -366,7 +366,8 @@ function board_subTaskProgress(arrayAsString, i) {
 }
 
 /**
- * loops through the assignees-numbers array inside the task and renders the users at the index that the assigneenumber respresnts into the small board card
+ * loops through the assignees-numbers array inside the task and renders the users at the index that the assigneenumber respresnts into the small board card.
+ * If/else to make sure no impossible numbers got assigned
  *
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  * @param {number} i This is the index of the rendered task in its respective array
@@ -378,13 +379,15 @@ function board_displayAssignees(arrayAsString, i) {
     for (let j = 0; j < assigned.length; j++) {
       const assigneeNumber = assigned[j];
       let user = users[assigneeNumber];
-      document.getElementById(
-        `assignees${arrayAsString}${i}`
-      ).innerHTML += /*html*/ `
+      if (assigneeNumber <= users.length) {
+        document.getElementById(
+          `assignees${arrayAsString}${i}`
+        ).innerHTML += /*html*/ `
     <div class="initials-logo" style="background-color: ${
       user.color
     }">${getInitials(user.name)}</div>
   `;
+      }
     }
   }
 }
