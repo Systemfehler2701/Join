@@ -5,7 +5,7 @@ function renderContacts(element) {
     content.innerHTML = /* html */ `
     <div id="leftside" class="contact-leftside">
         <div class="contact-left-button">
-            <button class="addButton">
+            <button class="addButton" onclick="openContactOverlay()">
                 <span>Add new Contact</span>
                 <img src="assets/img/person_add.svg">
             </button>
@@ -41,38 +41,37 @@ function renderContacts(element) {
         </div>
     </div>
     <!-- Overlay neu -->
-    <div class="overlay" id="overlay"> </div>
-
-    <!-- Overlay -->
-
-    <div class="overlay">
-            <div class="containerAll">
-                <div class="darkside">
-                    <div class="image-to-hide">
-                        <span class="blueLineHorizontal"></span>
-                    </div>
-                </div>
-                        <div class="form-container">
-                                
-                                    
+<div class="contacts-overlay-content" id="overlay"> 
+    <div class="contacts-overlay">
+        <div class="darkside">
+            <div class="contacts-overlay-headline">
+                <img src="../assets/img/logo-white.svg">
+                <h2 id="contacts-overlay-h2"></h2>
+                <h3 id="contacts-overlay-h3"></h3>
+                <span class="blueLineHorizontal"></span>
+            </div>
+        </div>
+        <div class="whiteside">
+            <div class="contacts-overlay-whiteside-left">
+                <img src="">
+            </div>
+            <div class="contacts-overlay-whiteside-right">
+                <div class="contacts-overlay-close"><img src=""></div>
+                <div class="inputContainer">
+                    <form class="inputArea" onsubmit="">
+                        <input class="inputName" type="text" id="editName" required>  
+                        <input class="inputMail" type="email" id="editEmail" required>           
+                        <input class="inputPhone" type="tel" id="editPhone" required>
+                        <div id="contacts-overlay-buttons">
+                            <button></button>
+                            <button></button>
                         </div>    
-                            <div class="inputContainer">
-                                <form class="inputArea">
-                                    <input type="hidden">
-                                                <input class="inputName" type="text" id="editName" required>  
-                                                <input class="inputMail" type="email" id="editEmail" required>           
-                                                <input class="inputPhone" type="tel" id="editPhone" required>
-                                        <div class="buttonArea">
-                                            <button></button>
-                                            <button></button>
-                                            <button></button>
-                                </form>  
-                                        </div>
-                            </div>
-                        
-            </div>    
+                    </form>  
+                </div>
+            </div>
+        </div>    
     </div>
-
+</div>
     `;
-    addContactsEventlistener();
+    renderContactList();
 }
