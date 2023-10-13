@@ -43,7 +43,10 @@ function renderLoginMask() {
       <div class="legalNotice ${startAnimationMask}">
       <a href="privacy_policy.html" target="_blank">Privacy Policy</a>
       <a href="legal_notice.html" target="_blank">Legal Notice</a>
+      <div id="loginMsgBox">Benutzer oder Passwort falsch. Überprüfen Sie Ihre Eingabe.</div>
       </div>`;
+      
+      
 
   startAnimationLogo = "";
   startAnimationMask = "";
