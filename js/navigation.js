@@ -8,12 +8,12 @@ function navigationMenuClicked(element) {
     if (activeElement != undefined) {
         activeElement.classList.remove('active');
     }
-    if(element != undefined)
+    if (element != undefined)
         element.classList.add('active');
 }
 
 /**
- * This function open/close the submenu
+ * This function open the submenu
  */
 function openSubmenu() {
     document.getElementById('headersubmenu').classList.toggle("d-none");

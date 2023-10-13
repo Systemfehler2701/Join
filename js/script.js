@@ -60,17 +60,21 @@ async function getAppData() {
     await board_loadFromStorage("done");
 }
 
+/**
+ * Loads the users from storage and returns them as an object.
+ *
+ * @return {Object} The users loaded from storage.
+ */
 async function loadUsers() {
     try {
         const storedUsersJSON = await getItem("users");
-        let regUsers;
         if (storedUsersJSON) {
             regUsers = JSON.parse(storedUsersJSON);
         } else {
             regUsers = {};
         }
     } catch (e) {
-        console.error("Load users error:", e);
+       // console.error("Load users error:", e);
         return {};
     }
 }

@@ -73,3 +73,8 @@ function getDeadlineDate() {
     const timeOptions = { month: "long", day: "numeric", year: "numeric" }
     return new Date(earliestDate).toLocaleString("en", timeOptions);
 }
+
+function openBoard() {
+    let element = document.getElementById("navBoardButton");
+    renderBoard(element);
+}

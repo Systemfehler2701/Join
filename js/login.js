@@ -96,6 +96,8 @@ function logInGuest() {
  */
 function logOut() {
     currentUser = null;
+    splashAnimation = "animate-fade-in";
+    splashAnimation2 = "animate-fade-out";
     app();
 }
 

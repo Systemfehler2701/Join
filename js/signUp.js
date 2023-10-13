@@ -73,7 +73,7 @@ async function register() {
     regUsers[signUpEmail.value] = newUser;
 
     await setItem("users", JSON.stringify(regUsers));
-
+    
     msgSignUp();
 
     setTimeout(function () {

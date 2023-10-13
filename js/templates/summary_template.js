@@ -1,4 +1,5 @@
-let splashAnimation = "animate-welcome";
+let splashAnimation = "animate-fade-in";
+let splashAnimation2 = "animate-fade-out";
 
 ///SUMMARY TEMPLATES///
 
@@ -14,6 +15,7 @@ function renderSummary(element) {
     }
     renderSummaryContent();
     splashAnimation = "animate-done";
+    splashAnimation2 = "animate-done";
 }
 
 /**
@@ -22,7 +24,7 @@ function renderSummary(element) {
 function renderSummaryContent() {
     let content = document.getElementById("content");
     content.innerHTML = /* html */ `
-    ${renderSummaryWelcome("mobile")}
+    ${renderSummaryWelcome("mobile "+splashAnimation2)}
     <div class="summary-content ${splashAnimation}">
         ${renderSummaryHeader()}
         <div class="summary-info">
@@ -66,7 +68,7 @@ function renderSummaryHeader() {
  */
 function renderSummaryTodo() {
     return /* html */ `
-    <div class="summary-todo">
+    <div class="summary-todo" onclick = "openBoard()">
         ${renderSummaryTodoSvg()}
         <div>
             <span id="todo-amount">${taskLists.toDo.length}</span>
@@ -90,7 +92,7 @@ function renderSummaryTodoSvg() {
 
 function renderSummaryDone() {
     return /* html */ `
-    <div class="summary-done">
+    <div class="summary-done" onclick = "openBoard()">
         ${renderSummaryDoneSvg()}
         <div>
             <span id="done-amount">${taskLists.done.length}</span>
@@ -109,7 +111,7 @@ function renderSummaryDoneSvg() {
 
 function renderSummaryUpcoming() {
     return /* html */ `
-    <div class="summary-line2">
+    <div class="summary-line2" onclick = "openBoard()">
     <div class="summary-upcoming">
         <div class="upcoming-amount">
             <div class="upcoming-img"></div>
@@ -131,7 +133,7 @@ function renderSummaryUpcoming() {
 
 function renderSummaryBoard() {
     return /* html */ `
-    <div class="summary-board">
+    <div class="summary-board" onclick = "openBoard()">
         <span id="board-amount">${taskLists.inProgress.length + taskLists.toDo.length + taskLists.feedback.length}</span>
         <p>Tasks in Board</p>
     </div>`;
@@ -139,7 +141,7 @@ function renderSummaryBoard() {
 
 function renderSummaryProgress() {
     return /* html */ `
-    <div class="summary-progress">
+    <div class="summary-progress" onclick = "openBoard())">
         <span id="progress-amount">${taskLists.inProgress.length}</span>
         <p>Tasks in Progress</p>
     </div>`;
@@ -147,7 +149,7 @@ function renderSummaryProgress() {
 
 function renderSummaryFeedback() {
     return /* html */ `
-    <div class="summary-feedback">
+    <div class="summary-feedback" onclick = "openBoard()">
         <span id="feedback-amount">${taskLists.feedback.length}</span>
         <p>Awaiting Feedback</p>
     </div>`;
