@@ -12,7 +12,7 @@
     display: flex;
     width: -webkit-fill-available;
     justify-content: center;
-    height: 70vh;
+    height: 85vh;
     align-items: center;
 }
 
@@ -59,7 +59,6 @@
     justify-content: center;
     flex-direction: column;
     margin-bottom: 5px;
-    gap: 25px;
 }
 
 #loginInput input {
@@ -69,9 +68,9 @@
     flex-direction: column;
     border-radius: 10px;
     border: 1px solid var(--border);
-    gap: 32px;
     width: 422px;
     height: 48px;
+    margin-bottom: 25px;
 }
 
 #loginInput input:focus {
@@ -84,6 +83,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    margin-top: -15px;
 }
 
 #loginCheckbox a {
@@ -187,7 +187,7 @@
     Line-height: 100px;
     width: 350px;
     margin: auto;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
     border-bottom: none;
     background: linear-gradient(#29ABE2, #29ABE2) bottom
         /* left or right or else */
@@ -202,7 +202,6 @@
     background-image: url(../assets/img/lock.svg);
     background-repeat: no-repeat;
     width: 28px;
-    height: 25px;
     cursor: pointer;
 }
 
@@ -246,7 +245,6 @@
     flex-direction: row;
     margin-bottom: 20px;
     margin-left: 50px;
-    margin-top: -30px;
 }
 
 .inputNameSignUp {
