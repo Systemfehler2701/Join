@@ -46,62 +46,73 @@ const colors = [
 ];
 
 async function renderContactList() {
-  users = JSON.parse(await getItem("contacts"));
-  let userBackend = null;
+  // Rufe die Benutzerdaten aus dem Storage ab, wobei die E-Mail-Adresse als Schlüssel verwendet wird
+  const contactsJSON = await getItem("contacts");
+  const contacts = JSON.parse(contactsJSON);
+
   let content = "";
   let currentInitial = "";
 
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i];
-    const userInitial = user.name[0].toUpperCase();
+  for (const email in contacts) {
+    if (contacts.hasOwnProperty(email)) {
+      const user = contacts[email];
+      const userInitial = user.name[0].toUpperCase();
 
-    user.color = getColor(user.name);
+      user.color = getColor(user.name);
 
-    if (!user.color) {
-      user.color = colors[Math.floor(Math.random() * colors.length)];
-    }
+      if (!user.color) {
+        user.color = colors[Math.floor(Mathrandom() * colors.length)];
+      }
 
-    if (userInitial !== currentInitial) {
-      content += `<div class="alphabet-section" id="alphabet-${userInitial}">${userInitial}</div>`;
-      currentInitial = userInitial;
-    }
+      if (userInitial !== currentInitial) {
+        content += `<div class="alphabet-section" id="alphabet-${userInitial}">${userInitial}</div>`;
+        currentInitial = userInitial;
+      }
 
-    content += /* html */ `
-            <div class="contactfield-wrapper" id='painted${i}'>
-                <div class="contactfield" onclick="showDetails(${i}); changeBackgroundColor(${i});">
-                    <div class="initials-logo" style="background-color: ${
-                      user.color
-                    }">${getInitials(user.name)}</div>
-                    <div class="contact">
-                        <span class= 'name'><p><h3>${user.name}</h3></p></span>
-                        <span class='mail'><p><h3>${user.mail}</h3></p></span>
-                    </div>
-                </div>
+      content += /* html */ `
+          <div class="contactfield-wrapper" id='painted${email}'>
+            <div class="contactfield" onclick="showDetails('${email}'); changeBackgroundColor('${email}');">
+              <div class="initials-logo" style="background-color: ${
+                user.color
+              }">${getInitials(user.name)}</div>
+              <div class="contact">
+                <span class= 'name'><p><h3>${user.name}</h3></p></span>
+                <span class='mail'><p><h3>${email}</h3></p></span>
+              </div>
             </div>
-            
+          </div>
         `;
+    }
   }
 
   document.getElementById("contactlist").innerHTML = content;
 }
 
 async function addContact() {
-  let getContacts = JSON.parse(await getItem("contacts"));
-  const addUser = {
-    name: document.getElementById("editName").value,
-    mail: document.getElementById("editEmail").value,
-    phone: document.getElementById("editPhone").value,
-    // color: document.getElementById("color").value,
-  };
+  const userEmail = document.getElementById("editEmail").value;
+  const getContactsJSON = await getItem("contacts");
+  const getContacts = JSON.parse(getContactsJSON || "{}");
 
-  getContacts.push(addUser)
+  // Überprüfen, ob der Kontakt bereits existiert
+  if (getContacts[userEmail]) {
+    console.log(`Kontakt mit der E-Mail ${userEmail} existiert bereits.`);
+  } else {
+    const addUser = {
+      name: document.getElementById("editName").value,
+      mail: userEmail,
+      phone: document.getElementById("editPhone").value,
+      // color: document.getElementById("color").value,
+    };
 
-  // name.sort((a, b) => a.name.localeCompare(b.name));
-  await setItem("contacts", getContacts);
-  renderContactList();
-  closeOverlay();
+    // set Key to mail
+    getContacts[userEmail] = addUser;
+
+    await setItem("contacts", JSON.stringify(getContacts));
+
+    renderContactList();
+    closeOverlay();
+  }
 }
-
 function getInitials(name) {
   const parts = name.split(" ");
   let initials = parts[0][0];
@@ -306,11 +317,24 @@ function goBackToContacts() {
   renderContacts();
 }
 
+// only for testing //
 async function hardCodeUsers() {
-  let hardCore;
-  hardCore = JSON.stringify(users);
+  // Erstelle ein leeres Objekt, um die Benutzerdaten zu speichern
+  const userObject = {};
 
-  await setItem("contacts", hardCore);
-    //renderContactList();
-  // closeOverlay();
+  for (const user of users) {
+    // Verwende die E-Mail-Adresse als Schlüssel
+    userObject[user.mail] = user;
+  }
+
+  // Konvertiere das Benutzerobjekt in ein JSON-String
+  const userObjectJSON = JSON.stringify(userObject);
+
+  // Setze das "contacts"-Objekt im Storage
+  await setItem("contacts", userObjectJSON);
+}
+
+// delete All contacts
+async function deleteAllContacts() {
+  setItem("contacts", []);
 }
