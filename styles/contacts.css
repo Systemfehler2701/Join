@@ -789,9 +789,6 @@ form button {
     display: none;
 }
 
-.overlay-hidden {}
-
-
 /* Optional: Styling für Ihren Menü-Button */
 
 #overlay.overlay-visible {
