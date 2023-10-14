@@ -142,7 +142,7 @@ function showDetails(index) {
             <div class="contactUser">
                 <h3>${user.name}</h3>
                 <div class="contactsIcons">
-    <div class="iconWrapper" onclick="renderEditContact()">
+    <div class="iconWrapper" onclick="renderEditContact(${index})">
         <img class="icon" src="/assets/img/edit.svg">
         <span class="iconText">Edit</span>
     </div>
@@ -226,34 +226,6 @@ function clearDetails() {
     document.getElementById("detailsContainer").innerHTML = "";
 }
 
-// Event Listeners
-function addContactsEventlistener() {
-
-
-    document.getElementById("menu").addEventListener("click", toggleOverlay);
-    document.getElementById("responsiveButton").addEventListener("click", openOverlay);
-    document.getElementById("contactForm").addEventListener("submit", addContact);
-    document.querySelector(".addButton").addEventListener("click", openOverlay);
-    document.getElementById("closeForm").addEventListener("click", closeOverlay);
-    //   document.getElementById("editForm").addEventListener("submit", updateContact);
-    document
-        .getElementById("closeEditForm")
-        .addEventListener("click", closeEditOverlay);
-    document
-        .getElementById("deleteContactBtn")
-        .addEventListener("click", function() {
-            const indexToDelete = document.getElementById("editIndex").value;
-            deleteContact(indexToDelete);
-            document.getElementById("editOverlay").style.display = "none";
-            window.addEventListener("resize", checkWindowSize);
-            document
-                .getElementById("backToContacts")
-                .addEventListener("click", () => {
-                    document.querySelector(".rightside").style.display = "none";
-                });
-        });
-}
-
 function toggleOverlay() {
     document.getElementById('contactOverlay').style.animation = 'slideIn 1s forwards';
 }
@@ -273,23 +245,26 @@ function renderAddContact() {
     let overlayButtons = document.getElementById('contacts-overlay-buttons');
     overlayButtons.innerHTML = `<button class="cancelBtn">Cancel<img src="assets/img/close.svg"></button>
     <button class="createBtn">Create Contact<img src="assets/img/check.png"></button>`;
-
 }
 
-function renderEditContact() {
+function renderEditContact(index) {
     openContactOverlay();
     let overlayH2Content = document.getElementById('contacts-overlay-h2');
     overlayH2Content.innerHTML = `Edit contact`;
     let overlayH3Content = document.getElementById('contacts-overlay-h3');
     overlayH3Content.innerHTML = ``;
-    let overlayIcon = document.getElementById('contacts-overlay-icon-border');
-    overlayIcon.innerHTML = `
-    <div class="contacts-overlay-icon">
-        <img src="../assets/img/person2.svg">
-    </div>`;
+    const user = users[index];
+    const userInitials = getInitials(user.name);
+    let overlayIcon = document.getElementById('contacts-overlay-whiteside-left');
+    overlayIcon.innerHTML = /*html*/ `
+        <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
     let overlayButtons = document.getElementById('contacts-overlay-buttons');
     overlayButtons.innerHTML = `<button class="cancelBtn">Delete</button>
-    <button class="createBtn">Save<img src="assets/img/check.png"></button>`;
+    <button class="createBtn" onclick="saveEditedContact(${index})">Save<img src="assets/img/check.png"></button>`;
+    
+    document.getElementById("editName").value = user.name;
+    document.getElementById("editEmail").value = user.mail;
+    document.getElementById("editPhone").value = user.phone;
 
 }
 
@@ -300,3 +275,39 @@ function openContactOverlay() {
 function closeContactOverlay() {
     document.getElementById('overlay').style.animation = 'slideOut 1s forwards';
 }
+
+function saveEditedContact(index) {
+    // Erhalten Sie die ursprünglichen Benutzerdaten
+    const originalUser = users[index];
+
+    // Erhalten Sie die aktualisierten Benutzerdaten
+    const updatedUser = {
+        name: document.getElementById("editName").value,
+        mail: document.getElementById("editEmail").value,
+        phone: document.getElementById("editPhone").value,
+        // Beibehalten der ursprünglichen Farbe
+        color: originalUser.color,
+    };
+
+    // Aktualisieren Sie den Benutzer im users Array
+    users[index] = updatedUser;
+
+    // Aktualisieren Sie die Kontaktliste im UI
+    renderContactList();
+
+    // Schließen Sie das Bearbeitungs-Overlay
+    closeContactOverlay();
+
+    // Wählen Sie den bearbeiteten Kontakt aus
+    changeBackgroundColor(index);
+
+    // Zeigen Sie die aktualisierten Details an
+    showDetails(index);
+}
+
+function goBackToContacts() {
+    renderContacts();
+}
+
+
+

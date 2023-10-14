@@ -11,13 +11,16 @@ function renderContacts(element) {
             </button>
         </div>
         <div class="viewall scroll">
-            <button id="responsiveButton"><img src="assets/img/person_add.svg"></button>
+            <button id="responsiveButton"><img src="assets/img/person_add.svg" onclick="renderAddContact()"></button>
             <div style="width: 100%" id="contactlist"></div>
         </div>
     </div>
+  
+
+            
     <div class="rightside" id="contactsforRespons">
-        <div class="arrowBack">
-            <img src="/assets/img/arrow-left-line.svg" alt="Back" id="backArrow" style="display:none;">
+        <div onclick="goBackToContacts()" class="arrowBack">
+        <img src="/assets/img/arrow-left-line.svg" alt="Back" id="backArrow">
         </div>
         <div class="contacts-headline">
             <h1>Contacts</h1>
@@ -39,6 +42,7 @@ function renderContacts(element) {
                 <span class="iconText">Delete</span>
             </div>
         </div>
+    </div>
     </div>
     <!-- Overlay neu -->
 <div class="contacts-overlay-content" id="overlay"> 
@@ -68,9 +72,10 @@ function renderContacts(element) {
                             <input class="inputName" type="text"placeholder="Surname Name" id="editName" required>  
                             <input class="inputMail" type="email"placeholder="Email" id="editEmail" required>           
                             <input class="inputPhone" type="tel"placeholder="Phone" id="editPhone" required>
+                        </form>  
                             <div id="contacts-overlay-buttons">                                
                             </div>    
-                        </form>  
+                         
                     </div>
                 </div>
             </div>    
