@@ -61,8 +61,6 @@ async function renderSignUpMask() {
  */
 async function register() {
   try {
-    // signUpBtn.disabled = true;
-
     if (signUpPw.value !== signUpPw2.value) {
       msgSignUpAlert();
     }

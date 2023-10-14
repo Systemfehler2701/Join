@@ -1,70 +1,72 @@
-let users = [{
-        name: "Elon Musk",
-        mail: "elonthegreatest@twitter.to",
-        phone: "123-456-7890",
-    },
-    {
-        name: "Jan Woll",
-        mail: "woll.jan@berlin",
-        phone: "123-456-7890",
-    },
-    {
-        name: "Stefanie Hinze",
-        mail: "stefanine.hinze@google.de",
-        phone: "123-456-7890",
-    },
-    {
-        name: "Max Mustermann",
-        mail: "mustermann@mustermail.de",
-        phone: "123-456-7890",
-    },
-    {
-        name: "Michael Fischer",
-        mail: "mustermann@mustermail.de",
-        phone: "123-456-7890",
-    },
+let users = [
+  {
+    name: "Elon Musk",
+    mail: "elonthegreatest@twitter.to",
+    phone: "123-456-7890",
+  },
+  {
+    name: "Jan Woll",
+    mail: "woll.jan@berlin",
+    phone: "123-456-7890",
+  },
+  {
+    name: "Stefanie Hinze",
+    mail: "stefanine.hinze@google.de",
+    phone: "123-456-7890",
+  },
+  {
+    name: "Max Mustermann",
+    mail: "mustermann@mustermail.de",
+    phone: "123-456-7890",
+  },
+  {
+    name: "Michael Fischer",
+    mail: "mustermann@mustermail.de",
+    phone: "123-456-7890",
+  },
 ];
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const colors = [
-    "#FF7A00",
-    "#FF5EB3",
-    "#6E52FF",
-    "#9327FF",
-    "#00BEE8",
-    "#1FD7C1",
-    "#FF745E",
-    "#FFA35E",
-    "#FC71FF",
-    "#FFC701",
-    "#0038FF",
-    "#C3FF2B",
-    "#FFE62B",
-    "#FF4646",
-    "#FFBB2B",
+  "#FF7A00",
+  "#FF5EB3",
+  "#6E52FF",
+  "#9327FF",
+  "#00BEE8",
+  "#1FD7C1",
+  "#FF745E",
+  "#FFA35E",
+  "#FC71FF",
+  "#FFC701",
+  "#0038FF",
+  "#C3FF2B",
+  "#FFE62B",
+  "#FF4646",
+  "#FFBB2B",
 ];
 
 async function renderContactList() {
-    users = JSON.parse(await getItem("contacts"));
-    let content = "";
-    let currentInitial = "";
+  users = JSON.parse(await getItem("contacts"));
+  let userBackend = null;
+  let content = "";
+  let currentInitial = "";
 
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        const userInitial = user.name[0].toUpperCase();
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    const userInitial = user.name[0].toUpperCase();
 
-        user.color = getColor(user.name);
+    user.color = getColor(user.name);
 
-        if (!user.color) {
-            user.color = colors[Math.floor(Math.random() * colors.length)];
-        }
+    if (!user.color) {
+      user.color = colors[Math.floor(Math.random() * colors.length)];
+    }
 
-        if (userInitial !== currentInitial) {
-            content += `<div class="alphabet-section" id="alphabet-${userInitial}">${userInitial}</div>`;
-            currentInitial = userInitial;
-        }
+    if (userInitial !== currentInitial) {
+      content += `<div class="alphabet-section" id="alphabet-${userInitial}">${userInitial}</div>`;
+      currentInitial = userInitial;
+    }
 
-        content += /* html */ `
+    content += /* html */ `
             <div class="contactfield-wrapper" id='painted${i}'>
                 <div class="contactfield" onclick="showDetails(${i}); changeBackgroundColor(${i});">
                     <div class="initials-logo" style="background-color: ${
@@ -78,65 +80,60 @@ async function renderContactList() {
             </div>
             
         `;
-    }
+  }
 
-    document.getElementById("contactlist").innerHTML = content;
+  document.getElementById("contactlist").innerHTML = content;
 }
 
-async function addContact(e) {
-    e.preventDefault();
+async function addContact() {
+  let getContacts = JSON.parse(await getItem("contacts"));
+  const addUser = {
+    name: document.getElementById("editName").value,
+    mail: document.getElementById("editEmail").value,
+    phone: document.getElementById("editPhone").value,
+    // color: document.getElementById("color").value,
+  };
 
-    const name = document.getElementById("name").value;
-    const mail = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  getContacts.push(addUser)
 
-    const newUser = {
-        name,
-        mail,
-        phone,
-        color: randomColor,
-    };
-
-    users.push(newUser);
-    users.sort((a, b) => a.name.localeCompare(b.name));
-    await setItem("contacts", users);
-    renderContactList();
-    closeOverlay();
+  // name.sort((a, b) => a.name.localeCompare(b.name));
+  await setItem("contacts", getContacts);
+  renderContactList();
+  closeOverlay();
 }
 
 function getInitials(name) {
-    const parts = name.split(" ");
-    let initials = parts[0][0];
+  const parts = name.split(" ");
+  let initials = parts[0][0];
 
-    if (parts.length > 1) {
-        initials += parts[parts.length - 1][0];
-    }
+  if (parts.length > 1) {
+    initials += parts[parts.length - 1][0];
+  }
 
-    return initials.toUpperCase();
+  return initials.toUpperCase();
 }
 
 function openOverlay() {
-    document.getElementById("overlay").style.display = "block";
+  document.getElementById("overlay").style.display = "block";
 }
 
 function closeOverlay() {
-    document.getElementById("overlay").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
 }
 
 function showDetails(index) {
-    currentlyDisplayedContactIndex = index;
-    const user = users[index];
-    const initials = getInitials(user.name);
-    if (screenData.internalWidth == "mobile") {
-        document.getElementById("leftside").style.display = "none";
-        document.getElementById("contactsforRespons").style.display = "flex";
-    }
-    if (screenData.internalWidth == "fullscreen") {
-        document.getElementById("leftside").style.display = "flex";
-        document.getElementById("contactsforRespons").style.display = "flex";
-    }
-    const detailsContent = /* html */ `
+  currentlyDisplayedContactIndex = index;
+  const user = users[index];
+  const initials = getInitials(user.name);
+  if (screenData.internalWidth == "mobile") {
+    document.getElementById("leftside").style.display = "none";
+    document.getElementById("contactsforRespons").style.display = "flex";
+  }
+  if (screenData.internalWidth == "fullscreen") {
+    document.getElementById("leftside").style.display = "flex";
+    document.getElementById("contactsforRespons").style.display = "flex";
+  }
+  const detailsContent = /* html */ `
         <div class="contactView">
             <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${initials}</div>
             <div class="contactUser">
@@ -165,149 +162,155 @@ function showDetails(index) {
         </div>
     `;
 
-    document.getElementById("detailsContainer").innerHTML = detailsContent;
+  document.getElementById("detailsContainer").innerHTML = detailsContent;
 }
 
 function changeBackgroundColor(i) {
-    for (let j = 0; j < users.length; j++) {
-        document.getElementById(`painted${j}`).classList.remove("selected");
-    }
-    document.getElementById(`painted${i}`).classList.add("selected");
+  for (let j = 0; j < users.length; j++) {
+    document.getElementById(`painted${j}`).classList.remove("selected");
+  }
+  document.getElementById(`painted${i}`).classList.add("selected");
 }
 
 function getColor(name) {
-    const sum = name.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
-    const colorIndex = sum % colors.length;
-    return colors[colorIndex];
+  const sum = name.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  const colorIndex = sum % colors.length;
+  return colors[colorIndex];
 }
 
 function deleteContact(index) {
-    users.splice(index, 1);
-    renderContactList();
-    document.getElementById("detailsContainer").innerHTML = "";
-    closeOverlay();
+  users.splice(index, 1);
+  renderContactList();
+  document.getElementById("detailsContainer").innerHTML = "";
+  closeOverlay();
 }
 
 function editContact(index) {
-    const user = users[index];
-    document.getElementById("editName").value = user.name;
-    document.getElementById("editEmail").value = user.mail;
-    document.getElementById("editPhone").value = user.phone;
-    document.getElementById("editIndex").value = index;
-    const editInitialsLogo = document.getElementById("editInitialsLogo");
-    editInitialsLogo.textContent = getInitials(user.name);
-    editInitialsLogo.style.backgroundColor = user.color;
-    document.getElementById("editOverlay").style.display = "block";
+  const user = users[index];
+  document.getElementById("editName").value = user.name;
+  document.getElementById("editEmail").value = user.mail;
+  document.getElementById("editPhone").value = user.phone;
+  document.getElementById("editIndex").value = index;
+  const editInitialsLogo = document.getElementById("editInitialsLogo");
+  editInitialsLogo.textContent = getInitials(user.name);
+  editInitialsLogo.style.backgroundColor = user.color;
+  document.getElementById("editOverlay").style.display = "block";
 }
 
 function updateContact(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const index = document.getElementById("editIndex").value;
-    const user = users[index];
+  const index = document.getElementById("editIndex").value;
+  const user = users[index];
 
-    user.name = document.getElementById("editName").value;
-    user.mail = document.getElementById("editEmail").value;
-    user.phone = document.getElementById("editPhone").value;
+  user.name = document.getElementById("editName").value;
+  user.mail = document.getElementById("editEmail").value;
+  user.phone = document.getElementById("editPhone").value;
 
-    // Das Array erneut sortieren, nachdem ein Kontakt bearbeitet wurde
-    users.sort((a, b) => a.name.localeCompare(b.name));
+  // Das Array erneut sortieren, nachdem ein Kontakt bearbeitet wurde
+  users.sort((a, b) => a.name.localeCompare(b.name));
 
-    renderContactList();
-    closeEditOverlay();
-    clearDetails();
+  renderContactList();
+  closeEditOverlay();
+  clearDetails();
 }
 
 function closeEditOverlay() {
-    document.getElementById("editOverlay").style.display = "none";
+  document.getElementById("editOverlay").style.display = "none";
 }
 
 function clearDetails() {
-    document.getElementById("detailsContainer").innerHTML = "";
+  document.getElementById("detailsContainer").innerHTML = "";
 }
 
 function toggleOverlay() {
-    document.getElementById('contactOverlay').style.animation = 'slideIn 1s forwards';
+  document.getElementById("contactOverlay").style.animation =
+    "slideIn 1s forwards";
 }
 
 function renderAddContact() {
-    openContactOverlay();
-    let overlayH2Content = document.getElementById('contacts-overlay-h2');
-    overlayH2Content.innerHTML = `Add contact`;
-    let overlayH3Content = document.getElementById('contacts-overlay-h3');
-    overlayH3Content.innerHTML = `Tasks are better with a team!`;
-    let overlayIcon = document.getElementById('contacts-overlay-whiteside-left');
-    overlayIcon.innerHTML = /*html*/ `<div class="contacts-overlay-icon-border">
+  openContactOverlay();
+  let overlayH2Content = document.getElementById("contacts-overlay-h2");
+  overlayH2Content.innerHTML = `Add contact`;
+  let overlayH3Content = document.getElementById("contacts-overlay-h3");
+  overlayH3Content.innerHTML = `Tasks are better with a team!`;
+  let overlayIcon = document.getElementById("contacts-overlay-whiteside-left");
+  overlayIcon.innerHTML = /*html*/ `<div class="contacts-overlay-icon-border">
     <div class="contacts-overlay-icon">
         <img src="../assets/img/person2.svg">
     </div>
     </div>`;
-    let overlayButtons = document.getElementById('contacts-overlay-buttons');
-    overlayButtons.innerHTML = `<button class="cancelBtn">Cancel<img src="assets/img/close.svg"></button>
-    <button class="createBtn">Create Contact<img src="assets/img/check.png"></button>`;
+  let overlayButtons = document.getElementById("contacts-overlay-buttons");
+  overlayButtons.innerHTML = `<button class="cancelBtn">Cancel<img src="assets/img/close.svg"></button>
+    <button class="createBtn" onclick="addContact()">Create Contact<img src="assets/img/check.png"></button>`;
 }
 
 function renderEditContact(index) {
-    openContactOverlay();
-    let overlayH2Content = document.getElementById('contacts-overlay-h2');
-    overlayH2Content.innerHTML = `Edit contact`;
-    let overlayH3Content = document.getElementById('contacts-overlay-h3');
-    overlayH3Content.innerHTML = ``;
-    const user = users[index];
-    const userInitials = getInitials(user.name);
-    let overlayIcon = document.getElementById('contacts-overlay-whiteside-left');
-    overlayIcon.innerHTML = /*html*/ `
+  openContactOverlay();
+  let overlayH2Content = document.getElementById("contacts-overlay-h2");
+  overlayH2Content.innerHTML = `Edit contact`;
+  let overlayH3Content = document.getElementById("contacts-overlay-h3");
+  overlayH3Content.innerHTML = ``;
+  const user = users[index];
+  const userInitials = getInitials(user.name);
+  let overlayIcon = document.getElementById("contacts-overlay-whiteside-left");
+  overlayIcon.innerHTML = /*html*/ `
         <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
-    let overlayButtons = document.getElementById('contacts-overlay-buttons');
-    overlayButtons.innerHTML = `<button class="cancelBtn">Delete</button>
+  let overlayButtons = document.getElementById("contacts-overlay-buttons");
+  overlayButtons.innerHTML = `<button class="cancelBtn">Delete</button>
     <button class="createBtn" onclick="saveEditedContact(${index})">Save<img src="assets/img/check.png"></button>`;
-    
-    document.getElementById("editName").value = user.name;
-    document.getElementById("editEmail").value = user.mail;
-    document.getElementById("editPhone").value = user.phone;
 
+  document.getElementById("editName").value = user.name;
+  document.getElementById("editEmail").value = user.mail;
+  document.getElementById("editPhone").value = user.phone;
 }
 
 function openContactOverlay() {
-    document.getElementById('overlay').style.animation = 'slideIn 1s forwards';
+  document.getElementById("overlay").style.animation = "slideIn 1s forwards";
 }
 
 function closeContactOverlay() {
-    document.getElementById('overlay').style.animation = 'slideOut 1s forwards';
+  document.getElementById("overlay").style.animation = "slideOut 1s forwards";
 }
 
 function saveEditedContact(index) {
-    // Erhalten Sie die ursprünglichen Benutzerdaten
-    const originalUser = users[index];
+  // Erhalten Sie die ursprünglichen Benutzerdaten
+  const originalUser = users[index];
 
-    // Erhalten Sie die aktualisierten Benutzerdaten
-    const updatedUser = {
-        name: document.getElementById("editName").value,
-        mail: document.getElementById("editEmail").value,
-        phone: document.getElementById("editPhone").value,
-        // Beibehalten der ursprünglichen Farbe
-        color: originalUser.color,
-    };
+  // Erhalten Sie die aktualisierten Benutzerdaten
+  const updatedUser = {
+    name: document.getElementById("editName").value,
+    mail: document.getElementById("editEmail").value,
+    phone: document.getElementById("editPhone").value,
+    // Beibehalten der ursprünglichen Farbe
+    color: originalUser.color,
+  };
 
-    // Aktualisieren Sie den Benutzer im users Array
-    users[index] = updatedUser;
+  // Aktualisieren Sie den Benutzer im users Array
+  users[index] = updatedUser;
 
-    // Aktualisieren Sie die Kontaktliste im UI
-    renderContactList();
+  // Aktualisieren Sie die Kontaktliste im UI
+  renderContactList();
 
-    // Schließen Sie das Bearbeitungs-Overlay
-    closeContactOverlay();
+  // Schließen Sie das Bearbeitungs-Overlay
+  closeContactOverlay();
 
-    // Wählen Sie den bearbeiteten Kontakt aus
-    changeBackgroundColor(index);
+  // Wählen Sie den bearbeiteten Kontakt aus
+  changeBackgroundColor(index);
 
-    // Zeigen Sie die aktualisierten Details an
-    showDetails(index);
+  // Zeigen Sie die aktualisierten Details an
+  showDetails(index);
 }
 
 function goBackToContacts() {
-    renderContacts();
+  renderContacts();
 }
 
+async function hardCodeUsers() {
+  let hardCore;
+  hardCore = JSON.stringify(users);
 
-
+  await setItem("contacts", hardCore);
+    //renderContactList();
+  // closeOverlay();
+}
