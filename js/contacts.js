@@ -89,30 +89,30 @@ async function renderContactList() {
 }
 
 async function addContact() {
-  const userEmail = document.getElementById("editEmail").value;
-  const getContactsJSON = await getItem("contacts");
-  const getContacts = JSON.parse(getContactsJSON || "{}");
-
-  // Überprüfen, ob der Kontakt bereits existiert
-  if (getContacts[userEmail]) {
-    console.log(`Kontakt mit der E-Mail ${userEmail} existiert bereits.`);
-  } else {
-    const addUser = {
-      name: document.getElementById("editName").value,
-      mail: userEmail,
-      phone: document.getElementById("editPhone").value,
-      // color: document.getElementById("color").value,
-    };
-
-    // set Key to mail
-    getContacts[userEmail] = addUser;
-
-    await setItem("contacts", JSON.stringify(getContacts));
-
-    renderContactList();
-    closeOverlay();
+    const userEmail = document.getElementById("editEmail").value;
+    const getContactsJSON = await getItem("contacts");
+    const getContacts = JSON.parse(getContactsJSON || '{}');
+  
+    // Überprüfen, ob der Kontakt bereits existiert
+    if (getContacts[userEmail]) {
+      console.log(`Kontakt mit der E-Mail ${userEmail} existiert bereits.`);
+    } else {
+      const addUser = {
+        name: document.getElementById("editName").value,
+        mail: userEmail,
+        phone: document.getElementById("editPhone").value,
+        colors
+      };
+  
+      // set Key to mail
+      getContacts[userEmail] = addUser;
+  
+      await setItem("contacts", JSON.stringify(getContacts));
+  
+      renderContactList();
+      closeOverlay();
+    }
   }
-}
 function getInitials(name) {
   const parts = name.split(" ");
   let initials = parts[0][0];
@@ -176,12 +176,12 @@ function showDetails(index) {
   document.getElementById("detailsContainer").innerHTML = detailsContent;
 }
 
-function changeBackgroundColor(i) {
-  for (let j = 0; j < users.length; j++) {
-    document.getElementById(`painted${j}`).classList.remove("selected");
+function changeBackgroundColor(index) {
+    for (let j = 0; j < users.length; j++) {
+      document.getElementById(`painted${j}`).classList.remove("selected");
+    }
+    document.getElementById(`painted${index}`).classList.add("selected");
   }
-  document.getElementById(`painted${i}`).classList.add("selected");
-}
 
 function getColor(name) {
   const sum = name.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
