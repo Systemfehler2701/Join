@@ -277,6 +277,15 @@
         cursor: pointer;
         box-shadow: 0px 5px 5px 0px #00000040;
     }
+    .arrowBack {
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        right: 14px;
+        top: 124px;
+        z-index: 100;
+        cursor: pointer;
+    }
     .deleteBtn {
         height: 45px;
         width: 126px;
@@ -352,7 +361,7 @@
         right: 10%;
         cursor: pointer;
     }
-    #menu {
+    .contact-options {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -366,7 +375,8 @@
         right: 10%;
         cursor: pointer;
         box-shadow: 0px 5px 5px 0px #00000040;
-    }
+        
+      }
     .iconWrapper {
         margin-bottom: 10px;
     }

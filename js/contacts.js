@@ -234,9 +234,23 @@ function clearDetails() {
   document.getElementById("detailsContainer").innerHTML = "";
 }
 
-function toggleOverlay() {
-  document.getElementById("contactOverlay").style.animation =
-    "slideIn 1s forwards";
+function toggleOptions() {
+  const optionsMenu = document.getElementById("optionsMenu");
+  if (optionsMenu.style.display === "block") {
+    optionsMenu.style.display = "none";
+  } else {
+    optionsMenu.style.display = "block";
+  }
+}
+
+function editContact() {
+  // Implementieren Sie hier die Edit-Funktion
+  alert("Edit clicked");
+}
+
+function deleteContact() {
+  // Implementieren Sie hier die Delete-Funktion
+  alert("Delete clicked");
 }
 
 function renderAddContact() {

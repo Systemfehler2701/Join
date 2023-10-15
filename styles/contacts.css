@@ -795,25 +795,55 @@ form button {
     bottom: 0;
 }
 
-#menu {
-    display: none;
-}
-
-.arrowBack {
-    position: absolute;
-    width: 36px;
-    height: 36px;
-    right: 14px;
-    top: 124px;
-    background-image: url(./assets/img/arrow-left.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 100;
-    cursor: pointer;
-}
 
 .arrowBack img {
     height: 32px;
     width: 32px;
     border-radius: 100%;
 }
+.contact-options {
+    display:none;
+  }
+  
+  .options-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2a3647;
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 120px;
+    right: 10%;
+    cursor: pointer;
+    box-shadow: 0px 5px 5px 0px #00000040;
+  }
+  
+  .options-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    position: absolute;
+    top: -140px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .options-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .options-menu button:hover {
+    background-color: #f5f5f5;
+  }
+  
