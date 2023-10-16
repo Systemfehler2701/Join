@@ -134,6 +134,7 @@ function showDetails(index) {
   currentlyDisplayedContactIndex = index;
   const user = users[index];
   const initials = getInitials(user.name);
+  selectedColor = user.color;
   
   if (screenData.internalWidth == "mobile") {
     document.getElementById("leftside").style.display = "none";
@@ -176,11 +177,16 @@ function showDetails(index) {
 }
 
 function changeBackgroundColor(index) {
-    for (let j = 0; j < users.length; j++) {
-      document.getElementById(`painted${j}`).classList.remove("selected");
-    }
-    document.getElementById(`painted${index}`).classList.add("selected");
-  }
+  const contactElements = document.querySelectorAll(".contactfield-wrapper");
+
+  // Iteriere über alle Kontakt-Elemente und entferne die "selected"-Klasse
+  contactElements.forEach((element) => {
+    element.classList.remove("selected");
+});
+
+  // Füge die "selected"-Klasse zum ausgewählten Kontakt hinzu
+  document.getElementById(`painted${index}`).classList.add("selected");
+}
 
 function getColor(name) {
   const sum = name.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
@@ -264,9 +270,10 @@ function renderEditContact(index) {
   overlayIcon.innerHTML = /*html*/ `
         <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
   let overlayButtons = document.getElementById("contacts-overlay-buttons");
-  overlayButtons.innerHTML = `<button class="cancelBtn">Delete</button>
+  overlayButtons.innerHTML = `<button onclick="deleteContact(email)" class="cancelBtn">Delete</button>
     <button class="createBtn" onclick="saveEditedContact('${index}')">Save<img src="assets/img/check.png"></button>`;
 
+    
   document.getElementById("editName").value = user.name;
   document.getElementById("editEmail").value = user.mail;
   document.getElementById("editPhone").value = user.phone;
@@ -335,4 +342,21 @@ async function hardCodeUsers() {
 // delete All contacts
 async function deleteAllContacts() {
   setItem("contacts", []);
+}
+
+async function deleteContact(email) {
+  const contactsJSON = await getItem("contacts");
+  const contacts = JSON.parse(contactsJSON);
+
+  if (contacts.hasOwnProperty(email)) {
+    delete contacts[email]; // Kontakt anhand der E-Mail-Adresse löschen
+    await setItem("contacts", JSON.stringify(contacts)); // Aktualisierte Kontaktliste im Storage speichern
+    renderContactList(); // Kontaktliste neu rendern
+    clearDetails(); // Details-Bereich leeren
+  }
+}
+
+function toggleOptions() {
+  const optionsMenu = document.getElementById("optionsMenu");
+  optionsMenu.classList.toggle("show-options-menu");
 }

@@ -802,7 +802,7 @@ form button {
     border-radius: 100%;
 }
 .contact-options {
-    display:none;
+    display: none;
   }
   
   .options-button {
@@ -822,27 +822,18 @@ form button {
   }
   
   .options-menu {
-    display: flex;
-    flex-direction: column;
-    height: 100px;
-    width: 116px;
-    background-color: var(--white);
+    display: none;
+    position: absolute;
+    top: -132px;
+    right: -17px;
+    background-color: white;
+    border: 1px solid #ccc;
     padding: 10px;
-    position: fixed;
-    bottom: 180px;
-    right: 8px;
-    border-radius: 20px 20px 0px 20px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    z-index: 111;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .options-menu button {
+  .show-options-menu {
     display: block;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
   }
   
   .options-menu button:hover {

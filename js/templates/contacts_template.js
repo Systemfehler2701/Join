@@ -33,7 +33,7 @@ function renderContacts(element) {
   <div class="options-menu" id="optionsMenu">
     <button onclick="editContact()"><img class="icon" src="/assets/img/edit.svg">
                 <span class="iconText">Edit</span>
-    <button onclick="deleteContact()"><img class="icon" src="/assets/img/delete.svg">
+    <button onclick="deleteContact(email)"><img class="icon" src="/assets/img/delete.svg">
                 <span class="iconText">Delete</span>
   </div>
 </div>
