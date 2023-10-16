@@ -15,8 +15,6 @@ function renderContacts(element) {
             <div style="width: 100%" id="contactlist"></div>
         </div>
     </div>
-  
-
             
     <div class="rightside" id="contactsforRespons">
         <div onclick="goBackToContacts()" class="arrowBack">
@@ -29,19 +27,18 @@ function renderContacts(element) {
             <img class="contact-img-responsive" src="/assets/img/Vector 5.svg">
         </div>
         <div class="contactInfo" id="detailsContainer"></div>
-        <div class="responsiveMenu">
-            <button id="menu" onclick="toggleOverlay()"><img src="assets/img/more_vert.svg"></button>
-        </div>
-        <div id="contactOverlay" class="overlay-hidden">
-            <div class="iconWrapper" onclick="renderEditContact()">
-                <img class="icon" src="/assets/img/edit.svg">
+
+        <div class="contact-options">
+  <button class="options-button" onclick="toggleOptions()"><img src="assets/img/more_vert.svg"></button>
+  <div class="options-menu" id="optionsMenu">
+    <button onclick="editContact()"><img class="icon" src="/assets/img/edit.svg">
                 <span class="iconText">Edit</span>
-            </div>
-            <div class="iconWrapper" onclick="deleteContact(currentlyDisplayedContactIndex)">
-                <img class="icon" src="/assets/img/delete.svg">
+    <button onclick="deleteContact(email)"><img class="icon" src="/assets/img/delete.svg">
                 <span class="iconText">Delete</span>
-            </div>
-        </div>
+  </div>
+</div>
+
+        
     </div>
     </div>
     <!-- Overlay neu -->

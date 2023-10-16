@@ -74,7 +74,7 @@ function createNewTask(arrayAsString) {
                         <div class="uselessAstriks">
                             <h2>Due Date</h2>*
                         </div>
-                        <input id="due" type="date" data-date="" data-date-format="DD MMMM YYYY" value="${currentDate.currentYear}-${currentDate.currentMonth}-${currentDate.currentDay}">
+                        <input id="due" class="dueInput" type="date" data-date="" data-date-format="DD MMMM YYYY" value="${currentDate.currentYear}-${currentDate.currentMonth}-${currentDate.currentDay}">
                         <div class="Taskerror" style="display: none;" id="errorDate">You can not select a date that is in the Past</div>
                     </div>
                     <div class="prio">
@@ -108,8 +108,8 @@ function createNewTask(arrayAsString) {
                     </div>
                         <div class="subtask">
                             <h2>Subtasks</h2>
-                            <div>
-                                <input onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
+                            <div class="subtaskInputContainer">
+                                <input class="subtaskInput" onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
                                 <div class="subtaskimages" id="subtaskField">
                                     <img src="/assets/img/Subtasks icons11.svg" alt="">
                                 </div>
