@@ -18,7 +18,7 @@ function renderContacts(element) {
             
     <div class="rightside" id="contactsforRespons">
         <div onclick="goBackToContacts()" class="arrowBack">
-        <img src="/assets/img/arrow-left-line.svg" alt="Back" id="backArrow">
+            <img src="/assets/img/arrow-left-line.svg" alt="Back" id="backArrow">
         </div>
         <div class="contacts-headline">
             <h1>Contacts</h1>
@@ -26,20 +26,7 @@ function renderContacts(element) {
             <h2>Better with a team</h2>
             <img class="contact-img-responsive" src="/assets/img/Vector 5.svg">
         </div>
-        <div class="contactInfo" id="detailsContainer"></div>
-
-        <div class="contact-options">
-  <button class="options-button" onclick="toggleOptions()"><img src="assets/img/more_vert.svg"></button>
-  <div class="options-menu" id="optionsMenu">
-    <button onclick="editContact()"><img class="icon" src="/assets/img/edit.svg">
-                <span class="iconText">Edit</span>
-    <button onclick="deleteContact(email)"><img class="icon" src="/assets/img/delete.svg">
-                <span class="iconText">Delete</span>
-  </div>
-</div>
-
-        
-    </div>
+        <div class="contactInfo" id="detailsContainer"></div>        
     </div>
     <!-- Overlay neu -->
 <div class="contacts-overlay-content" id="overlay"> 
