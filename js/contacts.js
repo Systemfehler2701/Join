@@ -281,3 +281,7 @@ async function deleteAllContacts() {
     setItem("contacts", []);
 }
 
+function toggleOptions() {
+    const optionsMenu = document.getElementById("optionsMenu");
+    optionsMenu.classList.toggle("show-options-menu");
+  }
