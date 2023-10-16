@@ -708,7 +708,7 @@ Here begins the styling of the Task-Editor Overlay the following elements have "
   position: relative;
 }
 
-.subtasksEdit input {
+/* .subtasksEdit input {
   width: 100%;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
@@ -716,7 +716,7 @@ Here begins the styling of the Task-Editor Overlay the following elements have "
   box-sizing: border-box;
   padding: 12px 21px 12px 21px;
   font-size: 20px;
-}
+} */
 
 .subtasksEdit .subtaskimages {
   position: absolute !important;

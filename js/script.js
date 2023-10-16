@@ -53,7 +53,7 @@ function appPrivacyPolicy() {
  * This function load all data from storage
  */
 async function getAppData() {
-    users = JSON.parse(await getItem("contacts"));
+    await loadContacts();
     await board_loadFromStorage("toDo");
     await board_loadFromStorage("inProgress");
     await board_loadFromStorage("feedback");
@@ -74,7 +74,7 @@ async function loadUsers() {
             regUsers = {};
         }
     } catch (e) {
-       // console.error("Load users error:", e);
+        // console.error("Load users error:", e);
         return {};
     }
 }
@@ -87,7 +87,7 @@ let screenData = {
 /**
  * checks the screenwidth every time it changes to find out if a change of layouts of the Full Card is required
  * 
- *  */ 
+ *  */
 function checkScreenWidth() {
     if (window.innerWidth >= 1190) {
         screenData.Screenwidth = 'fullscreen';

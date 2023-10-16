@@ -65,13 +65,15 @@ function renderContacts(element) {
                 </div>
                 <div class="contacts-overlay-whiteside-right">
                     <div class="inputContainer">
-                        <form class="contact-input-area" onsubmit="">
+                        <form class="contact-input-area" onsubmit="saveContact(); return false;" >
+                            <input id="contact-edit-index" type="hidden" value="-1">
                             <input class="inputName" type="text"placeholder="Surname Name" id="editName" required>  
                             <input class="inputMail" type="email"placeholder="Email" id="editEmail" required>           
                             <input class="inputPhone" type="tel"placeholder="Phone" id="editPhone" required>
-                        </form>  
                             <div id="contacts-overlay-buttons">                                
                             </div>    
+                        </form>  
+                           
                          
                     </div>
                 </div>
