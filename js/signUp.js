@@ -60,31 +60,28 @@ async function renderSignUpMask() {
  * @return {Promise<void>} Returns a Promise that resolves with no value.
  */
 async function register() {
-  try {
-    if (signUpPw.value !== signUpPw2.value) {
-      msgSignUpAlert();
-    }
-
-    const newUser = {
-      name: signUpName.value,
-      password: signUpPw.value,
-    };
-
-    // Verwende die E-Mail-Adresse als Schlüssel
-    regUsers[signUpEmail.value] = newUser;
-
-    await setItem("users", JSON.stringify(regUsers));
-
-    msgSignUp();
-
-    setTimeout(function () {
-      app();
-    }, 1500);
-
-    resetForm();
-  } catch (e) {
-    //console.error("Register error:", e);
+  if (signUpPw.value !== signUpPw2.value) {
+    msgSignUpAlert();
+    return;
   }
+
+  const newUser = {
+    name: signUpName.value,
+    password: signUpPw.value,
+  };
+
+  // Verwende die E-Mail-Adresse als Schlüssel
+  regUsers[signUpEmail.value] = newUser;
+
+  await setItem("users", JSON.stringify(regUsers));
+
+  msgSignUp();
+
+  setTimeout(function () {
+    app();
+  }, 1500);
+
+  resetForm();
 }
 
 /**
@@ -119,10 +116,9 @@ function msgSignUp() {
 
 function msgSignUpAlert() {
   var signUpMsgBox = document.getElementById("signUpAlert");
-  if (signUpMsgBox.style.display === "") {
-    signUpMsgBox.style.display = "block";
-  } else
-    setTimeout(function () {
-      app();
-    }, 1500);
+  signUpMsgBox.style.display = "block";
+  
+  setTimeout(function () {
+    signUpMsgBox.style.display = "none";
+  }, 1500);
 }
