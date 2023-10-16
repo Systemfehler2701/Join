@@ -335,3 +335,4 @@ async function hardCodeUsers() {
 async function deleteAllContacts() {
     setItem("contacts", []);
 }
+
