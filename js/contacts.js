@@ -1,29 +1,4 @@
-let users = [{
-        name: "Elon Musk",
-        mail: "elonthegreatest@twitter.to",
-        phone: "123-456-7890",
-    },
-    {
-        name: "Jan Woll",
-        mail: "woll.jan@berlin",
-        phone: "123-456-7890",
-    },
-    {
-        name: "Stefanie Hinze",
-        mail: "stefanine.hinze@google.de",
-        phone: "123-456-7890",
-    },
-    {
-        name: "Max Mustermann",
-        mail: "mustermann@mustermail.de",
-        phone: "123-456-7890",
-    },
-    {
-        name: "Michael Fischer",
-        mail: "mustermann@mustermail.de",
-        phone: "123-456-7890",
-    },
-];
+let users = [];
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const colors = [
@@ -44,17 +19,20 @@ const colors = [
     "#FFBB2B",
 ];
 
-async function renderContactList() {
-    // Rufe die Benutzerdaten aus dem Storage ab, wobei die E-Mail-Adresse als Schlüssel verwendet wird
+async function loadContacts() {
     const contactsJSON = await getItem("contacts");
-    const contacts = JSON.parse(contactsJSON);
-
+    users = JSON.parse(contactsJSON).map(jsonUser => User.fromJSON(jsonUser));
+}
+async function renderContactList() {
+    await loadContacts();
     let content = "";
     let currentInitial = "";
-
-    for (const email in contacts) {
-        if (contacts.hasOwnProperty(email)) {
-            const user = contacts[email];
+    for (const index in users) {
+        if (users.hasOwnProperty(index)) {
+            const user = users[index];
+            if (user.name == "") {
+                continue;
+            }
             const userInitial = user.name[0].toUpperCase();
 
             user.color = getColor(user.name);
@@ -69,12 +47,12 @@ async function renderContactList() {
             }
 
             content += /* html */ `
-          <div class="contactfield-wrapper" id='painted${email}'>
-            <div class="contactfield" onclick="showDetails('${email}'); changeBackgroundColor('${email}');">
+          <div class="contactfield-wrapper" id='painted${index}'>
+            <div class="contactfield" onclick="showDetails('${index}'); changeBackgroundColor('${index}');">
               <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
               <div class="contact">
                 <span class= 'name'><p><h3>${user.name}</h3></p></span>
-                <span class='mail'><p><h3>${email}</h3></p></span>
+                <span class='mail'><p><h3>${user.email}</h3></p></span>
               </div>
             </div>
           </div>
@@ -85,31 +63,7 @@ async function renderContactList() {
     document.getElementById("contactlist").innerHTML = content;
 }
 
-async function addContact() {
-    const userEmail = document.getElementById("editEmail").value;
-    const getContactsJSON = await getItem("contacts");
-    const getContacts = JSON.parse(getContactsJSON || '{}');
 
-    // Überprüfen, ob der Kontakt bereits existiert
-    if (getContacts[userEmail]) {
-        console.log(`Kontakt mit der E-Mail ${userEmail} existiert bereits.`);
-    } else {
-        const addUser = {
-            name: document.getElementById("editName").value,
-            mail: userEmail,
-            phone: document.getElementById("editPhone").value,
-            colors
-        };
-
-        // set Key to mail
-        getContacts[userEmail] = addUser;
-
-        await setItem("contacts", JSON.stringify(getContacts));
-
-        renderContactList();
-        closeOverlay();
-    }
-}
 
 function getInitials(name) {
     const parts = name.split(" ");
@@ -166,7 +120,7 @@ function showDetails(index) {
             <br>
             <br>
             <h4>Email</h4><br>
-            <p class="email-blue">${user.mail}</p>
+            <p class="email-blue">${user.email}</p>
             <h4>Phone</h4>
             <p><h5>${user.phone}</h5></p>
         </div>
@@ -248,7 +202,8 @@ function renderAddContact() {
     </div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
     overlayButtons.innerHTML = `<button class="cancelBtn">Cancel<img src="assets/img/close.svg"></button>
-    <button class="createBtn" onclick="addContact()">Create Contact<img src="assets/img/check.png"></button>`;
+    <button class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
+    document.getElementById("contact-edit-index").value = -1;
 }
 
 function renderEditContact(index) {
@@ -264,10 +219,10 @@ function renderEditContact(index) {
         <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
     overlayButtons.innerHTML = `<button class="cancelBtn">Delete</button>
-    <button class="createBtn" onclick="saveEditedContact('${index}')">Save<img src="assets/img/check.png"></button>`;
-
+    <button class="createBtn" type="submit">Save<img src="assets/img/check.png"></button>`;
+    document.getElementById("contact-edit-index").value = index;
     document.getElementById("editName").value = user.name;
-    document.getElementById("editEmail").value = user.mail;
+    document.getElementById("editEmail").value = user.email;
     document.getElementById("editPhone").value = user.phone;
 }
 
@@ -279,36 +234,26 @@ function closeContactOverlay() {
     document.getElementById("overlay").style.animation = "slideOut 1s forwards";
 }
 
-async function saveEditedContact(index) {
-    // Erhalten Sie die ursprünglichen Benutzerdaten
-    const originalUser = users[index];
-
-    // Erhalten Sie die aktualisierten Benutzerdaten
-    const updatedUser = {
-        name: document.getElementById("editName").value,
-        mail: document.getElementById("editEmail").value,
-        phone: document.getElementById("editPhone").value,
-        // Beibehalten der ursprünglichen Farbe
-        color: originalUser.color,
-    };
-
-    // Aktualisieren Sie den Benutzer im users Array
-    users[index] = updatedUser;
-
-    await setItem("contacts", JSON.stringify(users));
-
-    // Aktualisieren Sie die Kontaktliste im UI
+async function saveContact() {
+    let index = document.getElementById("contact-edit-index").value;
+    let name = document.getElementById("editName").value;
+    let email = document.getElementById("editEmail").value;
+    let phone = document.getElementById("editPhone").value;
+    if (index == -1) {
+        let newUser = new User(name, email, phone);
+        users.push(newUser);
+    } else {
+        let user = users[index];
+        user.setName(name);
+        user.setPhone(phone);
+        user.setEmail(email);
+    }
+    await setItem("contacts", users);
     renderContactList();
-
-    // Schließen Sie das Bearbeitungs-Overlay
-    closeContactOverlay();
-
-    // Wählen Sie den bearbeiteten Kontakt aus
-    changeBackgroundColor(index);
-
-    // Zeigen Sie die aktualisierten Details an
+    closeOverlay();
     showDetails(index);
 }
+
 
 function goBackToContacts() {
     renderContacts();
