@@ -63,8 +63,8 @@ async function task_addTask(list) {
       board_loadTasks();
       board_closeOverlay();
     } else {
-      displayTaskNotification()
       renderAddTask()
+      displayTaskNotification()
     }
   }
 }
