@@ -300,8 +300,8 @@ function board_createTaskEditor(arrayAsString, i) {
   </div>
   <div class="subtasksEdit">
       <p>Subtasks:</p>
-      <div>
-          <input onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
+      <div class="subtaskInputContainer">
+          <input class="subtaskInput" onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
           <div class="subtaskimages" id="subtaskField">
               <img src="/assets/img/Subtasks icons11.svg" alt="">
           </div>
