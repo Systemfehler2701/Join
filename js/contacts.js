@@ -149,11 +149,11 @@ function showDetails(index) {
             <div class="contactUser">
                 <h3>${user.name}</h3>
                 <div class="contactsIcons">
-    <div class="iconWrapper" onclick="renderEditContact(${index})">
+    <div class="iconWrapper" onclick="renderEditContact('${index}')">
         <img class="icon" src="/assets/img/edit.svg">
         <span class="iconText">Edit</span>
     </div>
-    <div class="iconWrapper" onclick="deleteContact(${index})">
+    <div class="iconWrapper" onclick="deleteContact('${index}')">
         <img class="icon" src="/assets/img/delete.svg">
         <span class="iconText">Delete</span>
     </div>
@@ -265,7 +265,7 @@ function renderEditContact(index) {
         <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
   let overlayButtons = document.getElementById("contacts-overlay-buttons");
   overlayButtons.innerHTML = `<button class="cancelBtn">Delete</button>
-    <button class="createBtn" onclick="saveEditedContact(${index})">Save<img src="assets/img/check.png"></button>`;
+    <button class="createBtn" onclick="saveEditedContact('${index}')">Save<img src="assets/img/check.png"></button>`;
 
   document.getElementById("editName").value = user.name;
   document.getElementById("editEmail").value = user.mail;
@@ -280,7 +280,7 @@ function closeContactOverlay() {
   document.getElementById("overlay").style.animation = "slideOut 1s forwards";
 }
 
-function saveEditedContact(index) {
+async function saveEditedContact(index) {
   // Erhalten Sie die ursprünglichen Benutzerdaten
   const originalUser = users[index];
 
@@ -295,6 +295,8 @@ function saveEditedContact(index) {
 
   // Aktualisieren Sie den Benutzer im users Array
   users[index] = updatedUser;
+
+  await setItem("contacts", JSON.stringify(users));
 
   // Aktualisieren Sie die Kontaktliste im UI
   renderContactList();
