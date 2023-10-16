@@ -63,8 +63,8 @@ async function task_addTask(list) {
       board_loadTasks();
       board_closeOverlay();
     } else {
-      displayTaskNotification()
       renderAddTask()
+      displayTaskNotification()
     }
   }
 }
@@ -563,7 +563,9 @@ function task_resetError() {
 function displayTaskNotification() {
   document.getElementById('taskNotification').style.display = 'flex'
   setTimeout(() => {
-    document.getElementById('taskNotification').style.display = 'none'
+    if(document.getElementById('taskNotification')) {
+      document.getElementById('taskNotification').style.display = 'none'
+    }
   }, 3000);
 }
 

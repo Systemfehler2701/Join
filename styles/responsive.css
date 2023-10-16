@@ -179,6 +179,7 @@
         top: 39.8%;
         height: 79.2%;
         width: 70%;
+        margin-top: 116px;
     }
     .darkside {
         width: 80%;
@@ -248,7 +249,7 @@
     .contacts-overlay-close {
         position: absolute;
         top: 15px;
-        right: 50px;
+        right: 110px;
     }
     #contacts-overlay-buttons {
         justify-content: center;
@@ -375,8 +376,7 @@
         right: 10%;
         cursor: pointer;
         box-shadow: 0px 5px 5px 0px #00000040;
-        
-      }
+    }
     .iconWrapper {
         margin-bottom: 10px;
     }
@@ -429,6 +429,9 @@
     }
     .summary-line2 {
         width: 370px;
+    }
+    .contacts-overlay {
+        margin-top: 0;
     }
     .navigation-menu {
         flex-direction: row;
@@ -611,13 +614,14 @@
     }
     .headline-right {
         width: 100%;
-        top: 810px;
+        bottom: 70px;
+        top: unset !important;
         left: 0;
         display: flex;
         justify-content: center;
     }
     .legalNotice {
-        bottom: 120px;
+        bottom: 20px;
     }
     .signUp-formular {
         display: flex;
