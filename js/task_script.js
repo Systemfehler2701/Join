@@ -563,7 +563,9 @@ function task_resetError() {
 function displayTaskNotification() {
   document.getElementById('taskNotification').style.display = 'flex'
   setTimeout(() => {
-    document.getElementById('taskNotification').style.display = 'none'
+    if(document.getElementById('taskNotification')) {
+      document.getElementById('taskNotification').style.display = 'none'
+    }
   }, 3000);
 }
 
