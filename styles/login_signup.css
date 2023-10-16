@@ -201,6 +201,7 @@
     right: -200px;
     background-image: url(../assets/img/lock.svg);
     background-repeat: no-repeat;
+    height: 28px;
     width: 28px;
     cursor: pointer;
 }
