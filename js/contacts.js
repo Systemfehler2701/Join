@@ -103,11 +103,11 @@ function showDetails(index) {
             <div class="contactUser">
                 <h3>${user.name}</h3>
                 <div class="contactsIcons">
-    <div class="iconWrapper" onclick="renderEditContact('${index}')">
+    <div class="iconWrapper" onclick="renderEditContact(${index})">
         <img class="icon" src="/assets/img/edit.svg">
         <span class="iconText">Edit</span>
     </div>
-    <div class="iconWrapper" onclick="deleteContact('${index}')">
+    <div class="iconWrapper" onclick="deleteContact(${index})">
         <img class="icon" src="/assets/img/delete.svg">
         <span class="iconText">Delete</span>
     </div>
@@ -123,6 +123,16 @@ function showDetails(index) {
             <p class="email-blue">${user.email}</p>
             <h4>Phone</h4>
             <p><h5>${user.phone}</h5></p>
+        </div>
+
+        <div class="contact-options">
+            <button class="options-button" onclick="toggleOptions()"><img src="assets/img/more_vert.svg"></button>
+            <div class="options-menu" id="optionsMenu">
+                <button onclick="renderEditContact(${index})"><img class="icon" src="/assets/img/edit.svg">
+                <span class="iconText">Edit</span>
+                <button onclick="deleteContact(${index})"><img class="icon" src="/assets/img/delete.svg">
+                <span class="iconText">Delete</span>
+            </div>
         </div>
     `;
 
@@ -142,24 +152,14 @@ function getColor(name) {
     return colors[colorIndex];
 }
 
-function deleteContact(index) {
+async function deleteContact(index) {
     users.splice(index, 1);
+    await setItem("contacts", users);
     renderContactList();
     document.getElementById("detailsContainer").innerHTML = "";
     closeOverlay();
 }
 
-function editContact(index) {
-    const user = users[index];
-    document.getElementById("editName").value = user.name;
-    document.getElementById("editEmail").value = user.mail;
-    document.getElementById("editPhone").value = user.phone;
-    document.getElementById("editIndex").value = index;
-    const editInitialsLogo = document.getElementById("editInitialsLogo");
-    editInitialsLogo.textContent = getInitials(user.name);
-    editInitialsLogo.style.backgroundColor = user.color;
-    document.getElementById("editOverlay").style.display = "block";
-}
 
 function updateContact(e) {
     e.preventDefault();
@@ -179,9 +179,6 @@ function updateContact(e) {
     clearDetails();
 }
 
-function closeEditOverlay() {
-    document.getElementById("editOverlay").style.display = "none";
-}
 
 function clearDetails() {
     document.getElementById("detailsContainer").innerHTML = "";
@@ -201,10 +198,11 @@ function renderAddContact() {
     </div>
     </div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
-    overlayButtons.innerHTML = `<button class="cancelBtn">Cancel<img src="assets/img/close.svg"></button>
+    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="closeContactOverlay()">Cancel<img src="assets/img/close.svg"></button>
     <button class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = -1;
 }
+
 
 function renderEditContact(index) {
     openContactOverlay();
@@ -218,7 +216,7 @@ function renderEditContact(index) {
     overlayIcon.innerHTML = /*html*/ `
         <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
-    overlayButtons.innerHTML = `<button class="cancelBtn">Delete</button>
+    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="deleteContact(${index})">Delete</button>
     <button class="createBtn" type="submit">Save<img src="assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = index;
     document.getElementById("editName").value = user.name;
@@ -259,24 +257,7 @@ function goBackToContacts() {
     renderContacts();
 }
 
-// only for testing //
-async function hardCodeUsers() {
-    // Erstelle ein leeres Objekt, um die Benutzerdaten zu speichern
-    const userObject = {};
-
-    for (const user of users) {
-        // Verwende die E-Mail-Adresse als Schlüssel
-        userObject[user.mail] = user;
-    }
-
-    // Konvertiere das Benutzerobjekt in ein JSON-String
-    const userObjectJSON = JSON.stringify(userObject);
-
-    // Setze das "contacts"-Objekt im Storage
-    await setItem("contacts", userObjectJSON);
-}
-
-// delete All contacts
-async function deleteAllContacts() {
-    setItem("contacts", []);
+function toggleOptions() {
+    const optionsMenu = document.getElementById("optionsMenu");
+    optionsMenu.classList.toggle("show-options-menu");
 }
