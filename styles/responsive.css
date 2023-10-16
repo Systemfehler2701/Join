@@ -179,6 +179,7 @@
         top: 39.8%;
         height: 79.2%;
         width: 70%;
+        margin-top: 116px;
     }
     .darkside {
         width: 80%;
@@ -248,7 +249,7 @@
     .contacts-overlay-close {
         position: absolute;
         top: 15px;
-        right: 50px;
+        right: 110px;
     }
     #contacts-overlay-buttons {
         justify-content: center;
@@ -428,6 +429,9 @@
     }
     .summary-line2 {
         width: 370px;
+    }
+    .contacts-overlay {
+        margin-top: 0;
     }
     .navigation-menu {
         flex-direction: row;
