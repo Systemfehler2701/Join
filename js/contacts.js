@@ -72,9 +72,7 @@ async function renderContactList() {
       content += /* html */ `
           <div class="contactfield-wrapper" id='painted${email}'>
             <div class="contactfield" onclick="showDetails('${email}'); changeBackgroundColor('${email}');">
-              <div class="initials-logo" style="background-color: ${
-                user.color
-              }">${getInitials(user.name)}</div>
+              <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
               <div class="contact">
                 <span class= 'name'><p><h3>${user.name}</h3></p></span>
                 <span class='mail'><p><h3>${email}</h3></p></span>
@@ -136,6 +134,7 @@ function showDetails(index) {
   currentlyDisplayedContactIndex = index;
   const user = users[index];
   const initials = getInitials(user.name);
+  
   if (screenData.internalWidth == "mobile") {
     document.getElementById("leftside").style.display = "none";
     document.getElementById("contactsforRespons").style.display = "flex";
@@ -219,7 +218,7 @@ function updateContact(e) {
   user.phone = document.getElementById("editPhone").value;
 
   // Das Array erneut sortieren, nachdem ein Kontakt bearbeitet wurde
-  users.sort((a, b) => a.name.localeCompare(b.name));
+  users.sort((a, b) => a.name.localeCompare(b.name)); 
 
   renderContactList();
   closeEditOverlay();
@@ -234,24 +233,7 @@ function clearDetails() {
   document.getElementById("detailsContainer").innerHTML = "";
 }
 
-function toggleOptions() {
-  const optionsMenu = document.getElementById("optionsMenu");
-  if (optionsMenu.style.display === "block") {
-    optionsMenu.style.display = "none";
-  } else {
-    optionsMenu.style.display = "block";
-  }
-}
 
-function editContact() {
-  // Implementieren Sie hier die Edit-Funktion
-  alert("Edit clicked");
-}
-
-function deleteContact() {
-  // Implementieren Sie hier die Delete-Funktion
-  alert("Delete clicked");
-}
 
 function renderAddContact() {
   openContactOverlay();
