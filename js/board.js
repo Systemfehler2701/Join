@@ -375,18 +375,15 @@ function board_subTaskProgress(arrayAsString, i) {
 function board_displayAssignees(arrayAsString, i) {
   let task = taskLists[arrayAsString][i];
   let assigned = task["assignees"];
+  let list = document.getElementById(`assignees${arrayAsString}${i}`);
   if (assigned.length != 0) {
-    for (let j = 0; j < assigned.length; j++) {
-      const assigneeNumber = assigned[j];
-      let user = users[assigneeNumber];
-      if (assigneeNumber <= users.length) {
-        document.getElementById(
-          `assignees${arrayAsString}${i}`
-        ).innerHTML += /*html*/ `
+    for (let index = 0; index < users.length; index++) {
+      let user = users[index];
+      if (assigned.includes(user.id)) {
+        list.innerHTML += /*html*/ `
     <div class="initials-logo" style="background-color: ${
       user.color
-    }">${getInitials(user.name)}</div>
-  `;
+    }">${getInitials(user.name)}</div>`;
       }
     }
   }
@@ -401,21 +398,26 @@ function board_displayAssignees(arrayAsString, i) {
 function board_displayAssigneesFull(arrayAsString, i) {
   let task = taskLists[arrayAsString][i];
   let assigned = task["assignees"];
+  let list = document.getElementById(`assigneeListFull`);
   if (assigned.length != 0) {
-    for (let j = 0; j < assigned.length; j++) {
-      const assigneeNumber = assigned[j];
-      let user = users[assigneeNumber];
-      document.getElementById(`assigneeListFull`).innerHTML += /*html*/ `
-    <div class="assigneeFull">
-      <div class="initials-logo" style="background-color: ${
-        user.color
-      }">${getInitials(user.name)}</div>
-      <div class="assigneeNameFull">${user.name}</div>
-    </div>
-    `;
+    for (let index = 0; index < users.length; index++) {
+      let user = users[index];
+      if (assigned.includes(user.id)) {
+        list.innerHTML += /*html*/ `
+        <div class="assigneeFull">
+          <div class="initials-logo" style="background-color: ${
+            user.color
+          }">${getInitials(user.name)}</div>
+          <div class="assigneeNameFull">${user.name}</div>
+        </div>
+        `;
+      }
     }
   }
 }
+
+
+
 
 /**
  *

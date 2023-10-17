@@ -147,6 +147,10 @@ function getColor(name) {
 }
 
 async function deleteContact(index) {
+    removeUserfromTasks('toDo', users[index].id)
+    removeUserfromTasks('inProgress', users[index].id)
+    removeUserfromTasks('feedback', users[index].id)
+    removeUserfromTasks('done', users[index].id)
     users.splice(index, 1);
     await setItem("contacts", users);
     renderContactList();
@@ -247,11 +251,37 @@ function showSuccessOverlay() {
 
 function hideSuccessOverlay() {
     const overlay = document.querySelector(".success-overlay");
-    overlay.classList.remove("show-success");
+    //Checks if the overlay is still there, to prevent an error-log in the console when you switch to a different submenu after adding a task
+    if(overlay) {
+        overlay.classList.remove("show-success");
+    }
 }
 
 function createContact() {
     
     showSuccessOverlay();
 
+}
+
+
+/**
+ * Loops through all tasks in a tasklist, then loops through all assignees inside the tasks and if the id is inside an assignee array (which means the contact is assigned)
+ * the ID will be deleted from the task. By looping backwards, if an item is removed, the items not yet checked won't shift, preventing any from being skipped.
+ * Happens every time a contact is deleted
+ * 
+ * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
+ * @param {*} id id of the user thats about to be deleted
+ */
+async function removeUserfromTasks(arrayAsString, id) {
+    let list = taskLists[arrayAsString]
+    for (let index = 0; index < list.length; index++) {
+        let task = list[index];
+        let assignees = task['assignees'];
+        for (let j = assignees.length - 1; j >= 0; j--) {
+            if(assignees[j] == id) {
+                assignees.splice(j, 1);
+            }
+        }
+    }
+    await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
 }

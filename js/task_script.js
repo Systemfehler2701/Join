@@ -72,18 +72,18 @@ async function task_addTask(list) {
 /**
  * This function is called whenever a task is edited, it compiles the data, validates it, saves it to the server and reloads the tasks
  *
- * @param {string} list This is the name of the array inside "tasksLists" to which the task is supposed to be added
+ * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
  * @param {number} i This is the position of the edited task inside the array specified above
  */
-async function task_addEditedTask(list, i) {
+async function task_addEditedTask(arrayAsString, i) {
   task_resetError();
   let data = task_compileTaskData();
   if (data != "error") {
-    taskLists[list][i] = data;
-    task_CheckFinishedSubtasks(list, i);
+    taskLists[arrayAsString][i] = data;
+    task_CheckFinishedSubtasks(arrayAsString, i);
     task_resetForm();
     task_resetArrays();
-    await setItem(list, JSON.stringify(taskLists[list]));
+    await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
 
     board_closeOverlay();
     board_loadTasks();
@@ -392,6 +392,8 @@ function task_renderCategoryOptions() {
 }
 
 
+//////////////////////////////////////////////////////////////////////////////////////  Assignee Part   /////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
  * Loops through contacts to render all assignee options for the assignee selector and renders them
  * Checks if user is already assigned
@@ -402,16 +404,16 @@ function task_renderAssigneeOptions() {
   selector.innerHTML = "";
   for (let index = 0; index < users.length; index++) {
     let user = users[index];
-    if (assignees.includes(index)) {
-      task_createAssignedContact(user, index);
+    if (assignees.includes(user.id)) {
+      task_createAssignedContact(user);
     } else {
-      task_createUnassignedContact(user, index);
+      task_createUnassignedContact(user);
     }
   }
 }
 
 /**
- * assignees are saved by storing their index in the users array. This function goes through all indexes that are assigned
+ * assignees are saved by storing their id in the users array. This function goes through all ids that are assigned
  * and renders the respective user from the users array
  *
  *
@@ -419,14 +421,12 @@ function task_renderAssigneeOptions() {
 function task_renderAssigneeList() {
   let list = document.getElementById("assigneeList");
   list.innerHTML = "";
-  for (let i = 0; i < assignees.length; i++) {
-    let assigneeNumber = assignees[i];
-    let user = users[assigneeNumber];
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    if(assignees.includes(user.id)) {
     list.innerHTML += /*html*/ `
-      <div class="initials-logo" style="background-color: ${
-        user.color
-      }">${getInitials(user.name)}</div>
-    `;
+      <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>`;
+    }
   }
 }
 
@@ -445,8 +445,8 @@ function task_searchAssignees() {
     selector.innerHTML = "";
     for (let i = 0; i < users.length; i++) {
       let user = users[i];
-      if (user["name"].toLowerCase().includes(search)) {
-        if (assignees.includes(i)) {
+      if (user.name.toLowerCase().includes(search)) {
+        if (assignees.includes(user.id)) {
           task_createAssignedContact(user, i);
         } else {
           task_createUnassignedContact(user, i);
@@ -457,35 +457,35 @@ function task_searchAssignees() {
 }
 
 /**
- * assigns a user by pushing its index of the users array into the assignee array
+ * assigns a user by pushing the id of the users array into the assignee array
  *
- * @param {number} index index of the user in the users array
+ * @param {number} id id of the user in the users array
  */
-function task_assign(index) {
-  assignees.push(index);
-  let checkbox = document.getElementById(`assigneeCheckbox${index}`);
+function task_assign(id) {
+  assignees.push(id);
+  let checkbox = document.getElementById(`assigneeCheckbox${id}`);
   checkbox.src = "/assets/img/Check button.svg";
   checkbox.onclick = null;
   checkbox.onclick = function () {
-    task_unassign(index);
+    task_unassign(id);
   };
   task_renderAssigneeList();
 }
 
 /**
- * assigns a user by splicing its index of the users array from the assignee array
+ * assigns a user by splicing the id of the users array from the assignee array
  *
- * @param {number} index index of the user in the users array
+ * @param {number} id id of the user in the users array
  */
-function task_unassign(index) {
-  let position = assignees.indexOf(index);
+function task_unassign(id) {
+  let position = assignees.indexOf(id);
   assignees.splice(position, 1);
 
-  let checkbox = document.getElementById(`assigneeCheckbox${index}`);
+  let checkbox = document.getElementById(`assigneeCheckbox${id}`);
   checkbox.src = "/assets/img/Rectangle 5.svg";
   checkbox.onclick = null;
   checkbox.onclick = function () {
-    task_assign(index);
+    task_assign(id);
   };
   task_renderAssigneeList();
 }
@@ -523,8 +523,8 @@ function task_closeOverlay(event, clickedElement) {
   if (event) event.stopPropagation();
   let selector = document.getElementById("assigneeOptionContainer");
   let selectorButton = document.getElementById("assignmentSelectButton");
-
-  if (selector.style.display === "none" && clickedElement == selectorButton) {
+  if(selector) {
+      if (selector.style.display === "none" && clickedElement == selectorButton) {
     // Displays the assignee options and adds a flip class to the select button
     selector.style.display = "flex";
     selectorButton.classList.add("flip");
@@ -535,6 +535,9 @@ function task_closeOverlay(event, clickedElement) {
     selectorButton.classList.remove("flip");
     task_renderAssigneeOptions();
   }
+  }
+
+
 }
 
 /**
@@ -545,6 +548,9 @@ function task_closeOverlay(event, clickedElement) {
 function preventClose(e) {
   e.stopPropagation();
 }
+
+
+
 
 
 /**

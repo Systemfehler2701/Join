@@ -245,7 +245,7 @@ function board_createTaskEditor(arrayAsString, i) {
   <div onclick="task_closeOverlay(event, this)" class="cardheadEdit">
     <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
   </div>
-  <div class="TaskEditorBody scroll">
+  <div onclick="task_closeOverlay(event, this)" class="TaskEditorBody scroll">
       <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
   <div class="titleEdit">
     <h2>Title</h2>

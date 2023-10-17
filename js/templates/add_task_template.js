@@ -135,17 +135,16 @@ function createNewTask(arrayAsString) {
  * renders a contact into the assignee Options which has been assigned already, with a button to unassgin him
  *
  * @param {object} user object from the users array
- * @param {number} index index of the object in the users array
  */
-function task_createAssignedContact(user, index) {
+function task_createAssignedContact(user) {
   let selector = document.getElementById("assign_select");
   selector.innerHTML += /*html*/ `
-    <div id="assignee${index}" class="assigneeOption" value="${index}">
+    <div id="assignee${user.id}" class="assigneeOption" value="${user.id}">
       <div class="initials-logo" style="background-color: ${
         user.color
       }">${getInitials(user.name)}</div>
       <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${index}" onclick="task_unassign(${index})" class="checkbox" src="/assets/img/Check button.svg" alt="">
+      <img id="assigneeCheckbox${user.id}" onclick="task_unassign(${user.id})" class="checkbox" src="/assets/img/Check button.svg" alt="">
   </div>
   `;
 }
@@ -154,17 +153,16 @@ function task_createAssignedContact(user, index) {
  * renders a contact into the assignee Options which has not been assigned yet, with a button to assgin him
  *
  * @param {object} user object from the users array
- * @param {number} index index of the object in the users array
  */
-function task_createUnassignedContact(user, index) {
+function task_createUnassignedContact(user) {
   let selector = document.getElementById("assign_select");
   selector.innerHTML += /*html*/ `
-    <div id="assignee${index}" class="assigneeOption" value="${index}">
+    <div id="assignee${user.id}" class="assigneeOption" value="${user.id}">
       <div class="initials-logo" style="background-color: ${
         user.color
       }">${getInitials(user.name)}</div>
       <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${index}" onclick="task_assign(${index})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
+      <img id="assigneeCheckbox${user.id}" onclick="task_assign(${user.id})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
   </div>
   `;
 }
