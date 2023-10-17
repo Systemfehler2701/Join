@@ -10,7 +10,6 @@ let startAnimationColor = "animate-start-color";
  */
 function renderLoginMask() {
     var container = document.getElementById("content-app");
-    var rememberedEmail = localStorage.getItem("rememberedEmail");
 
     container.innerHTML = /*html*/ `<div id="login_signupBody" class="${startAnimationColor}">
     <div class="login-headline">
