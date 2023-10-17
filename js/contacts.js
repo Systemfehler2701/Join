@@ -23,6 +23,7 @@ async function loadContacts() {
     const contactsJSON = await getItem("contacts");
     users = JSON.parse(contactsJSON).map(jsonUser => User.fromJSON(jsonUser));
 }
+
 async function renderContactList() {
     await loadContacts();
     let content = "";
@@ -62,7 +63,6 @@ async function renderContactList() {
 
     document.getElementById("contactlist").innerHTML = content;
 }
-
 
 
 function getInitials(name) {
@@ -161,30 +161,6 @@ async function deleteContact(index) {
 }
 
 
-function updateContact(e) {
-    e.preventDefault();
-
-    const index = document.getElementById("editIndex").value;
-    const user = users[index];
-
-    user.name = document.getElementById("editName").value;
-    user.mail = document.getElementById("editEmail").value;
-    user.phone = document.getElementById("editPhone").value;
-
-    // Das Array erneut sortieren, nachdem ein Kontakt bearbeitet wurde
-    users.sort((a, b) => a.name.localeCompare(b.name));
-
-    renderContactList();
-    closeEditOverlay();
-    clearDetails();
-}
-
-
-function clearDetails() {
-    document.getElementById("detailsContainer").innerHTML = "";
-}
-
-
 function renderAddContact() {
     openContactOverlay();
     let overlayH2Content = document.getElementById("contacts-overlay-h2");
@@ -237,19 +213,21 @@ async function saveContact() {
     let name = document.getElementById("editName").value;
     let email = document.getElementById("editEmail").value;
     let phone = document.getElementById("editPhone").value;
+    let user;
     if (index == -1) {
-        let newUser = new User(name, email, phone);
-        users.push(newUser);
+        user = new User(name, email, phone);
+        users.push(user);
     } else {
-        let user = users[index];
+        user = users[index];
         user.setName(name);
         user.setPhone(phone);
         user.setEmail(email);
     }
-    
+    users.sort((a, b) => a.name.localeCompare(b.name));
     await setItem("contacts", users);
     renderContactList();
     closeOverlay();
+    index = users.findIndex(element => element.id == user.id);
     showDetails(index);
 }
 
