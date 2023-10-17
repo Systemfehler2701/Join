@@ -286,6 +286,7 @@
         top: 124px;
         z-index: 100;
         cursor: pointer;
+        display:block;
     }
     .deleteBtn {
         height: 45px;

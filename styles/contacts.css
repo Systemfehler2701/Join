@@ -388,6 +388,7 @@ form button {
     border-bottom: 2px solid #d1d1d1;
     padding: 17px;
     gap: 8px;
+    width: 300px;
 }
 
 .overlayPerson img {
@@ -794,7 +795,10 @@ form button {
     bottom: 0;
 }
 
-
+.arrowBack{
+    display:none;
+    
+}
 .arrowBack img {
     height: 32px;
     width: 32px;
