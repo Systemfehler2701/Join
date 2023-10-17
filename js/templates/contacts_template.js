@@ -26,8 +26,14 @@ function renderContacts(element) {
             <h2>Better with a team</h2>
             <img class="contact-img-responsive" src="/assets/img/Vector 5.svg">
         </div>
-        <div class="contactInfo" id="detailsContainer"></div>        
+        <div class="contactInfo" id="detailsContainer"></div> 
+               
     </div>
+    <div class="success-overlay" id="successOverlay">
+                            <div class="success-message">
+                                Contact succesfully created
+                                </div>
+                        </div>
     <!-- Overlay neu -->
 <div class="contacts-overlay-content" id="overlay"> 
     <div class="contacts-overlay">
@@ -60,11 +66,8 @@ function renderContacts(element) {
                             <div id="contacts-overlay-buttons">                                
                             </div>    
                         </form>  
-                        <div class="success-overlay" id="successOverlay">
-    <div class="success-message">
-        <div onclick="closeSuccessOverlay()" class="success-content">
-            Contact successfully created
-        </div>
+                        
+                    </div>
     </div>
 </div>            
                          

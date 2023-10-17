@@ -114,6 +114,7 @@ function showDetails(index) {
 </div>
             </div>
         </div>
+        <div class=contactoverview>
         <div class="contactInformation">
 
             <h3>Contact Information</h3>
@@ -125,14 +126,7 @@ function showDetails(index) {
             <p><h5>${user.phone}</h5></p>
         </div>
 
-        <div class="contact-options">
-            <button class="options-button" onclick="toggleOptions()"><img src="assets/img/more_vert.svg"></button>
-            <div class="options-menu" id="optionsMenu">
-                <button onclick="renderEditContact(${index})"><img class="icon" src="/assets/img/edit.svg">
-                <span class="iconText">Edit</span>
-                <button onclick="deleteContact(${index})"><img class="icon" src="/assets/img/delete.svg">
-                <span class="iconText">Delete</span>
-            </div>
+       
         </div>
     `;
 
@@ -242,16 +236,22 @@ function toggleOptions() {
 }
 
 function showSuccessOverlay() {
-    const successOverlay = document.getElementById('successOverlay');
-    successOverlay.style.display = "block";
+    const overlay = document.querySelector(".success-overlay");
+    overlay.classList.add("show-success");
+
+    // Automatisches Schließen nach z.B. 3 Sekunden
+    setTimeout(() => {
+        hideSuccessOverlay();
+    }, 3000);  // 3000ms = 3 Sekunden
 }
 
-function closeSuccessOverlay() {
-    const successOverlay = document.getElementById('successOverlay');
-    successOverlay.style.display = "none";
+function hideSuccessOverlay() {
+    const overlay = document.querySelector(".success-overlay");
+    overlay.classList.remove("show-success");
 }
 
 function createContact() {
-   
+    
     showSuccessOverlay();
+
 }
