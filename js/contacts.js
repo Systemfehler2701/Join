@@ -38,7 +38,7 @@ async function renderContactList() {
             user.color = getColor(user.name);
 
             if (!user.color) {
-                user.color = colors[Math.floor(Mathrandom() * colors.length)];
+                user.color = colors[Math.floor(Math.random() * colors.length)];
             }
 
             if (userInitial !== currentInitial) {
@@ -199,7 +199,7 @@ function renderAddContact() {
     </div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
     overlayButtons.innerHTML = `<button class="cancelBtn" onclick="closeContactOverlay()">Cancel<img src="assets/img/close.svg"></button>
-    <button class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
+    <button onclick="createContact()"class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = -1;
 }
 
@@ -246,6 +246,7 @@ async function saveContact() {
         user.setPhone(phone);
         user.setEmail(email);
     }
+    
     await setItem("contacts", users);
     renderContactList();
     closeOverlay();
@@ -260,4 +261,19 @@ function goBackToContacts() {
 function toggleOptions() {
     const optionsMenu = document.getElementById("optionsMenu");
     optionsMenu.classList.toggle("show-options-menu");
+}
+
+function showSuccessOverlay() {
+    const successOverlay = document.getElementById('successOverlay');
+    successOverlay.style.display = "block";
+}
+
+function closeSuccessOverlay() {
+    const successOverlay = document.getElementById('successOverlay');
+    successOverlay.style.display = "none";
+}
+
+function createContact() {
+   
+    showSuccessOverlay();
 }

@@ -60,7 +60,13 @@ function renderContacts(element) {
                             <div id="contacts-overlay-buttons">                                
                             </div>    
                         </form>  
-                           
+                        <div class="success-overlay" id="successOverlay">
+    <div class="success-message">
+        <div onclick="closeSuccessOverlay()" class="success-content">
+            Contact successfully created
+        </div>
+    </div>
+</div>            
                          
                     </div>
                 </div>
