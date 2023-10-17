@@ -580,6 +580,14 @@
         transition: right 0.2s ease-in-out;
         
 }
+
+#contacts-overlay {
+    bottom: -100%;  /* Startposition außerhalb des Bildschirms */
+}
+
+.show-contact {
+    bottom: 0;  /* Endposition, um das Overlay anzuzeigen */
+}
 }
 
 @media (max-width: 739px) {

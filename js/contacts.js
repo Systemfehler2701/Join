@@ -125,6 +125,19 @@ function showDetails(index) {
             <h4>Phone</h4>
             <p><h5>${user.phone}</h5></p>
         </div>
+        <div class="contact-options">
+            <button class="options-button" onclick="toggleOptions()"><img src="assets/img/more_vert.svg"></button>
+            <div class="options-menu" id="optionsMenu">
+            <div class="iconWrapper" onclick="renderEditContact(${index})">
+        <img class="icon" src="/assets/img/edit.svg">
+        <span class="iconText">Edit</span>
+    </div>
+    <div class="iconWrapper" onclick="deleteContact(${index})">
+        <img class="icon" src="/assets/img/delete.svg">
+        <span class="iconText">Delete</span>
+    </div>
+            </div>
+        </div>
 
        
         </div>

@@ -862,3 +862,13 @@ form button {
     width:350px;
     line-height: 1,5;
 }
+
+
+#contacts-overlay {
+    position: fixed;
+    left: 0;
+    width: 100%; 
+    transition: bottom 0.5s ease-in-out;
+    bottom: 0;  /* Standardposition für größere Bildschirme */
+}
+
