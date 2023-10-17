@@ -249,6 +249,12 @@
     margin-left: 50px;
 }
 
+#loginRememberMe label {
+    user-select: none;
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
 .inputNameSignUp {
     background: url(../assets/img/person.svg);
     background-repeat: no-repeat;
