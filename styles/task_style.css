@@ -36,7 +36,7 @@
 
 .taskInputContainer {
   overflow-y: scroll;
-  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 .taskbody .task_input {
