@@ -84,67 +84,7 @@ function closeOverlay() {
     document.getElementById("overlay").style.display = "none";
 }
 
-function showDetails(index) {
-    currentlyDisplayedContactIndex = index;
-    const user = users[index];
-    const initials = getInitials(user.name);
 
-    if (screenData.internalWidth == "mobile") {
-        document.getElementById("leftside").style.display = "none";
-        document.getElementById("contactsforRespons").style.display = "flex";
-    }
-    if (screenData.internalWidth == "fullscreen") {
-        document.getElementById("leftside").style.display = "flex";
-        document.getElementById("contactsforRespons").style.display = "flex";
-    }
-    const detailsContent = /* html */ `
-        <div class="contactView">
-            <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${initials}</div>
-            <div class="contactUser">
-                <h3>${user.name}</h3>
-                <div class="contactsIcons">
-    <div class="iconWrapper" onclick="renderEditContact(${index})">
-        <img class="icon" src="/assets/img/edit.svg">
-        <span class="iconText">Edit</span>
-    </div>
-    <div class="iconWrapper" onclick="deleteContact(${index})">
-        <img class="icon" src="/assets/img/delete.svg">
-        <span class="iconText">Delete</span>
-    </div>
-</div>
-            </div>
-        </div>
-        <div class=contactoverview>
-        <div class="contactInformation">
-
-            <h3>Contact Information</h3>
-            <br>
-            <br>
-            <h4>Email</h4><br>
-            <p class="email-blue">${user.email}</p>
-            <h4>Phone</h4>
-            <p><h5>${user.phone}</h5></p>
-        </div>
-        <div class="contact-options">
-            <button class="options-button" onclick="toggleOptions()"><img src="assets/img/more_vert.svg"></button>
-            <div class="options-menu" id="optionsMenu">
-            <div class="iconWrapper" onclick="renderEditContact(${index})">
-        <img class="icon" src="/assets/img/edit.svg">
-        <span class="iconText">Edit</span>
-    </div>
-    <div class="iconWrapper" onclick="deleteContact(${index})">
-        <img class="icon" src="/assets/img/delete.svg">
-        <span class="iconText">Delete</span>
-    </div>
-            </div>
-        </div>
-
-       
-        </div>
-    `;
-
-    document.getElementById("detailsContainer").innerHTML = detailsContent;
-}
 
 function changeBackgroundColor(index) {
     for (let j = 0; j < users.length; j++) {
@@ -171,6 +111,10 @@ async function deleteContact(index) {
     closeOverlay();
 }
 
+
+/**
+ * 
+ */
 
 function renderAddContact() {
     openContactOverlay();
@@ -247,9 +191,17 @@ function goBackToContacts() {
     renderContacts();
 }
 
-function toggleOptions() {
+function openContactSubmenu() {
     const optionsMenu = document.getElementById("optionsMenu");
-    optionsMenu.classList.toggle("show-options-menu");
+    optionsMenu.classList.add("show-options-menu");
+    document.getElementById("optionsMenu").style.animation = "slideIn 1s forwards";
+}
+
+function closeContactSubmenu(e) {
+    let menu = document.getElementById('optionsMenu');
+    if (menu != undefined && menu.classList.contains('show-options-menu') && !menu.contains(e.target)) {
+        menu.style.animation = "slideOut 1s forwards";
+    }
 }
 
 function showSuccessOverlay() {
@@ -259,13 +211,13 @@ function showSuccessOverlay() {
     // Automatisches Schließen nach z.B. 3 Sekunden
     setTimeout(() => {
         hideSuccessOverlay();
-    }, 3000);  // 3000ms = 3 Sekunden
+    }, 3000); // 3000ms = 3 Sekunden
 }
 
 function hideSuccessOverlay() {
     const overlay = document.querySelector(".success-overlay");
     //Checks if the overlay is still there, to prevent an error-log in the console when you switch to a different submenu after adding a task
-    if(overlay) {
+    if (overlay) {
         overlay.classList.remove("show-success");
     }
 }
@@ -284,7 +236,7 @@ async function removeUserfromTasks(arrayAsString, id) {
         let task = list[index];
         let assignees = task['assignees'];
         for (let j = assignees.length - 1; j >= 0; j--) {
-            if(assignees[j] == id) {
+            if (assignees[j] == id) {
                 assignees.splice(j, 1);
             }
         }

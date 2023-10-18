@@ -79,3 +79,63 @@ function renderContacts(element) {
     `;
     renderContactList();
 }
+
+
+function showDetails(index) {
+    currentlyDisplayedContactIndex = index;
+    const user = users[index];
+    const initials = getInitials(user.name);
+
+    if (screenData.internalWidth == "mobile") {
+        document.getElementById("leftside").style.display = "none";
+        document.getElementById("contactsforRespons").style.display = "flex";
+    }
+    if (screenData.internalWidth == "fullscreen") {
+        document.getElementById("leftside").style.display = "flex";
+        document.getElementById("contactsforRespons").style.display = "flex";
+    }
+    const detailsContent = /* html */ `
+    <div class="contactCard">
+        <div class="contactView">
+            <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${initials}</div>
+            <div class="contactUser">
+                <h3>${user.name}</h3>
+                <div class="contactsIcons">
+                    <div class="iconWrapper" onclick="renderEditContact(${index})">
+                        <img class="icon" src="/assets/img/edit.svg">
+                        <span class="iconText">Edit</span>
+                    </div>
+                    <div class="iconWrapper" onclick="deleteContact(${index})">
+                        <img class="icon" src="/assets/img/delete.svg">
+                        <span class="iconText">Delete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=contactoverview>
+            <div class="contactInformation">
+                <h3>Contact Information</h3>
+                <br>
+                <br>
+                <h4>Email</h4><br>
+                <p class="email-blue">${user.email}</p>
+                <h4>Phone</h4>
+                <p><h5>${user.phone}</h5></p>
+            </div>
+        </div>
+        <button class="options-button" onclick="openContactSubmenu()"><img src="assets/img/more_vert.svg"></button>            
+            <div class="options-menu" id="optionsMenu">
+                <div class="iconWrapper" onclick="renderEditContact(${index})">
+                    <img class="icon" src="/assets/img/edit.svg">
+                    <span class="iconText">Edit</span>
+                </div>
+                <div class="iconWrapper" onclick="deleteContact(${index})">
+                    <img class="icon" src="/assets/img/delete.svg">
+                    <span class="iconText">Delete</span>
+                </div>
+            </div>
+    </div>    
+    `;
+
+    document.getElementById("detailsContainer").innerHTML = detailsContent;
+}

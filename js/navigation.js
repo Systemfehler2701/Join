@@ -13,8 +13,15 @@ function navigationMenuClicked(element) {
 }
 
 /**
- * This function toggle the submenu
+ * This function opens the headersubmenu
  */
-function toggleSubmenu() {
-    document.getElementById('headersubmenu').classList.toggle("d-none");
+function openHeaderSubmenu() {
+    document.getElementById('headersubmenu').classList.remove("d-none");
+}
+
+function closeHeaderSubmenu(e) {
+    let menu = document.getElementById('headersubmenu');
+    if (menu != undefined && !menu.contains(e.target)) {
+        menu.classList.add("d-none");
+    }
 }

@@ -122,3 +122,9 @@ function onScreenwidthChange() {
         showDetails(index)
     }
 }
+
+
+window.onmousedown = function(e) {
+    closeHeaderSubmenu(e);
+    closeContactSubmenu(e);
+}
