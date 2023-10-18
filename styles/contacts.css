@@ -3,6 +3,7 @@
     flex-direction: row;
     height: 100%;
 }
+
 .contact-leftside {
     background-color: white;
     box-shadow: 4px 0px 6px 0px #00000010;
@@ -207,6 +208,8 @@ form button {
 }
 
 .contactInfo {
+    width: 100%;
+    height: 100%;
     transform: translateX(200%);
     animation: slideIn 1s forwards;
 }
@@ -478,6 +481,7 @@ form button {
     display: flex;
     gap: 12px;
     align-items: center;
+    padding: 5px;
 }
 
 .iconWrapper:hover .icon,
@@ -550,6 +554,12 @@ form button {
     margin: 0;
 }
 
+.contactCard {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 
 /*overlay*/
 
@@ -568,7 +578,6 @@ form button {
     padding: 60px 0 0 25px;
     color: white;
     transform: translateX(200%);
-    /*animation: slideIn 1s forwards;*/
 }
 
 .contacts-overlay {
@@ -789,33 +798,53 @@ form button {
     display: none;
 }
 
+
 /* Optional: Styling für Ihren Menü-Button */
 
 #overlay.overlay-visible {
     bottom: 0;
 }
 
-.arrowBack{
-    display:none;
-    
+.arrowBack {
+    display: none;
 }
+
 .arrowBack img {
     height: 32px;
     width: 32px;
     border-radius: 100%;
 }
- 
+
+.contact-options {
+    display: none;
+}
+
+.options-button {
+    display: none;
+}
+
 .options-menu {
     display: none;
-  }
-  .options-button{
-    display:none;
-  }
-  
+    right: -17px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.show-options-menu {
+    display: block;
+}
+
+.options-menu button:hover {
+    background-color: #f5f5f5;
+}
+
 .success-overlay {
     position: fixed;
     top: 50%;
-    right: -300px; /* Dies sorgt dafür, dass das Overlay zunächst außerhalb des Bildschirms ist */
+    right: -300px;
+    /* Dies sorgt dafür, dass das Overlay zunächst außerhalb des Bildschirms ist */
     width: 250px;
     padding: 20px;
     background-color: #2a3647;
@@ -825,10 +854,11 @@ form button {
 }
 
 .show-success {
-    right: 20px; 
+    right: 20px;
 }
+
 .contactoverview {
-    display:flex;
+    display: flex;
     justify-content: space-between;
 }
 
@@ -841,19 +871,18 @@ form button {
     padding: 20px;
     border-radius: 15px;
     border: 20px;
-    width:326px;
-    height:15px;
-    line-height: 1,5;
-    color:white;
+    width: 326px;
+    height: 15px;
+    line-height: 1, 5;
+    color: white;
     background-color: #2a3647;
 }
-
 
 #contacts-overlay {
     position: fixed;
     left: 0;
-    width: 100%; 
+    width: 100%;
     transition: bottom 0.5s ease-in-out;
-    bottom: 0;  /* Standardposition für größere Bildschirme */
+    bottom: 0;
+    /* Standardposition für größere Bildschirme */
 }
-
