@@ -532,9 +532,6 @@
     .contactUser h3 {
         font-size: 36px;
     }
-    .contactsIcons {
-        display: none;
-    }
     .options-button {
         display: flex;
         align-items: center;

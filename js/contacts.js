@@ -85,7 +85,6 @@ function closeOverlay() {
 }
 
 
-
 function changeBackgroundColor(index) {
     for (let j = 0; j < users.length; j++) {
         document.getElementById(`painted${j}`).classList.remove("selected");
