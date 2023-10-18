@@ -735,7 +735,7 @@
     .contactView {
         flex-direction: column;
         align-items: flex-start;
-        margin-bottom: 32px;
+        margin-bottom: 10px;
     }
     .contactsIcons {
         display: none;

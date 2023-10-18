@@ -157,9 +157,7 @@ function showDetails(index) {
         <div class=contactoverview>
             <div class="contactInformation">
                 <h3>Contact Information</h3>
-                <br>
-                <br>
-                <h4>Email</h4><br>
+                <h4>Email</h4>
                 <p class="email-blue">${user.email}</p>
                 <h4>Phone</h4>
                 <p><h5>${user.phone}</h5></p>
