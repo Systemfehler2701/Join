@@ -99,6 +99,17 @@ function showDetails(index) {
     }
     const detailsContent = /* html */ `
         <div class="contactView">
+        <button class="options-button" onclick="toggleOptions()"><img src="assets/img/more_vert.svg"></button>
+            <div class="options-menu" id="optionsMenu">
+                <div class="iconWrapper" onclick="renderEditContact(${index})">
+                    <img class="icon" src="/assets/img/edit.svg">
+                    <span class="iconText">Edit</span>
+                </div>
+                <div class="iconWrapper" onclick="deleteContact(${index})">
+                    <img class="icon" src="/assets/img/delete.svg">
+                    <span class="iconText">Delete</span>
+                </div>
+            </div>
             <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${initials}</div>
             <div class="contactUser">
                 <h3>${user.name}</h3>
@@ -116,7 +127,6 @@ function showDetails(index) {
         </div>
         <div class=contactoverview>
         <div class="contactInformation">
-
             <h3>Contact Information</h3>
             <br>
             <br>
@@ -124,24 +134,8 @@ function showDetails(index) {
             <p class="email-blue">${user.email}</p>
             <h4>Phone</h4>
             <p><h5>${user.phone}</h5></p>
-        </div>
-        <div class="contact-options">
-            <button class="options-button" onclick="toggleOptions()"><img src="assets/img/more_vert.svg"></button>
-            <div class="options-menu" id="optionsMenu">
-            <div class="iconWrapper" onclick="renderEditContact(${index})">
-        <img class="icon" src="/assets/img/edit.svg">
-        <span class="iconText">Edit</span>
-    </div>
-    <div class="iconWrapper" onclick="deleteContact(${index})">
-        <img class="icon" src="/assets/img/delete.svg">
-        <span class="iconText">Delete</span>
-    </div>
-            </div>
-        </div>
-
-       
-        </div>
-    `;
+        </div>  
+`;
 
     document.getElementById("detailsContainer").innerHTML = detailsContent;
 }
@@ -275,7 +269,6 @@ function createContact() {
     showSuccessOverlay();
 
 }
-
 
 /**
  * Loops through all tasks in a tasklist, then loops through all assignees inside the tasks and if the id is inside an assignee array (which means the contact is assigned)

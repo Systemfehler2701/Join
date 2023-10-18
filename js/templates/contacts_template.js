@@ -33,6 +33,8 @@ function renderContacts(element) {
                                 Contact succesfully created
                                 </div>
                         </div>
+
+                        
     <!-- Overlay neu -->
 <div class="contacts-overlay-content" id="overlay"> 
     <div class="contacts-overlay">
