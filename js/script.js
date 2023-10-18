@@ -85,7 +85,7 @@ let screenData = {
 };
 
 /**
- * checks the screenwidth every time it changes to find out if a change of layouts of the Full Card is required
+ * checks the screenwidth every time it changes to find out if a change of layouts is required
  * 
  *  */
 function checkScreenWidth() {
@@ -97,7 +97,7 @@ function checkScreenWidth() {
 }
 
 /**
- * Watches for a change in screenwidth to a predetermined width to see if the layout of the Full Card needs to be changed
+ * Watches for a change in screenwidth to a predetermined width to see if the layout needs to be changed
  * 
  */
 Object.defineProperty(screenData, 'Screenwidth', {
