@@ -108,7 +108,11 @@ function openContactSubmenu() {
     document.getElementById("optionsMenu").style.animation = "slideIn 1s forwards";
 }
 
-
+/**
+ * This function close the Contactsubmenu
+ * 
+ * @param {event} e -window onmousdown
+ */
 function closeContactSubmenu(e) {
     let menu = document.getElementById('optionsMenu');
     if (menu != undefined && menu.classList.contains('show-options-menu') && !menu.contains(e.target)) {

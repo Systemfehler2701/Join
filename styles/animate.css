@@ -13,24 +13,6 @@
     }
 }
 
-@keyframes slideUp {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(1000);
-    }
-}
-
-@keyframes slideDown {
-    from {
-        transform: translateY(1000);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
 @keyframes fadeOut {
     from {
         opacity: 1;

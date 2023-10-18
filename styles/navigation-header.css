@@ -138,35 +138,35 @@ nav span {
 }
 
 .menu-icon.summary {
-    background-image: url(/assets/img/summary-grey.svg);
+    background-image: url(../assets/img/summary-grey.svg);
 }
 
 .menu-button.active .menu-icon.summary {
-    background-image: url(/assets/img/summary-white.svg);
+    background-image: url(../assets/img/summary-white.svg);
 }
 
 .menu-icon.add-task {
-    background-image: url(/assets/img/addTask-grey.svg);
+    background-image: url(../assets/img/addTask-grey.svg);
 }
 
 .menu-button.active .menu-icon.add-task {
-    background-image: url(/assets/img/addTask-white.svg);
+    background-image: url(../assets/img/addTask-white.svg);
 }
 
 .menu-icon.board {
-    background-image: url(/assets/img/board-grey.svg);
+    background-image: url(../assets/img/board-grey.svg);
 }
 
 .menu-button.active .menu-icon.board {
-    background-image: url(/assets/img/board-white.svg);
+    background-image: url(../assets/img/board-white.svg);
 }
 
 .menu-icon.contacts {
-    background-image: url(/assets/img/contacts-grey.svg);
+    background-image: url(../assets/img/contacts-grey.svg);
 }
 
 .menu-button.active .menu-icon.contacts {
-    background-image: url(/assets/img/contacts-white.svg);
+    background-image: url(../assets/img/contacts-white.svg);
 }
 
 .footer {

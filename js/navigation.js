@@ -19,6 +19,11 @@ function openHeaderSubmenu() {
     document.getElementById('headersubmenu').classList.remove("d-none");
 }
 
+/**
+ * This function close the Headersubmenu
+ * 
+ * @param {event} e -window onmousdown
+ */
 function closeHeaderSubmenu(e) {
     let menu = document.getElementById('headersubmenu');
     if (menu != undefined && !menu.contains(e.target)) {

@@ -122,7 +122,10 @@ function onScreenwidthChange() {
     }
 }
 
-
+/**
+ * 
+ * @param {event} e 
+ */
 window.onmousedown = function(e) {
     closeHeaderSubmenu(e);
     closeContactSubmenu(e);
