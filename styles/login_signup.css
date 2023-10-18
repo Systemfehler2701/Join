@@ -204,6 +204,7 @@
     height: 28px;
     width: 28px;
     cursor: pointer;
+    margin-bottom: -28px;
 }
 
 .password-img.clicked {
@@ -246,6 +247,12 @@
     flex-direction: row;
     margin-bottom: 20px;
     margin-left: 50px;
+}
+
+#loginRememberMe label {
+    user-select: none;
+    margin-bottom: 0;
+    font-size: 16px;
 }
 
 .inputNameSignUp {

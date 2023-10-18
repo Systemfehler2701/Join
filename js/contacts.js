@@ -264,12 +264,6 @@ function hideSuccessOverlay() {
     }
 }
 
-function createContact() {
-    
-    showSuccessOverlay();
-
-}
-
 /**
  * Loops through all tasks in a tasklist, then loops through all assignees inside the tasks and if the id is inside an assignee array (which means the contact is assigned)
  * the ID will be deleted from the task. By looping backwards, if an item is removed, the items not yet checked won't shift, preventing any from being skipped.

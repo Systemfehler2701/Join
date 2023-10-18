@@ -583,9 +583,6 @@
     .taskbody {
         width: 95%;
     }
-    .taskInputContainer {
-        overflow-y: scroll;
-    }
     .clear {
         display: none;
     }
