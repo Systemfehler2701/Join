@@ -1,7 +1,7 @@
 function renderHelp() {
-  document.getElementById("help-link").classList.add("d-none");
-  let content = document.getElementById("content");
-  content.innerHTML = /* html */ `
+    document.getElementById("help-link").classList.add("d-none");
+    let content = document.getElementById("content");
+    content.innerHTML = /* html */ `
         <div class="help-content">
             <div class="arrow-left"><img src="assets/img/arrow-left-line.svg" onclick="app()"></div>
             <h1>Help</h1>
@@ -63,16 +63,16 @@ function renderHelp() {
 }
 
 function renderNotice() {
-  document.getElementById("headersubmenu").classList.add("d-none");
-  let content = document.getElementById("content");
-  content.innerHTML = /* html */ `
+    document.getElementById("headersubmenu").classList.add("d-none");
+    let content = document.getElementById("content");
+    content.innerHTML = /* html */ `
     <div class="help-content">
             <div class="arrow-left"><img src="assets/img/arrow-left-line.svg" onclick="app()"></div>
             <h1>Legal Notice</h1>
             <h2>Imprint</h2>
             <ul>
                 <li>Marnie Lindenthal</li>
-                <li>Jonas Kratzberg</li>
+                <li>Jonas Kratzenberg</li>
                 <li>Jan Woll</li>
                 <li>Florian Lindenthal</li>
             </ul>
@@ -97,9 +97,9 @@ function renderNotice() {
 }
 
 function renderPolicy() {
-  document.getElementById("headersubmenu").classList.add("d-none");
-  let content = document.getElementById("content");
-  content.innerHTML = /* html */ `
+    document.getElementById("headersubmenu").classList.add("d-none");
+    let content = document.getElementById("content");
+    content.innerHTML = /* html */ `
     <div class="help-content">
             <div class="arrow-left"><img src="assets/img/arrow-left-line.svg" onclick="app()"></div>
             <h1>Datenschutz&shy;erkl&auml;rung</h1>

@@ -798,6 +798,7 @@ form button {
     display: none;
 }
 
+
 /* Optional: Styling für Ihren Menü-Button */
 
 #overlay.overlay-visible {
@@ -832,7 +833,7 @@ form button {
 }
 
 .show-options-menu {
-    display: block;
+    display: none;
 }
 
 .options-menu button:hover {
