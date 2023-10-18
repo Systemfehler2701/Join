@@ -24,46 +24,6 @@ async function loadContacts() {
     users = JSON.parse(contactsJSON).map(jsonUser => User.fromJSON(jsonUser));
 }
 
-async function renderContactList() {
-    await loadContacts();
-    let content = "";
-    let currentInitial = "";
-    for (const index in users) {
-        if (users.hasOwnProperty(index)) {
-            const user = users[index];
-            if (user.name == "") {
-                continue;
-            }
-            const userInitial = user.name[0].toUpperCase();
-
-            user.color = getColor(user.name);
-
-            if (!user.color) {
-                user.color = colors[Math.floor(Math.random() * colors.length)];
-            }
-
-            if (userInitial !== currentInitial) {
-                content += `<div class="alphabet-section" id="alphabet-${userInitial}">${userInitial}</div>`;
-                currentInitial = userInitial;
-            }
-
-            content += /* html */ `
-          <div class="contactfield-wrapper" id='painted${index}'>
-            <div class="contactfield" onclick="showDetails('${index}'); changeBackgroundColor('${index}');">
-              <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
-              <div class="contact">
-                <span class= 'name'><p><h3>${user.name}</h3></p></span>
-                <span class='mail'><p><h3>${user.email}</h3></p></span>
-              </div>
-            </div>
-          </div>
-        `;
-        }
-    }
-
-    document.getElementById("contactlist").innerHTML = content;
-}
-
 
 function getInitials(name) {
     const parts = name.split(" ");
@@ -76,14 +36,6 @@ function getInitials(name) {
     return initials.toUpperCase();
 }
 
-function openOverlay() {
-    document.getElementById("overlay").style.display = "block";
-}
-
-function closeOverlay() {
-    document.getElementById("overlay").style.display = "none";
-}
-
 
 function changeBackgroundColor(index) {
     for (let j = 0; j < users.length; j++) {
@@ -92,11 +44,13 @@ function changeBackgroundColor(index) {
     document.getElementById(`painted${index}`).classList.add("selected");
 }
 
+
 function getColor(name) {
     const sum = name.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
     const colorIndex = sum % colors.length;
     return colors[colorIndex];
 }
+
 
 async function deleteContact(index) {
     removeUserfromTasks('toDo', users[index].id)
@@ -110,49 +64,6 @@ async function deleteContact(index) {
     closeOverlay();
 }
 
-
-/**
- * 
- */
-
-function renderAddContact() {
-    openContactOverlay();
-    let overlayH2Content = document.getElementById("contacts-overlay-h2");
-    overlayH2Content.innerHTML = `Add contact`;
-    let overlayH3Content = document.getElementById("contacts-overlay-h3");
-    overlayH3Content.innerHTML = `Tasks are better with a team!`;
-    let overlayIcon = document.getElementById("contacts-overlay-whiteside-left");
-    overlayIcon.innerHTML = /*html*/ `<div class="contacts-overlay-icon-border">
-    <div class="contacts-overlay-icon">
-        <img src="../assets/img/person2.svg">
-    </div>
-    </div>`;
-    let overlayButtons = document.getElementById("contacts-overlay-buttons");
-    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="closeContactOverlay()">Cancel<img src="assets/img/close.svg"></button>
-    <button onclick="createContact()"class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
-    document.getElementById("contact-edit-index").value = -1;
-}
-
-
-function renderEditContact(index) {
-    openContactOverlay();
-    let overlayH2Content = document.getElementById("contacts-overlay-h2");
-    overlayH2Content.innerHTML = `Edit contact`;
-    let overlayH3Content = document.getElementById("contacts-overlay-h3");
-    overlayH3Content.innerHTML = ``;
-    const user = users[index];
-    const userInitials = getInitials(user.name);
-    let overlayIcon = document.getElementById("contacts-overlay-whiteside-left");
-    overlayIcon.innerHTML = /*html*/ `
-        <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
-    let overlayButtons = document.getElementById("contacts-overlay-buttons");
-    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="deleteContact(${index})">Delete</button>
-    <button class="createBtn" type="submit">Save<img src="assets/img/check.png"></button>`;
-    document.getElementById("contact-edit-index").value = index;
-    document.getElementById("editName").value = user.name;
-    document.getElementById("editEmail").value = user.email;
-    document.getElementById("editPhone").value = user.phone;
-}
 
 function openContactOverlay() {
     document.getElementById("overlay").style.animation = "slideIn 1s forwards";
@@ -190,11 +101,13 @@ function goBackToContacts() {
     renderContacts();
 }
 
+
 function openContactSubmenu() {
     const optionsMenu = document.getElementById("optionsMenu");
     optionsMenu.classList.add("show-options-menu");
     document.getElementById("optionsMenu").style.animation = "slideIn 1s forwards";
 }
+
 
 function closeContactSubmenu(e) {
     let menu = document.getElementById('optionsMenu');
@@ -202,6 +115,7 @@ function closeContactSubmenu(e) {
         menu.style.animation = "slideOut 1s forwards";
     }
 }
+
 
 function showSuccessOverlay() {
     const overlay = document.querySelector(".success-overlay");
@@ -212,6 +126,7 @@ function showSuccessOverlay() {
         hideSuccessOverlay();
     }, 3000); // 3000ms = 3 Sekunden
 }
+
 
 function hideSuccessOverlay() {
     const overlay = document.querySelector(".success-overlay");

@@ -29,57 +29,85 @@ function renderContacts(element) {
         <div class="contactInfo" id="detailsContainer"></div>        
     </div>
     <div class="success-overlay" id="successOverlay">
-                            <div class="success-message">
-                                Contact succesfully created
-                                </div>
-                        </div>
-
-                        
+        <div class="success-message">
+            Contact succesfully created
+        </div>
+    </div>
     <!-- Overlay neu -->
-<div class="contacts-overlay-content" id="overlay"> 
-    <div class="contacts-overlay">
-        <div class="darkside">
-            <div id="contacts-overlay-headline"> 
-                <img src="../assets/img/logo-white.svg">
-                <h2 id="contacts-overlay-h2"></h2>
-                <h3 id="contacts-overlay-h3"></h3>
-                <span class="blue-line-horizontal"></span>               
+    <div class="contacts-overlay-content" id="overlay"> 
+        <div class="contacts-overlay">
+            <div class="darkside">
+                <div id="contacts-overlay-headline"> 
+                    <img src="../assets/img/logo-white.svg">
+                    <h2 id="contacts-overlay-h2"></h2>
+                    <h3 id="contacts-overlay-h3"></h3>
+                    <span class="blue-line-horizontal"></span>               
+                </div>
+            </div>
+            <div class="whiteside">
+                <div class="contacts-overlay-close">
+                    <div class="contacts-overlay-close-img" onclick="closeContactOverlay()">
+                        <div class="contacts-overlay-close-X"></div>
+                    </div>
+                </div>
+                <div class="whiteside-content">
+                    <div id="contacts-overlay-whiteside-left">  
+                        <div id="contacts-overlay-icon-border" class="contacts-overlay-icon-border">
+                        </div>                  
+                    </div>
+                    <div class="contacts-overlay-whiteside-right">
+                        <div class="inputContainer">
+                            <form class="contact-input-area" onsubmit="saveContact(); return false;" >
+                                <input id="contact-edit-index" type="hidden" value="-1">
+                                <input class="inputName" type="text"placeholder="Surname Name" id="editName" required>  
+                                <input class="inputMail" type="email"placeholder="Email" id="editEmail" required>           
+                                <input class="inputPhone" type="tel"placeholder="Phone" id="editPhone" required>
+                                <div id="contacts-overlay-buttons">                                
+                                </div>    
+                            </form>                          
+                        </div>
+                    </div>
+                </div>            
             </div>
         </div>
-        <div class="whiteside">
-            <div class="contacts-overlay-close">
-                <div class="contacts-overlay-close-img" onclick="closeContactOverlay()">
-                    <div class="contacts-overlay-close-X"></div>
-                </div>
-            </div>
-            <div class="whiteside-content">
-                <div id="contacts-overlay-whiteside-left">  
-                    <div id="contacts-overlay-icon-border" class="contacts-overlay-icon-border">
-                    </div>                  
-                </div>
-                <div class="contacts-overlay-whiteside-right">
-                    <div class="inputContainer">
-                        <form class="contact-input-area" onsubmit="saveContact(); return false;" >
-                            <input id="contact-edit-index" type="hidden" value="-1">
-                            <input class="inputName" type="text"placeholder="Surname Name" id="editName" required>  
-                            <input class="inputMail" type="email"placeholder="Email" id="editEmail" required>           
-                            <input class="inputPhone" type="tel"placeholder="Phone" id="editPhone" required>
-                            <div id="contacts-overlay-buttons">                                
-                            </div>    
-                        </form>  
-                        
-                    </div>
-    </div>
-</div>            
-                         
-                    </div>
-                </div>
-            </div>    
-        </div>    
-    </div>
-</div>
-    `;
+    </div>`;
     renderContactList();
+}
+
+
+async function renderContactList() {
+    await loadContacts();
+    let content = "";
+    let currentInitial = "";
+    for (const index in users) {
+        if (users.hasOwnProperty(index)) {
+            const user = users[index];
+            if (user.name == "") {
+                continue;
+            }
+            const userInitial = user.name[0].toUpperCase();
+            user.color = getColor(user.name);
+            if (!user.color) {
+                user.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            if (userInitial !== currentInitial) {
+                content += `<div class="alphabet-section" id="alphabet-${userInitial}">${userInitial}</div>`;
+                currentInitial = userInitial;
+            }
+            content += /* html */ `
+          <div class="contactfield-wrapper" id='painted${index}'>
+            <div class="contactfield" onclick="showDetails('${index}'); changeBackgroundColor('${index}');">
+              <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
+              <div class="contact">
+                <span class= 'name'><p><h3>${user.name}</h3></p></span>
+                <span class='mail'><p><h3>${user.email}</h3></p></span>
+              </div>
+            </div>
+          </div>
+        `;
+        }
+    }
+    document.getElementById("contactlist").innerHTML = content;
 }
 
 
@@ -140,4 +168,48 @@ function showDetails(index) {
     `;
 
     document.getElementById("detailsContainer").innerHTML = detailsContent;
+}
+
+/**
+ * This function render the add contact content in the overlay 
+ */
+function renderAddContact() {
+    openContactOverlay();
+    let overlayH2Content = document.getElementById("contacts-overlay-h2");
+    overlayH2Content.innerHTML = `Add contact`;
+    let overlayH3Content = document.getElementById("contacts-overlay-h3");
+    overlayH3Content.innerHTML = `Tasks are better with a team!`;
+    let overlayIcon = document.getElementById("contacts-overlay-whiteside-left");
+    overlayIcon.innerHTML = /*html*/ `<div class="contacts-overlay-icon-border">
+    <div class="contacts-overlay-icon">
+        <img src="../assets/img/person2.svg">
+    </div>
+    </div>`;
+    let overlayButtons = document.getElementById("contacts-overlay-buttons");
+    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="closeContactOverlay()">Cancel<img src="assets/img/close.svg"></button>
+    <button onclick="createContact()"class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
+    document.getElementById("contact-edit-index").value = -1;
+}
+
+/**
+ * This function render the edit contact content in the overlay 
+ */
+function renderEditContact(index) {
+    openContactOverlay();
+    let overlayH2Content = document.getElementById("contacts-overlay-h2");
+    overlayH2Content.innerHTML = `Edit contact`;
+    let overlayH3Content = document.getElementById("contacts-overlay-h3");
+    overlayH3Content.innerHTML = ``;
+    const user = users[index];
+    const userInitials = getInitials(user.name);
+    let overlayIcon = document.getElementById("contacts-overlay-whiteside-left");
+    overlayIcon.innerHTML = /*html*/ `
+        <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
+    let overlayButtons = document.getElementById("contacts-overlay-buttons");
+    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="deleteContact(${index})">Delete</button>
+    <button class="createBtn" type="submit">Save<img src="assets/img/check.png"></button>`;
+    document.getElementById("contact-edit-index").value = index;
+    document.getElementById("editName").value = user.name;
+    document.getElementById("editEmail").value = user.email;
+    document.getElementById("editPhone").value = user.phone;
 }
