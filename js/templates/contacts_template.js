@@ -1,3 +1,8 @@
+/**
+ * Renders the main contacts view including the add contact button
+ * 
+ * @param {string} element The HTML element that invoked this function
+ */
 function renderContacts(element) {
     document.getElementById('help-link').classList.remove("d-none");
     navigationMenuClicked(element);
@@ -74,7 +79,10 @@ function renderContacts(element) {
     renderContactList();
 }
 
-
+/**
+ * Fetches and loads contacts, then populates and displays them in the 
+ * contact list sorted alphabetically
+ */
 async function renderContactList() {
     await loadContacts();
     let content = "";
@@ -110,7 +118,11 @@ async function renderContactList() {
     document.getElementById("contactlist").innerHTML = content;
 }
 
-
+/**
+ * Displays the detailed view for a specific contact, including options to edit or delete
+ * 
+ * @param {string} index 
+ */
 function showDetails(index) {
     currentlyDisplayedContactIndex = index;
     const user = users[index];

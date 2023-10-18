@@ -1,5 +1,12 @@
+/**
+ * // Define an empty array for users
+ */
 let users = [];
-
+/*
+ */
+/**
+ * // Define a string of alphabets and array of colors
+ */
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const colors = [
     "#FF7A00",
@@ -18,13 +25,19 @@ const colors = [
     "#FF4646",
     "#FFBB2B",
 ];
-
+/**
+ * // Load contacts from local storage and parse into the 'users' array
+ */
 async function loadContacts() {
     const contactsJSON = await getItem("contacts");
     users = JSON.parse(contactsJSON).map(jsonUser => User.fromJSON(jsonUser));
 }
 
-
+/**
+ * // Get initials of a given name (First and Last name initials)
+ * @param {string} name - Full name of the person for which initials are required
+ * @returns 
+ */
 function getInitials(name) {
     const parts = name.split(" ");
     let initials = parts[0][0];
@@ -37,6 +50,12 @@ function getInitials(name) {
 }
 
 
+/**
+ * Change the background color of a selected contact
+ * 
+ * @param {string} index  The index of the contact in the users array to display details for
+ */
+
 function changeBackgroundColor(index) {
     for (let j = 0; j < users.length; j++) {
         document.getElementById(`painted${j}`).classList.remove("selected");
@@ -44,14 +63,23 @@ function changeBackgroundColor(index) {
     document.getElementById(`painted${index}`).classList.add("selected");
 }
 
-
+/**
+ * Compute a color for a given name based on its character
+ * 
+ * @param {string} name 
+ * @returns 
+ */
 function getColor(name) {
     const sum = name.split("").reduce((sum, char) => sum + char.charCodeAt(0), 0);
     const colorIndex = sum % colors.length;
     return colors[colorIndex];
 }
 
-
+/**
+ * Delete a contact and also remove it from tasks they were assigned to
+ * 
+ * @param {string} index The index of the contact in the users array to display details for
+ */
 async function deleteContact(index) {
     removeUserfromTasks('toDo', users[index].id)
     removeUserfromTasks('inProgress', users[index].id)
@@ -65,14 +93,24 @@ async function deleteContact(index) {
 }
 
 
+
+/*
+ * Open the contact edit/add overlay with slide in animation
+ */
 function openContactOverlay() {
     document.getElementById("overlay").style.animation = "slideIn 1s forwards";
 }
 
+/*
+ *Close the contact edit/add overlay with slide out animation
+ */
 function closeContactOverlay() {
     document.getElementById("overlay").style.animation = "slideOut 1s forwards";
 }
 
+/*
+ * Save a contact, either by adding a new one or editing an existing one
+ */
 async function saveContact() {
     let index = document.getElementById("contact-edit-index").value;
     let name = document.getElementById("editName").value;
@@ -96,11 +134,15 @@ async function saveContact() {
     showDetails(index);
 }
 
-
+/*
+ * Go back to the contacts view
+ */
 function goBackToContacts() {
     renderContacts();
 }
-
+/**
+ * Opens the contact options submenu
+ */
 
 function openContactSubmenu() {
     const optionsMenu = document.getElementById("optionsMenu");
@@ -120,7 +162,6 @@ function closeContactSubmenu(e) {
     }
 }
 
-
 function showSuccessOverlay() {
     const overlay = document.querySelector(".success-overlay");
     overlay.classList.add("show-success");
@@ -131,7 +172,9 @@ function showSuccessOverlay() {
     }, 3000); // 3000ms = 3 Sekunden
 }
 
-
+/*
+ *Show an overlay indicating a successful operation
+ */
 function hideSuccessOverlay() {
     const overlay = document.querySelector(".success-overlay");
     //Checks if the overlay is still there, to prevent an error-log in the console when you switch to a different submenu after adding a task
