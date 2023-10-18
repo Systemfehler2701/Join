@@ -140,6 +140,9 @@ async function saveContact() {
 function goBackToContacts() {
     renderContacts();
 }
+/**
+ * Opens the contact options submenu
+ */
 
 function openContactSubmenu() {
     const optionsMenu = document.getElementById("optionsMenu");
@@ -148,8 +151,9 @@ function openContactSubmenu() {
 }
 
 /**
+ * closes the contact submenu
  * 
- * @param {*} e 
+ * @param {*} e the event object is used by an interaction 
  */
 function closeContactSubmenu(e) {
     let menu = document.getElementById('optionsMenu');
