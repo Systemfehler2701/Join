@@ -437,6 +437,9 @@
     .navigation-img {
         display: none;
     }
+    .contactsIcons {
+        display: none;
+    }
     nav .menu-button {
         flex-direction: column;
         align-items: center;
