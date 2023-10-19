@@ -144,7 +144,7 @@
         top: 124px;
         z-index: 100;
         cursor: pointer;
-        display:block;
+        display: block;
     }
 }
 
@@ -388,6 +388,12 @@
 }
 
 @media (max-width: 865px) {
+    .show-options-menu {
+        display: block;
+    }
+    .help-content {
+        overflow-y: scroll;
+    }
     #left-layout {
         position: fixed;
         bottom: 0px;
@@ -461,7 +467,7 @@
     #header {
         z-index: 5;
         height: 80px;
-        padding: 5px 40px 5px 40px;
+        padding: 5px 40px;
         align-items: center;
     }
     .summary-content {
@@ -489,7 +495,7 @@
         height: 90px;
     }
     .overlayBlank {
-        margin-left: 0;
+        margin: 0;
     }
     .summary-task {
         margin-top: 20px;
@@ -674,6 +680,20 @@
     #contacts-overlay-headline {
         height: 70%;
     }
+    .contacts-headline {
+        margin-bottom: 0px;
+    }
+    .contacts-headline h1 {
+        font-size: 50px;
+    }
+    .detailsLogo {
+        width: 80px;
+        height: 80px;
+        font-size: 35px;
+    }
+    .options-button {
+        bottom: 20px;
+    }
 }
 
 @media (max-width: 550px) {
@@ -685,6 +705,13 @@
 }
 
 @media (max-width: 500px) {
+    .help-content h1 {
+        font-size: 50px;
+        margin: 0;
+    }
+    .contactUser h3 {
+        font-size: 26px;
+    }
     #login_signupBody {
         padding: 0px;
     }
@@ -711,7 +738,7 @@
     .contactView {
         flex-direction: column;
         align-items: flex-start;
-        margin-bottom: 32px;
+        margin-bottom: 10px;
     }
     .contactsIcons {
         display: none;
@@ -738,6 +765,12 @@
     #content {
         padding: 20px;
         height: 72vh;
+    }
+    #header {
+        padding: 5px 20px;
+    }
+    .show-options-menu {
+        bottom: 15px;
     }
     .summary-line1,
     .summary-line2,
@@ -842,5 +875,8 @@
     }
     #contacts-overlay-headline {
         height: 100%;
+    }
+    .help-content h1 {
+        font-size: 40px;
     }
 }

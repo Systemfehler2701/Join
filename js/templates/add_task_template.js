@@ -8,6 +8,7 @@
  */
 function renderAddTask(element) {
   document.getElementById("help-link").classList.remove("d-none");
+  
   if(element) {
     navigationMenuClicked(element);
   }
@@ -15,6 +16,7 @@ function renderAddTask(element) {
   task_resetArrays();
   overlayBody = undefined;
   content.innerHTML = createNewTask("toDo");
+  document.getElementById('closeOverlay').style.display ="none"
   task_renderCategoryOptions();
   task_renderAssigneeOptions();
 }
@@ -33,7 +35,11 @@ function createNewTask(arrayAsString) {
             Task added to board
             <img src="/assets/img/Vector_board.svg" alt="">
         </div>
-        <h1>Add Task</h1>
+        <div class="taskHeader">
+            <h1>Add Task</h1>
+            <img id="closeOverlay" onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
+        </div>
+
         <div class="taskInputContainer" style="width: 100%">
             <div class="task_input scroll">
                 <div class="input1">

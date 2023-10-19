@@ -281,6 +281,8 @@ progress {
 }
 
 .overlayBlank {
+  margin-top: 100px;
+  max-height: 71%;
   margin-left: 232px;
   display: flex;
   align-items: center;
@@ -400,10 +402,18 @@ progress {
   margin: 0;
 }
 
+.assigneesFull {
+  width: 100%;
+}
+
+
 .assigneeListFull {
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+  max-height: 140px;
+  border-radius: 12px;
+  overflow-y: scroll;
   gap: 16px;
 }
 
