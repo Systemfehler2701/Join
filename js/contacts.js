@@ -89,7 +89,7 @@ async function deleteContact(index) {
     await setItem("contacts", users);
     renderContactList();
     document.getElementById("detailsContainer").innerHTML = "";
-    closeOverlay();
+    closeContactOverlay();
 }
 
 
@@ -129,7 +129,8 @@ async function saveContact() {
     users.sort((a, b) => a.name.localeCompare(b.name));
     await setItem("contacts", users);
     renderContactList();
-    closeOverlay();
+    closeContactOverlay();
+    showSuccessOverlay();
     index = users.findIndex(element => element.id == user.id);
     showDetails(index);
 }
