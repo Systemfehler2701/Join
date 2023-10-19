@@ -281,6 +281,8 @@ progress {
 }
 
 .overlayBlank {
+  margin-top: 100px;
+  max-height: 71%;
   margin-left: 232px;
   display: flex;
   align-items: center;
