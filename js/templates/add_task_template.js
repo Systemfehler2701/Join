@@ -120,7 +120,7 @@ function createNewTask(arrayAsString) {
                                     <img src="/assets/img/Subtasks icons11.svg" alt="">
                                 </div>
                             </div>
-                            <div class="addedSubtasks" id="addedSubtasks"></div>
+                            <div class="addedSubtasks scroll" id="addedSubtasks"></div>
                         </div>
                 </div>
             </div>
@@ -145,12 +145,12 @@ function createNewTask(arrayAsString) {
 function task_createAssignedContact(user) {
   let selector = document.getElementById("assign_select");
   selector.innerHTML += /*html*/ `
-    <div id="assignee${user.id}" class="assigneeOption" value="${user.id}">
+    <div onclick="task_unassign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
       <div class="initials-logo" style="background-color: ${
         user.color
       }">${getInitials(user.name)}</div>
       <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${user.id}" onclick="task_unassign(${user.id})" class="checkbox" src="/assets/img/Check button.svg" alt="">
+      <img id="assigneeCheckbox${user.id}"  class="checkbox" src="/assets/img/Check button.svg" alt="">
   </div>
   `;
 }
@@ -163,12 +163,12 @@ function task_createAssignedContact(user) {
 function task_createUnassignedContact(user) {
   let selector = document.getElementById("assign_select");
   selector.innerHTML += /*html*/ `
-    <div id="assignee${user.id}" class="assigneeOption" value="${user.id}">
+    <div onclick="task_assign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
       <div class="initials-logo" style="background-color: ${
         user.color
       }">${getInitials(user.name)}</div>
       <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${user.id}" onclick="task_assign(${user.id})" class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
+      <img id="assigneeCheckbox${user.id}"  class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
   </div>
   `;
 }
