@@ -180,7 +180,7 @@ function createFullTaskCard(arrayAsString, i) {
       </div>
       <div class="assigneesFull">
               <p>Assigned to:</p>
-          <div class="assigneeListFull" id="assigneeListFull"></div>
+          <div class="assigneeListFull scroll" id="assigneeListFull"></div>
       </div>
       <div class="subtasksFull">
           <p>Subtasks:</p>

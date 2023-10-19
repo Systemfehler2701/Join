@@ -402,10 +402,18 @@ progress {
   margin: 0;
 }
 
+.assigneesFull {
+  width: 100%;
+}
+
+
 .assigneeListFull {
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+  max-height: 140px;
+  border-radius: 12px;
+  overflow-y: scroll;
   gap: 16px;
 }
 
