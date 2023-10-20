@@ -74,6 +74,9 @@ function getDeadlineDate() {
     return new Date(earliestDate).toLocaleString("en", timeOptions);
 }
 
+/**
+ * This function opens the board
+ */
 function openBoard() {
     let element = document.getElementById("navBoardButton");
     renderBoard(element);

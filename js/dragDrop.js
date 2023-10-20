@@ -21,7 +21,13 @@ function drop(targetArrayName) {
     tryMoveTaskToArray(targetArrayName);
 }
 
-
+/**
+ * This function saves the selected task in a variable
+ * 
+ * @param {string} srcArray - this is the name of the array to move from
+ * @param {number} srcIndex - this is the index of the task in the array that is to be moved
+ * @param {touchstart} event 
+ */
 function startTouching(srcArray, srcIndex, event) {
     currentDraggedElement = { srcArray, srcIndex };
     cloneMoveTouch = event.currentTarget.cloneNode(true);
@@ -30,14 +36,17 @@ function startTouching(srcArray, srcIndex, event) {
     document.body.appendChild(cloneMoveTouch);
 }
 
-
+/**
+ * 
+ * @param {*} event 
+ */
 function moveTouching(event) {
-    cloneMoveTouch.xy = {x:event.touches[0].clientX,y:event.touches[0].clientY};
+    cloneMoveTouch.xy = { x: event.touches[0].clientX, y: event.touches[0].clientY };
     cloneMoveTouch.style.top = `${cloneMoveTouch.xy.y}px`;
     cloneMoveTouch.style.left = `${cloneMoveTouch.xy.x}px`;
     let activePanel = getTouchMoveInPanel();
     removeHighlight();
-    if(activePanel != '') {
+    if (activePanel != '') {
         highlight(activePanel);
     }
 }
@@ -49,11 +58,9 @@ async function endTouching() {
         if (targetArray != '') {
             tryMoveTaskToArray(targetArray);
         }
-    }
-    catch(error) {
+    } catch (error) {
         console.error(error);
-    }
-    finally {
+    } finally {
         cancelTouch();
     }
 }
@@ -77,12 +84,15 @@ function getTouchMoveInArrayName() {
 
 
 function getTouchMoveInPanel() {
+    if (cloneMoveTouch.xy == undefined) {
+        return '';
+    }
     let panelList = document.querySelectorAll('.panelbody');
     for (let i = 0; i < panelList.length; i++) {
         const panel = panelList[i];
         let pXY = panel.getClientRects()[0];
-        if(pXY.left < cloneMoveTouch.xy.x && cloneMoveTouch.xy.x < pXY.right && 
-           pXY.top < cloneMoveTouch.xy.y && cloneMoveTouch.xy.y < pXY.bottom) {
+        if (pXY.left < cloneMoveTouch.xy.x && cloneMoveTouch.xy.x < pXY.right &&
+            pXY.top < cloneMoveTouch.xy.y && cloneMoveTouch.xy.y < pXY.bottom) {
             return panel;
         }
     }
