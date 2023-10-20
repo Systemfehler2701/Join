@@ -295,19 +295,9 @@ function board_renderSubtasksFull(arrayAsString, i) {
   for (let j = 0; j < subtaskList.length; j++) {
     let subtask = subtaskList[j];
     if (subtask["done"] == 0) {
-      allSubtasks.innerHTML += `
-      <div class="singleSubtaskFull">
-        <img id="checkbox${j}" class="checkbox" onclick="board_finishSubtask('${arrayAsString}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
-        ${subtask["task"]}
-      </div>
-      `;
+      allSubtasks.innerHTML += board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask)
     } else {
-      allSubtasks.innerHTML += `
-      <div class="singleSubtaskFull">
-        <img id="checkbox${j}" class="checkbox" onclick="board_revertSubtask('${arrayAsString}', ${i}, ${j})" src="/assets/img/Check button.svg" alt="">
-        ${subtask["task"]}
-      </div>
-      `;
+      allSubtasks.innerHTML += board_createFinishedSubtasksFull(arrayAsString, i, j, subtask)
     }
   }
 }
@@ -380,10 +370,7 @@ function board_displayAssignees(arrayAsString, i) {
     for (let index = 0; index < users.length; index++) {
       let user = users[index];
       if (assigned.includes(user.id)) {
-        list.innerHTML += /*html*/ `
-    <div class="initials-logo" style="background-color: ${
-      user.color
-    }">${getInitials(user.name)}</div>`;
+        list.innerHTML += board_createAssignees(user)
       }
     }
   }
@@ -403,20 +390,11 @@ function board_displayAssigneesFull(arrayAsString, i) {
     for (let index = 0; index < users.length; index++) {
       let user = users[index];
       if (assigned.includes(user.id)) {
-        list.innerHTML += /*html*/ `
-        <div class="assigneeFull">
-          <div class="initials-logo" style="background-color: ${
-            user.color
-          }">${getInitials(user.name)}</div>
-          <div class="assigneeNameFull">${user.name}</div>
-        </div>
-        `;
+        list.innerHTML += board_createAssigneesFull(user)
       }
     }
   }
 }
-
-
 
 
 /**

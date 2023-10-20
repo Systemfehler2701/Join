@@ -163,6 +163,7 @@ function createFullTaskCard(arrayAsString, i) {
           <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
               <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
           </div>
+          <div class="FullTaskCardBody">
           <h2 class="titleFull">${task["title"]}</h2>
           <p class="descriptionFull">
              ${task["description"]}
@@ -180,17 +181,18 @@ function createFullTaskCard(arrayAsString, i) {
       </div>
       <div class="assigneesFull">
               <p>Assigned to:</p>
-          <div class="assigneeListFull" id="assigneeListFull"></div>
+          <div class="assigneeListFull scroll" id="assigneeListFull"></div>
       </div>
       <div class="subtasksFull">
           <p>Subtasks:</p>
-          <div id="SubtaskListFull" class="subtaskListFull"></div>
+          <div id="SubtaskListFull" class="subtaskListFull scroll"></div>
         </div>
       
       <div class="editorbarFull">
           <button onclick="board_renderWarning('${arrayAsString}', ${i})" class="del">Delete</button>
           <img src="/assets/img/Vector 3.svg" alt="">
           <button onclick="board_editTask('${arrayAsString}', ${i})" class="edit">Edit</button>
+      </div>
       </div>
     </div>
       `;
@@ -296,7 +298,7 @@ function board_createTaskEditor(arrayAsString, i) {
               </div> 
           </div>
       </div>
-      <div class="assigneeList" id="assigneeList"></div>
+      <div class="assigneeList scroll" id="assigneeList"></div>
   </div>
   <div class="subtasksEdit">
       <p>Subtasks:</p>
@@ -306,12 +308,61 @@ function board_createTaskEditor(arrayAsString, i) {
               <img src="/assets/img/Subtasks icons11.svg" alt="">
           </div>
       </div>
-      <div class="addedSubtasks" id="addedSubtasks"></div>
+      <div class="addedSubtasks scroll" id="addedSubtasks"></div>
   </div>
   </div>
   <div class="editorBottom">
     <button onclick="task_addEditedTask('${arrayAsString}', ${i})" class="create">Ok</button>
   </div>
+  </div>
+  `;
+}
+
+
+/**
+ * 
+ * @returns HTML for the board_DisplayAssigneesFull
+ */
+function board_createAssigneesFull(user) {
+  return /*html*/ `
+  <div class="assigneeFull">
+    <div class="initials-logo" style="background-color: ${
+      user.color
+    }">${getInitials(user.name)}</div>
+    <div class="assigneeNameFull">${user.name}</div>
+  </div>
+  `;
+}
+
+/**
+ * 
+ * @returns HTML for the board_DisplayAssignees
+ */
+function board_createAssignees(user) {
+  return  /*html*/ `
+  <div class="initials-logo" style="background-color: ${
+    user.color
+  }">${getInitials(user.name)}</div>`;
+}
+
+function board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
+  return /*html*/`
+  <div class="singleSubtaskFull">
+    <img id="checkbox${j}" class="checkbox" onclick="board_finishSubtask('${arrayAsString}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
+    <p>
+      ${subtask["task"]}
+    </p>
+  </div>
+  `;
+}
+
+function board_createFinishedSubtasksFull(arrayAsString, i, j, subtask) {
+  return /*html*/`
+  <div class="singleSubtaskFull">
+    <img id="checkbox${j}" class="checkbox" onclick="board_revertSubtask('${arrayAsString}', ${i}, ${j})" src="/assets/img/Check button.svg" alt="">
+    <p>
+      ${subtask["task"]}
+    </p>
   </div>
   `;
 }

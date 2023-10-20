@@ -281,6 +281,8 @@ progress {
 }
 
 .overlayBlank {
+  margin-top: 100px;
+  max-height: 71%;
   margin-left: 232px;
   display: flex;
   align-items: center;
@@ -333,18 +335,16 @@ progress {
 }
 
 .FullTaskCard {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  gap: 32px;
+  overflow-y: auto;
 }
 
 .cardheadFull {
-  width: 100%;
+  width: calc(100% - 40px);
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 32px;
 }
 
 .cardheadFull img {
@@ -355,6 +355,15 @@ progress {
 
 .cardheadFull img:hover {
   filter: drop-shadow(0 0 4px black);
+}
+
+.FullTaskCardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: calc(100% - 40px);
+  gap: 32px;
+  padding: 0 20px
 }
 
 .titleFull {
@@ -400,10 +409,18 @@ progress {
   margin: 0;
 }
 
+.assigneesFull {
+  width: 100%;
+}
+
+
 .assigneeListFull {
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+  max-height: 140px;
+  border-radius: 12px;
+  overflow-y: scroll;
   gap: 16px;
 }
 
@@ -440,6 +457,10 @@ progress {
   margin: 0;
 }
 
+.subtasksFull {
+  width: 100%
+}
+
 .subtasksFull p {
   font-size: 20px;
   color: #2a3647;
@@ -471,6 +492,11 @@ progress {
 
 .singleSubtaskFull:hover {
   background-color: #e7e7e7;
+}
+
+.singleSubtaskFull p {
+  word-break: break-all;
+  margin: 0;
 }
 
 .checkbox {
@@ -738,10 +764,12 @@ Here begins the styling of the Task-Editor Overlay the following elements have "
 
 .subtasksEdit .subtaskElement {
   height: 24px;
+
 }
 
 .subtaskElement p {
   margin: 0 !important;
+  word-break: break-all;
 }
 
 .editorBottom button {
