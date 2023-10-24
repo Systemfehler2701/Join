@@ -92,8 +92,6 @@ async function deleteContact(index) {
     closeContactOverlay();
 }
 
-
-
 /*
  * Open the contact edit/add overlay with slide in animation
  */

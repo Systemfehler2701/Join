@@ -846,10 +846,9 @@ form button {
     right: -300px;
     /* Dies sorgt dafür, dass das Overlay zunächst außerhalb des Bildschirms ist */
     width: 250px;
-    padding: 20px;
     background-color: #2a3647;
     color: white;
-    transform: translateY(-50%);
+    transform: translateY(-0%);
     transition: right 0.5s ease-in-out;
 }
 
