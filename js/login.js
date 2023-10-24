@@ -67,14 +67,12 @@ async function logIn() {
       setTimeout(function () {
         app();
       }, 2000);
-      // alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe");
     }
   } else {
     msgAlert();
     setTimeout(function () {
       app();
     }, 2000);
-    // alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe.");
   }
 }
 
@@ -143,6 +141,14 @@ function fillRememberedEmail() {
   }
 }
 
+<<<<<<<<<<<<<  ✨ Codeium AI Suggestion  >>>>>>>>>>>>>>
++/**
++ * This function displays a message alert box on the webpage.
++ *
++ * @param {string} paramName - The ID of the message box element.
++ * @return {undefined} This function does not return a value.
++ */
+<<<<<  bot-52d1dc64-ad28-4d2f-b740-d8a751574c18  >>>>>
 function msgAlert() {
   var signUpMsgBox = document.getElementById("loginMsgBox");
   if (signUpMsgBox.style.display === "") {

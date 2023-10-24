@@ -49,13 +49,11 @@ function getInitials(name) {
     return initials.toUpperCase();
 }
 
-
 /**
  * Change the background color of a selected contact
  * 
  * @param {string} index  The index of the contact in the users array to display details for
  */
-
 function changeBackgroundColor(index) {
     for (let j = 0; j < users.length; j++) {
         document.getElementById(`painted${j}`).classList.remove("selected");
@@ -139,10 +137,10 @@ async function saveContact() {
 function goBackToContacts() {
     renderContacts();
 }
+
 /**
  * Opens the contact options submenu
  */
-
 function openContactSubmenu() {
     const optionsMenu = document.getElementById("optionsMenu");
     optionsMenu.classList.add("show-options-menu");
@@ -160,6 +158,7 @@ function closeContactSubmenu(e) {
         menu.style.animation = "slideOut 1s forwards";
     }
 }
+
 
 function showSuccessOverlay() {
     const overlay = document.querySelector(".success-overlay");
