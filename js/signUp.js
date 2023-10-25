@@ -102,14 +102,12 @@ function msgSignUp() {
   }
 }
 
-<<<<<<<<<<<<<  ✨ Codeium AI Suggestion  >>>>>>>>>>>>>>
-+/**
-+ * Displays a sign-up alert message box and hides it after 1.5 seconds.
-+ *
-+ * @param {none} none - No parameters.
-+ * @return {none} No return value.
-+ */
-<<<<<  bot-3aad13f4-099e-4d04-b6df-babe397486c9  >>>>>
+/**
+ * Displays a sign-up alert message box and hides it after 1.5 seconds.
+ *
+ * @param {none} none - No parameters.
+ * @return {none} No return value.
+ */
 function msgSignUpAlert() {
   var signUpMsgBox = document.getElementById("signUpAlert");
   signUpMsgBox.style.display = "block";
