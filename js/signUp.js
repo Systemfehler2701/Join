@@ -7,7 +7,6 @@ let regUsers = {};
  */
 async function renderSignUpMask() {
   var container = document.getElementById("content-app");
-
   container.innerHTML = /*html*/ `
       <div id="login_signupBody">
         <div class="login-headline">
