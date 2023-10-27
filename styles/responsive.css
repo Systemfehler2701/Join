@@ -186,7 +186,7 @@
     .contacts-overlay {
         flex-direction: column;
         width: 60%;
-        top: 50.8%;
+        top: 40.8%;
         height: 79.2%;
         width: 70%;
         margin-top: 116px;
@@ -424,6 +424,7 @@
     }
     .contacts-overlay {
         margin-top: 0;
+        top:50.8%;
     }
     .navigation-menu {
         flex-direction: row;

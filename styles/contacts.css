@@ -758,7 +758,7 @@ form button {
     border: 1px solid #2a3647;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: white;
     font-size: 20px;
