@@ -865,12 +865,12 @@ form button {
     display: flex;
     position: absolute;
     text-align: center;
-    left: 100%;
+    left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 15px;
     border: 20px;
-    width: 326px;
+    width: 211px;
     height: 15px;
     line-height: 1, 5;
     color: white;
