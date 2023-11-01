@@ -200,6 +200,9 @@ function renderAddContact() {
     overlayButtons.innerHTML = `<button class="cancelBtn" onclick="closeContactOverlay()">Cancel</button>
     <button onclick="saveContact()"class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = -1;
+    document.getElementById("editName").value = '';
+    document.getElementById("editEmail").value = '';
+    document.getElementById("editPhone").value = '';
 }
 
 /**
