@@ -220,7 +220,7 @@ function renderEditContact(index) {
     overlayIcon.innerHTML = /*html*/ `
         <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
-    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="deleteContact(${index})">Delete</button>
+    overlayButtons.innerHTML = `<button type="button" class="cancelBtn" onclick="deleteContact(${index})">Delete</button>
     <button class="createBtn" type="submit">Save<img src="assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = index;
     document.getElementById("editName").value = user.name;
