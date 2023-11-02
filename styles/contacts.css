@@ -754,15 +754,15 @@ form button {
 
 .cancelBtn {
     height: 56px;
-    width: 125px;
+    min-width: 105px;
     border: 1px solid #2a3647;
     border-radius: 10px;
     display: flex;
     align-items: center;
     background-color: white;
     font-size: 20px;
-    margin-right: 32px;
-    padding: 16px;
+    margin-right: 15px;
+    padding: 10px;
     cursor: pointer;
     color: #2a3647;
     gap: 4px;
