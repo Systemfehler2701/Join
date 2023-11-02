@@ -85,7 +85,7 @@ function getTouchMoveInArrayName() {
 }
 
 function getTouchMoveInPanel() {
-  if (cloneMoveTouch.xy == undefined) {
+    if (cloneMoveTouch.xy == undefined) {
     return "";
   }
   let panelList = document.querySelectorAll(".panelbody");
