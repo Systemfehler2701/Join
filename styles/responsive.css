@@ -272,6 +272,7 @@
     }
     .cancelBtn {
         display: none;
+        
     }
     #responsiveButton {
         display: flex;
