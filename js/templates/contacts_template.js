@@ -179,8 +179,11 @@ if (screenData.internalWidth == "mobile" && leftside && contactsforresponse) {
             </div>
     </div>    
     `;
-
-    document.getElementById("detailsContainer").innerHTML = detailsContent;
+    let detailsContainerContent = document.getElementById("detailsContainer");
+    
+    if (detailsContainerContent !== undefined) {
+        detailsContainerContent.innerHTML = detailsContent;
+    }
 }
 
 /**

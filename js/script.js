@@ -117,8 +117,8 @@ Object.defineProperty(screenData, 'Screenwidth', {
  */
 function onScreenwidthChange() {
     if (currentlyDisplayedContactIndex !== null) {
-        let index = currentlyDisplayedContactIndex
-        showDetails(index)
+        let index = currentlyDisplayedContactIndex;
+        showDetails(index);
     }
 }
 /**
