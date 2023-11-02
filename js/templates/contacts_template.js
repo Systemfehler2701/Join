@@ -112,8 +112,7 @@ async function renderContactList() {
                     <span class='mail'><p><h3>${user.email}</h3></p></span>
                     </div>
             </div>
-        </div>
-        `;
+        </div>`;
         }
     }
     document.getElementById("contactlist").innerHTML = content;
@@ -130,10 +129,10 @@ function showDetails(index) {
     const initials = getInitials(user.name);
     let leftside = document.getElementById("leftside");
     let contactsforresponse = document.getElementById("contactsforRespons");
-    
-if (screenData.internalWidth == "mobile" && leftside && contactsforresponse) {
-    leftside.style.display = "none";
-    contactsforresponse.style.display = "flex";
+
+    if (screenData.internalWidth == "mobile" && leftside && contactsforresponse) {
+        leftside.style.display = "none";
+        contactsforresponse.style.display = "flex";
     }
     if (screenData.internalWidth == "fullscreen" && leftside && contactsforresponse) {
         leftside.style.display = "flex";
@@ -177,10 +176,8 @@ if (screenData.internalWidth == "mobile" && leftside && contactsforresponse) {
                     <span class="iconText">Delete</span>
                 </div>
             </div>
-    </div>    
-    `;
+    </div>`;
     let detailsContainerContent = document.getElementById("detailsContainer");
-    
     if (detailsContainerContent !== undefined) {
         detailsContainerContent.innerHTML = detailsContent;
     }
