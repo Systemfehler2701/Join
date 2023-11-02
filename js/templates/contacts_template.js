@@ -35,7 +35,7 @@ function renderContacts(element) {
     </div>
     <div class="success-overlay" id="successOverlay">
         <div class="success-message">
-            Contact succesfully created
+            Contact succesfully saved
         </div>
     </div>
     <!-- Overlay neu -->
@@ -103,15 +103,16 @@ async function renderContactList() {
                 currentInitial = userInitial;
             }
             content += /* html */ `
-          <div class="contactfield-wrapper" id='painted${index}'>
+        <div class="contactfield-wrapper" id='painted${index}'>
             <div class="contactfield" onclick="showDetails('${index}'); changeBackgroundColor('${index}');">
-              <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}</div>
-              <div class="contact">
-                <span class= 'name'><p><h3>${user.name}</h3></p></span>
-                <span class='mail'><p><h3>${user.email}</h3></p></span>
-              </div>
+                <div class="initials-logo" style="background-color: ${user.color}">${getInitials(user.name)}
+                </div>
+                    <div class="contact">
+                    <span class= 'name'><p><h3>${user.name}</h3></p></span>
+                    <span class='mail'><p><h3>${user.email}</h3></p></span>
+                    </div>
             </div>
-          </div>
+        </div>
         `;
         }
     }
@@ -196,9 +197,12 @@ function renderAddContact() {
     </div>
     </div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
-    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="closeContactOverlay()">Cancel<img src="assets/img/close.svg"></button>
-    <button onclick="createContact()"class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
+    overlayButtons.innerHTML = `<button type=button class="cancelBtn" onclick="closeContactOverlay()">Cancel</button>
+    <button class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = -1;
+    document.getElementById("editName").value = '';
+    document.getElementById("editEmail").value = '';
+    document.getElementById("editPhone").value = '';
 }
 
 /**
@@ -216,7 +220,7 @@ function renderEditContact(index) {
     overlayIcon.innerHTML = /*html*/ `
         <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
-    overlayButtons.innerHTML = `<button class="cancelBtn" onclick="deleteContact(${index})">Delete</button>
+    overlayButtons.innerHTML = `<button type="button" class="cancelBtn" onclick="deleteContact(${index})">Delete</button>
     <button class="createBtn" type="submit">Save<img src="assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = index;
     document.getElementById("editName").value = user.name;

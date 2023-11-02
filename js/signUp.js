@@ -7,7 +7,6 @@ let regUsers = {};
  */
 async function renderSignUpMask() {
   var container = document.getElementById("content-app");
-
   container.innerHTML = /*html*/ `
       <div id="login_signupBody">
         <div class="login-headline">
@@ -32,14 +31,7 @@ async function renderSignUpMask() {
             <div class="password-img" onclick="togglePasswordVisibility(this)"></div>
           </div>
           <div id="loginCheckbox">
-            <input 
-            required  
-            class=""
-            type="checkbox"
-            value=""
-            id="signUpCheck"
-            unchecked
-            />
+            <input required class="" type="checkbox" value="" id="signUpCheck" unchecked/>
             <span>I accept the <a href="privacy_policy.html" target="_blank">Privacy Policy</a></span> 
           </div>
           <div id="loginButtons">
@@ -91,14 +83,10 @@ async function register() {
  * @return {type} - No return value.
  */
 function resetForm() {
-  try {
-    signUpName.value = "";
-    signUpEmail.value = "";
-    signUpPw.value = "";
-    signUpPw2.value = "";
-  } catch (e) {
-    // console.error("Reset error:", e);
-  }
+  signUpName.value = "";
+  signUpEmail.value = "";
+  signUpPw.value = "";
+  signUpPw2.value = "";
 }
 
 /**
@@ -114,10 +102,16 @@ function msgSignUp() {
   }
 }
 
+/**
+ * Displays a sign-up alert message box and hides it after 1.5 seconds.
+ *
+ * @param {none} none - No parameters.
+ * @return {none} No return value.
+ */
 function msgSignUpAlert() {
   var signUpMsgBox = document.getElementById("signUpAlert");
   signUpMsgBox.style.display = "block";
-  
+
   setTimeout(function () {
     signUpMsgBox.style.display = "none";
   }, 1500);

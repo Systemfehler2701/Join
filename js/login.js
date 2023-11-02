@@ -67,14 +67,12 @@ async function logIn() {
       setTimeout(function () {
         app();
       }, 2000);
-      // alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe");
     }
   } else {
     msgAlert();
     setTimeout(function () {
       app();
     }, 2000);
-    // alert("Benutzer oder Passwort falsch. Überprüfen Sie Ihre eingabe.");
   }
 }
 
@@ -143,6 +141,12 @@ function fillRememberedEmail() {
   }
 }
 
+/**
+ * This function displays a message alert box on the webpage.
+ *
+ * @param {string} paramName - The ID of the message box element.
+ * @return {undefined} This function does not return a value.
+ */
 function msgAlert() {
   var signUpMsgBox = document.getElementById("loginMsgBox");
   if (signUpMsgBox.style.display === "") {

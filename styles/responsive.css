@@ -177,7 +177,6 @@
     }
     /*overlay-respons*/
     .contacts-overlay-content {
-        position: absolute;
         top: 0;
         left: 0;
         bottom: 65px;
@@ -187,7 +186,7 @@
     .contacts-overlay {
         flex-direction: column;
         width: 60%;
-        top: 39.8%;
+        top: 40.8%;
         height: 79.2%;
         width: 70%;
         margin-top: 116px;
@@ -273,6 +272,7 @@
     }
     .cancelBtn {
         display: none;
+        
     }
     #responsiveButton {
         display: flex;
@@ -425,6 +425,7 @@
     }
     .contacts-overlay {
         margin-top: 0;
+        top:50.8%;
     }
     .navigation-menu {
         flex-direction: row;
@@ -553,7 +554,7 @@
         cursor: pointer;
         box-shadow: 0px 5px 5px 0px #00000040;
         position: absolute;
-        bottom: 20px;
+        bottom: 48px;
         right: 10px;
     }
     .show-options-menu {
@@ -561,7 +562,7 @@
         border-radius: 20px 20px 0px 20px;
         box-shadow: 0px 5px 5px 0px #00000040;
         padding: 10px;
-        bottom: 5px;
+        bottom:  44px;
         right: 0px;
         transform: translateX(200%);
         width: 110px;
