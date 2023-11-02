@@ -128,14 +128,16 @@ function showDetails(index) {
     currentlyDisplayedContactIndex = index;
     const user = users[index];
     const initials = getInitials(user.name);
-
-    if (screenData.internalWidth == "mobile") {
-        document.getElementById("leftside").style.display = "none";
-        document.getElementById("contactsforRespons").style.display = "flex";
+    let leftside = document.getElementById("leftside");
+    let contactsforresponse = document.getElementById("contactsforRespons");
+    
+if (screenData.internalWidth == "mobile" && leftside && contactsforresponse) {
+    leftside.style.display = "none";
+    contactsforresponse.style.display = "flex";
     }
-    if (screenData.internalWidth == "fullscreen") {
-        document.getElementById("leftside").style.display = "flex";
-        document.getElementById("contactsforRespons").style.display = "flex";
+    if (screenData.internalWidth == "fullscreen" && leftside && contactsforresponse) {
+        leftside.style.display = "flex";
+        contactsforresponse.style.display = "flex";
     }
     const detailsContent = /* html */ `
     <div class="contactCard">
