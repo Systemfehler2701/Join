@@ -66,7 +66,7 @@ function renderBoardHead() {
         <h1 class="h1">Board</h1>
         <div class="headleft">
             <div class="searchbar">
-                <input onkeyup="board_resetSearch()" type="text" id="taskSearch" placeholder="Find task">
+                <input onkeyup="board_resetSearch(), board_search()" type="text" id="taskSearch" placeholder="Find task">
                 <div class="divider"></div>
                 <div class="searchbutton">
                     <img onclick="board_search()" src="assets/img/search.svg" alt="">
