@@ -146,11 +146,11 @@ function showDetails(index) {
                 <h3>${user.name}</h3>
                 <div class="contactsIcons">
                     <div class="iconWrapper" onclick="renderEditContact(${index})">
-                        <img class="icon" src="/assets/img/edit.svg">
+                        <img class="icon" src="./assets/img/edit.svg">
                         <span class="iconText">Edit</span>
                     </div>
                     <div class="iconWrapper" onclick="deleteContact(${index})">
-                        <img class="icon" src="/assets/img/delete.svg">
+                        <img class="icon" src="./assets/img/delete.svg">
                         <span class="iconText">Delete</span>
                     </div>
                 </div>
@@ -165,14 +165,14 @@ function showDetails(index) {
                 <p><h5>${user.phone}</h5></p>
             </div>
         </div>
-        <button class="options-button" onclick="openContactSubmenu()"><img src="assets/img/more_vert.svg"></button>            
+        <button class="options-button" onclick="openContactSubmenu()"><img src="./assets/img/more_vert.svg"></button>            
             <div class="options-menu" id="optionsMenu">
                 <div class="iconWrapper" onclick="renderEditContact(${index})">
-                    <img class="icon" src="/assets/img/edit.svg">
+                    <img class="icon" src="./assets/img/edit.svg">
                     <span class="iconText">Edit</span>
                 </div>
                 <div class="iconWrapper" onclick="deleteContact(${index})">
-                    <img class="icon" src="/assets/img/delete.svg">
+                    <img class="icon" src="./assets/img/delete.svg">
                     <span class="iconText">Delete</span>
                 </div>
             </div>
@@ -200,7 +200,7 @@ function renderAddContact() {
     </div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
     overlayButtons.innerHTML = `<button type="button" class="cancelBtn" onclick="closeContactOverlay()">Cancel</button>
-    <button class="createBtn" type="submit">Create Contact<img src="assets/img/check.png"></button>`;
+    <button class="createBtn" type="submit">Create Contact<img src="./assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = -1;
     document.getElementById("editName").value = '';
     document.getElementById("editEmail").value = '';
@@ -223,7 +223,7 @@ function renderEditContact(index) {
         <div class="detailsLogo" style="background-color: ${user.color}; margin: 0;">${userInitials}</div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
     overlayButtons.innerHTML = `<button type="button" class="cancelBtn" onclick="deleteContact(${index})">Delete</button>
-    <button class="createBtn" type="submit">Save<img src="assets/img/check.png"></button>`;
+    <button class="createBtn" type="submit">Save<img src="./assets/img/check.png"></button>`;
     document.getElementById("contact-edit-index").value = index;
     document.getElementById("editName").value = user.name;
     document.getElementById("editEmail").value = user.email;

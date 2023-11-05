@@ -69,7 +69,7 @@ function renderBoardHead() {
                 <input onkeyup="board_resetSearch(), board_search()" type="text" id="taskSearch" placeholder="Find task">
                 <div class="divider"></div>
                 <div class="searchbutton">
-                    <img onclick="board_search()" src="assets/img/search.svg" alt="">
+                    <img onclick="board_search()" src="./assets/img/search.svg" alt="">
                 </div>
             </div>
             <div class="headAddButton">
@@ -161,7 +161,7 @@ function createFullTaskCard(arrayAsString, i) {
     <div class="FullTaskCard">
       <div class="cardheadFull">
           <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
-              <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
+              <img onclick="board_closeOverlay()" src="./assets/img/close.svg" alt="">
           </div>
           <div class="FullTaskCardBody">
           <h2 class="titleFull">${task["title"]}</h2>
@@ -190,7 +190,7 @@ function createFullTaskCard(arrayAsString, i) {
       
       <div class="editorbarFull">
           <button onclick="board_renderWarning('${arrayAsString}', ${i})" class="del">Delete</button>
-          <img src="/assets/img/Vector 3.svg" alt="">
+          <img src="./assets/img/Vector 3.svg" alt="">
           <button onclick="board_editTask('${arrayAsString}', ${i})" class="edit">Edit</button>
       </div>
       </div>
@@ -245,7 +245,7 @@ function board_createTaskEditor(arrayAsString, i) {
   let year = date.getFullYear();
   return /*html*/ `
   <div onclick="task_closeOverlay(event, this)" class="cardheadEdit">
-    <img onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
+    <img onclick="board_closeOverlay()" src="./assets/img/close.svg" alt="">
   </div>
   <div onclick="task_closeOverlay(event, this)" class="TaskEditorBody scroll">
       <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
@@ -268,15 +268,15 @@ function board_createTaskEditor(arrayAsString, i) {
         <div class="priocontainerEdit">
           <div onclick="task_setPrio(0)" id="Prio0">
             Urgent
-            <img id="Prio0_img" src="/assets/img/Prio_alta.png" class="">
+            <img id="Prio0_img" src="./assets/img/Prio_alta.png" class="">
           </div>
           <div onclick="task_setPrio(1)" id="Prio1">
             Medium
-            <img id="Prio1_img" src="/assets/img/Prio_media.png" class="">
+            <img id="Prio1_img" src="./assets/img/Prio_media.png" class="">
           </div>
           <div onclick="task_setPrio(2)" id="Prio2">
             Low
-            <img id="Prio2_img" src="/assets/img/Prio_baja.png" class="">
+            <img id="Prio2_img" src="./assets/img/Prio_baja.png" class="">
           </div>
         </div>
         <div class="Taskerror" style="display: none;" id="errorPriority"> You need to Select a Priority</div>
@@ -287,14 +287,14 @@ function board_createTaskEditor(arrayAsString, i) {
       <div onclick="task_openOverlay(event)" class="assignmentInput" id="assignmentInput">
         <input  onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
         <div id="assignmentSelectButton" onclick="task_closeOverlay(event, this)">
-          <img src="/assets/img/arrow_drop_downaa.svg" alt="">
+          <img src="./assets/img/arrow_drop_downaa.svg" alt="">
         </div>
       </div> 
       <div onclick="preventClose(event)" class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
           <div  id="assign_select" class="assignmentContainer scroll"></div>
           <div class="ContactButtonContainer">
               <div onclick="goToContacts()" class="newContactButton" id="assignmentNewContact">Add New contact
-                  <img src="/assets/img/person_add.svg" alt="">
+                  <img src="./assets/img/person_add.svg" alt="">
               </div> 
           </div>
       </div>
@@ -305,7 +305,7 @@ function board_createTaskEditor(arrayAsString, i) {
       <div class="subtaskInputContainer">
           <input class="subtaskInput" onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
           <div class="subtaskimages" id="subtaskField">
-              <img src="/assets/img/Subtasks icons11.svg" alt="">
+              <img src="./assets/img/Subtasks icons11.svg" alt="">
           </div>
       </div>
       <div class="addedSubtasks scroll" id="addedSubtasks"></div>
@@ -348,7 +348,7 @@ function board_createAssignees(user) {
 function board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
   return /*html*/`
   <div class="singleSubtaskFull">
-    <img id="checkbox${j}" class="checkbox" onclick="board_finishSubtask('${arrayAsString}', ${i}, ${j})" src="/assets/img/Rectangle 5.svg" alt="">
+    <img id="checkbox${j}" class="checkbox" onclick="board_finishSubtask('${arrayAsString}', ${i}, ${j})" src="./assets/img/Rectangle 5.svg" alt="">
     <p>
       ${subtask["task"]}
     </p>
@@ -359,7 +359,7 @@ function board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
 function board_createFinishedSubtasksFull(arrayAsString, i, j, subtask) {
   return /*html*/`
   <div class="singleSubtaskFull">
-    <img id="checkbox${j}" class="checkbox" onclick="board_revertSubtask('${arrayAsString}', ${i}, ${j})" src="/assets/img/Check button.svg" alt="">
+    <img id="checkbox${j}" class="checkbox" onclick="board_revertSubtask('${arrayAsString}', ${i}, ${j})" src="./assets/img/Check button.svg" alt="">
     <p>
       ${subtask["task"]}
     </p>

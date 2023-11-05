@@ -33,11 +33,11 @@ function createNewTask(arrayAsString) {
     <div onclick="task_closeOverlay(event, this)" class="taskbody">
         <div id="taskNotification" class="taskNotification"> 
             Task added to board
-            <img src="/assets/img/Vector_board.svg" alt="">
+            <img src="./assets/img/Vector_board.svg" alt="">
         </div>
         <div class="taskHeader">
             <h1>Add Task</h1>
-            <img id="closeOverlay" onclick="board_closeOverlay()" src="/assets/img/close.svg" alt="">
+            <img id="closeOverlay" onclick="board_closeOverlay()" src="./assets/img/close.svg" alt="">
         </div>
 
         <div class="taskInputContainer" style="width: 100%">
@@ -60,14 +60,14 @@ function createNewTask(arrayAsString) {
                         <div  onclick="task_openOverlay(event)" class="assignmentInput" id="assignmentInput">
                             <input onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
                             <div id="assignmentSelectButton" onclick="task_closeOverlay(event, this)">
-                                <img src="/assets/img/arrow_drop_downaa.svg" alt="">
+                                <img src="./assets/img/arrow_drop_downaa.svg" alt="">
                             </div>
                         </div> 
                         <div onclick="preventClose(event)" class="assigneeOptionContainer" id="assigneeOptionContainer" style="display: none">
                             <div  id="assign_select" class="assignmentContainer scroll"></div>
                             <div class="ContactButtonContainer">
                               <div onclick="goToContacts()" class="newContactButton" id="assignmentNewContact">Add New contact
-                                <img src="/assets/img/person_add.svg" alt="">
+                                <img src="./assets/img/person_add.svg" alt="">
                               </div> 
                             </div>
                         </div>
@@ -90,15 +90,15 @@ function createNewTask(arrayAsString) {
                         <div class="priocontainer">
                             <div onclick="task_setPrio(0)" id="Prio0">
                                 Urgent
-                                <img id="Prio0_img" src="/assets/img/Prio_alta.png" class="">
+                                <img id="Prio0_img" src="./assets/img/Prio_alta.png" class="">
                             </div>
                             <div onclick="task_setPrio(1)" id="Prio1">
                                 Medium
-                                <img id="Prio1_img" src="/assets/img/Prio_media.png" class="">
+                                <img id="Prio1_img" src="./assets/img/Prio_media.png" class="">
                             </div>
                             <div onclick="task_setPrio(2)" id="Prio2">
                                 Low
-                                <img id="Prio2_img" src="/assets/img/Prio_baja.png" class="">
+                                <img id="Prio2_img" src="./assets/img/Prio_baja.png" class="">
                             </div>
                         </div>
                         <div class="Taskerror" style="display: none;" id="errorPriority">You need to Select a Priority</div>
@@ -117,7 +117,7 @@ function createNewTask(arrayAsString) {
                             <div class="subtaskInputContainer">
                                 <input class="subtaskInput" onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
                                 <div class="subtaskimages" id="subtaskField">
-                                    <img src="/assets/img/Subtasks icons11.svg" alt="">
+                                    <img src="./assets/img/Subtasks icons11.svg" alt="">
                                 </div>
                             </div>
                             <div class="addedSubtasks scroll" id="addedSubtasks"></div>
@@ -150,7 +150,7 @@ function task_createAssignedContact(user) {
         user.color
       }">${getInitials(user.name)}</div>
       <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${user.id}"  class="checkbox" src="/assets/img/Check button.svg" alt="">
+      <img id="assigneeCheckbox${user.id}"  class="checkbox" src="./assets/img/Check button.svg" alt="">
   </div>
   `;
 }
@@ -168,7 +168,7 @@ function task_createUnassignedContact(user) {
         user.color
       }">${getInitials(user.name)}</div>
       <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${user.id}"  class="checkbox" src="/assets/img/Rectangle 5.svg" alt="">
+      <img id="assigneeCheckbox${user.id}"  class="checkbox" src="./assets/img/Rectangle 5.svg" alt="">
   </div>
   `;
 }

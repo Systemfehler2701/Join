@@ -3,7 +3,7 @@ function renderHelp() {
     let content = document.getElementById("content");
     content.innerHTML = /* html */ `
         <div class="help-content">
-            <div class="arrow-left"><img src="assets/img/arrow-left-line.svg" onclick="app()"></div>
+            <div class="arrow-left"><img src="./assets/img/arrow-left-line.svg" onclick="app()"></div>
             <h1>Help</h1>
                 <p>Welcome to the help page for <span class="colored-word">Join</span>, your guide to using our kanban project management tool. Here, we'll provide an overview of what <span class="colored-word">Join</span> is, how it can benefit you, and how to use it.</p>
             <div>
@@ -67,7 +67,7 @@ function renderNotice() {
     let content = document.getElementById("content");
     content.innerHTML = /* html */ `
     <div class="help-content">
-            <div class="arrow-left"><img src="assets/img/arrow-left-line.svg" onclick="app()"></div>
+            <div class="arrow-left"><img src="./assets/img/arrow-left-line.svg" onclick="app()"></div>
             <h1>Legal Notice</h1>
             <h2>Imprint</h2>
             <ul>
@@ -101,7 +101,7 @@ function renderPolicy() {
     let content = document.getElementById("content");
     content.innerHTML = /* html */ `
     <div class="help-content">
-            <div class="arrow-left"><img src="assets/img/arrow-left-line.svg" onclick="app()"></div>
+            <div class="arrow-left"><img src="./assets/img/arrow-left-line.svg" onclick="app()"></div>
             <h1>Datenschutz&shy;erkl&auml;rung</h1>
             <h2>1. Datenschutz auf einen Blick</h2>
             <h3>Allgemeine Hinweise</h3> <p>Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie pers&ouml;nlich identifiziert werden k&ouml;nnen. Ausf&uuml;hrliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgef&uuml;hrten Datenschutzerkl&auml;rung.</p>
