@@ -267,7 +267,7 @@ form button {
 .inputName {
     border-radius: 10px;
     gap: 10px;
-    background: url(/assets/img/person.svg);
+    background: url(../assets/img/person.svg);
     background-repeat: no-repeat;
     background-position: 95%;
     padding: 13px 21px;
@@ -281,7 +281,7 @@ form button {
     gap: 10px;
     padding: 13px, 21px, 13px, 21px;
     background-color: #ffffff;
-    background: url(/assets/img/mail.svg);
+    background: url(../assets/img/mail.svg);
     background-repeat: no-repeat;
     background-position: 95%;
     padding: 13px 21px;
@@ -292,7 +292,7 @@ form button {
     border-radius: 10px;
     gap: 10px;
     padding: 13px, 21px, 13px, 21px;
-    background: url(/assets/img/call.svg);
+    background: url(../assets/img/call.svg);
     background-repeat: no-repeat;
     background-position: 95%;
     padding: 13px 21px;

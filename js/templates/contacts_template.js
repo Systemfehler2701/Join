@@ -12,24 +12,24 @@ function renderContacts(element) {
         <div class="contact-left-button">
             <button class="addButton" onclick="renderAddContact()">
                 <span>Add new Contact</span>
-                <img src="assets/img/person_add.svg">
+                <img src="./assets/img/person_add.svg">
             </button>
         </div>
         <div class="viewall scroll">
-            <button id="responsiveButton"><img src="assets/img/person_add.svg" onclick="renderAddContact()"></button>
+            <button id="responsiveButton"><img src="./assets/img/person_add.svg" onclick="renderAddContact()"></button>
             <div style="width: 100%" id="contactlist"></div>
         </div>
     </div>
             
     <div class="rightside" id="contactsforRespons">
         <div onclick="goBackToContacts()" class="arrowBack">
-            <img src="/assets/img/arrow-left-line.svg" alt="Back" id="backArrow">
+            <img src="./assets/img/arrow-left-line.svg" alt="Back" id="backArrow">
         </div>
         <div class="contacts-headline">
             <h1>Contacts</h1>
-            <img class="contact-img" src="/assets/img/blue-stroke.svg">
+            <img class="contact-img" src="./assets/img/blue-stroke.svg">
             <h2>Better with a team</h2>
-            <img class="contact-img-responsive" src="/assets/img/Vector 5.svg">
+            <img class="contact-img-responsive" src="./assets/img/Vector 5.svg">
         </div>
         <div class="contactInfo" id="detailsContainer"></div>        
     </div>
@@ -43,7 +43,7 @@ function renderContacts(element) {
         <div class="contacts-overlay">
             <div class="darkside">
                 <div id="contacts-overlay-headline"> 
-                    <img src="../assets/img/logo-white.svg">
+                    <img src="./assets/img/logo-white.svg">
                     <h2 id="contacts-overlay-h2"></h2>
                     <h3 id="contacts-overlay-h3"></h3>
                     <span class="blue-line-horizontal"></span>               
@@ -195,7 +195,7 @@ function renderAddContact() {
     let overlayIcon = document.getElementById("contacts-overlay-whiteside-left");
     overlayIcon.innerHTML = /*html*/ `<div class="contacts-overlay-icon-border">
     <div class="contacts-overlay-icon">
-        <img src="../assets/img/person2.svg">
+        <img src="./assets/img/person2.svg">
     </div>
     </div>`;
     let overlayButtons = document.getElementById("contacts-overlay-buttons");
