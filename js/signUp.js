@@ -10,14 +10,14 @@ async function renderSignUpMask() {
   container.innerHTML = /*html*/ `
       <div id="login_signupBody">
         <div class="login-headline">
-          <img id="logo" src="../../assets/img/logo_main.svg" alt="Logo">
+          <img id="logo" src="./assets/img/logo_main.svg" alt="Logo">
           <div class="headline-right">
           </div>
         </div>
         <div class="signUp-formular">
         <form id="signUp_form" onsubmit="register(); return false;">
           <div id="loginArrow">
-            <img id="loginArrowImg" src="../../assets/img/arrow-left-line.svg" alt="Arrow" onclick="app()">
+            <img id="loginArrowImg" src="./assets/img/arrow-left-line.svg" alt="Arrow" onclick="app()">
           </div>
           <div id="loginHead">
             <h1 id="loginTitle">Sign Up</h1>

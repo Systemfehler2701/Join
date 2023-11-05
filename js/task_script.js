@@ -206,12 +206,12 @@ function task_renderSubtasks() {
 
     <div class="subtaskElement" id="subtask${i}">
       <div class="subtaskElementBody">
-        <img class="dot" src="/assets/img/dot.svg" alt="">
+        <img class="dot" src="./assets/img/dot.svg" alt="">
         <p>${subtaskelement["task"]}</p>
       </div>
       <div class="subtaskTools">
-        <img onclick="task_cutSubtask(${i})" src="/assets/img/delete.svg" alt="">
-        <img onclick="task_editSubtask(${i})" src="/assets/img/edit.svg" alt="">
+        <img onclick="task_cutSubtask(${i})" src="./assets/img/delete.svg" alt="">
+        <img onclick="task_editSubtask(${i})" src="./assets/img/edit.svg" alt="">
       </div>
     </div>
     `;
@@ -241,8 +241,8 @@ function task_editSubtask(i) {
   subTaskDisplay.innerHTML = `
       <input type="text" id="editedInput${i}" value="${currentValue}"  />
       <div>
-        <img onclick="task_cutSubtask( ${i})" src="/assets/img/delete.svg" alt="">
-        <img onclick="task_saveSubtaskEdit(${i})" src="/assets/img/Vector 17.svg" alt="">
+        <img onclick="task_cutSubtask( ${i})" src="./assets/img/delete.svg" alt="">
+        <img onclick="task_saveSubtaskEdit(${i})" src="./assets/img/Vector 17.svg" alt="">
       </div>
     `;
 }
@@ -273,13 +273,13 @@ function task_changeSubtaskAppearance() {
   if (document.getElementById("subtasks").value != "") {
     document.getElementById("subtaskField").innerHTML = /*html*/ `
 
-    <div class="buttonwrapper"><img onclick="task_clearSubtask()" src="/assets/img/close.svg" alt=""></div> 
-    <img src="/assets/img/Vector 3.svg" alt="">
-    <div class="buttonwrapper"><img onclick="task_addSubtask()" src="/assets/img/Vector 17.svg" alt=""></div>  
+    <div class="buttonwrapper"><img onclick="task_clearSubtask()" src="./assets/img/close.svg" alt=""></div> 
+    <img src="./assets/img/Vector 3.svg" alt="">
+    <div class="buttonwrapper"><img onclick="task_addSubtask()" src="./assets/img/Vector 17.svg" alt=""></div>  
     `;
   } else {
     document.getElementById("subtaskField").innerHTML =
-      '<img src="/assets/img/Subtasks icons11.svg" alt="">';
+      '<img src="./assets/img/Subtasks icons11.svg" alt="">';
   }
 }
 

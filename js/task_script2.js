@@ -71,7 +71,7 @@ function task_renderAssigneeOptions() {
     assignees.push(id);
     let checkbox = document.getElementById(`assigneeCheckbox${id}`);
     let assignee = document.getElementById(`assignee${id}`)
-    checkbox.src = "/assets/img/Check button.svg";
+    checkbox.src = "./assets/img/Check button.svg";
     assignee.onclick = null;
     assignee.onclick = function () {
       task_unassign(id);
@@ -90,7 +90,7 @@ function task_renderAssigneeOptions() {
   
     let checkbox = document.getElementById(`assigneeCheckbox${id}`);
     let assignee = document.getElementById(`assignee${id}`)
-    checkbox.src = "/assets/img/Rectangle 5.svg";
+    checkbox.src = "./assets/img/Rectangle 5.svg";
     assignee.onclick = null;
     assignee.onclick = function () {
       task_assign(id);

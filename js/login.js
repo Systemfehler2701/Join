@@ -27,10 +27,10 @@ function togglePasswordVisibility(element) {
     return;
   }
   if (passwordField.type === "password") {
-    element.style.backgroundImage = "url(../assets/img/visibility.svg)";
+    element.style.backgroundImage = "url(./assets/img/visibility.svg)";
     passwordField.type = "text";
   } else {
-    element.style.backgroundImage = "url(../assets/img/visibility_off.svg)";
+    element.style.backgroundImage = "url(./assets/img/visibility_off.svg)";
     passwordField.type = "password";
   }
 }
