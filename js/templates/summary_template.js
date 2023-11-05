@@ -59,7 +59,7 @@ function renderSummaryHeader() {
         <h1>Join 360</h1>
         <img class="img-full" src="../assets/img/blue-stroke.svg">
         <h2>Key Metrics at a Glance</h2>
-        <img class="img-responsive d-none" src="../assets/img/blue-stroke.svg">
+        <img class="img-responsive d-none" src="./assets/img/blue-stroke.svg">
     </div>`;
 }
 

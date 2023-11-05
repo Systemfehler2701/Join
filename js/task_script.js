@@ -12,17 +12,17 @@ let Prio = [];
 let priorities = [
   {
     priority: "Urgent",
-    symbol: "/assets/img/Prio_alta.png",
+    symbol: "./assets/img/Prio_alta.png",
     color: "rgb(255, 61, 0)",
   },
   {
     priority: "Medium",
-    symbol: "/assets/img/Prio_media.png",
+    symbol: "./assets/img/Prio_media.png",
     color: "rgb(255, 168, 0)",
   },
   {
     priority: "Low",
-    symbol: "/assets/img/Prio_baja.png",
+    symbol: "./assets/img/Prio_baja.png",
     color: "rgb(122,226,41)",
   },
 ];
