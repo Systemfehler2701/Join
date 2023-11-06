@@ -62,7 +62,6 @@ async function register() {
     password: signUpPw.value,
   };
 
-  // Verwende die E-Mail-Adresse als Schlüssel
   regUsers[signUpEmail.value] = newUser;
 
   await setItem("users", JSON.stringify(regUsers));
