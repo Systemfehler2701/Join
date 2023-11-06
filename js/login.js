@@ -9,10 +9,10 @@ function changePasswordImg(element) {
   passwordField.type = "password";
   if (passwordField.value != "") {
     passwordField.nextElementSibling.style.backgroundImage =
-      "url(../assets/img/visibility_off.svg)";
+      "url(./assets/img/visibility_off.svg)";
   } else {
     passwordField.nextElementSibling.style.backgroundImage =
-      "url(../assets/img/lock.svg)";
+      "url(./assets/img/lock.svg)";
   }
 }
 

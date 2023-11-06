@@ -70,10 +70,10 @@
 
 @keyframes changeColor {
     0% {
-        background-image: url(/assets/img/logo-white.svg);
+        background-image: url(../assets/img/logo-white.svg);
     }
     100% {
-        background-image: url(/assets/img/logo_main.svg);
+        background-image: url(../assets/img/logo_main.svg);
     }
 }
 
