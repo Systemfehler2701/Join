@@ -24,7 +24,7 @@ function task_renderAssigneeOptions() {
  *
  *
  */
-function task_renderAssigneeList() {
+function taskRenderAssigneeList() {
     let list = document.getElementById("assigneeList");
     list.innerHTML = "";
     for (let i = 0; i < users.length; i++) {
@@ -76,7 +76,7 @@ function task_assign(id) {
     assignee.onclick = function() {
         task_unassign(id);
     };
-    task_renderAssigneeList();
+    taskRenderAssigneeList();
 }
 
 /**
@@ -95,7 +95,7 @@ function task_unassign(id) {
     assignee.onclick = function() {
         task_assign(id);
     };
-    task_renderAssigneeList();
+    taskRenderAssigneeList();
 }
 
 
@@ -163,7 +163,7 @@ function preventClose(e) {
  * resets all error messages by making them invisible
  *
  */
-function task_resetError() {
+function taskResetError() {
     document.getElementById("errorTitle").style.display = "none";
     document.getElementById("errorDate").style.display = "none";
     document.getElementById("errorDate").style.display = "none";
@@ -192,7 +192,7 @@ function displayTaskNotification() {
  * @param {number} category values of the respective inputs
  * @returns false or true
  */
-function task_CheckInputValidity(title, dueDate, category) {
+function taskCheckInputValidity(title, dueDate, category) {
     let validitiy = true;
     if (title == "") {
         document.getElementById("errorTitle").style.display = "block";
@@ -243,6 +243,6 @@ async function FULLSTOP() {
     await setItem("inProgress", JSON.stringify(taskLists["inProgress"]));
     await setItem("feedback", JSON.stringify(taskLists["feedback"]));
     await setItem("done", JSON.stringify(taskLists["done"]));
-    board_closeOverlay();
+    boardCloseOverlay();
     boardLoadTasks();
 }

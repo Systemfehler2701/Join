@@ -92,14 +92,14 @@ function board_searchByList(panel, arrayAsString) {
  *
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
  */
-function board_addTask(arrayAsString) {
+function boardAddTask(arrayAsString) {
     overlay.style.display = "flex";
     overlayBody.innerHTML = "";
     overlayBody.innerHTML = createNewTask(arrayAsString);
-    task_renderCategoryOptions();
+    taskRenderCategoryOptions();
     task_renderAssigneeOptions();
     blocker.onclick = function() {
-        board_closeOverlay();
+        boardCloseOverlay();
     };
 }
 
@@ -117,7 +117,7 @@ function board_renderFullTaskCard(arrayAsString, i) {
     board_renderSubtasksFull(arrayAsString, i);
     board_displayAssigneesFull(arrayAsString, i);
     blocker.onclick = function() {
-        board_closeOverlay();
+        boardCloseOverlay();
     };
 }
 
@@ -130,7 +130,7 @@ function board_renderFullTaskCard(arrayAsString, i) {
 async function board_cutTask(arrayAsString, i) {
     taskLists[arrayAsString].splice(i, 1);
     await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
-    board_closeOverlay();
+    boardCloseOverlay();
     boardLoadTasks();
 }
 
@@ -166,20 +166,20 @@ function board_GoBack() {
  * @param {number} i This is the index of the rendered task in its respective array
  */
 function board_editTask(arrayAsString, i) {
-    let x = task_getPrioforEditor(arrayAsString, i);
+    let x = taskGetPrioforEditor(arrayAsString, i);
     overlayBody.innerHTML = board_createTaskEditor(arrayAsString, i);
-    task_renderSubtasks();
+    taskRenderSubtasks();
     task_renderAssigneeOptions();
-    task_renderAssigneeList();
+    taskRenderAssigneeList();
     if (x != null) {
-        task_setPrio(x);
+        taskSetPrio(x);
     }
 }
 
 /**
  * closes overlay
  */
-function board_closeOverlay() {
+function boardCloseOverlay() {
     overlay.style.display = "none";
     overlayBody.innerHTML = "";
     taskResetArrays();

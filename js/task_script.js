@@ -48,18 +48,18 @@ const categories = [{
  * @param {string} list  This is the name of the array inside "tasksLists" to which the task is supposed to be added
  */
 
-async function task_addTask(list) {
-    task_resetError();
-    let data = task_compileTaskData();
+async function taskAddTask(list) {
+    taskResetError();
+    let data = taskCompileTaskData();
     if (data != "error") {
         taskLists[list].push(data);
-        task_resetForm();
+        taskResetForm();
         taskResetArrays();
-        task_renderAssigneeList();
+        taskRenderAssigneeList();
         await setItem(list, JSON.stringify(taskLists[list]));
         if (overlayBody != undefined) {
             boardLoadTasks();
-            board_closeOverlay();
+            boardCloseOverlay();
         } else {
             renderAddTask()
             displayTaskNotification()
@@ -73,17 +73,17 @@ async function task_addTask(list) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
  * @param {number} i This is the position of the edited task inside the array specified above
  */
-async function task_addEditedTask(arrayAsString, i) {
-    task_resetError();
-    let data = task_compileTaskData();
+async function taskAddEditedTask(arrayAsString, i) {
+    taskResetError();
+    let data = taskCompileTaskData();
     if (data != "error") {
         taskLists[arrayAsString][i] = data;
-        task_CheckFinishedSubtasks(arrayAsString, i);
-        task_resetForm();
+        taskCheckFinishedSubtasks(arrayAsString, i);
+        taskResetForm();
         taskResetArrays();
         await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
 
-        board_closeOverlay();
+        boardCloseOverlay();
         boardLoadTasks();
     }
 }
@@ -94,9 +94,9 @@ async function task_addEditedTask(arrayAsString, i) {
  * @param {string} arrayAsString 
  */
 function clearTaskCreator(arrayAsString) {
-    task_resetForm()
+    taskResetForm()
     if (overlayBody != undefined) {
-        board_addTask(arrayAsString)
+        boardAddTask(arrayAsString)
     } else {
         renderAddTask()
     }
@@ -107,7 +107,7 @@ function clearTaskCreator(arrayAsString) {
  * Resets all values in input fields on the task-creation section
  *
  */
-function task_resetForm() {
+function taskResetForm() {
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
     document.getElementById("assign_select").value = null;
@@ -134,7 +134,7 @@ function taskResetArrays() {
  * @param {number} i This is the position of the edited task inside the array specified above
  * @returns returns the 'value' of the priority
  */
-function task_getPrioforEditor(arrayAsString, i) {
+function taskGetPrioforEditor(arrayAsString, i) {
     let x = null;
     let task = taskLists[arrayAsString][i];
     if (task["priority"]["priority"] == "Urgent") {
@@ -155,17 +155,17 @@ function task_getPrioforEditor(arrayAsString, i) {
  *
  * @param {number} x A number between 0 and 2 that signals the respecive priority
  */
-function task_setPrio(x) {
+function taskSetPrio(x) {
     Prio = [];
     Prio.push(priorities[x]);
-    task_colorPriorityButtons(x);
+    taskColorPriorityButtons(x);
 }
 
 /**
  * adds a new subtask in the subtask array, resets the input and renders all current subtasks
  *
  */
-function task_addSubtask() {
+function taskAddSubtask() {
     let subtask = document.getElementById("subtasks");
     let newSubtask = {
         task: subtask.value,
@@ -173,20 +173,20 @@ function task_addSubtask() {
     };
     subtasks.push(newSubtask);
     subtask.value = "";
-    task_renderSubtasks();
-    task_changeSubtaskAppearance();
+    taskRenderSubtasks();
+    taskChangeSubtaskAppearance();
 }
 
 /**
- * enables the fucntion task_addSubtask() to be called on the enter key, if a value is present
+ * enables the fucntion taskAddSubtask() to be called on the enter key, if a value is present
  *
  */
-function task_addSubtasksOnEnter(event) {
+function taskAddSubtasksOnEnter(event) {
     let subtask = document.getElementById("subtasks");
     if (event.keyCode == 13) {
         event.preventDefault();
         if (subtask != "") {
-            task_addSubtask();
+            taskAddSubtask();
         }
     }
 }
@@ -195,7 +195,7 @@ function task_addSubtasksOnEnter(event) {
  * loops through all subtasks in the subtasks array and displays them
  *
  */
-function task_renderSubtasks() {
+function taskRenderSubtasks() {
     let subTaskDisplay = document.getElementById("addedSubtasks");
     subTaskDisplay.innerHTML = "";
     for (let i = 0; i < subtasks.length; i++) {
@@ -208,8 +208,8 @@ function task_renderSubtasks() {
         <p>${subtaskelement["task"]}</p>
       </div>
       <div class="subtaskTools">
-        <img onclick="task_cutSubtask(${i})" src="./assets/img/delete.svg" alt="">
-        <img onclick="task_editSubtask(${i})" src="./assets/img/edit.svg" alt="">
+        <img onclick="taskCutSubtask(${i})" src="./assets/img/delete.svg" alt="">
+        <img onclick="taskEditSubtask(${i})" src="./assets/img/edit.svg" alt="">
       </div>
     </div>
     `;
@@ -221,9 +221,9 @@ function task_renderSubtasks() {
  *
  * @param {number} i index of the respective subtask in the subtasks array
  */
-function task_cutSubtask(i) {
+function taskCutSubtask(i) {
     subtasks.splice(i, 1);
-    task_renderSubtasks(i);
+    taskRenderSubtasks(i);
 }
 
 /**
@@ -232,15 +232,15 @@ function task_cutSubtask(i) {
  *
  * @param {number} i index of the respective subtask in the subtasks array
  */
-function task_editSubtask(i) {
+function taskEditSubtask(i) {
     let currentValue = subtasks[i]["task"];
     let subTaskDisplay = document.getElementById(`subtask${i}`);
     subTaskDisplay.innerHTML = "";
     subTaskDisplay.innerHTML = `
       <input type="text" id="editedInput${i}" value="${currentValue}"  />
       <div>
-        <img onclick="task_cutSubtask( ${i})" src="./assets/img/delete.svg" alt="">
-        <img onclick="task_saveSubtaskEdit(${i})" src="./assets/img/Vector 17.svg" alt="">
+        <img onclick="taskCutSubtask( ${i})" src="./assets/img/delete.svg" alt="">
+        <img onclick="taskSaveSubtaskEdit(${i})" src="./assets/img/Vector 17.svg" alt="">
       </div>
     `;
 }
@@ -250,16 +250,16 @@ function task_editSubtask(i) {
  *
  * @param {*number} i index of the respective subtask in the subtasks array
  */
-function task_saveSubtaskEdit(i) {
+function taskSaveSubtaskEdit(i) {
     let editedValue = document.getElementById(`editedInput${i}`).value;
     subtasks[i]["task"] = editedValue;
-    task_renderSubtasks();
+    taskRenderSubtasks();
 }
 
 /**
  * clears the subtask input
  */
-function task_clearSubtask() {
+function taskClearSubtask() {
     document.getElementById("subtasks").value = "";
 }
 
@@ -267,13 +267,13 @@ function task_clearSubtask() {
  * renders in the clear or save buttons into the subtask input div when something is written in the input
  *
  */
-function task_changeSubtaskAppearance() {
+function taskChangeSubtaskAppearance() {
     if (document.getElementById("subtasks").value != "") {
         document.getElementById("subtaskField").innerHTML = /*html*/ `
 
-    <div class="buttonwrapper"><img onclick="task_clearSubtask()" src="./assets/img/close.svg" alt=""></div> 
+    <div class="buttonwrapper"><img onclick="taskClearSubtask()" src="./assets/img/close.svg" alt=""></div> 
     <img src="./assets/img/Vector 3.svg" alt="">
-    <div class="buttonwrapper"><img onclick="task_addSubtask()" src="./assets/img/Vector 17.svg" alt=""></div>  
+    <div class="buttonwrapper"><img onclick="taskAddSubtask()" src="./assets/img/Vector 17.svg" alt=""></div>  
     `;
     } else {
         document.getElementById("subtaskField").innerHTML =
@@ -292,20 +292,20 @@ function goToContacts() {
 }
 
 /**
- * This is called by the task_addTask(list) and task_addEditedTask(list) function.
+ * This is called by the taskAddTask(list) and taskAddEditedTask(list) function.
  * reads out the values from all necesarry inputs.
  * Then checks if the value has the right format and returns either correctly input data or an error
  *
  * @returns correct data or a string saying "error"
  *
  */
-function task_compileTaskData() {
+function taskCompileTaskData() {
     title = document.getElementById("title");
     description = document.getElementById("description");
     dueDate = document.getElementById("due");
     category = document.getElementById("category_selector");
 
-    const validity = task_CheckInputValidity(
+    const validity = taskCheckInputValidity(
         title.value,
         dueDate.value,
         category.value
@@ -334,7 +334,7 @@ function task_compileTaskData() {
  *
  * @param {number} x This is the number of the respecive priority 0 for urgent, 1 for medium, 2 for low
  */
-function task_colorPriorityButtons(x) {
+function taskColorPriorityButtons(x) {
     //changes the backgroundcolor based on the selected Priority
     document.getElementById(`Prio0`).style.backgroundColor = "white";
     document.getElementById(`Prio1`).style.backgroundColor = "white";
@@ -364,7 +364,7 @@ function task_colorPriorityButtons(x) {
  * @param {string} list This is the name of the array inside "tasksLists" from which information is supossed to be taken
  * @param {number} i This is the position of the edited task inside the array specified above
  */
-function task_CheckFinishedSubtasks(list, i) {
+function taskCheckFinishedSubtasks(list, i) {
     let subtasks = taskLists[list][i]["subtasks"];
     let finishedSubtasks = taskLists[list][i]["subtasksDone"];
     for (let j = 0; j < subtasks.length; j++) {
@@ -380,7 +380,7 @@ function task_CheckFinishedSubtasks(list, i) {
  * adds the different categories as option elements from the categories array. The index will lter determine the category
  *
  */
-function task_renderCategoryOptions() {
+function taskRenderCategoryOptions() {
     let selector = document.getElementById("category_selector");
     for (let index = 0; index < categories.length; index++) {
         const category = categories[index];

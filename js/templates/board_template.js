@@ -73,7 +73,7 @@ function renderBoardHead() {
                 </div>
             </div>
             <div class="headAddButton">
-              <button onclick="board_addTask('toDo')">Add task</button>
+              <button onclick="boardAddTask('toDo')">Add task</button>
             </div>
         </div>
     </div>`;
@@ -88,7 +88,7 @@ function renderBoardTaskTodo() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>To do</h2>
-            <button onclick="board_addTask('toDo')" class="add"></button>
+            <button onclick="boardAddTask('toDo')" class="add"></button>
         </div>
         <div id="toDo" class="panelbody" ondrop="drop('toDo')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
@@ -103,7 +103,7 @@ function renderBoardTaskProgress() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>In progress</h2>
-            <button onclick="board_addTask('inProgress')" class="add"></button>
+            <button onclick="boardAddTask('inProgress')" class="add"></button>
         </div>
         <div id="inProgress" class="panelbody" ondrop="drop('inProgress')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
@@ -118,7 +118,7 @@ function renderBoardTaskFeedback() {
     <div class="taskpanel">
         <div class="panelhead">
             <h2>Await feedback</h2>
-            <button onclick="board_addTask('feedback')" class="add"></button>
+            <button onclick="boardAddTask('feedback')" class="add"></button>
         </div>
         <div id="awaitFeedback" class="panelbody" ondrop="drop('feedback')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
@@ -161,7 +161,7 @@ function createFullTaskCard(arrayAsString, i) {
     <div class="FullTaskCard">
       <div class="cardheadFull">
           <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
-              <img onclick="board_closeOverlay()" src="./assets/img/close.svg" alt="">
+              <img onclick="boardCloseOverlay()" src="./assets/img/close.svg" alt="">
           </div>
           <div class="FullTaskCardBody">
           <h2 class="titleFull">${task["title"]}</h2>
@@ -245,7 +245,7 @@ function board_createTaskEditor(arrayAsString, i) {
     let year = date.getFullYear();
     return /*html*/ `
   <div onclick="task_closeOverlay(event, this)" class="cardheadEdit">
-    <img onclick="board_closeOverlay()" src="./assets/img/close.svg" alt="">
+    <img onclick="boardCloseOverlay()" src="./assets/img/close.svg" alt="">
   </div>
   <div onclick="task_closeOverlay(event, this)" class="TaskEditorBody scroll">
       <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
@@ -266,15 +266,15 @@ function board_createTaskEditor(arrayAsString, i) {
   <div class="prioEdit">
       <p>Priority:</p>
         <div class="priocontainerEdit">
-          <div onclick="task_setPrio(0)" id="Prio0">
+          <div onclick="taskSetPrio(0)" id="Prio0">
             Urgent
             <img id="Prio0_img" src="./assets/img/Prio_alta.png" class="">
           </div>
-          <div onclick="task_setPrio(1)" id="Prio1">
+          <div onclick="taskSetPrio(1)" id="Prio1">
             Medium
             <img id="Prio1_img" src="./assets/img/Prio_media.png" class="">
           </div>
-          <div onclick="task_setPrio(2)" id="Prio2">
+          <div onclick="taskSetPrio(2)" id="Prio2">
             Low
             <img id="Prio2_img" src="./assets/img/Prio_baja.png" class="">
           </div>
@@ -303,7 +303,7 @@ function board_createTaskEditor(arrayAsString, i) {
   <div class="subtasksEdit">
       <p>Subtasks:</p>
       <div class="subtaskInputContainer">
-          <input class="subtaskInput" onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
+          <input class="subtaskInput" onkeyup="taskChangeSubtaskAppearance()" onkeydown="taskAddSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
           <div class="subtaskimages" id="subtaskField">
               <img src="./assets/img/Subtasks icons11.svg" alt="">
           </div>
@@ -312,7 +312,7 @@ function board_createTaskEditor(arrayAsString, i) {
   </div>
   </div>
   <div class="editorBottom">
-    <button onclick="task_addEditedTask('${arrayAsString}', ${i})" class="create">Ok</button>
+    <button onclick="taskAddEditedTask('${arrayAsString}', ${i})" class="create">Ok</button>
   </div>
   </div>
   `;
