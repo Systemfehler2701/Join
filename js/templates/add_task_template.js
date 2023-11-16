@@ -88,15 +88,15 @@ function createNewTask(arrayAsString) {
                             <h2>Prio</h2>*
                         </div>
                         <div class="priocontainer">
-                            <div onclick="task_setPrio(0)" id="Prio0">
+                            <div onclick="taskSetPrio(0)" id="Prio0">
                                 Urgent
                                 <img id="Prio0_img" src="./assets/img/Prio_alta.png" class="">
                             </div>
-                            <div onclick="task_setPrio(1)" id="Prio1">
+                            <div onclick="taskSetPrio(1)" id="Prio1">
                                 Medium
                                 <img id="Prio1_img" src="./assets/img/Prio_media.png" class="">
                             </div>
-                            <div onclick="task_setPrio(2)" id="Prio2">
+                            <div onclick="taskSetPrio(2)" id="Prio2">
                                 Low
                                 <img id="Prio2_img" src="./assets/img/Prio_baja.png" class="">
                             </div>

@@ -172,7 +172,7 @@ function boardEditTask(arrayAsString, i) {
     taskRenderAssigneeOptions();
     taskRenderAssigneeList();
     if (x != null) {
-        task_setPrio(x);
+        taskSetPrio(x);
     }
 }
 
@@ -295,9 +295,9 @@ function boardRenderSubtasksFull(arrayAsString, i) {
     for (let j = 0; j < subtaskList.length; j++) {
         let subtask = subtaskList[j];
         if (subtask["done"] == 0) {
-            allSubtasks.innerHTML += board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask)
+            allSubtasks.innerHTML += boardCreateUnfinishedSubtasksFull(arrayAsString, i, j, subtask)
         } else {
-            allSubtasks.innerHTML += board_createFinishedSubtasksFull(arrayAsString, i, j, subtask)
+            allSubtasks.innerHTML += boardCreateFinishedSubtasksFull(arrayAsString, i, j, subtask)
         }
     }
 }

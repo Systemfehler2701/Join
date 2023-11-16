@@ -266,15 +266,15 @@ function boardCreateTaskEditor(arrayAsString, i) {
   <div class="prioEdit">
       <p>Priority:</p>
         <div class="priocontainerEdit">
-          <div onclick="task_setPrio(0)" id="Prio0">
+          <div onclick="taskSetPrio(0)" id="Prio0">
             Urgent
             <img id="Prio0_img" src="./assets/img/Prio_alta.png" class="">
           </div>
-          <div onclick="task_setPrio(1)" id="Prio1">
+          <div onclick="taskSetPrio(1)" id="Prio1">
             Medium
             <img id="Prio1_img" src="./assets/img/Prio_media.png" class="">
           </div>
-          <div onclick="task_setPrio(2)" id="Prio2">
+          <div onclick="taskSetPrio(2)" id="Prio2">
             Low
             <img id="Prio2_img" src="./assets/img/Prio_baja.png" class="">
           </div>
@@ -345,7 +345,7 @@ function boardCreateAssignees(user) {
   }">${getInitials(user.name)}</div>`;
 }
 
-function board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
+function boardCreateUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
     return /*html*/ `
   <div class="singleSubtaskFull">
     <img id="checkbox${j}" class="checkbox" onclick="boardFinishSubtask('${arrayAsString}', ${i}, ${j})" src="./assets/img/Rectangle 5.svg" alt="">
@@ -356,7 +356,7 @@ function board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
   `;
 }
 
-function board_createFinishedSubtasksFull(arrayAsString, i, j, subtask) {
+function boardCreateFinishedSubtasksFull(arrayAsString, i, j, subtask) {
     return /*html*/ `
   <div class="singleSubtaskFull">
     <img id="checkbox${j}" class="checkbox" onclick="boardRevertSubtask('${arrayAsString}', ${i}, ${j})" src="./assets/img/Check button.svg" alt="">

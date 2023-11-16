@@ -155,7 +155,7 @@ function taskGetPrioforEditor(arrayAsString, i) {
  *
  * @param {number} x A number between 0 and 2 that signals the respecive priority
  */
-function task_setPrio(x) {
+function taskSetPrio(x) {
     Prio = [];
     Prio.push(priorities[x]);
     task_colorPriorityButtons(x);
