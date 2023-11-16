@@ -30,7 +30,7 @@ function renderAddTask(element) {
 function createNewTask(arrayAsString) {
     let currentDate = getCurrentDate();
     return /* html */ `
-    <div onclick="task_closeOverlay(event, this)" class="taskbody">
+    <div onclick="taskCloseOverlay(event, this)" class="taskbody">
         <div id="taskNotification" class="taskNotification"> 
             Task added to board
             <img src="./assets/img/Vector_board.svg" alt="">
@@ -57,9 +57,9 @@ function createNewTask(arrayAsString) {
                     </div>
                     <div class="assignment">
                         <h2>Assigned to</h2>
-                        <div  onclick="task_openOverlay(event)" class="assignmentInput" id="assignmentInput">
-                            <input onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
-                            <div id="assignmentSelectButton" onclick="task_closeOverlay(event, this)">
+                        <div  onclick="taskOpenOverlay(event)" class="assignmentInput" id="assignmentInput">
+                            <input onkeyup="taskSearchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+                            <div id="assignmentSelectButton" onclick="taskCloseOverlay(event, this)">
                                 <img src="./assets/img/arrow_drop_downaa.svg" alt="">
                             </div>
                         </div> 
@@ -115,7 +115,7 @@ function createNewTask(arrayAsString) {
                         <div class="subtask">
                             <h2>Subtasks</h2>
                             <div class="subtaskInputContainer">
-                                <input class="subtaskInput" onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
+                                <input class="subtaskInput" onkeyup="taskChangeSubtaskAppearance()" onkeydown="taskAddSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
                                 <div class="subtaskimages" id="subtaskField">
                                     <img src="./assets/img/Subtasks icons11.svg" alt="">
                                 </div>
@@ -130,7 +130,7 @@ function createNewTask(arrayAsString) {
                 </div>
                 <div class="buttons">
                     <button onclick="clearTaskCreator('${arrayAsString}')" class="clear">Clear</button>
-                    <button onclick="task_addTask('${arrayAsString}')" class="create">Create Task</button>
+                    <button onclick="taskAddTask('${arrayAsString}')" class="create">Create Task</button>
                 </div>
             </div>
         </div>
@@ -142,10 +142,10 @@ function createNewTask(arrayAsString) {
  *
  * @param {object} user object from the users array
  */
-function task_createAssignedContact(user) {
+function taskCreateAssignedContact(user) {
     let selector = document.getElementById("assign_select");
         selector.innerHTML += /*html*/`
-        <div onclick="task_unassign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
+        <div onclick="taskUnassign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
         <div class="initials-logo" style="background-color: ${
         user.color}">${getInitials(user.name)}</div>
         <div class="assigneeName">${user.name}</div>
@@ -158,10 +158,10 @@ function task_createAssignedContact(user) {
  *
  * @param {object} user object from the users array
  */
-function task_createUnassignedContact(user) {
+function taskCreateUnassignedContact(user) {
     let selector = document.getElementById("assign_select");
     selector.innerHTML += /*html*/ `
-    <div onclick="task_assign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
+    <div onclick="taskAssign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
       <div class="initials-logo" style="background-color: ${
         user.color
       }">${getInitials(user.name)}</div>
@@ -171,4 +171,4 @@ function task_createUnassignedContact(user) {
   `;
 }
 
-//onkeyup="task_searchAssignees()"
+//onkeyup="taskSearchAssignees()"

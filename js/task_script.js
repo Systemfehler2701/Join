@@ -48,7 +48,7 @@ const categories = [{
  * @param {string} list  This is the name of the array inside "tasksLists" to which the task is supposed to be added
  */
 
-async function task_addTask(list) {
+async function taskAddTask(list) {
     task_resetError();
     let data = task_compileTaskData();
     if (data != "error") {
@@ -174,14 +174,14 @@ function task_addSubtask() {
     subtasks.push(newSubtask);
     subtask.value = "";
     taskRenderSubtasks();
-    task_changeSubtaskAppearance();
+    taskChangeSubtaskAppearance();
 }
 
 /**
  * enables the fucntion task_addSubtask() to be called on the enter key, if a value is present
  *
  */
-function task_addSubtasksOnEnter(event) {
+function taskAddSubtasksOnEnter(event) {
     let subtask = document.getElementById("subtasks");
     if (event.keyCode == 13) {
         event.preventDefault();
@@ -267,7 +267,7 @@ function task_clearSubtask() {
  * renders in the clear or save buttons into the subtask input div when something is written in the input
  *
  */
-function task_changeSubtaskAppearance() {
+function taskChangeSubtaskAppearance() {
     if (document.getElementById("subtasks").value != "") {
         document.getElementById("subtaskField").innerHTML = /*html*/ `
 
@@ -292,7 +292,7 @@ function goToContacts() {
 }
 
 /**
- * This is called by the task_addTask(list) and task_addEditedTask(list) function.
+ * This is called by the taskAddTask(list) and task_addEditedTask(list) function.
  * reads out the values from all necesarry inputs.
  * Then checks if the value has the right format and returns either correctly input data or an error
  *

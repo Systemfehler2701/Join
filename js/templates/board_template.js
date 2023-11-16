@@ -244,10 +244,10 @@ function boardCreateTaskEditor(arrayAsString, i) {
     let month = ("0" + (date.getMonth() + 1)).slice(-2);
     let year = date.getFullYear();
     return /*html*/ `
-  <div onclick="task_closeOverlay(event, this)" class="cardheadEdit">
+  <div onclick="taskCloseOverlay(event, this)" class="cardheadEdit">
     <img onclick="boardCloseOverlay()" src="./assets/img/close.svg" alt="">
   </div>
-  <div onclick="task_closeOverlay(event, this)" class="TaskEditorBody scroll">
+  <div onclick="taskCloseOverlay(event, this)" class="TaskEditorBody scroll">
       <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
   <div class="titleEdit">
     <h2>Title</h2>
@@ -284,9 +284,9 @@ function boardCreateTaskEditor(arrayAsString, i) {
   </div>
   <div class="assignment">
       <h2>Assigned to</h2>
-      <div onclick="task_openOverlay(event)" class="assignmentInput" id="assignmentInput">
-        <input  onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
-        <div id="assignmentSelectButton" onclick="task_closeOverlay(event, this)">
+      <div onclick="taskOpenOverlay(event)" class="assignmentInput" id="assignmentInput">
+        <input  onkeyup="taskSearchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+        <div id="assignmentSelectButton" onclick="taskCloseOverlay(event, this)">
           <img src="./assets/img/arrow_drop_downaa.svg" alt="">
         </div>
       </div> 
@@ -303,7 +303,7 @@ function boardCreateTaskEditor(arrayAsString, i) {
   <div class="subtasksEdit">
       <p>Subtasks:</p>
       <div class="subtaskInputContainer">
-          <input class="subtaskInput" onkeyup="task_changeSubtaskAppearance()" onkeydown="task_addSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
+          <input class="subtaskInput" onkeyup="taskChangeSubtaskAppearance()" onkeydown="taskAddSubtasksOnEnter(event)" id="subtasks" type="text" placeholder="Add new Subtask">
           <div class="subtaskimages" id="subtaskField">
               <img src="./assets/img/Subtasks icons11.svg" alt="">
           </div>

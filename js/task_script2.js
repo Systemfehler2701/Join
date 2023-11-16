@@ -11,9 +11,9 @@ function taskRenderAssigneeOptions() {
     for (let index = 0; index < users.length; index++) {
         let user = users[index];
         if (assignees.includes(user.id)) {
-            task_createAssignedContact(user);
+            taskCreateAssignedContact(user);
         } else {
-            task_createUnassignedContact(user);
+            taskCreateUnassignedContact(user);
         }
     }
 }
@@ -42,7 +42,7 @@ function taskRenderAssigneeList() {
  * Checks if user is already assigned
  *
  */
-function task_searchAssignees() {
+function taskSearchAssignees() {
     let search = document.getElementById("assigner").value;
     let selector = document.getElementById("assign_select");
     if (search == "") {
@@ -53,9 +53,9 @@ function task_searchAssignees() {
             let user = users[i];
             if (user.name.toLowerCase().includes(search)) {
                 if (assignees.includes(user.id)) {
-                    task_createAssignedContact(user, i);
+                    taskCreateAssignedContact(user, i);
                 } else {
-                    task_createUnassignedContact(user, i);
+                    taskCreateUnassignedContact(user, i);
                 }
             }
         }
@@ -67,14 +67,14 @@ function task_searchAssignees() {
  *
  * @param {number} id id of the user in the users array
  */
-function task_assign(id) {
+function taskAssign(id) {
     assignees.push(id);
     let checkbox = document.getElementById(`assigneeCheckbox${id}`);
     let assignee = document.getElementById(`assignee${id}`)
     checkbox.src = "./assets/img/Check button.svg";
     assignee.onclick = null;
     assignee.onclick = function() {
-        task_unassign(id);
+        taskUnassign(id);
     };
     taskRenderAssigneeList();
 }
@@ -84,7 +84,7 @@ function task_assign(id) {
  *
  * @param {number} id id of the user in the users array
  */
-function task_unassign(id) {
+function taskUnassign(id) {
     let position = assignees.indexOf(id);
     assignees.splice(position, 1);
 
@@ -93,7 +93,7 @@ function task_unassign(id) {
     checkbox.src = "./assets/img/Rectangle 5.svg";
     assignee.onclick = null;
     assignee.onclick = function() {
-        task_assign(id);
+        taskAssign(id);
     };
     taskRenderAssigneeList();
 }
@@ -101,12 +101,12 @@ function task_unassign(id) {
 
 /**
  * Opens the assignee option overlay, displays the list of assignees and un-flips the selector button.
- * This function also prevents the click event from propagating to any parent elements to avoid triggering task_closeOverlay().
+ * This function also prevents the click event from propagating to any parent elements to avoid triggering taskCloseOverlay().
  *
  * @function
  * @param {Event} [event] - The click event object, if available.
  */
-function task_openOverlay(event) {
+function taskOpenOverlay(event) {
     if (event) event.stopPropagation();
 
     let selector = document.getElementById("assigneeOptionContainer");
@@ -122,12 +122,12 @@ function task_openOverlay(event) {
  * Toggles the visibility of the assignee option overlay.
  * If the overlay is currently hidden or not set, it will display the overlay and flip the selector button.
  * Otherwise, it hides the overlay and un-flips the selector button.
- * This function also prevents the click event from propagating to any parent elements to avoid triggering task_openOverlay(event).
+ * This function also prevents the click event from propagating to any parent elements to avoid triggering taskOpenOverlay(event).
  *
  * @function
  * @param {Event} [event] - The click event object, if available.
  */
-function task_closeOverlay(event, clickedElement) {
+function taskCloseOverlay(event, clickedElement) {
     if (event) event.stopPropagation();
     let selector = document.getElementById("assigneeOptionContainer");
     let selectorButton = document.getElementById("assignmentSelectButton");
@@ -149,7 +149,7 @@ function task_closeOverlay(event, clickedElement) {
 }
 
 /**
- * This function prevents the click event from propagating to any parent elements to avoid triggering task_closeOverlay().
+ * This function prevents the click event from propagating to any parent elements to avoid triggering taskCloseOverlay().
  *
  * @param {event} e
  */
