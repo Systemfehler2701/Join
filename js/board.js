@@ -10,7 +10,7 @@ let doneList;
  * loads the tasks stored in arrays from the server and renders them
  */
 async function boardLoadTasks() {
-    board_assignDocuments();
+    boardAssignDocuments();
 
     await boardLoadFromStorage("toDo");
     await boardLoadFromStorage("inProgress");
@@ -27,7 +27,7 @@ async function boardLoadTasks() {
 /**
  * assigns elements to the variables so they can be used globally
  */
-function board_assignDocuments() {
+function boardAssignDocuments() {
     overlay = document.getElementById("BoardOverlay");
     overlayBody = document.getElementById("boardOverlaybody");
     blocker = document.getElementById("blocker");
@@ -40,18 +40,18 @@ function board_assignDocuments() {
 /**
  * executes a searchfunction for in every task-list
  */
-function board_search() {
-    board_searchByList(todoList, "toDo");
-    board_searchByList(progressList, "inProgress");
-    board_searchByList(waitingList, "feedback");
-    board_searchByList(doneList, "done");
+function boardSearch() {
+    boardSearchByList(todoList, "toDo");
+    boardSearchByList(progressList, "inProgress");
+    boardSearchByList(waitingList, "feedback");
+    boardSearchByList(doneList, "done");
 }
 
 /**
  * ths is called when the searchbar is emptied to display all tasks again
  *
  */
-function board_resetSearch() {
+function boardResetSearch() {
     let search = document.getElementById("taskSearch").value;
     if (search == "") {
         boardRenderToDo();
@@ -68,7 +68,7 @@ function board_resetSearch() {
  * @param {Element} panel The element on the board in which the tasks are displayed
  * @param {string} arrayAsString The name of the array inside "tasksLists" to which the task is
  */
-function board_searchByList(panel, arrayAsString) {
+function boardSearchByList(panel, arrayAsString) {
     let search = document.getElementById("taskSearch").value;
     search = search.toLowerCase();
     panel.innerHTML = "";
@@ -79,9 +79,9 @@ function board_searchByList(panel, arrayAsString) {
             task["title"].toLowerCase().includes(search) ||
             task["description"].toLowerCase().includes(search)
         ) {
-            panel.innerHTML += board_createTaskCard(arrayAsString, j);
-            board_subTaskProgress(arrayAsString, j);
-            board_displayAssignees(arrayAsString, j);
+            panel.innerHTML += boardCreateTaskCard(arrayAsString, j);
+            boardSubTaskProgress(arrayAsString, j);
+            boardDisplayAssignees(arrayAsString, j);
         }
     }
 }
@@ -97,7 +97,7 @@ function boardAddTask(arrayAsString) {
     overlayBody.innerHTML = "";
     overlayBody.innerHTML = createNewTask(arrayAsString);
     taskRenderCategoryOptions();
-    task_renderAssigneeOptions();
+    taskRenderAssigneeOptions();
     blocker.onclick = function() {
         boardCloseOverlay();
     };
@@ -110,12 +110,12 @@ function boardAddTask(arrayAsString) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
  * @param {number} i This is the index of the rendered task in its respective array
  */
-function board_renderFullTaskCard(arrayAsString, i) {
+function boardRenderFullTaskCard(arrayAsString, i) {
     overlay.style.display = "flex";
     overlayBody.innerHTML = "";
     overlayBody.innerHTML = createFullTaskCard(arrayAsString, i);
-    board_renderSubtasksFull(arrayAsString, i);
-    board_displayAssigneesFull(arrayAsString, i);
+    boardRenderSubtasksFull(arrayAsString, i);
+    boardDisplayAssigneesFull(arrayAsString, i);
     blocker.onclick = function() {
         boardCloseOverlay();
     };
@@ -127,7 +127,7 @@ function board_renderFullTaskCard(arrayAsString, i) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
  * @param {number} i This is the index of the rendered task in its respective array
  */
-async function board_cutTask(arrayAsString, i) {
+async function boardCutTask(arrayAsString, i) {
     taskLists[arrayAsString].splice(i, 1);
     await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
     boardCloseOverlay();
@@ -140,22 +140,22 @@ async function board_cutTask(arrayAsString, i) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
  * @param {number} i This is the index of the rendered task in its respective array
  */
-function board_renderWarning(arrayAsString, i) {
+function boardRenderWarning(arrayAsString, i) {
     document.getElementById("DeleteOverlay").style.display = "flex";
     document.getElementById("DeleteOverlaybody").innerHTML = "";
     document.getElementById("DeleteOverlaybody").innerHTML = /*html*/ `
     <h2>Are you sure you want to delete this Task?</h2>
     <div class="DeleteOptions">
-      <button class="create" onclick="board_cutTask('${arrayAsString}', ${i})">Delete</button>
-      <button class="backbutton" onclick="board_GoBack()">Back</button>
+      <button class="create" onclick="boardCutTask('${arrayAsString}', ${i})">Delete</button>
+      <button class="backbutton" onclick="boardGoBack()">Back</button>
     </div>
   `;
 }
 
 /**
- * closes te overlay opened in the board_renderWarning() function
+ * closes te overlay opened in the boardRenderWarning() function
  */
-function board_GoBack() {
+function boardGoBack() {
     document.getElementById("DeleteOverlay").style.display = "none";
 }
 
@@ -165,11 +165,11 @@ function board_GoBack() {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the edited task is supposed to be added
  * @param {number} i This is the index of the rendered task in its respective array
  */
-function board_editTask(arrayAsString, i) {
+function boardEditTask(arrayAsString, i) {
     let x = taskGetPrioforEditor(arrayAsString, i);
-    overlayBody.innerHTML = board_createTaskEditor(arrayAsString, i);
+    overlayBody.innerHTML = boardCreateTaskEditor(arrayAsString, i);
     taskRenderSubtasks();
-    task_renderAssigneeOptions();
+    taskRenderAssigneeOptions();
     taskRenderAssigneeList();
     if (x != null) {
         taskSetPrio(x);
@@ -193,9 +193,9 @@ function boardCloseOverlay() {
 function boardRenderToDo() {
     let todoList = document.getElementById("toDo");
     if (taskLists["toDo"].length == 0) {
-        board_renderPlaceholder(todoList, "No tasks to do");
+        boardRenderPlaceholder(todoList, "No tasks to do");
     } else {
-        board_renderCard(todoList, "toDo");
+        boardRenderCard(todoList, "toDo");
     }
 }
 
@@ -206,9 +206,9 @@ function boardRenderToDo() {
 function boardRenderInProgress() {
     let progressList = document.getElementById("inProgress");
     if (taskLists["inProgress"].length == 0) {
-        board_renderPlaceholder(progressList, "No tasks in progress");
+        boardRenderPlaceholder(progressList, "No tasks in progress");
     } else {
-        board_renderCard(progressList, "inProgress");
+        boardRenderCard(progressList, "inProgress");
     }
 }
 
@@ -219,9 +219,9 @@ function boardRenderInProgress() {
 function boardRenderFeedback() {
     let waitingList = document.getElementById("awaitFeedback");
     if (taskLists["feedback"].length == 0) {
-        board_renderPlaceholder(waitingList, "No tasks awaiting feedback");
+        boardRenderPlaceholder(waitingList, "No tasks awaiting feedback");
     } else {
-        board_renderCard(waitingList, "feedback");
+        boardRenderCard(waitingList, "feedback");
     }
 }
 
@@ -232,9 +232,9 @@ function boardRenderFeedback() {
 function boardRenderDone() {
     let doneList = document.getElementById("done");
     if (taskLists["done"].length == 0) {
-        board_renderPlaceholder(doneList, "No tasks done yet");
+        boardRenderPlaceholder(doneList, "No tasks done yet");
     } else {
-        board_renderCard(doneList, "done");
+        boardRenderCard(doneList, "done");
     }
 }
 
@@ -244,7 +244,7 @@ function boardRenderDone() {
  * @param {Element} panel The element on the board in which the tasks are displayed
  * @param {string} placeholder the text that needs to be displayed insted of tasks
  */
-function board_renderPlaceholder(panel, placeholder) {
+function boardRenderPlaceholder(panel, placeholder) {
     panel.innerHTML = `
     <div class="placeholder">
         <p>${placeholder}</p>
@@ -258,13 +258,13 @@ function board_renderPlaceholder(panel, placeholder) {
  * @param {Element} panel The element on the board in which the tasks are displayed
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  */
-function board_renderCard(panel, arrayAsString) {
+function boardRenderCard(panel, arrayAsString) {
     let array = taskLists[arrayAsString];
     panel.innerHTML = "";
     for (let i = 0; i < array.length; i++) {
-        panel.innerHTML += board_createTaskCard(arrayAsString, i);
-        board_subTaskProgress(arrayAsString, i);
-        board_displayAssignees(arrayAsString, i);
+        panel.innerHTML += boardCreateTaskCard(arrayAsString, i);
+        boardSubTaskProgress(arrayAsString, i);
+        boardDisplayAssignees(arrayAsString, i);
     }
 }
 
@@ -288,16 +288,16 @@ async function boardLoadFromStorage(arrayAsString) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  * @param {number} i This is the index of the rendered task in its respective array
  */
-function board_renderSubtasksFull(arrayAsString, i) {
+function boardRenderSubtasksFull(arrayAsString, i) {
     let subtaskList = taskLists[arrayAsString][i]["subtasks"];
     let allSubtasks = document.getElementById("SubtaskListFull");
     allSubtasks.innerHTML = "";
     for (let j = 0; j < subtaskList.length; j++) {
         let subtask = subtaskList[j];
         if (subtask["done"] == 0) {
-            allSubtasks.innerHTML += board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask)
+            allSubtasks.innerHTML += boardCreateUnfinishedSubtasksFull(arrayAsString, i, j, subtask)
         } else {
-            allSubtasks.innerHTML += board_createFinishedSubtasksFull(arrayAsString, i, j, subtask)
+            allSubtasks.innerHTML += boardCreateFinishedSubtasksFull(arrayAsString, i, j, subtask)
         }
     }
 }
@@ -310,12 +310,12 @@ function board_renderSubtasksFull(arrayAsString, i) {
  * @param {number} i This is the index of the rendered task in its respective array
  * @param {number} j This is the index of the individual subtask inside a task
  */
-async function board_finishSubtask(arrayAsString, i, j) {
+async function boardFinishSubtask(arrayAsString, i, j) {
     let subtaskList = taskLists[arrayAsString][i]["subtasks"];
     subtaskList[j]["done"] = 1;
     taskLists[arrayAsString][i]["subtasksDone"].push(subtaskList[j]);
 
-    board_renderSubtasksFull(arrayAsString, i);
+    boardRenderSubtasksFull(arrayAsString, i);
     await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
 }
 
@@ -327,12 +327,12 @@ async function board_finishSubtask(arrayAsString, i, j) {
  * @param {number} i This is the index of the rendered task in its respective array
  * @param {number} j This is the index of the individual subtask inside a task
  */
-async function board_revertSubtask(arrayAsString, i, j) {
+async function boardRevertSubtask(arrayAsString, i, j) {
     let subtaskList = taskLists[arrayAsString][i]["subtasks"];
     subtaskList[j]["done"] = 0;
     taskLists[arrayAsString][i]["subtasksDone"].splice(0, 1);
 
-    board_renderSubtasksFull(arrayAsString, i);
+    boardRenderSubtasksFull(arrayAsString, i);
     await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
 }
 
@@ -343,7 +343,7 @@ async function board_revertSubtask(arrayAsString, i, j) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  * @param {number} i This is the index of the rendered task in its respective array
  */
-function board_subTaskProgress(arrayAsString, i) {
+function boardSubTaskProgress(arrayAsString, i) {
     let task = taskLists[arrayAsString][i];
     if (task["subtasks"].length == 0) {
         document.getElementById(`subtaskscard${arrayAsString}${i}`).style.display =
@@ -362,7 +362,7 @@ function board_subTaskProgress(arrayAsString, i) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  * @param {number} i This is the index of the rendered task in its respective array
  */
-function board_displayAssignees(arrayAsString, i) {
+function boardDisplayAssignees(arrayAsString, i) {
     let task = taskLists[arrayAsString][i];
     let assigned = task["assignees"];
     let list = document.getElementById(`assignees${arrayAsString}${i}`);
@@ -370,7 +370,7 @@ function board_displayAssignees(arrayAsString, i) {
         for (let index = 0; index < users.length; index++) {
             let user = users[index];
             if (assigned.includes(user.id)) {
-                list.innerHTML += board_createAssignees(user)
+                list.innerHTML += boardCreateAssignees(user)
             }
         }
     }
@@ -382,7 +382,7 @@ function board_displayAssignees(arrayAsString, i) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  * @param {number} i This is the index of the rendered task in its respective array
  */
-function board_displayAssigneesFull(arrayAsString, i) {
+function boardDisplayAssigneesFull(arrayAsString, i) {
     let task = taskLists[arrayAsString][i];
     let assigned = task["assignees"];
     let list = document.getElementById(`assigneeListFull`);
@@ -390,7 +390,7 @@ function board_displayAssigneesFull(arrayAsString, i) {
         for (let index = 0; index < users.length; index++) {
             let user = users[index];
             if (assigned.includes(user.id)) {
-                list.innerHTML += board_createAssigneesFull(user)
+                list.innerHTML += boardCreateAssigneesFull(user)
             }
         }
     }

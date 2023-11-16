@@ -18,7 +18,7 @@ function renderAddTask(element) {
     content.innerHTML = createNewTask("toDo");
     document.getElementById('closeOverlay').style.display = "none"
     taskRenderCategoryOptions();
-    task_renderAssigneeOptions();
+    taskRenderAssigneeOptions();
 }
 
 /**
@@ -30,7 +30,7 @@ function renderAddTask(element) {
 function createNewTask(arrayAsString) {
     let currentDate = getCurrentDate();
     return /* html */ `
-    <div onclick="task_closeOverlay(event, this)" class="taskbody">
+    <div onclick="taskCloseOverlay(event, this)" class="taskbody">
         <div id="taskNotification" class="taskNotification"> 
             Task added to board
             <img src="./assets/img/Vector_board.svg" alt="">
@@ -57,9 +57,9 @@ function createNewTask(arrayAsString) {
                     </div>
                     <div class="assignment">
                         <h2>Assigned to</h2>
-                        <div  onclick="task_openOverlay(event)" class="assignmentInput" id="assignmentInput">
-                            <input onkeyup="task_searchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
-                            <div id="assignmentSelectButton" onclick="task_closeOverlay(event, this)">
+                        <div  onclick="taskOpenOverlay(event)" class="assignmentInput" id="assignmentInput">
+                            <input onkeyup="taskSearchAssignees()" id="assigner" class="assignmentSelect" placeholder="Select contact to assign">
+                            <div id="assignmentSelectButton" onclick="taskCloseOverlay(event, this)">
                                 <img src="./assets/img/arrow_drop_downaa.svg" alt="">
                             </div>
                         </div> 
@@ -142,17 +142,15 @@ function createNewTask(arrayAsString) {
  *
  * @param {object} user object from the users array
  */
-function task_createAssignedContact(user) {
+function taskCreateAssignedContact(user) {
     let selector = document.getElementById("assign_select");
     selector.innerHTML += /*html*/ `
-    <div onclick="task_unassign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
-      <div class="initials-logo" style="background-color: ${
-        user.color
-      }">${getInitials(user.name)}</div>
-      <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${user.id}"  class="checkbox" src="./assets/img/Check button.svg" alt="">
-  </div>
-  `;
+        <div onclick="taskUnassign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
+        <div class="initials-logo" style="background-color: ${
+        user.color}">${getInitials(user.name)}</div>
+        <div class="assigneeName">${user.name}</div>
+        <img id="assigneeCheckbox${user.id}"  class="checkbox" src="./assets/img/Check button.svg" alt="">
+        </div>`;
 }
 
 /**
@@ -160,10 +158,10 @@ function task_createAssignedContact(user) {
  *
  * @param {object} user object from the users array
  */
-function task_createUnassignedContact(user) {
+function taskCreateUnassignedContact(user) {
     let selector = document.getElementById("assign_select");
     selector.innerHTML += /*html*/ `
-    <div onclick="task_assign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
+    <div onclick="taskAssign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
       <div class="initials-logo" style="background-color: ${
         user.color
       }">${getInitials(user.name)}</div>
@@ -173,4 +171,4 @@ function task_createUnassignedContact(user) {
   `;
 }
 
-//onkeyup="task_searchAssignees()"
+//onkeyup="taskSearchAssignees()"

@@ -292,7 +292,7 @@ function goToContacts() {
 }
 
 /**
- * This is called by the taskAddTask(list) and taskAddEditedTask(list) function.
+ * This is called by the taskAddTask(list) and task_addEditedTask(list) function.
  * reads out the values from all necesarry inputs.
  * Then checks if the value has the right format and returns either correctly input data or an error
  *
