@@ -143,16 +143,14 @@ function createNewTask(arrayAsString) {
  * @param {object} user object from the users array
  */
 function task_createAssignedContact(user) {
-  let selector = document.getElementById("assign_select");
-  selector.innerHTML += /*html*/ `
-    <div onclick="task_unassign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
-      <div class="initials-logo" style="background-color: ${
-        user.color
-      }">${getInitials(user.name)}</div>
-      <div class="assigneeName">${user.name}</div>
-      <img id="assigneeCheckbox${user.id}"  class="checkbox" src="./assets/img/Check button.svg" alt="">
-  </div>
-  `;
+    let selector = document.getElementById("assign_select");
+        selector.innerHTML += /*html*/`
+        <div onclick="task_unassign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
+        <div class="initials-logo" style="background-color: ${
+        user.color}">${getInitials(user.name)}</div>
+        <div class="assigneeName">${user.name}</div>
+        <img id="assigneeCheckbox${user.id}"  class="checkbox" src="./assets/img/Check button.svg" alt="">
+        </div>`;
 }
 
 /**
