@@ -136,7 +136,7 @@ async function tryMoveTaskToArray(targetArrayName) {
         targetArray.push(taskToMove[0]);
         await setItem(targetArrayName, JSON.stringify(targetArray));
         await setItem(sourceArrayName, JSON.stringify(sourceArray));
-        board_loadTasks();
+        boardLoadTasks();
         removeHighlight();
     }
 }

@@ -7,18 +7,18 @@
  * @param {element} element element that needs to be displayed as active
  */
 function renderAddTask(element) {
-  document.getElementById("help-link").classList.remove("d-none");
-  
-  if(element) {
-    navigationMenuClicked(element);
-  }
-  let content = document.getElementById("content");
-  task_resetArrays();
-  overlayBody = undefined;
-  content.innerHTML = createNewTask("toDo");
-  document.getElementById('closeOverlay').style.display ="none"
-  task_renderCategoryOptions();
-  task_renderAssigneeOptions();
+    document.getElementById("help-link").classList.remove("d-none");
+
+    if (element) {
+        navigationMenuClicked(element);
+    }
+    let content = document.getElementById("content");
+    taskResetArrays();
+    overlayBody = undefined;
+    content.innerHTML = createNewTask("toDo");
+    document.getElementById('closeOverlay').style.display = "none"
+    taskRenderCategoryOptions();
+    taskRenderAssigneeOptions();
 }
 
 /**
@@ -28,8 +28,8 @@ function renderAddTask(element) {
  * @returns HTML
  */
 function createNewTask(arrayAsString) {
-  let currentDate = getCurrentDate();
-  return /* html */ `
+    let currentDate = getCurrentDate();
+    return /* html */ `
     <div onclick="task_closeOverlay(event, this)" class="taskbody">
         <div id="taskNotification" class="taskNotification"> 
             Task added to board
@@ -37,7 +37,7 @@ function createNewTask(arrayAsString) {
         </div>
         <div class="taskHeader">
             <h1>Add Task</h1>
-            <img id="closeOverlay" onclick="board_closeOverlay()" src="./assets/img/close.svg" alt="">
+            <img id="closeOverlay" onclick="boardCloseOverlay()" src="./assets/img/close.svg" alt="">
         </div>
 
         <div class="taskInputContainer" style="width: 100%">
@@ -159,8 +159,8 @@ function task_createAssignedContact(user) {
  * @param {object} user object from the users array
  */
 function task_createUnassignedContact(user) {
-  let selector = document.getElementById("assign_select");
-  selector.innerHTML += /*html*/ `
+    let selector = document.getElementById("assign_select");
+    selector.innerHTML += /*html*/ `
     <div onclick="task_assign(${user.id})" id="assignee${user.id}" class="assigneeOption" value="${user.id}">
       <div class="initials-logo" style="background-color: ${
         user.color

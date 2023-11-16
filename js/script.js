@@ -54,10 +54,10 @@ function appPrivacyPolicy() {
  */
 async function getAppData() {
     await loadContacts();
-    await board_loadFromStorage("toDo");
-    await board_loadFromStorage("inProgress");
-    await board_loadFromStorage("feedback");
-    await board_loadFromStorage("done");
+    await boardLoadFromStorage("toDo");
+    await boardLoadFromStorage("inProgress");
+    await boardLoadFromStorage("feedback");
+    await boardLoadFromStorage("done");
 }
 
 /**

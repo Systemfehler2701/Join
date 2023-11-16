@@ -6,16 +6,16 @@
  * @param {element} element element that needs to be displayed as active
  */
 function renderBoard(element) {
-  document.getElementById("help-link").classList.remove("d-none");
-  navigationMenuClicked(element);
-  let content = document.getElementById("content");
-  content.innerHTML = /* html */ `
+    document.getElementById("help-link").classList.remove("d-none");
+    navigationMenuClicked(element);
+    let content = document.getElementById("content");
+    content.innerHTML = /* html */ `
     ${renderBoardOverlay()}
     ${renderBoardBody()}`;
-  overlay = document.getElementById("BoardOverlay");
-  overlayBody = document.getElementById("boardOverlaybody");
-  blocker = document.getElementById("blocker");
-  board_loadTasks();
+    overlay = document.getElementById("BoardOverlay");
+    overlayBody = document.getElementById("boardOverlaybody");
+    blocker = document.getElementById("blocker");
+    boardLoadTasks();
 }
 
 /**
@@ -23,7 +23,7 @@ function renderBoard(element) {
  * @returns HTML code to create the board in the renderBoard() function
  */
 function renderBoardOverlay() {
-  return /* html */ `
+    return /* html */ `
     <section id="BoardOverlay" class="Boardoverlay" style="display: none;">
         <div id ="blocker" class="blocker"></div>
         <div id="boardOverlaybody" class="overlayBlank"></div>
@@ -35,7 +35,7 @@ function renderBoardOverlay() {
  * @returns HTML code to create the board in the renderBoard() function
  */
 function renderBoardBody() {
-  return /* html */ `
+    return /* html */ `
     <section class="boardbody">
         ${renderBoardHead()}
         ${renderBoardPanels()}
@@ -47,7 +47,7 @@ function renderBoardBody() {
  * @returns HTML code to create the board in the renderBoard() function
  */
 function renderBoardPanels() {
-  return /* html */ `
+    return /* html */ `
     <div class="panels">
         ${renderBoardTaskTodo()}
         ${renderBoardTaskProgress()}
@@ -61,19 +61,19 @@ function renderBoardPanels() {
  * @returns HTML code to create the board in the renderBoard() function
  */
 function renderBoardHead() {
-  return /* html */ `
+    return /* html */ `
     <div class="head">
         <h1 class="h1">Board</h1>
         <div class="headleft">
             <div class="searchbar">
-                <input onkeyup="board_resetSearch(), board_search()" type="text" id="taskSearch" placeholder="Find task">
+                <input onkeyup="boardResetSearch(), board_search()" type="text" id="taskSearch" placeholder="Find task">
                 <div class="divider"></div>
                 <div class="searchbutton">
                     <img onclick="board_search()" src="./assets/img/search.svg" alt="">
                 </div>
             </div>
             <div class="headAddButton">
-              <button onclick="board_addTask('toDo')">Add task</button>
+              <button onclick="boardAddTask('toDo')">Add task</button>
             </div>
         </div>
     </div>`;
@@ -84,11 +84,11 @@ function renderBoardHead() {
  * @returns HTML code to create the board in the renderBoard() function
  */
 function renderBoardTaskTodo() {
-  return /* html */ `
+    return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>To do</h2>
-            <button onclick="board_addTask('toDo')" class="add"></button>
+            <button onclick="boardAddTask('toDo')" class="add"></button>
         </div>
         <div id="toDo" class="panelbody" ondrop="drop('toDo')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
@@ -99,11 +99,11 @@ function renderBoardTaskTodo() {
  * @returns HTML code to create the board in the renderBoard() function
  */
 function renderBoardTaskProgress() {
-  return /* html */ `
+    return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>In progress</h2>
-            <button onclick="board_addTask('inProgress')" class="add"></button>
+            <button onclick="boardAddTask('inProgress')" class="add"></button>
         </div>
         <div id="inProgress" class="panelbody" ondrop="drop('inProgress')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
@@ -114,11 +114,11 @@ function renderBoardTaskProgress() {
  * @returns HTML code to create the board in the renderBoard() function
  */
 function renderBoardTaskFeedback() {
-  return /* html */ `
+    return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>Await feedback</h2>
-            <button onclick="board_addTask('feedback')" class="add"></button>
+            <button onclick="boardAddTask('feedback')" class="add"></button>
         </div>
         <div id="awaitFeedback" class="panelbody" ondrop="drop('feedback')" ondragleave="removeHighlight(this)" ondragover="allowDrop(event); highlight(this)"></div>
     </div>`;
@@ -129,7 +129,7 @@ function renderBoardTaskFeedback() {
  * @returns HTML code to create the board in the renderBoard() function
  */
 function renderBoardTaskDone() {
-  return /* html */ `
+    return /* html */ `
     <div class="taskpanel">
         <div class="panelhead">
             <h2>Done</h2>
@@ -146,22 +146,22 @@ function renderBoardTaskDone() {
  * @returns HTML to create the task card in the overlay
  */
 function createFullTaskCard(arrayAsString, i) {
-  let task = taskLists[arrayAsString][i];
-  let category = task["category"];
-  let date = new Date(task["dueDate"]).toLocaleString("en", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-  return /*html*/ `
+    let task = taskLists[arrayAsString][i];
+    let category = task["category"];
+    let date = new Date(task["dueDate"]).toLocaleString("en", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    });
+    return /*html*/ `
     <section id="DeleteOverlay" class="deleteOverlay" style="display: none;">
-       <div onclick="board_GoBack()" id ="Deleteblocker" class="deleteBlocker"></div>
+       <div onclick="boardGoBack()" id ="Deleteblocker" class="deleteBlocker"></div>
        <div id="DeleteOverlaybody" class="deleteOverlayBlank"></div>
     </section>
     <div class="FullTaskCard">
       <div class="cardheadFull">
           <div class="categorycardFull" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
-              <img onclick="board_closeOverlay()" src="./assets/img/close.svg" alt="">
+              <img onclick="boardCloseOverlay()" src="./assets/img/close.svg" alt="">
           </div>
           <div class="FullTaskCardBody">
           <h2 class="titleFull">${task["title"]}</h2>
@@ -189,9 +189,9 @@ function createFullTaskCard(arrayAsString, i) {
         </div>
       
       <div class="editorbarFull">
-          <button onclick="board_renderWarning('${arrayAsString}', ${i})" class="del">Delete</button>
+          <button onclick="boardRenderWarning('${arrayAsString}', ${i})" class="del">Delete</button>
           <img src="./assets/img/Vector 3.svg" alt="">
-          <button onclick="board_editTask('${arrayAsString}', ${i})" class="edit">Edit</button>
+          <button onclick="boardEditTask('${arrayAsString}', ${i})" class="edit">Edit</button>
       </div>
       </div>
     </div>
@@ -205,11 +205,11 @@ function createFullTaskCard(arrayAsString, i) {
  * @param {number} i This is the index of the rendered task in its respective array
  * @returns HTML to create the small task card in the board
  */
-function board_createTaskCard(arrayAsString, i) {
-  let task = taskLists[arrayAsString][i];
-  let category = task["category"];
-  return /*html*/ `
-        <div draggable="true" ontouchcancel="cancelTouch();" ontouchstart="startTouching('${arrayAsString}', ${i}, event);" ontouchmove="moveTouching(event);" ontouchend="endTouching();" ondragstart="startDragging('${arrayAsString}',${i})" onclick="board_renderFullTaskCard('${arrayAsString}', ${i})" class="taskcard">
+function boardCreateTaskCard(arrayAsString, i) {
+    let task = taskLists[arrayAsString][i];
+    let category = task["category"];
+    return /*html*/ `
+        <div draggable="true" ontouchcancel="cancelTouch();" ontouchstart="startTouching('${arrayAsString}', ${i}, event);" ontouchmove="moveTouching(event);" ontouchend="endTouching();" ondragstart="startDragging('${arrayAsString}',${i})" onclick="boardRenderFullTaskCard('${arrayAsString}', ${i})" class="taskcard">
           <div class="categorycard" style="background-color: ${categories[category]["color"]};">${categories[category]["name"]}</div>
           <h2>${task["title"]}</h2>
           <p class="descriptioncard">
@@ -234,18 +234,18 @@ function board_createTaskCard(arrayAsString, i) {
  * @param {*} i 
  * @returns  HTML to create the task card editor in the overlay
  */
-function board_createTaskEditor(arrayAsString, i) {
-  let task = taskLists[arrayAsString][i];
-  subtasks = task["subtasks"];
-  assignees = task["assignees"];
-  let date = new Date(task["dueDate"]);
+function boardCreateTaskEditor(arrayAsString, i) {
+    let task = taskLists[arrayAsString][i];
+    subtasks = task["subtasks"];
+    assignees = task["assignees"];
+    let date = new Date(task["dueDate"]);
 
-  let day = ("0" + date.getDate()).slice(-2);
-  let month = ("0" + (date.getMonth() + 1)).slice(-2);
-  let year = date.getFullYear();
-  return /*html*/ `
+    let day = ("0" + date.getDate()).slice(-2);
+    let month = ("0" + (date.getMonth() + 1)).slice(-2);
+    let year = date.getFullYear();
+    return /*html*/ `
   <div onclick="task_closeOverlay(event, this)" class="cardheadEdit">
-    <img onclick="board_closeOverlay()" src="./assets/img/close.svg" alt="">
+    <img onclick="boardCloseOverlay()" src="./assets/img/close.svg" alt="">
   </div>
   <div onclick="task_closeOverlay(event, this)" class="TaskEditorBody scroll">
       <input id="category_selector" style="display: none" value="${task["category"]}" type="text">
@@ -321,10 +321,10 @@ function board_createTaskEditor(arrayAsString, i) {
 
 /**
  * 
- * @returns HTML for the board_DisplayAssigneesFull
+ * @returns HTML for the boardDisplayAssigneesFull
  */
-function board_createAssigneesFull(user) {
-  return /*html*/ `
+function boardCreateAssigneesFull(user) {
+    return /*html*/ `
   <div class="assigneeFull">
     <div class="initials-logo" style="background-color: ${
       user.color
@@ -336,19 +336,19 @@ function board_createAssigneesFull(user) {
 
 /**
  * 
- * @returns HTML for the board_DisplayAssignees
+ * @returns HTML for the boardDisplayAssignees
  */
-function board_createAssignees(user) {
-  return  /*html*/ `
+function boardCreateAssignees(user) {
+    return /*html*/ `
   <div class="initials-logo" style="background-color: ${
     user.color
   }">${getInitials(user.name)}</div>`;
 }
 
 function board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
-  return /*html*/`
+    return /*html*/ `
   <div class="singleSubtaskFull">
-    <img id="checkbox${j}" class="checkbox" onclick="board_finishSubtask('${arrayAsString}', ${i}, ${j})" src="./assets/img/Rectangle 5.svg" alt="">
+    <img id="checkbox${j}" class="checkbox" onclick="boardFinishSubtask('${arrayAsString}', ${i}, ${j})" src="./assets/img/Rectangle 5.svg" alt="">
     <p>
       ${subtask["task"]}
     </p>
@@ -357,9 +357,9 @@ function board_createUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
 }
 
 function board_createFinishedSubtasksFull(arrayAsString, i, j, subtask) {
-  return /*html*/`
+    return /*html*/ `
   <div class="singleSubtaskFull">
-    <img id="checkbox${j}" class="checkbox" onclick="board_revertSubtask('${arrayAsString}', ${i}, ${j})" src="./assets/img/Check button.svg" alt="">
+    <img id="checkbox${j}" class="checkbox" onclick="boardRevertSubtask('${arrayAsString}', ${i}, ${j})" src="./assets/img/Check button.svg" alt="">
     <p>
       ${subtask["task"]}
     </p>
