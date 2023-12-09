@@ -1,45 +1,43 @@
 const taskLists = {
-  toDo: [],
-  inProgress: [],
-  feedback: [],
-  done: [],
+    toDo: [],
+    inProgress: [],
+    feedback: [],
+    done: [],
 };
 
 let assignees = [];
 let subtasks = [];
 let subtasksDone = [];
 let Prio = [];
-let priorities = [
-  {
-    priority: "Urgent",
-    symbol: "./assets/img/Prio_alta.png",
-    color: "rgb(255, 61, 0)",
-  },
-  {
-    priority: "Medium",
-    symbol: "./assets/img/Prio_media.png",
-    color: "rgb(255, 168, 0)",
-  },
-  {
-    priority: "Low",
-    symbol: "./assets/img/Prio_baja.png",
-    color: "rgb(122,226,41)",
-  },
+let priorities = [{
+        priority: "Urgent",
+        symbol: "./assets/img/Prio_alta.png",
+        color: "rgb(255, 61, 0)",
+    },
+    {
+        priority: "Medium",
+        symbol: "./assets/img/Prio_media.png",
+        color: "rgb(255, 168, 0)",
+    },
+    {
+        priority: "Low",
+        symbol: "./assets/img/Prio_baja.png",
+        color: "rgb(122,226,41)",
+    },
 ];
 
-const categories = [
-  {
-    name: "CSS",
-    color: "rgb(40,98,233)",
-  },
-  {
-    name: "HTML",
-    color: "rgb(233,98,40)",
-  },
-  {
-    name: "Javascript",
-    color: "rgb(247,214,36)",
-  },
+const categories = [{
+        name: "CSS",
+        color: "rgb(40,98,233)",
+    },
+    {
+        name: "HTML",
+        color: "rgb(233,98,40)",
+    },
+    {
+        name: "Javascript",
+        color: "rgb(247,214,36)",
+    },
 ];
 
 /**
@@ -50,23 +48,23 @@ const categories = [
  * @param {string} list  This is the name of the array inside "tasksLists" to which the task is supposed to be added
  */
 
-async function task_addTask(list) {
-  task_resetError();
-  let data = task_compileTaskData();
-  if (data != "error") {
-    taskLists[list].push(data);
-    task_resetForm();
-    task_resetArrays();
-    task_renderAssigneeList();
-    await setItem(list, JSON.stringify(taskLists[list]));
-    if (overlayBody != undefined) {
-      board_loadTasks();
-      board_closeOverlay();
-    } else {
-      renderAddTask()
-      displayTaskNotification()
+async function taskAddTask(list) {
+    taskResetError();
+    let data = taskCompileTaskData();
+    if (data != "error") {
+        taskLists[list].push(data);
+        taskResetForm();
+        taskResetArrays();
+        taskRenderAssigneeList();
+        await setItem(list, JSON.stringify(taskLists[list]));
+        if (overlayBody != undefined) {
+            boardLoadTasks();
+            boardCloseOverlay();
+        } else {
+            renderAddTask()
+            displayTaskNotification()
+        }
     }
-  }
 }
 
 /**
@@ -75,19 +73,19 @@ async function task_addTask(list) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" to which the task is supposed to be added
  * @param {number} i This is the position of the edited task inside the array specified above
  */
-async function task_addEditedTask(arrayAsString, i) {
-  task_resetError();
-  let data = task_compileTaskData();
-  if (data != "error") {
-    taskLists[arrayAsString][i] = data;
-    task_CheckFinishedSubtasks(arrayAsString, i);
-    task_resetForm();
-    task_resetArrays();
-    await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
+async function taskAddEditedTask(arrayAsString, i) {
+    taskResetError();
+    let data = taskCompileTaskData();
+    if (data != "error") {
+        taskLists[arrayAsString][i] = data;
+        taskCheckFinishedSubtasks(arrayAsString, i);
+        taskResetForm();
+        taskResetArrays();
+        await setItem(arrayAsString, JSON.stringify(taskLists[arrayAsString]));
 
-    board_closeOverlay();
-    board_loadTasks();
-  }
+        boardCloseOverlay();
+        boardLoadTasks();
+    }
 }
 
 /**
@@ -96,12 +94,12 @@ async function task_addEditedTask(arrayAsString, i) {
  * @param {string} arrayAsString 
  */
 function clearTaskCreator(arrayAsString) {
-  task_resetForm()
-  if (overlayBody != undefined) {
-    board_addTask(arrayAsString)
-  } else {
-    renderAddTask()
-  }
+    taskResetForm()
+    if (overlayBody != undefined) {
+        boardAddTask(arrayAsString)
+    } else {
+        renderAddTask()
+    }
 
 }
 
@@ -109,12 +107,12 @@ function clearTaskCreator(arrayAsString) {
  * Resets all values in input fields on the task-creation section
  *
  */
-function task_resetForm() {
-  document.getElementById("title").value = "";
-  document.getElementById("description").value = "";
-  document.getElementById("assign_select").value = null;
-  document.getElementById("due").value = "";
-  document.getElementById("category_selector").value = null;
+function taskResetForm() {
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("assign_select").value = null;
+    document.getElementById("due").value = "";
+    document.getElementById("category_selector").value = null;
 
 }
 
@@ -122,11 +120,11 @@ function task_resetForm() {
  * resets arrays after tasks have been edited, closed or created.
  *
  */
-function task_resetArrays() {
-  Prio = [];
-  subtasks = [];
-  subtasksDone = [];
-  assignees = [];
+function taskResetArrays() {
+    Prio = [];
+    subtasks = [];
+    subtasksDone = [];
+    assignees = [];
 }
 
 /**
@@ -136,20 +134,20 @@ function task_resetArrays() {
  * @param {number} i This is the position of the edited task inside the array specified above
  * @returns returns the 'value' of the priority
  */
-function task_getPrioforEditor(arrayAsString, i) {
-  let x = null;
-  let task = taskLists[arrayAsString][i];
-  if (task["priority"]["priority"] == "Urgent") {
-    x = 0;
-  }
-  if (task["priority"]["priority"] == "Medium") {
-    x = 1;
-  }
-  if (task["priority"]["priority"] == "Low") {
-    x = 2;
-  }
+function taskGetPrioforEditor(arrayAsString, i) {
+    let x = null;
+    let task = taskLists[arrayAsString][i];
+    if (task["priority"]["priority"] == "Urgent") {
+        x = 0;
+    }
+    if (task["priority"]["priority"] == "Medium") {
+        x = 1;
+    }
+    if (task["priority"]["priority"] == "Low") {
+        x = 2;
+    }
 
-  return x;
+    return x;
 }
 
 /**
@@ -157,52 +155,52 @@ function task_getPrioforEditor(arrayAsString, i) {
  *
  * @param {number} x A number between 0 and 2 that signals the respecive priority
  */
-function task_setPrio(x) {
-  Prio = [];
-  Prio.push(priorities[x]);
-  task_colorPriorityButtons(x);
+function taskSetPrio(x) {
+    Prio = [];
+    Prio.push(priorities[x]);
+    taskColorPriorityButtons(x);
 }
 
 /**
  * adds a new subtask in the subtask array, resets the input and renders all current subtasks
  *
  */
-function task_addSubtask() {
-  let subtask = document.getElementById("subtasks");
-  let newSubtask = {
-    task: subtask.value,
-    done: 0,
-  };
-  subtasks.push(newSubtask);
-  subtask.value = "";
-  task_renderSubtasks();
-  task_changeSubtaskAppearance();
+function taskAddSubtask() {
+    let subtask = document.getElementById("subtasks");
+    let newSubtask = {
+        task: subtask.value,
+        done: 0,
+    };
+    subtasks.push(newSubtask);
+    subtask.value = "";
+    taskRenderSubtasks();
+    taskChangeSubtaskAppearance();
 }
 
 /**
- * enables the fucntion task_addSubtask() to be called on the enter key, if a value is present
+ * enables the fucntion taskAddSubtask() to be called on the enter key, if a value is present
  *
  */
-function task_addSubtasksOnEnter(event) {
-  let subtask = document.getElementById("subtasks");
-  if (event.keyCode == 13) {
-    event.preventDefault();
-    if (subtask != "") {
-      task_addSubtask();
+function taskAddSubtasksOnEnter(event) {
+    let subtask = document.getElementById("subtasks");
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        if (subtask != "") {
+            taskAddSubtask();
+        }
     }
-  }
 }
 
 /**
  * loops through all subtasks in the subtasks array and displays them
  *
  */
-function task_renderSubtasks() {
-  let subTaskDisplay = document.getElementById("addedSubtasks");
-  subTaskDisplay.innerHTML = "";
-  for (let i = 0; i < subtasks.length; i++) {
-    let subtaskelement = subtasks[i];
-    subTaskDisplay.innerHTML += /*html*/ `
+function taskRenderSubtasks() {
+    let subTaskDisplay = document.getElementById("addedSubtasks");
+    subTaskDisplay.innerHTML = "";
+    for (let i = 0; i < subtasks.length; i++) {
+        let subtaskelement = subtasks[i];
+        subTaskDisplay.innerHTML += /*html*/ `
 
     <div class="subtaskElement" id="subtask${i}">
       <div class="subtaskElementBody">
@@ -210,12 +208,12 @@ function task_renderSubtasks() {
         <p>${subtaskelement["task"]}</p>
       </div>
       <div class="subtaskTools">
-        <img onclick="task_cutSubtask(${i})" src="./assets/img/delete.svg" alt="">
-        <img onclick="task_editSubtask(${i})" src="./assets/img/edit.svg" alt="">
+        <img onclick="taskCutSubtask(${i})" src="./assets/img/delete.svg" alt="">
+        <img onclick="taskEditSubtask(${i})" src="./assets/img/edit.svg" alt="">
       </div>
     </div>
     `;
-  }
+    }
 }
 
 /**
@@ -223,9 +221,9 @@ function task_renderSubtasks() {
  *
  * @param {number} i index of the respective subtask in the subtasks array
  */
-function task_cutSubtask(i) {
-  subtasks.splice(i, 1);
-  task_renderSubtasks(i);
+function taskCutSubtask(i) {
+    subtasks.splice(i, 1);
+    taskRenderSubtasks(i);
 }
 
 /**
@@ -234,15 +232,15 @@ function task_cutSubtask(i) {
  *
  * @param {number} i index of the respective subtask in the subtasks array
  */
-function task_editSubtask(i) {
-  let currentValue = subtasks[i]["task"];
-  let subTaskDisplay = document.getElementById(`subtask${i}`);
-  subTaskDisplay.innerHTML = "";
-  subTaskDisplay.innerHTML = `
+function taskEditSubtask(i) {
+    let currentValue = subtasks[i]["task"];
+    let subTaskDisplay = document.getElementById(`subtask${i}`);
+    subTaskDisplay.innerHTML = "";
+    subTaskDisplay.innerHTML = `
       <input type="text" id="editedInput${i}" value="${currentValue}"  />
       <div>
-        <img onclick="task_cutSubtask( ${i})" src="./assets/img/delete.svg" alt="">
-        <img onclick="task_saveSubtaskEdit(${i})" src="./assets/img/Vector 17.svg" alt="">
+        <img onclick="taskCutSubtask( ${i})" src="./assets/img/delete.svg" alt="">
+        <img onclick="taskSaveSubtaskEdit(${i})" src="./assets/img/Vector 17.svg" alt="">
       </div>
     `;
 }
@@ -252,35 +250,35 @@ function task_editSubtask(i) {
  *
  * @param {*number} i index of the respective subtask in the subtasks array
  */
-function task_saveSubtaskEdit(i) {
-  let editedValue = document.getElementById(`editedInput${i}`).value;
-  subtasks[i]["task"] = editedValue;
-  task_renderSubtasks();
+function taskSaveSubtaskEdit(i) {
+    let editedValue = document.getElementById(`editedInput${i}`).value;
+    subtasks[i]["task"] = editedValue;
+    taskRenderSubtasks();
 }
 
 /**
  * clears the subtask input
  */
-function task_clearSubtask() {
-  document.getElementById("subtasks").value = "";
+function taskClearSubtask() {
+    document.getElementById("subtasks").value = "";
 }
 
 /**
  * renders in the clear or save buttons into the subtask input div when something is written in the input
  *
  */
-function task_changeSubtaskAppearance() {
-  if (document.getElementById("subtasks").value != "") {
-    document.getElementById("subtaskField").innerHTML = /*html*/ `
+function taskChangeSubtaskAppearance() {
+    if (document.getElementById("subtasks").value != "") {
+        document.getElementById("subtaskField").innerHTML = /*html*/ `
 
-    <div class="buttonwrapper"><img onclick="task_clearSubtask()" src="./assets/img/close.svg" alt=""></div> 
+    <div class="buttonwrapper"><img onclick="taskClearSubtask()" src="./assets/img/close.svg" alt=""></div> 
     <img src="./assets/img/Vector 3.svg" alt="">
-    <div class="buttonwrapper"><img onclick="task_addSubtask()" src="./assets/img/Vector 17.svg" alt=""></div>  
+    <div class="buttonwrapper"><img onclick="taskAddSubtask()" src="./assets/img/Vector 17.svg" alt=""></div>  
     `;
-  } else {
-    document.getElementById("subtaskField").innerHTML =
-      '<img src="./assets/img/Subtasks icons11.svg" alt="">';
-  }
+    } else {
+        document.getElementById("subtaskField").innerHTML =
+            '<img src="./assets/img/Subtasks icons11.svg" alt="">';
+    }
 }
 
 /**
@@ -288,47 +286,47 @@ function task_changeSubtaskAppearance() {
  *
  */
 function goToContacts() {
-  let element = document.getElementById("navContactButton");
-  renderContacts(element);
-  renderAddContact();
+    let element = document.getElementById("navContactButton");
+    renderContacts(element);
+    renderAddContact();
 }
 
 /**
- * This is called by the task_addTask(list) and task_addEditedTask(list) function.
+ * This is called by the taskAddTask(list) and task_addEditedTask(list) function.
  * reads out the values from all necesarry inputs.
  * Then checks if the value has the right format and returns either correctly input data or an error
  *
  * @returns correct data or a string saying "error"
  *
  */
-function task_compileTaskData() {
-  title = document.getElementById("title");
-  description = document.getElementById("description");
-  dueDate = document.getElementById("due");
-  category = document.getElementById("category_selector");
+function taskCompileTaskData() {
+    title = document.getElementById("title");
+    description = document.getElementById("description");
+    dueDate = document.getElementById("due");
+    category = document.getElementById("category_selector");
 
-  const validity = task_CheckInputValidity(
-    title.value,
-    dueDate.value,
-    category.value
-  );
+    const validity = taskCheckInputValidity(
+        title.value,
+        dueDate.value,
+        category.value
+    );
 
-  if (validity == true) {
-    let date = new Date(dueDate.value);
-    let data = {
-      title: title.value,
-      description: description.value,
-      assignees: assignees,
-      dueDate: date.getTime(),
-      category: category.value,
-      priority: Prio[0],
-      subtasks: subtasks,
-      subtasksDone: subtasksDone,
-    };
-    return data;
-  } else {
-    return "error";
-  }
+    if (validity == true) {
+        let date = new Date(dueDate.value);
+        let data = {
+            title: title.value,
+            description: description.value,
+            assignees: assignees,
+            dueDate: date.getTime(),
+            category: category.value,
+            priority: Prio[0],
+            subtasks: subtasks,
+            subtasksDone: subtasksDone,
+        };
+        return data;
+    } else {
+        return "error";
+    }
 }
 
 /**
@@ -336,25 +334,25 @@ function task_compileTaskData() {
  *
  * @param {number} x This is the number of the respecive priority 0 for urgent, 1 for medium, 2 for low
  */
-function task_colorPriorityButtons(x) {
-  //changes the backgroundcolor based on the selected Priority
-  document.getElementById(`Prio0`).style.backgroundColor = "white";
-  document.getElementById(`Prio1`).style.backgroundColor = "white";
-  document.getElementById(`Prio2`).style.backgroundColor = "white";
-  document.getElementById(
-    `Prio${x}`
-  ).style.backgroundColor = `${priorities[x]["color"]}`;
+function taskColorPriorityButtons(x) {
+    //changes the backgroundcolor based on the selected Priority
+    document.getElementById(`Prio0`).style.backgroundColor = "white";
+    document.getElementById(`Prio1`).style.backgroundColor = "white";
+    document.getElementById(`Prio2`).style.backgroundColor = "white";
+    document.getElementById(
+        `Prio${x}`
+    ).style.backgroundColor = `${priorities[x]["color"]}`;
 
-  //Adds classes that make the image and text white
-  document.getElementById(`Prio0`).classList.remove("whiteFilterText");
-  document.getElementById(`Prio1`).classList.remove("whiteFilterText");
-  document.getElementById(`Prio2`).classList.remove("whiteFilterText");
-  document.getElementById(`Prio${x}`).classList.add("whiteFilterText");
+    //Adds classes that make the image and text white
+    document.getElementById(`Prio0`).classList.remove("whiteFilterText");
+    document.getElementById(`Prio1`).classList.remove("whiteFilterText");
+    document.getElementById(`Prio2`).classList.remove("whiteFilterText");
+    document.getElementById(`Prio${x}`).classList.add("whiteFilterText");
 
-  document.getElementById(`Prio0_img`).classList.remove("whiteFilterImg");
-  document.getElementById(`Prio1_img`).classList.remove("whiteFilterImg");
-  document.getElementById(`Prio2_img`).classList.remove("whiteFilterImg");
-  document.getElementById(`Prio${x}_img`).classList.add("whiteFilterImg");
+    document.getElementById(`Prio0_img`).classList.remove("whiteFilterImg");
+    document.getElementById(`Prio1_img`).classList.remove("whiteFilterImg");
+    document.getElementById(`Prio2_img`).classList.remove("whiteFilterImg");
+    document.getElementById(`Prio${x}_img`).classList.add("whiteFilterImg");
 }
 
 /**
@@ -366,15 +364,15 @@ function task_colorPriorityButtons(x) {
  * @param {string} list This is the name of the array inside "tasksLists" from which information is supossed to be taken
  * @param {number} i This is the position of the edited task inside the array specified above
  */
-function task_CheckFinishedSubtasks(list, i) {
-  let subtasks = taskLists[list][i]["subtasks"];
-  let finishedSubtasks = taskLists[list][i]["subtasksDone"];
-  for (let j = 0; j < subtasks.length; j++) {
-    let subtask = subtasks[j];
-    if (subtask["done"] > 0) {
-      finishedSubtasks.push(subtask);
+function taskCheckFinishedSubtasks(list, i) {
+    let subtasks = taskLists[list][i]["subtasks"];
+    let finishedSubtasks = taskLists[list][i]["subtasksDone"];
+    for (let j = 0; j < subtasks.length; j++) {
+        let subtask = subtasks[j];
+        if (subtask["done"] > 0) {
+            finishedSubtasks.push(subtask);
+        }
     }
-  }
 }
 
 
@@ -382,12 +380,12 @@ function task_CheckFinishedSubtasks(list, i) {
  * adds the different categories as option elements from the categories array. The index will lter determine the category
  *
  */
-function task_renderCategoryOptions() {
-  let selector = document.getElementById("category_selector");
-  for (let index = 0; index < categories.length; index++) {
-    const category = categories[index];
-    selector.innerHTML += `
+function taskRenderCategoryOptions() {
+    let selector = document.getElementById("category_selector");
+    for (let index = 0; index < categories.length; index++) {
+        const category = categories[index];
+        selector.innerHTML += `
         <option value="${index}">${category["name"]}</option>
         `;
-  }
+    }
 }
