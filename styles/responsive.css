@@ -471,7 +471,6 @@
     align-items: center;
   }
   .summary-content {
-    height: fit-content;
     z-index: 2;
   }
   .summary-header {
@@ -481,9 +480,6 @@
     align-items: flex-start;
     width: 400px;
     height: 140px;
-  }
-  .summary-info {
-    height: 500px;
   }
   .img-full {
     display: none;
@@ -630,6 +626,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-bottom: 12px;
   }
   #loginRememberMe {
     margin: 0 20px 39px 20px;
@@ -993,6 +990,16 @@
   .login-area {
     margin-top: 24px;
   }
+  .summary-content {
+    overflow-y: scroll;
+    overflow-x: clip;
+    scrollbar-width: none;
+    height: 90%;
+  }
+
+  .summary-content::-webkit-scrollbar {
+    display: none;
+}
 }
 
 @media (max-height: 690px) {

@@ -290,7 +290,7 @@ function task_changeSubtaskAppearance() {
 function goToContacts() {
   let element = document.getElementById("navContactButton");
   renderContacts(element);
-  openOverlay();
+  renderAddContact();
 }
 
 /**

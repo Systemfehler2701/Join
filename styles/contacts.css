@@ -300,6 +300,16 @@ form button {
     width: 90%;
 }
 
+.inputPhone::-webkit-outer-spin-button,
+.inputPhone::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inputPhone[type=number] {
+    -moz-appearance: textfield;
+  }
+
 .editArea {
     display: flex;
     align-items: center;
