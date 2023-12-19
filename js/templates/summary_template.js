@@ -141,7 +141,7 @@ function renderSummaryBoard() {
 
 function renderSummaryProgress() {
     return /* html */ `
-    <div class="summary-progress" onclick = "openBoard())">
+    <div class="summary-progress" onclick = "openBoard()">
         <span id="progress-amount">${taskLists.inProgress.length}</span>
         <p>Tasks in Progress</p>
     </div>`;

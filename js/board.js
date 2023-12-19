@@ -69,15 +69,15 @@ function boardResetSearch() {
  * @param {string} arrayAsString The name of the array inside "tasksLists" to which the task is
  */
 function boardSearchByList(panel, arrayAsString) {
-    let search = document.getElementById("taskSearch").value;
-    search = search.toLowerCase();
+    let search = document.getElementById("taskSearch").value.toLowerCase();
     panel.innerHTML = "";
     let tasks = taskLists[arrayAsString];
     for (let j = 0; j < tasks.length; j++) {
         let task = tasks[j];
         if (
             task["title"].toLowerCase().includes(search) ||
-            task["description"].toLowerCase().includes(search)
+            task["description"].toLowerCase().includes(search) ||
+            categories[task.category].name.toLowerCase().includes(search)
         ) {
             panel.innerHTML += boardCreateTaskCard(arrayAsString, j);
             boardSubTaskProgress(arrayAsString, j);
@@ -259,6 +259,9 @@ function boardRenderPlaceholder(panel, placeholder) {
  * @param {string} arrayAsString This is the name of the array inside "tasksLists" where the task is found
  */
 function boardRenderCard(panel, arrayAsString) {
+    if (panel == undefined) {
+        return;
+    }
     let array = taskLists[arrayAsString];
     panel.innerHTML = "";
     for (let i = 0; i < array.length; i++) {
@@ -367,12 +370,14 @@ function boardDisplayAssignees(arrayAsString, i) {
     let assigned = task["assignees"];
     let list = document.getElementById(`assignees${arrayAsString}${i}`);
     if (assigned.length != 0) {
-        for (let index = 0; index < users.length; index++) {
+        for (let index = 0; index < users.length && index < 2; index++) {
             let user = users[index];
             if (assigned.includes(user.id)) {
                 list.innerHTML += boardCreateAssignees(user)
             }
         }
+        if (assigned.length >= 3)
+            list.innerHTML += boardCreateAssigneesCount(assigned.length - 2 + "");
     }
 }
 

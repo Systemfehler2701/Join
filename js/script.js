@@ -122,8 +122,7 @@ function onScreenwidthChange() {
     }
 }
 /**
- * 
- * 
+ * close submenu on mousedown event
  * @param {event} e 
  */
 window.onmousedown = function(e) {

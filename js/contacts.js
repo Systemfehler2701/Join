@@ -41,11 +41,9 @@ async function loadContacts() {
 function getInitials(name) {
     const parts = name.split(" ");
     let initials = parts[0][0];
-
     if (parts.length > 1) {
         initials += parts[parts.length - 1][0];
     }
-
     return initials.toUpperCase();
 }
 

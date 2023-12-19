@@ -66,10 +66,10 @@ function renderBoardHead() {
         <h1 class="h1">Board</h1>
         <div class="headleft">
             <div class="searchbar">
-                <input onkeyup="boardResetSearch(), board_search()" type="text" id="taskSearch" placeholder="Find task">
+                <input onkeyup="boardResetSearch(), boardSearch()" type="text" id="taskSearch" placeholder="Find task">
                 <div class="divider"></div>
                 <div class="searchbutton">
-                    <img onclick="board_search()" src="./assets/img/search.svg" alt="">
+                    <img onclick="boardSearch()" src="./assets/img/search.svg" alt="">
                 </div>
             </div>
             <div class="headAddButton">
@@ -343,6 +343,18 @@ function boardCreateAssignees(user) {
   <div class="initials-logo" style="background-color: ${
     user.color
   }">${getInitials(user.name)}</div>`;
+}
+
+/**
+ * 
+ * @param {integer} count count of assignees
+ * @returns 
+ */
+function boardCreateAssigneesCount(count) {
+    return /*html*/ `
+  <div class="initials-logo" style="background-color: ${getColor(count)}">
+    +${count}
+  </div>`;
 }
 
 function boardCreateUnfinishedSubtasksFull(arrayAsString, i, j, subtask) {
