@@ -984,13 +984,7 @@
 }
 
 @media (max-height: 778px) {
-    <<<<<<< HEAD .logo {
-        display: none;
-    }
-    .login-area {
-        margin-top: 24px;
-    }
-    =======.logo {
+    .logo {
         display: none;
     }
     .login-area {
@@ -1005,7 +999,6 @@
     .summary-content::-webkit-scrollbar {
         display: none;
     }
-    >>>>>>>bc9c558979d3bb2a1ca9cbc7704082affa6cfbaa
 }
 
 @media (max-height: 690px) {
